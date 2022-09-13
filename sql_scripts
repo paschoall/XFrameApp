@@ -1,0 +1,12 @@
+
+USE variable_selection_tool;
+
+Create table variaveis_dependentes(
+id_variavel_dependente	int			AUTO_INCREMENT primary key,
+nome_variavel			varchar(50)	NOT NULL,
+descricao				varchar(1000));
+
+Create table variaveis_independentes(
+id_variavel_independente	int			AUTO_INCREMENT primary key,
+nome_variavel			varchar(50)	NOT NULL,
+descricao				varchar(1000));
