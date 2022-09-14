@@ -1,0 +1,21 @@
+in flask server
+    to create a venv:
+        python -m venv <path>
+
+    to activate venv
+        enter run de activate script inside the scripts folder in the venv
+        e.g.: ".\venv\Scripts\activate"
+
+    install flask
+        run the flask server
+    
+    install sql connectors
+        pip install mysql-connector
+        pip install mysql-connector-python
+    
+    install pymysql and cryptography
+        pip install pymysql         
+        pip install cryptography
+
+in react client
+    npm startexit
