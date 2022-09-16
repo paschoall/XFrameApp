@@ -18,9 +18,9 @@ import Review from './Review';
 
 function Copyright() {
   return (
-    <Typography variant="body2" color="text.secondary" align="center">
+    <Typography variant='body2' color='text.secondary' align='center'>
       {'Copyright © '}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color='inherit' href='https://mui.com/'>
         Your Website
       </Link>{' '}
       {new Date().getFullYear()}
@@ -61,8 +61,8 @@ export default function Checkout() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <AppBar
-        position="absolute"
-        color="default"
+        position='absolute'
+        color='default'
         elevation={0}
         sx={{
           position: 'relative',
@@ -70,14 +70,14 @@ export default function Checkout() {
         }}
       >
         <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
+          <Typography variant='h6' color='inherit' noWrap>
             Company name
           </Typography>
         </Toolbar>
       </AppBar>
-      <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
-        <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
-          <Typography component="h1" variant="h4" align="center">
+      <Container component='main' maxWidth='sm' sx={{ mb: 4 }}>
+        <Paper variant='outlined' sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+          <Typography component='h1' variant='h4' align='center'>
             Checkout
           </Typography>
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
@@ -90,10 +90,10 @@ export default function Checkout() {
           <React.Fragment>
             {activeStep === steps.length ? (
               <React.Fragment>
-                <Typography variant="h5" gutterBottom>
+                <Typography variant='h5' gutterBottom>
                   Thank you for your order.
                 </Typography>
-                <Typography variant="subtitle1">
+                <Typography variant='subtitle1'>
                   Your order number is #2001539. We have emailed your order
                   confirmation, and will send you an update when your order has
                   shipped.
@@ -110,7 +110,7 @@ export default function Checkout() {
                   )}
 
                   <Button
-                    variant="contained"
+                    variant='contained'
                     onClick={handleNext}
                     sx={{ mt: 3, ml: 1 }}
                   >

@@ -17,7 +17,6 @@ export default function CardTemplate(props){
                 }}
         >
             <CardContent 
-                text-al
                 sx={{
                     display: 'flex',
                     flexWrap: 'wrap',
