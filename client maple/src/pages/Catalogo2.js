@@ -12,7 +12,7 @@ const Catalogo2 = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <NavBar />
-      <CardBox />
+      <CardBox fetchlink = '/maple_characters'/>
       <Footer />
     </ThemeProvider>
   );

@@ -17,7 +17,7 @@ export default function CardBox(props){
                     
                     }}
             >
-            <CardList charactes = {props.commonProps}/>
+            <CardList fetchlink = {props.fetchlink}/>
             </Box>
         </Container>
     )
