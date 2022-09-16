@@ -7,11 +7,8 @@ import CardBox from '../components/CardBox';
 
 const theme = createTheme();
 
-
-
 const Catalogo = () => {
   return (
-
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <NavBar />

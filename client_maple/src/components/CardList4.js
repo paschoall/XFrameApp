@@ -5,25 +5,26 @@ import CardTemplate from './CardTemplate';
 const CardList = (props) => {
   const [data, setData] = useState([{}])
   useEffect(() => {
-    setData(props.characters)
-  }, [])
-  const numbers = [1, 2, 3, 4, 5];
+    fetch(props.fetchlink).then(
+      res => res.json()
+    ).then(
+      data => {
+        setData(data)
+        console.log(data)
+      }
+    )
+  }, [props.fetchlink])
+
+  // const numbers = [1, 2, 3, 4, 5];
+
   return (
-    <div>
-      {(typeof data.characters === 'undefined') ? (
+      (typeof data.characters === 'undefined') ? (
         <p>Loading...</p>
       ) : (
-        // data.characters.map((character, i) => (
-        //   <p key={i}>{character['name']}</p>
-        // ))
         data.characters.map((character, i) => (
           <CardTemplate key = {i} nomeVariavel={character['name']} descricao={character['job']}/>
         ))
-        // <div/>
-        // data.character.map((character, i) => <CardTemplate key={i} nomeVariavel={character['name']} descricao={character['name']} />)
-      )}
-    </div>
-    
+      )
   );
 }
 

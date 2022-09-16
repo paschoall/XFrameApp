@@ -4,7 +4,7 @@ import CardContent from '@mui/material/CardContent';
 import ButtonTemplate from './ButtonTemplate';
 
 export default function CardTemplate(props){
-    return(
+        return(
         <Card
             sx={{
                 minHeight: '10rem',

@@ -1,48 +1,52 @@
 import * as React from 'react';
-import Grid from '@mui/material/Grid';
+import { useForm } from "react-hook-form";
 // import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
+import Grid from '@mui/material/Grid';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import { FormInputText } from './FormInputText';
 
 export default function Forms() {
+  const { handleSubmit, reset, control } = useForm();
+
+  const onSubmit = (data) => {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }
+    fetch('https://reqres.in/api/register', requestOptions)
+      .then(response => response.json())
+      .then(data => console.log(data));
+    console.log(JSON.stringify(data));
+  }
   return (
     <React.Fragment>
-      {/* <Typography variant="h6" gutterBottom>
-        Cadastro de Variável
-      </Typography> */}
       <Grid container spacing={3}>
         <Grid item xs={12}>
-          <TextField
+          <FormInputText
             required
-            id="nomeVariavel"
-            name="nomeVariavel"
+            name="email"
+            control={control}
             label="Nome da Variável"
-            fullWidth
-            autoComplete="nome-varoavel"
-            variant="standard"
           />
         </Grid>
         <Grid item xs={12}>
-          <TextField
+          <FormInputText
             required
-            id="campo1"
-            name="campo1"
+            name="password"
+            control={control}
             label="Campo 1"
-            fullWidth
-            autoComplete="descricao campo1"
-            variant="standard"
           />
         </Grid>
         <Grid item xs={12}>
-          <TextField
-            id="campo2"
-            name="campo2"
-            label="Campo 2 (se necessário)"
-            fullWidth
-            autoComplete="campo2"
-            variant="standard"
-          />
+          {/* <FormInputText
+            name="Campo2"
+            control={control}
+            label="Campo 2"
+          /> */}
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
@@ -51,6 +55,22 @@ export default function Forms() {
           />
         </Grid>
       </Grid>
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+        <Button
+          variant='contained'
+          onClick={() => reset()}
+          sx={{ mt: 3, ml: 1 }}
+        >
+          Resetar
+        </Button>
+        <Button
+          variant='contained'
+          onClick={handleSubmit(onSubmit)}
+          sx={{ mt: 3, ml: 1 }}
+        >
+          Cadastrar
+        </Button>
+      </Box>
     </React.Fragment>
   );
 }

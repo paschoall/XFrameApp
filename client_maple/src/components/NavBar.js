@@ -12,8 +12,9 @@ import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
+import { Link } from 'react-router-dom';
 
-const pages = ['Variáveis Dependentes', 'Variáveis Independentes','Cadastro','Sobre'];
+const pages = ['Variáveis Dependentes', 'Variáveis Independentes', 'Cadastro', 'Sobre'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function getPageLink(page) {
@@ -48,9 +49,9 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(null);
   };
 
-  
+
   return (
-    
+
     <AppBar position='static'>
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
@@ -103,7 +104,12 @@ const ResponsiveAppBar = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem
+                  component={Link}
+                  to={getPageLink(page)}
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                >
                   <Typography href={getPageLink(page)} textAlign='center'>{page}</Typography>
                 </MenuItem>
               ))}
