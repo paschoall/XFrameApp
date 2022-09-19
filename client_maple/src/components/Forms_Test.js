@@ -24,19 +24,18 @@ export default function Forms() {
   }, [open])
 
   const onSubmit = (data) => {
+    // data.level = 0
+    // data.stats = 0
     setOpen(false)
     setOpenError(false)
-
-    data.level = 0
-    data.stats = 0
-
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     }
-    
-    fetch('/maple_character', requestOptions)
+    // https://reqres.in/api/users
+    // https://reqres.in/api/register
+    fetch('https://reqres.in/api/register', requestOptions)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not OK');
@@ -76,10 +75,10 @@ export default function Forms() {
         </Grid>
         <Grid item xs={12}>
           {/* <FormInputText
-          name="Campo2"
-          control={control}
-          label="Campo 2"
-        /> */}
+            name="Campo2"
+            control={control}
+            label="Campo 2"
+          /> */}
         </Grid>
         <Grid item xs={12}>
           <FormControlLabel
