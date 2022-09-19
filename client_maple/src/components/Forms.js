@@ -12,12 +12,14 @@ export default function Forms() {
   const { handleSubmit, reset, control } = useForm();
 
   const onSubmit = (data) => {
+    data.level = 0
+    data.stats = 0
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     }
-    fetch('https://reqres.in/api/register', requestOptions)
+    fetch('/maple_character', requestOptions)
       .then(response => response.json())
       .then(data => console.log(data));
     console.log(JSON.stringify(data));
@@ -28,7 +30,7 @@ export default function Forms() {
         <Grid item xs={12}>
           <FormInputText
             required
-            name="email"
+            name="name"
             control={control}
             label="Nome da Variável"
           />
@@ -36,9 +38,9 @@ export default function Forms() {
         <Grid item xs={12}>
           <FormInputText
             required
-            name="password"
+            name="job"
             control={control}
-            label="Campo 1"
+            label="Descrição"
           />
         </Grid>
         <Grid item xs={12}>
