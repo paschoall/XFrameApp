@@ -13,6 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
+import ThemeToggler from './ThemeToggler';
 
 const pages = ['Variáveis Dependentes', 'Variáveis Independentes', 'Cadastro', 'Sobre'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -175,6 +176,7 @@ const ResponsiveAppBar = () => {
                 </MenuItem>
               ))}
             </Menu>
+            <ThemeToggler />
           </Box>
         </Toolbar>
       </Container>
