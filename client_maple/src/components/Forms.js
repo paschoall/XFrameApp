@@ -61,7 +61,8 @@ export default function Forms() {
         <Grid item xs={12}>
           <FormInputText
             required
-            name="email"
+            // name="email"
+            name="name"
             control={control}
             label="Nome da Variável"
           />
@@ -69,7 +70,8 @@ export default function Forms() {
         <Grid item xs={12}>
           <FormInputText
             required
-            name="password"
+            // name="password"
+            name="job"
             control={control}
             label="Descrição"
           />

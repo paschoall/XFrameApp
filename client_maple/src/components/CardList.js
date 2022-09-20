@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
 import CardTemplate from './CardTemplate';
+import Grid from '@mui/material';
 
 const CardList = (props) => {
   const [data, setData] = useState([{}])
@@ -14,17 +15,25 @@ const CardList = (props) => {
       }
     )
   }, [props.fetchlink])
-
   // const numbers = [1, 2, 3, 4, 5];
 
   return (
-      (typeof data.characters === 'undefined') ? (
-        <p>Loading...</p>
-      ) : (
-        data.characters.map((character, i) => (
-          <CardTemplate key = {i} nomeVariavel={character['name']} descricao={character['job']}/>
-        ))
-      )
+    <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+      {
+        (typeof data.characters === 'undefined') ? (
+          <p>Loading...</p>
+        ) : (
+          data.characters.map((character, i) => {
+            (
+              <Grid item xs={12} md={6}>
+                <CardTemplate key={i} nomeVariavel={character['name']} descricao={character['job']} />
+              </Grid>
+            )
+          }
+          )
+        )
+      }
+    </Grid>
   );
 }
 

@@ -3,26 +3,26 @@ import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
 import ButtonTemplate from './ButtonTemplate';
 
-export default function CardTemplate(props){
-        return(
+export default function CardTemplate(props) {
+    return (
         <Card
             sx={{
-                minHeight: '10rem',
-                minWidth: '30rem',
-                marginTop: '3rem',
+                minHeight: '15rem',
+                maxHeight: '15rem',
+                margin: 'auto',
+                marginTop: '1rem',
                 textAlign: 'left',
-                maxWidth: '10rem',
                 display: 'flex',
                 flexWrap: 'wrap',
-                }}
+            }}
         >
-            <CardContent 
+            <CardContent
                 sx={{
                     display: 'flex',
                     flexWrap: 'wrap',
                 }}
             >
-                <Typography 
+                <Typography
                     variant='h4'
                     sx={{
                         fontSize: '1.5rem',
@@ -32,15 +32,24 @@ export default function CardTemplate(props){
                     {props.nomeVariavel}
                 </Typography>
                 <Typography
+                    // noWrap
                     variant=''
                     sx={{
+                        marginBottom: '0.5rem',
+                        height: '6em',
                         fontSize: '1rem',
+                        lineHeight: '1.5em',
                         fontWeight: 'normal',
-                        width: '100%'
+                        width: '100%',
+
+                        overflow: 'hidden',
+                        display: '-webkit-box',
+                        WebkitLineClamp: '3',
+                        WebkitBoxOrient: 'vertical',
                     }}>
                     {props.descricao}
                 </Typography>
-                <ButtonTemplate/>
+                <ButtonTemplate />
             </CardContent>
         </Card>
     )
