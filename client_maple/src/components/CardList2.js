@@ -11,7 +11,7 @@ const CardList = (props) => {
         (number, i) => {
           if (i === 1) {
             return (
-              <Grid item xs={12} md={6}>
+              <Grid key={i} item xs={12} md={6}>
                 <CardTemplate
                   key={i} nomeVariavel={number}
                   descricao="
@@ -26,7 +26,7 @@ const CardList = (props) => {
           }
           else {
             return (
-              <Grid item xs={12} md={6}>
+              <Grid key={i} item xs={12} md={6}>
                 <CardTemplate
                   key={i} nomeVariavel={number}
                   descricao="The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English."

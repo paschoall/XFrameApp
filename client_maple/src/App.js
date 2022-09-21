@@ -1,46 +1,50 @@
 import './assets/App.css';
 // import { useState, useEffect } from 'react'
-import React from 'react'
+import React from 'react';
+import { useState, useMemo } from "react";
+import { useSelector } from "react-redux";
 import {
   ThemeProvider,
   createTheme
 } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import Rotas from './routes/Rotas'
-import { ColorModeContext } from './config/color-context';
+import Rotas from './routes/Rotas';
+// import { useDispatch } from "react-redux";
+// import { toggleTheme } from "./store/reducers/themeSlice";
+
+const getDesignTokens = (mode) => ({
+  palette: {
+    mode,
+  },
+});
 
 const App = () => {
+  const [mode, setMode] = useState('light');
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const [mode, setMode] = React.useState('light');
+  const darkMode = useSelector((state) => state.theme.darkMode);
+
+
   React.useEffect(() => {
-    setMode(prefersDarkMode ? 'dark' : 'light');
+    if (JSON.parse(localStorage.getItem("darkMode") == null)) {
+      localStorage.setItem("darkMode", prefersDarkMode);
+      setMode(prefersDarkMode ? 'dark' : 'light');
+    }
   }, [prefersDarkMode]);
 
-  const colorMode = React.useMemo(
-    () => ({
-      toggleColorMode: () => {
-        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
-      },
-    }),
-    []
-  );
+  useMemo(() => {
+    if (darkMode) {
+      setMode("dark");
+    } else {
+      setMode("light");
+    }
+  }, [darkMode]);
 
-  const theme = React.useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode,
-        },
-      }),
-    [mode],
-  );
+  const theme = useMemo(() => createTheme(getDesignTokens(mode)), [mode]);
 
   return (
-    <ColorModeContext.Provider value={colorMode}>
-      <ThemeProvider theme={theme}>
-        <Rotas />
-      </ThemeProvider>
-    </ColorModeContext.Provider>
+    <ThemeProvider theme={theme}>
+      <Rotas />
+    </ThemeProvider>
   );
 }
 
