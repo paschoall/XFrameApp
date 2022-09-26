@@ -1,9 +1,8 @@
-from ast import Expression
 from flask import Flask, Response, request
+from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql.expression import select,func
 from dotenv import load_dotenv
-import mysql.connector
 import json
 import os
 
@@ -12,10 +11,10 @@ MYSQL_USER = os.environ["MYSQL_USER"]
 MYSQL_PASSWORD = os.environ["MYSQL_PASSWORD"]
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = True
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://"+MYSQL_USER+":"+MYSQL_PASSWORD+"@localhost/maple"
 
-# Initialize the db
+ma = Marshmallow(app)
 db = SQLAlchemy(app)
 
 # Define Models

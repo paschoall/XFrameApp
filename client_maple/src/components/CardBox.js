@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 // import CardTemplate from './CardTemplate';
-import CardList from './CardList2';
+import CardList from './CardList';
 
 export default function CardBox(props){  
     return(

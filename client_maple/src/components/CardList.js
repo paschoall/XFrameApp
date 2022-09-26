@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
 import CardTemplate from './CardTemplate';
-import Grid from '@mui/material';
+import Grid from '@mui/material/Grid';
 
 const CardList = (props) => {
   const [data, setData] = useState([{}])
@@ -24,7 +24,7 @@ const CardList = (props) => {
           <p>Loading...</p>
         ) : (
           data.characters.map((character, i) => {
-            (
+            return (
               <Grid item xs={12} md={6}>
                 <CardTemplate key={i} nomeVariavel={character['name']} descricao={character['job']} />
               </Grid>
