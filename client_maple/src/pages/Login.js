@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-import NavBar from '../components/NavBar';
+import NavBar from '../components/NavBar2';
 import Footer from '../components/Footer';
 
 export default function SignIn() {
