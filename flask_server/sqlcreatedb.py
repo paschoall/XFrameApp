@@ -15,7 +15,7 @@ connection = mysql.connector.connect(
 
 cursor = connection.cursor()
 
-cursor.execute("CREATE DATABASE IF NOT EXISTS crud")
+cursor.execute("CREATE DATABASE IF NOT EXISTS variable_selection_tool")
 cursor.execute("SHOW DATABASES")
 for db in cursor:
     print(db)
