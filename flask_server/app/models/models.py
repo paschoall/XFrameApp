@@ -49,11 +49,11 @@ class metrica(db.Model):
     def __repr__(self):
         return "<name: %r>" % (self.name)
 
-    def __init__(self, name, description):
+    def __init__(self, name, description, instrument):
         self.name = name
+        self.description = description
+        self.instrument = instrument
 
-    def to_json(self):
-        return {"id": self.id, "name": self.name}
 
 
 class referencia(db.Model):
@@ -64,7 +64,7 @@ class referencia(db.Model):
     def __repr__(self):
         return "<referencia: %r>" % (self.referencia)
 
-    def __init__(self, name, description):
+    def __init__(self, referencia):
         self.referencia = referencia
 
     def to_json(self):
