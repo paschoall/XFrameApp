@@ -88,3 +88,9 @@ def delete_user(id):
         except Exception as e:
             print(e)
             return jsonify({'message': "unable to delete", 'data': {}}), 500
+
+def user_by_username(username):
+    try: 
+        return Users.query.filter(Users.username == username).one()
+    except:
+        return None

@@ -4,6 +4,7 @@ from flask import Response, request
 from flask import jsonify
 
 from app import app
+from ..views import helper
 from ..views import users, variables, metrics, references, relationships
 
 # # CRUD Routes
@@ -77,6 +78,9 @@ from ..views import users, variables, metrics, references, relationships
 def members():
     return jsonify({"message": 'Hello world!'})
 
+@app.route("/auth", methods=['POST'])
+def authenticate():
+    return helper.auth()
 # Users CRUD
 # Create
 @app.route("/user", methods=['POST'])
