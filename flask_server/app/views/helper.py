@@ -1,3 +1,4 @@
+from ast import arg
 import datetime
 from functools import wraps
 
@@ -25,4 +26,17 @@ def auth():
     
     return jsonify({'message': 'could not verify', 'WWW-Authenticate': 'Basic auth="Login required"'}), 401
 
-
+def token_required(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        token = request.args.get('token')
+        if not token:
+            return jsonify({'message': 'token is missing', 'data':{}}), 401
+        try:
+            data = jwt.decode(token, app.config['SECRET_KEY'], algorithms=['HS256'])
+            current_user = user_by_username(username=data['username'])
+        except Exception as e:
+            print(e)
+            return jsonify({'message': 'token is invalid or expired', 'data':{}}), 401
+        return f(current_user, *args, **kwargs)
+    return decorated

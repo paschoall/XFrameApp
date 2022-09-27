@@ -75,8 +75,9 @@ from ..views import users, variables, metrics, references, relationships
 
 # Members API Route
 @app.route("/")
-def members():
-    return jsonify({"message": 'Hello world!'})
+@helper.token_required
+def root(current_user):
+    return jsonify({"message": f'Hello {current_user.name}'})
 
 @app.route("/auth", methods=['POST'])
 def authenticate():
