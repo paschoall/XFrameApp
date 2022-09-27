@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 import {
   BrowserRouter,
   Routes,
@@ -14,17 +15,19 @@ import Catalogo2 from '../pages/Catalogo2';
 import PageNotFound from '../pages/PageNotFound';
 import Dashboard from '../pages/Dashboard';
 
-const Rotas = () => {
+
+
+const Rotas = ({ setToken }) => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/cadastro' element={<Cadastro />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/login' element={<Login setToken={setToken} />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/adminpage' element={<Dashboard />} />
-        <Route path='/catalogo_variaveis_dependentes' element={<Catalogo />} />
-        <Route path='/catalogo_variaveis_independentes' element={<Catalogo2 />} />
+        <Route path='/catalogo_variaveis_independentes' element={<Catalogo />} />
+        <Route path='/catalogo_variaveis_dependentes' element={<Catalogo2 />} />
         <Route path='*' element={<PageNotFound />} />
       </Routes>
     </BrowserRouter>
@@ -32,3 +35,7 @@ const Rotas = () => {
 }
 
 export default Rotas;
+
+Routes.propTypes = {
+  setToken: PropTypes.func.isRequired
+};

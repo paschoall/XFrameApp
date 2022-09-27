@@ -1,4 +1,7 @@
+
 import * as React from 'react';
+import PropTypes from 'prop-types'
+import { useState, useEffect } from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,18 +15,55 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
+import AlertDialog from '../components/AlertDialog';
 import NavBar from '../components/NavBar2';
 import Footer from '../components/Footer';
 
-export default function SignIn() {
+export default function Login({ setToken }) {
+    const [open, setOpen] = useState(false);
+    const [openError, setOpenError] = useState(false);
+
+    useEffect(() => {
+        setOpenError(openError)
+    }, [openError])
+
+    useEffect(() => {
+        setOpen(open)
+    }, [open])
+
     const handleSubmit = (event) => {
+        // setOpen(false)
+        setOpenError(false)
+
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+
+        const requestOptions = {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+        }
+
+        requestOptions.headers.Authorization = 'Basic ' + btoa(data.get('username') + ":" + data.get('password'))
+
+        fetch('/auth', requestOptions)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not OK');
+                }
+                // console.log(response)
+                // setOpen(true)
+                return response.json()
+            })
+            .then(data => {
+                console.log('Success:')
+                setToken(data.token)
+            })
+            .catch((error) => {
+                console.error('There has been a problem with your fetch operation:', error);
+                setOpenError(true)
+            });
     };
+
 
     return (
         <div>
@@ -50,10 +90,10 @@ export default function SignIn() {
                             margin="normal"
                             required
                             fullWidth
-                            id="email"
-                            label="Email Address"
-                            name="email"
-                            autoComplete="email"
+                            id="username"
+                            label="Username"
+                            name="username"
+                            autoComplete="username"
                             autoFocus
                         />
                         <TextField
@@ -92,8 +132,17 @@ export default function SignIn() {
                         </Grid>
                     </Box>
                 </Box>
+                <AlertDialog
+                    open={openError}
+                    title='Erro no Login'
+                    message='Usuário ou Senha incorretos'
+                />
             </Container>
             <Footer />
         </div>
     );
 }
+
+Login.propTypes = {
+    setToken: PropTypes.func.isRequired
+};

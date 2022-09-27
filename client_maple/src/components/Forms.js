@@ -35,8 +35,8 @@ export default function Forms() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     }
-    
-    fetch('/maple_character', requestOptions)
+
+    fetch('/independent_varible', requestOptions)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not OK');
@@ -52,7 +52,7 @@ export default function Forms() {
         setOpenError(true)
       });
 
-    console.log(JSON.stringify(data));
+    // console.log(JSON.stringify(data));
   }
 
   return (
@@ -71,7 +71,7 @@ export default function Forms() {
           <FormInputText
             required
             // name="password"
-            name="job"
+            name="description"
             control={control}
             label="Descrição"
           />
@@ -109,7 +109,8 @@ export default function Forms() {
       <AlertDialog
         open={openError}
         title='Erro no Cadastro'
-        message='Lorem Ipsum is simply dummy text of the printing and typesetting industry.' />
+        message='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+      />
       <AlertDialog
         open={open}
         title='Variável Cadastrada com Sucesso'

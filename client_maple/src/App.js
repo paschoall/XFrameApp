@@ -9,8 +9,11 @@ import {
 } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import Rotas from './routes/Rotas';
+import useToken from './hooks/useToken';
+
 // import { useDispatch } from "react-redux";
 // import { toggleTheme } from "./store/reducers/themeSlice";
+
 
 const getDesignTokens = (mode) => ({
   palette: {
@@ -19,10 +22,10 @@ const getDesignTokens = (mode) => ({
 });
 
 const App = () => {
+  const { token, setToken } = useToken();
   const [mode, setMode] = useState('light');
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
   const darkMode = useSelector((state) => state.theme.darkMode);
-
 
   React.useEffect(() => {
     if (JSON.parse(localStorage.getItem("darkMode") == null)) {
@@ -43,7 +46,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Rotas />
+      <Rotas setToken={setToken} token ={token} />
     </ThemeProvider>
   );
 }

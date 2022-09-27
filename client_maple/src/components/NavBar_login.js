@@ -52,7 +52,6 @@ const ResponsiveAppBar = () => {
 
 
   return (
-
     <AppBar position='static'>
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
@@ -149,6 +148,7 @@ const ResponsiveAppBar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
+            {/* <Button color="inherit">Login</Button> */}
             <Tooltip title='Open settings'>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 <Avatar alt='Eiji Ich' src='/static/images/avatar/2.jpg' />

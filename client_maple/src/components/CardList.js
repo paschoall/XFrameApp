@@ -20,13 +20,13 @@ const CardList = (props) => {
   return (
     <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
       {
-        (typeof data.characters === 'undefined') ? (
+        (typeof data.data === 'undefined') ? (
           <p>Loading...</p>
         ) : (
-          data.characters.map((character, i) => {
+          data.data.map((data, i) => {
             return (
-              <Grid item xs={12} md={6}>
-                <CardTemplate key={i} nomeVariavel={character['name']} descricao={character['job']} />
+              <Grid key = {i} item xs={12} md={6}>
+                <CardTemplate key={i} nomeVariavel={data['name']} descricao={data['description']} />
               </Grid>
             )
           }

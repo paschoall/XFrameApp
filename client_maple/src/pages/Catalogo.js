@@ -10,7 +10,7 @@ const Catalogo = () => {
     <div>
       <CssBaseline />
       <NavBar />
-      <CardBox fetchlink='/maple_characters' />
+      <CardBox fetchlink='/independent_variables' />
       <Footer />
     </div>
   );
