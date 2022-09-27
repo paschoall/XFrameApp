@@ -11,6 +11,7 @@ class Users(db.Model):
     name = db.Column(db.String(60), nullable=False)
     email = db.Column(db.String(50), unique=True, nullable=False)
     created_on = db.Column(db.DateTime, default=datetime.datetime.now())
+    admin = db.Column(db.Boolean, nullable=False, default=False)
 
     def __init__(self, username, password, name, email):
         self.username = username
@@ -21,7 +22,7 @@ class Users(db.Model):
 
 class UsersSchema(ma.Schema):
     class Meta:
-        fields = ('id', 'username', 'name', 'email', 'password', 'created_on')
+        fields = ('id', 'username', 'name', 'email', 'password', 'created_on', 'admin')
 
 
 user_schema = UsersSchema()

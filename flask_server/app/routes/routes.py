@@ -77,7 +77,10 @@ from ..views import users, variables, metrics, references, relationships
 @app.route("/")
 @helper.token_required
 def root(current_user):
-    return jsonify({"message": f'Hello {current_user.name}'})
+    if current_user.admin:
+        return jsonify({"message": f'Hello {current_user.name}, you are an Admin!'})
+    else:
+        return jsonify({"message": f'Hello {current_user.name}, you are not an Admin!'})
 
 @app.route("/auth", methods=['POST'])
 def authenticate():
