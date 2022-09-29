@@ -14,7 +14,6 @@ import Container from '@mui/material/Container';
 
 import { Navigate } from 'react-router-dom';
 
-import NavBar from '../components/NavBar2';
 import Footer from '../components/Footer';
 
 
@@ -33,7 +32,6 @@ export default function SignUp({ user }) {
   return (
     <>
       <CssBaseline />
-      <NavBar />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box

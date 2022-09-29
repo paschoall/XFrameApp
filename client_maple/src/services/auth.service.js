@@ -1,6 +1,8 @@
+import jwt from 'jwt-decode'
+
 const register = (name, username, password, email) => {
 
-  const data ={
+  const data = {
     name: name,
     username: username,
     password: password,
@@ -43,21 +45,28 @@ const login = (username, password) => {
       return response.json()
     })
     .then(data => {
-      console.log('Success!')
+      if (data.token) {
+        localStorage.setItem("token", JSON.stringify(data.token))
+      }
+      const decodedtoken = jwt(data.token)
+      const user = {
+        username: decodedtoken.username,
+        isLoggedIn: true,
+        roles: decodedtoken.roles,
+      }
+      localStorage.setItem('user', JSON.stringify(user))
+      return user;
     })
-    .catch((error) => {
-      console.error('There has been a problem with your fetch operation:', error);
-    });
 };
 
-const logout = () => {
-  localStorage.removeItem("token");
-  localStorage.removeItem("user");
-};
-const AuthService = {
-  register,
-  login,
-  logout,
-};
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+  };
+  const AuthService = {
+    register,
+    login,
+    logout,
+  };
 
-export default AuthService;
+  export default AuthService;

@@ -1,9 +1,10 @@
 
 import * as React from 'react';
 import { useState, useEffect } from 'react';
+import { useSelector } from "react-redux";
 import PropTypes from 'prop-types'
 
-// import jwt from 'jwt-decode'
+import jwt from 'jwt-decode'
 
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -18,15 +19,17 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 import AlertDialog from '../components/AlertDialog';
-import NavBar from '../components/NavBar2';
 import Footer from '../components/Footer';
 
-export default function Login({ setToken, user }) {
+export default function Login({ setToken }) {
+  const { user: currentUser } = useSelector((state) => state.auth);
+
   const [open, setOpen] = useState(false);
   const [openError, setOpenError] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setOpenError(openError)
@@ -55,13 +58,19 @@ export default function Login({ setToken, user }) {
         if (!response.ok) {
           throw new Error('Network response was not OK');
         }
-        // console.log(response)
-        // setOpen(true)
         return response.json()
       })
       .then(data => {
         console.log('Success!')
         setToken(data.token)
+        const decodedtoken = jwt(data.token)
+        const user = {
+          username: decodedtoken.username,
+          isLoggedIn: true,
+          roles: decodedtoken.roles,
+        }
+        localStorage.setItem('user', JSON.stringify(user))
+        navigate('/', { replace: true })
       })
       .catch((error) => {
         console.error('There has been a problem with your fetch operation:', error);
@@ -69,14 +78,13 @@ export default function Login({ setToken, user }) {
       });
   };
 
-  if (user) {
+  if (currentUser) {
     return <Navigate to="/" replace />;
   }
 
   return (
     <>
       <CssBaseline />
-      <NavBar />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box

@@ -2,10 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types'
 import {
   Routes,
-  Route
+  Route,
+  useLocation,
 } from 'react-router-dom';
 
 import ProtectedRoute from '../components/ProtectedRoute';
+import NavBar from '../components/NavBar';
 
 import Home from '../pages/Home';
 import Cadastro from '../pages/Cadastro';
@@ -16,15 +18,17 @@ import Catalogo2 from '../pages/Catalogo2';
 import PageNotFound from '../pages/PageNotFound';
 import Dashboard from '../pages/Dashboard';
 
-
-
 const Rotas = ({ setToken, user }) => {
+
+  const location = useLocation();
+
   return (
     <>
+      {location.pathname !== '/adminpage' && <NavBar user={user}/>}
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/cadastro' element={<Cadastro />} />
-        <Route path='/login' element={<Login setToken={setToken} />} />
+        <Route path='/login' element={<Login setToken={setToken} user={user}/>} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/catalogo_variaveis_independentes' element={<Catalogo />} />
         <Route path='/catalogo_variaveis_dependentes' element={<Catalogo2 />} />
@@ -34,7 +38,7 @@ const Rotas = ({ setToken, user }) => {
           path='/adminpage'
           element={
             <ProtectedRoute
-              isAllowed={!!user && user.roles.includes('admin')}
+              isAllowed={!!user && !!user.roles.includes('admin')}
             >
               <Dashboard />
             </ProtectedRoute>

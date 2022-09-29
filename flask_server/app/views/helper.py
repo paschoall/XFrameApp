@@ -23,7 +23,7 @@ def auth():
             token = jwt.encode({'username': user.username, 'exp': datetime.datetime.now() + datetime.timedelta(hours=12), 'roles':['admin']},
                                 app.config['SECRET_KEY'])
         else:
-            token = jwt.encode({'username': user.username, 'exp': datetime.datetime.now() + datetime.timedelta(hours=12)},
+            token = jwt.encode({'username': user.username, 'exp': datetime.datetime.now() + datetime.timedelta(hours=12), 'roles':['user']},
                                 app.config['SECRET_KEY'])
         return jsonify({'message': 'Successfully validated', 'token': token,
                         'exp': datetime.datetime.now() + datetime.timedelta(hours=12)})

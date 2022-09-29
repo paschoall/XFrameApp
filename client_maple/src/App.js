@@ -1,7 +1,7 @@
 import './assets/App.css';
 // import { useState, useEffect } from 'react'
 import React from 'react';
-import { useState, useMemo, useCallback } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -19,14 +19,14 @@ const getDesignTokens = (mode) => ({
 });
 
 const App = () => {
-  // const [user, setUser] = React.useState(null);
   const [mode, setMode] = useState('light');
   const { token, setToken } = useToken();
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
+  const { user: currentUser } = useSelector((state) => state.auth);
   const darkMode = useSelector((state) => state.theme.darkMode);
   const dispatch = useDispatch()
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (JSON.parse(localStorage.getItem("darkMode") == null)) {
       localStorage.setItem("darkMode", prefersDarkMode);
       setMode(prefersDarkMode ? 'dark' : 'light');
@@ -49,7 +49,7 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <Rotas setToken={setToken} token={token} />
+      <Rotas setToken={setToken} token={token} currentUser={currentUser}/>
       <AuthVerify logOut={logOut} />
     </ThemeProvider>
   );

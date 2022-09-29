@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -13,10 +15,11 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
+import { logout } from "../actions/auth";
 import ThemeToggler from './ThemeToggler';
 
 const pages = ['Variáveis Independentes', 'Variáveis Dependentes', 'Cadastro', 'Sobre'];
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Profile', 'Logout'];
 
 function getPageLink(page) {
   switch (page) {
@@ -26,14 +29,32 @@ function getPageLink(page) {
       return '/catalogo_variaveis_dependentes';
     case 'Variáveis Independentes':
       return '/catalogo_variaveis_independentes';
+    case 'Logout':
+      return '/';
     default:
       return ''
   }
 }
 
 const ResponsiveAppBar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const { user: currentUser } = useSelector((state) => state.auth);
+  const [showUserMenu, setShowUserMenu] = useState(false);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (currentUser) {
+      setShowUserMenu(currentUser.isLoggedIn);
+      console.log(currentUser)
+    } else {
+      setShowUserMenu(false);
+    }
+  }, [currentUser]);
+
+  const logOut = React.useCallback(() => {
+    dispatch(logout());
+  }, [dispatch]);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -46,13 +67,16 @@ const ResponsiveAppBar = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
+  const handleCloseUserMenu = (setting) => {
+    if (setting === 'Logout') {
+      logOut()
+    }
     setAnchorElUser(null);
   };
 
 
-  return (
 
+  return (
     <AppBar position='static'>
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
@@ -121,7 +145,7 @@ const ResponsiveAppBar = () => {
             variant='h5'
             noWrap
             component='a'
-            href=''
+            href='/'
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -149,33 +173,45 @@ const ResponsiveAppBar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title='Open settings'>
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt='Eiji Ich' src='/static/images/avatar/2.jpg' />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id='menu-appbar'
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign='center'>{setting}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+            {showUserMenu ? (
+              <>
+                <Tooltip title='Open settings'>
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Avatar alt='Eiji Ich' src='/static/images/avatar/2.jpg' />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: '45px' }}
+                  id='menu-appbar'
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  {settings.map((setting) => (
+                    <MenuItem
+                      component={Link}
+                      key={setting}
+                      to={getPageLink(setting)}
+                      onClick={() => handleCloseUserMenu(setting)}
+                    >
+                      <Typography textAlign='center'>{setting}</Typography>
+                    </MenuItem>
+                  ))}
+                </Menu>
+              </>
+            ) : (
+              <Button href='\login' color="inherit">Login</Button>
+            )}
+
             <ThemeToggler />
           </Box>
         </Toolbar>
