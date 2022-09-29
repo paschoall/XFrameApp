@@ -15,11 +15,12 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
+
 import { asyncLogout } from '../store/reducers/userSlice';
 import ThemeToggler from './ThemeToggler';
 
 const pages = ['Variáveis Independentes', 'Variáveis Dependentes', 'Cadastro', 'Sobre'];
-const settings = ['Profile', 'Logout'];
+const settings = ['Dashboard', 'Profile', 'Logout'];
 
 function getPageLink(page) {
   switch (page) {
@@ -29,6 +30,8 @@ function getPageLink(page) {
       return '/catalogo_variaveis_dependentes';
     case 'Variáveis Independentes':
       return '/catalogo_variaveis_independentes';
+    case 'Dashboard':
+      return '/adminpage';
     case 'Logout':
       return '/';
     default:
@@ -191,14 +194,27 @@ const ResponsiveAppBar = () => {
                   onClose={handleCloseUserMenu}
                 >
                   {settings.map((setting) => (
-                    <MenuItem
-                      component={Link}
-                      key={setting}
-                      to={getPageLink(setting)}
-                      onClick={() => handleCloseUserMenu(setting)}
-                    >
-                      <Typography textAlign='center'>{setting}</Typography>
-                    </MenuItem>
+                    (!!currentUser.roles && currentUser.roles.includes('admin'))
+                      ? (
+                        <MenuItem
+                          component={Link}
+                          to={getPageLink(setting)}
+                          key={setting}
+                          onClick={() => handleCloseUserMenu(setting)}
+                        >
+                          <Typography textAlign='center'>{setting}</Typography>
+                        </MenuItem>
+                      ) : (
+                        setting !== 'Dashboard' &&
+                        <MenuItem
+                          component={Link}
+                          to={getPageLink(setting)}
+                          key={setting}
+                          onClick={() => handleCloseUserMenu(setting)}
+                        >
+                          <Typography textAlign='center'>{setting}</Typography>
+                        </MenuItem>
+                      )
                   ))}
                 </Menu>
               </>

@@ -11,7 +11,7 @@ const initialState = !!user
     }
     : {
         username: null,
-        isLoggedIn: true,
+        isLoggedIn: false,
         roles: null,
     };
 

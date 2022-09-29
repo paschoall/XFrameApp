@@ -1,5 +1,8 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
+
 import { styled } from '@mui/material/styles';
+import { useSelector, useDispatch } from "react-redux";
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
@@ -23,15 +26,27 @@ import Tooltip from '@mui/material/Tooltip';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
-import { mainListItems, secondaryListItems } from '../components/listItems';
 import Chart from '../components/Chart';
 import Deposits from '../components/Deposits';
 import Orders from '../components/Orders';
 import Footer from '../components/Footer';
 import ThemeToggler from '../components/ThemeToggler';
+import { mainListItems, secondaryListItems } from '../components/listItems';
+import { asyncLogout } from '../store/reducers/userSlice';
 
 const drawerWidth = 240;
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+const settings = ['Dashboard', 'Profile', 'Logout'];
+
+function getPageLink(page) {
+  switch (page) {
+    case 'Dashboard':
+      return '/adminpage';
+    case 'Logout':
+      return '/';
+    default:
+      return ''
+  }
+}
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -78,18 +93,28 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 function DashboardContent() {
+  const currentUser = useSelector((state) => state.user);
+
   const [open, setOpen] = React.useState(true);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const dispatch = useDispatch();
+
+  const logOut = React.useCallback(() => {
+    dispatch(asyncLogout());
+  }, [dispatch]);
 
   const toggleDrawer = () => {
     setOpen(!open);
   };
-  
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseUserMenu = () => {
+  const handleCloseUserMenu = (setting) => {
+    if (setting === 'Logout') {
+      logOut()
+    }
     setAnchorElUser(null);
   };
 
@@ -116,23 +141,23 @@ function DashboardContent() {
               <MenuIcon />
             </IconButton>
             <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-          <Typography
-            variant='h6'
-            noWrap
-            component='a'
-            href='/'
-            sx={{
-              mr: 2,
-              display: { xs: 'none', md: 'flex' },
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
+            <Typography
+              variant='h6'
+              noWrap
+              component={Link}
+              to='/'
+              sx={{
+                mr: 2,
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              LOGO
+            </Typography>
             <Typography
               component="h1"
               variant="h6"
@@ -164,9 +189,27 @@ function DashboardContent() {
               onClose={handleCloseUserMenu}
             >
               {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign='center'>{setting}</Typography>
-                </MenuItem>
+                (!!currentUser.roles && currentUser.roles.includes('admin'))
+                  ? (
+                    <MenuItem
+                      component={Link}
+                      to={getPageLink(setting)}
+                      key={setting}
+                      onClick={() => handleCloseUserMenu(setting)}
+                    >
+                      <Typography textAlign='center'>{setting}</Typography>
+                    </MenuItem>
+                  ) : (
+                    setting !== 'Dashboard' &&
+                    <MenuItem
+                      component={Link}
+                      to={getPageLink(setting)}
+                      key={setting}
+                      onClick={() => handleCloseUserMenu(setting)}
+                    >
+                      <Typography textAlign='center'>{setting}</Typography>
+                    </MenuItem>
+                  )
               ))}
             </Menu>
             <ThemeToggler />
