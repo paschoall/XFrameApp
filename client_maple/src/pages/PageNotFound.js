@@ -5,7 +5,7 @@ import { Box, Typography } from '@mui/material';
 const PageNotFound = () => {
 
   return (
-    <div>
+    <>
       <NavBar />
       <Box
         sx={{
@@ -25,7 +25,7 @@ const PageNotFound = () => {
         </Typography>
       </Box>
       <Footer />
-    </div>
+    </>
   );
 }
 

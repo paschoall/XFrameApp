@@ -7,12 +7,12 @@ import Formulario from '../components/Formulario';
 
 const Cadastro = () => {
   return (
-    <div>
+    <>
       <CssBaseline />
       <NavBar />
       <Formulario />
       <Footer />
-    </div>
+    </>
   );
 }
 

@@ -7,12 +7,12 @@ import CardBox from '../components/CardBox';
 
 const Catalogo = () => {
   return (
-    <div>
+    <>
       <CssBaseline />
       <NavBar />
       <CardBox fetchlink='/independent_variables' />
       <Footer />
-    </div>
+    </>
   );
 }
 

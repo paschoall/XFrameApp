@@ -94,7 +94,7 @@ function DashboardContent() {
   };
 
   return (
-    <div>
+    <>
       <CssBaseline />
       <Box sx={{ display: 'flex' }}>
         <AppBar position="absolute" open={open}>
@@ -244,7 +244,7 @@ function DashboardContent() {
           </Container>
         </Box>
       </Box>
-    </div>
+    </>
   );
 }
 

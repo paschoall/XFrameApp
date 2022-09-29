@@ -6,11 +6,11 @@ import Footer from '../components/Footer';
 
 const Home = () => {
   return (
-    <div>
+    <>
       <CssBaseline />
       <NavBar />
       <Footer />
-    </div>
+    </>
   );
 }
 
