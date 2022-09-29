@@ -1,7 +1,7 @@
 
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import PropTypes from 'prop-types'
 
 import jwt from 'jwt-decode'
@@ -12,24 +12,29 @@ import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
 // import FormControlLabel from '@mui/material/FormControlLabel';
 // import Checkbox from '@mui/material/Checkbox';
-import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 import AlertDialog from '../components/AlertDialog';
 import Footer from '../components/Footer';
+import { asyncLogin } from '../store/reducers/userSlice';
 
 export default function Login({ setToken }) {
-  const { user: currentUser } = useSelector((state) => state.auth);
+  const currentUser = useSelector((state) => state.user.user);
 
   const [open, setOpen] = useState(false);
   const [openError, setOpenError] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch()
+
+  const logIn = React.useCallback((token, user) => {
+    dispatch(asyncLogin(token, user));
+  }, [dispatch]);
 
   useEffect(() => {
     setOpenError(openError)
@@ -40,7 +45,6 @@ export default function Login({ setToken }) {
   }, [open])
 
   const handleSubmit = (event) => {
-    // setOpen(false)
     setOpenError(false)
 
     event.preventDefault();
@@ -69,7 +73,7 @@ export default function Login({ setToken }) {
           isLoggedIn: true,
           roles: decodedtoken.roles,
         }
-        localStorage.setItem('user', JSON.stringify(user))
+        logIn(data.token, user)
         navigate('/', { replace: true })
       })
       .catch((error) => {
@@ -141,9 +145,9 @@ export default function Login({ setToken }) {
                 </Link> */}
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Typography component={Link} to='/signup' variant="body2">
                   {"Don't have an account? Sign Up"}
-                </Link>
+                </Typography>
               </Grid>
             </Grid>
           </Box>

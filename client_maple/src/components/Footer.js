@@ -8,9 +8,9 @@ function Footer() {
     <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
       <Typography variant="body2" color="text.secondary" align="center" gutterBottom>
         {'Copyright © '}
-        <Link color="inherit" href="https://mui.com/">
+        <Typography color="inherit" component={Link} to="/">
           Your Website
-        </Link>{' '}
+        </Typography>{' '}
         {new Date().getFullYear()}
         {'.'}
       </Typography>

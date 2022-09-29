@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from "react-redux";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -15,7 +15,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
-import { logout } from "../actions/auth";
+import { asyncLogout } from '../store/reducers/userSlice';
 import ThemeToggler from './ThemeToggler';
 
 const pages = ['Variáveis Independentes', 'Variáveis Dependentes', 'Cadastro', 'Sobre'];
@@ -37,23 +37,18 @@ function getPageLink(page) {
 }
 
 const ResponsiveAppBar = () => {
-  const { user: currentUser } = useSelector((state) => state.auth);
-  const [showUserMenu, setShowUserMenu] = useState(false);
+  const currentUser = useSelector((state) => state.user.user);
+
+  // const doThis = () =>{
+  //   console.log(currentUser)
+  // }
+
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (currentUser) {
-      setShowUserMenu(currentUser.isLoggedIn);
-      console.log(currentUser)
-    } else {
-      setShowUserMenu(false);
-    }
-  }, [currentUser]);
-
   const logOut = React.useCallback(() => {
-    dispatch(logout());
+    dispatch(asyncLogout());
   }, [dispatch]);
 
   const handleOpenNavMenu = (event) => {
@@ -74,8 +69,6 @@ const ResponsiveAppBar = () => {
     setAnchorElUser(null);
   };
 
-
-
   return (
     <AppBar position='static'>
       <Container maxWidth='xl'>
@@ -84,8 +77,8 @@ const ResponsiveAppBar = () => {
           <Typography
             variant='h6'
             noWrap
-            component='a'
-            href='/'
+            component={Link}
+            to='/'
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -135,7 +128,7 @@ const ResponsiveAppBar = () => {
                   key={page}
                   onClick={handleCloseNavMenu}
                 >
-                  <Typography href={getPageLink(page)} textAlign='center'>{page}</Typography>
+                  <Typography textAlign='center'>{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -144,8 +137,8 @@ const ResponsiveAppBar = () => {
           <Typography
             variant='h5'
             noWrap
-            component='a'
-            href='/'
+            component={Link}
+            to='/'
             sx={{
               mr: 2,
               display: { xs: 'flex', md: 'none' },
@@ -162,7 +155,8 @@ const ResponsiveAppBar = () => {
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
-                href={getPageLink(page)}
+                component={Link}
+                to={getPageLink(page)}
                 key={page}
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: 'white', display: 'block' }}
@@ -173,7 +167,7 @@ const ResponsiveAppBar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            {showUserMenu ? (
+            {currentUser ? (
               <>
                 <Tooltip title='Open settings'>
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -209,10 +203,15 @@ const ResponsiveAppBar = () => {
                 </Menu>
               </>
             ) : (
-              <Button href='\login' color="inherit">Login</Button>
+              <>
+                <Button component={Link} to='/login' color="inherit">Log In</Button>
+                <Button component={Link} to='/signup' color="inherit">Sign Up</Button>
+              </>
             )}
 
             <ThemeToggler />
+            {/* <Button onClick={doThis}>a</Button> */}
+
           </Box>
         </Toolbar>
       </Container>

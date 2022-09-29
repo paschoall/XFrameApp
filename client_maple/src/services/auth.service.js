@@ -1,7 +1,4 @@
-import jwt from 'jwt-decode'
-
 const register = (name, username, password, email) => {
-
   const data = {
     name: name,
     username: username,
@@ -28,35 +25,9 @@ const register = (name, username, password, email) => {
     });
 };
 
-const login = (username, password) => {
-
-  const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-  }
-
-  requestOptions.headers.Authorization = 'Basic ' + btoa(username + ":" + password)
-
-  fetch('/auth', requestOptions)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Network response was not OK');
-      }
-      return response.json()
-    })
-    .then(data => {
-      if (data.token) {
-        localStorage.setItem("token", JSON.stringify(data.token))
-      }
-      const decodedtoken = jwt(data.token)
-      const user = {
-        username: decodedtoken.username,
-        isLoggedIn: true,
-        roles: decodedtoken.roles,
-      }
-      localStorage.setItem('user', JSON.stringify(user))
-      return user;
-    })
+const login = (token, user) => {
+  localStorage.setItem('token', JSON.stringify(token))
+  localStorage.setItem('user', JSON.stringify(user))
 };
 
   const logout = () => {
