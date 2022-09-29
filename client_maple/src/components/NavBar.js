@@ -37,7 +37,7 @@ function getPageLink(page) {
 }
 
 const ResponsiveAppBar = () => {
-  const currentUser = useSelector((state) => state.user.user);
+  const currentUser = useSelector((state) => state.user);
 
   // const doThis = () =>{
   //   console.log(currentUser)
@@ -167,7 +167,7 @@ const ResponsiveAppBar = () => {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            {currentUser ? (
+            {currentUser.isLoggedIn ? (
               <>
                 <Tooltip title='Open settings'>
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

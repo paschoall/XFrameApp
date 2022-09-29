@@ -10,8 +10,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-// import FormControlLabel from '@mui/material/FormControlLabel';
-// import Checkbox from '@mui/material/Checkbox';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -25,7 +23,7 @@ import Footer from '../components/Footer';
 import { asyncLogin } from '../store/reducers/userSlice';
 
 export default function Login({ setToken }) {
-  const currentUser = useSelector((state) => state.user.user);
+  const currentUser = useSelector((state) => state.user);
 
   const [open, setOpen] = useState(false);
   const [openError, setOpenError] = useState(false);
@@ -82,7 +80,7 @@ export default function Login({ setToken }) {
       });
   };
 
-  if (currentUser) {
+  if (currentUser.isLoggedIn) {
     return <Navigate to="/" replace />;
   }
 

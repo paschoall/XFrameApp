@@ -32,7 +32,7 @@ const Rotas = ({ setToken, user }) => {
           path='/adminpage'
           element={
             <ProtectedRoute
-              isAllowed={!!user && !!user.roles.includes('admin')}
+              isAllowed={!!user.roles ? user.roles.includes('admin') : false}
             >
               <Dashboard />
             </ProtectedRoute>

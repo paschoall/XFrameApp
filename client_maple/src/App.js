@@ -13,6 +13,7 @@ import AuthVerify from './common/AuthVerify';
 import NavBar from './components/NavBar';
 import useToken from './hooks/useToken';
 import Rotas from './routes/Rotas';
+// import { Button } from '@mui/material';
 
 const getDesignTokens = (mode) => ({
   palette: {
@@ -21,7 +22,7 @@ const getDesignTokens = (mode) => ({
 });
 
 const App = () => {
-  const currentUser = useSelector((state) => state.user.user);
+  const currentUser = useSelector((state) => state.user);
   const { token, setToken } = useToken();
 
   const [mode, setMode] = useState('light');
@@ -29,6 +30,8 @@ const App = () => {
   const darkMode = useSelector((state) => state.theme.darkMode);
   const dispatch = useDispatch()
   const location = useLocation();
+
+  // const doThis = () => {console.log(currentUser)}
 
   useEffect(() => {
     if (JSON.parse(localStorage.getItem("darkMode") == null)) {
@@ -53,8 +56,9 @@ const App = () => {
 
   return (
     <ThemeProvider theme={theme}>
+      {/* <Button onClick={doThis}></Button> */}
       {location.pathname !== '/adminpage' && <NavBar />}
-      <Rotas setToken={setToken} token={token} currentUser={currentUser}/>
+      <Rotas setToken={setToken} token={token} user={currentUser} />
       <AuthVerify logOut={logOut} />
     </ThemeProvider>
   );
