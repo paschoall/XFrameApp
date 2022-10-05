@@ -57,7 +57,7 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       {/* <Button onClick={doThis}></Button> */}
-      {location.pathname !== '/adminpage' && <NavBar />}
+      {!location.pathname.includes('/admin-page') && <NavBar />}
       <Rotas setToken={setToken} token={token} user={currentUser} />
       <AuthVerify logOut={logOut} />
     </ThemeProvider>

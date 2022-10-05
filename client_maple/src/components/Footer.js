@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 
 function Footer() {
   return (
-    <Box sx={{ bgcolor: 'background.paper', p: 6 }} component="footer">
+    <Box sx={{ p: 6 }} component="footer">
       <Typography variant="body2" color="text.secondary" align="center" gutterBottom>
         {'Copyright © '}
         <Typography color="inherit" component={Link} to="/">

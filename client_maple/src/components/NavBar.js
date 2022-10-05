@@ -27,11 +27,11 @@ function getPageLink(page) {
     case 'Cadastro':
       return '/cadastro';
     case 'Variáveis Dependentes':
-      return '/catalogo_variaveis_dependentes';
+      return '/catalogo-variaveis-dependentes';
     case 'Variáveis Independentes':
-      return '/catalogo_variaveis_independentes';
+      return '/catalogo-variaveis-independentes';
     case 'Dashboard':
-      return '/adminpage';
+      return '/admin-page';
     case 'Logout':
       return '/';
     default:
