@@ -46,10 +46,11 @@ export default function CardTemplate(props) {
                         display: '-webkit-box',
                         WebkitLineClamp: '3',
                         WebkitBoxOrient: 'vertical',
-                    }}>
+                    }}
+                >
                     {props.descricao}
                 </Typography>
-                <ButtonTemplate />
+                <ButtonTemplate link={props.link} id={props.id} text={'Leia Mais'} />
             </CardContent>
         </Card>
     )

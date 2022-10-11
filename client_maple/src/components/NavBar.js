@@ -19,19 +19,19 @@ import { Link } from 'react-router-dom';
 import { asyncLogout } from '../store/reducers/userSlice';
 import ThemeToggler from './ThemeToggler';
 
-const pages = ['Variáveis Independentes', 'Variáveis Dependentes', 'Cadastro', 'Sobre'];
+const pages = ['Variáveis Independentes', 'Variáveis Dependentes', 'Variáveis', 'Sobre'];
 const settings = ['Dashboard', 'Profile', 'Logout'];
 
 function getPageLink(page) {
   switch (page) {
-    case 'Cadastro':
-      return '/cadastro';
     case 'Variáveis Dependentes':
       return '/catalogo-variaveis-dependentes';
     case 'Variáveis Independentes':
       return '/catalogo-variaveis-independentes';
+    case 'Variáveis':
+      return '/catalogo-variaveis';
     case 'Dashboard':
-      return '/admin-page';
+      return '/admin-page/dashboard';
     case 'Logout':
       return '/';
     default:

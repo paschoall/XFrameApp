@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 import CssBaseline from '@mui/material/CssBaseline';
 import Container from '@mui/material/Container';
@@ -19,15 +19,14 @@ function DashboardContent() {
     <>
       <CssBaseline />
       <Box
-          sx={{
-            flexGrow: 1,
-            height: '100vh',
-            overflow: 'auto',
-          }}
+        sx={{
+          flexGrow: 1,
+          height: '100vh',
+          overflow: 'auto',
+        }}
       >
         <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
           <Grid container spacing={3}>
-            {/* Chart */}
             <Grid item xs={12} md={8} lg={9}>
               <Paper
                 sx={{
@@ -40,7 +39,6 @@ function DashboardContent() {
                 <Chart />
               </Paper>
             </Grid>
-            {/* Recent Deposits */}
             <Grid item xs={12} md={4} lg={3}>
               <Paper
                 sx={{
@@ -53,9 +51,13 @@ function DashboardContent() {
                 <Deposits />
               </Paper>
             </Grid>
-            {/* Recent Orders */}
             <Grid item xs={12}>
-              <Paper sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
+              <Paper
+                sx={{
+                  p: 2,
+                  display: 'flex',
+                  flexDirection: 'column'
+                }}>
                 <Orders />
               </Paper>
             </Grid>

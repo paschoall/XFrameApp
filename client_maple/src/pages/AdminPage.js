@@ -34,7 +34,7 @@ const settings = ['Dashboard', 'Profile', 'Logout'];
 function getPageLink(page) {
   switch (page) {
     case 'Dashboard':
-      return '/adminpage';
+      return '/admin-page/dashboard';
     case 'Logout':
       return '/';
     default:

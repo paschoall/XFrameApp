@@ -4,7 +4,7 @@ import Footer from '../components/Footer';
 import CardBox from '../components/CardBox';
 
 
-const Catalogo = () => {
+const CatalogoVi = () => {
   return (
     <>
       <CssBaseline />
@@ -14,4 +14,4 @@ const Catalogo = () => {
   );
 }
 
-export default Catalogo;
+export default CatalogoVi;

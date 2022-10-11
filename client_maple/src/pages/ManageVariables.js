@@ -11,12 +11,10 @@ import ListItemText from '@mui/material/ListItemText';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ListAltIcon from '@mui/icons-material/ListAlt';
-import BarChartIcon from '@mui/icons-material/BarChart';
-import AddLinkIcon from '@mui/icons-material/AddLink';
 
 import Footer from '../components/Footer';
 
-const ManageData = () => {
+const ManageVariables = () => {
   return (
     <>
       <CssBaseline />
@@ -32,6 +30,7 @@ const ManageData = () => {
       >
         <Container maxWidth="xl" sx={{ mt: 4, mb: 4, }} >
           <Grid container spacing={8} rowSpacing={20}>
+            <Grid item md={2} lg={2}/>
             <Grid item xs={12} md={4} lg={4}>
               <Paper
                 sx={{
@@ -46,7 +45,7 @@ const ManageData = () => {
               >
                 <ListItemButton
                   component={Link}
-                  to='/admin-page/gerenciar-variaveis'
+                  to='/admin-page/cadastro'
                   sx={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -74,7 +73,7 @@ const ManageData = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Gerenciar Variáveis
+                        Gerenciar Variáveis Independentes
                       </Typography>}
                   />
                 </ListItemButton>
@@ -104,7 +103,7 @@ const ManageData = () => {
                   }}
                 >
                   <ListItemIcon>
-                    <BarChartIcon
+                    <ListAltIcon
                       sx={{
                         fontSize: '24vh',
                         textAlign: 'center',
@@ -122,61 +121,13 @@ const ManageData = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Gerenciar Métricas
+                        Gerenciar Variáveis Dependentes
                       </Typography>}
                   />
                 </ListItemButton>
               </Paper>
-            </Grid>
-            {/* Recent Orders */}
-            <Grid item xs={12} md={4} lg={4}>
-              <Paper sx={{
-                p: 2,
-                display: 'flex',
-                flexDirection: 'column',
-                height: '40vh',
-                alignItems: 'center',
-                alignContent: 'center',
-                padding: '0',
-              }}
-              >
-                <ListItemButton
-                  component={Link}
-                  to='/admin-page/cadastro'
-                  sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    width: '100%',
-                    height: '100%',
-                    padding: '1vh',
-                  }}
-                >
-                  <ListItemIcon>
-                    <AddLinkIcon
-                      sx={{
-                        fontSize: '24vh',
-                        textAlign: 'center',
-                      }}
-                    />
-                  </ListItemIcon>
-                  <ListItemText
-                    disableTypography
-                    primary={
-                      <Typography
-                        type="body2"
-                        sx={{
-                          marginTop: '2vh',
-                          fontSize: '3.6vh',
-                          textAlign: 'center',
-                        }}
-                      >
-                        Gerenciar Referências
-                      </Typography>}
-                  />
-                </ListItemButton>
-
-              </Paper>
-            </Grid>
+            </Grid>        
+            <Grid item md={2} lg={2}/>
             <Grid item xs={12} md={12} lg={12} >
               <Footer />
             </Grid>
@@ -187,4 +138,4 @@ const ManageData = () => {
   );
 }
 
-export default ManageData;
+export default ManageVariables;

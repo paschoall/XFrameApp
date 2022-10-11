@@ -15,7 +15,7 @@ export const mainListItems = (
   <React.Fragment>
     <ListItemButton
       component={Link}
-      to='/admin-page-dev/dashboard'
+      to='/admin-page/dashboard'
     >
       <ListItemIcon>
         <DashboardIcon />
@@ -30,7 +30,7 @@ export const mainListItems = (
     </ListItemButton> */}
     <ListItemButton
       component={Link}
-      to='/admin-page-dev/gerenciar-dados'
+      to='/admin-page/gerenciar-dados'
     >
       <ListItemIcon>
         <BarChartIcon />
@@ -39,7 +39,7 @@ export const mainListItems = (
     </ListItemButton>
     <ListItemButton
       component={Link}
-      to='/admin-page-dev/gerenciar-usuarios'
+      to='/admin-page/gerenciar-usuarios'
     >
       <ListItemIcon>
         <PeopleIcon />

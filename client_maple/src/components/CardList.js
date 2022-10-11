@@ -1,10 +1,13 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom';
 import CardTemplate from './CardTemplate';
 import Grid from '@mui/material/Grid';
 
 const CardList = (props) => {
   const [data, setData] = useState([{}])
+  const location = useLocation()
+
   useEffect(() => {
     fetch(props.fetchlink).then(
       res => res.json()
@@ -25,8 +28,12 @@ const CardList = (props) => {
         ) : (
           data.data.map((data, i) => {
             return (
-              <Grid key = {i} item xs={12} md={6}>
-                <CardTemplate key={i} nomeVariavel={data['name']} descricao={data['description']} />
+              <Grid key = {data['id']} item xs={12} md={6}>
+                <CardTemplate 
+                 id={data['id']} 
+                 link={location.pathname}
+                 nomeVariavel={data['name']}
+                  descricao={data['description']} />
               </Grid>
             )
           }

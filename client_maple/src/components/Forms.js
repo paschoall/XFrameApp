@@ -36,7 +36,7 @@ export default function Forms() {
       body: JSON.stringify(data)
     }
 
-    fetch('/independent_varible', requestOptions)
+    fetch('/independent_variable', requestOptions)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not OK');

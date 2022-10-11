@@ -7,6 +7,7 @@ import { useLocation } from 'react-router-dom';
 
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import { Box } from '@mui/material';
 
 import { asyncLogout } from './store/reducers/userSlice';
 import AuthVerify from './common/AuthVerify';
@@ -57,8 +58,20 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       {/* <Button onClick={doThis}></Button> */}
+      <Box
+      sx={{
+            backgroundColor: (theme) =>
+              theme.palette.mode === 'light'
+                ? theme.palette.grey[50]
+                : theme.palette.grey[800],
+            flexGrow: 1,
+            height: '100vh',
+            overflow: 'auto',
+          }}
+      >
       {!location.pathname.includes('/admin-page') && <NavBar />}
       <Rotas setToken={setToken} token={token} user={currentUser} />
+      </Box>
       <AuthVerify logOut={logOut} />
     </ThemeProvider>
   );
