@@ -14,7 +14,7 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 
 import Footer from '../components/Footer';
 
-const ManageVariables = () => {
+const FactorsTreatments = () => {
   return (
     <>
       <CssBaseline />
@@ -138,4 +138,4 @@ const ManageVariables = () => {
   );
 }
 
-export default ManageVariables;
+export default FactorsTreatments;

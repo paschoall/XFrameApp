@@ -27,14 +27,15 @@ import ThemeToggler from '../components/ThemeToggler';
 import { mainListItems } from '../components/listItems';
 // import { mainListItems, secondaryListItems } from '../components/listItems';
 import { asyncLogout } from '../store/reducers/userSlice';
+import { Container } from '@mui/material';
 
 const drawerWidth = 240;
-const settings = ['Dashboard', 'Profile', 'Logout'];
+const settings = ['Admin Page', 'Profile', 'Logout'];
 
 function getPageLink(page) {
   switch (page) {
-    case 'Dashboard':
-      return '/admin-page/dashboard';
+    case 'Admin Page':
+      return '/admin-page/gerenciar-dados';
     case 'Logout':
       return '/';
     default:
@@ -89,7 +90,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 function DashboardContent() {
   const currentUser = useSelector((state) => state.user);
 
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const dispatch = useDispatch();
 
@@ -194,7 +195,7 @@ function DashboardContent() {
                       <Typography textAlign='center'>{setting}</Typography>
                     </MenuItem>
                   ) : (
-                    setting !== 'Dashboard' &&
+                    setting !== 'Admin Page' &&
                     <MenuItem
                       component={Link}
                       to={getPageLink(setting)}
@@ -242,7 +243,9 @@ function DashboardContent() {
           }}
         >
           <Toolbar />
-          <Outlet />
+          <Container maxWidth="lg">
+            <Outlet />
+          </Container>
         </Box>
       </Box>
     </>

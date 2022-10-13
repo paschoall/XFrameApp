@@ -5,13 +5,13 @@ const register = (name, username, password, email) => {
     password: password,
     email: email,
   }
-
+  const proxy = 'https://5de3-2804-431-cfec-d6de-f8b2-c8c9-59cf-21e.sa.ngrok.io'
   const requestOptions = {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
   }
-  fetch('/user', requestOptions)
+  fetch(proxy+'/user', requestOptions)
     .then(response => {
       if (!response.ok) {
         throw new Error('Network response was not OK');

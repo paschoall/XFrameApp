@@ -7,8 +7,8 @@ export default function CardTemplate(props) {
     return (
         <Card
             sx={{
-                minHeight: '15rem',
-                maxHeight: '15rem',
+                minHeight: '16rem',
+                maxHeight: '20rem',
                 margin: 'auto',
                 marginTop: '1rem',
                 textAlign: 'left',

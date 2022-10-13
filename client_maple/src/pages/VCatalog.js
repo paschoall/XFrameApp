@@ -27,9 +27,9 @@ const CatalogoVd = () => {
       <CssBaseline />
       <Box>
         <Toolbar />
-        <Grid container spacing={1}>
-          <Grid item xs={1} md={1} lg={1} />
-          <Grid item xs={4.75} md={4.75} lg={4.75}>
+        <Grid container spacing={0.5}>
+          <Grid item xs={0.75} md={0.75} lg={0.75} />
+          <Grid item xs={5} md={5} lg={5}>
             <Paper square
               variant='outlined'
               sx={{
@@ -42,10 +42,9 @@ const CatalogoVd = () => {
               }}
             >
               <Typography gutterBottom
-                type="body2"
                 sx={{
-                  marginTop: '2vh',
-                  fontSize: '3.6vh',
+                  marginTop: '1vh',
+                  fontSize: '1rem',
                   textAlign: 'center',
                 }}
               >
@@ -112,7 +111,7 @@ const CatalogoVd = () => {
             </Paper>
           </Grid>
           <Grid item xs={0.5} md={0.5} lg={0.5} />
-          <Grid item xs={4.75} md={4.75} lg={4.75}>
+          <Grid item xs={5} md={5} lg={5}>
             <Paper square
               variant='outlined'
               sx={{
@@ -125,10 +124,9 @@ const CatalogoVd = () => {
               }}
             >
               <Typography gutterBottom
-                type="body2"
                 sx={{
-                  marginTop: '2vh',
-                  fontSize: '3.6vh',
+                  marginTop: '1vh',
+                  fontSize: '1rem',
                   textAlign: 'center',
                 }}
               >

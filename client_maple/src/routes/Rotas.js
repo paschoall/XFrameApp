@@ -10,9 +10,9 @@ import Home from '../pages/Home';
 import Cadastro from '../pages/Cadastro';
 import Login from '../pages/Login'
 import SignUp from '../pages/SignUp';
-import CatalogoVi from '../pages/CatalogoVi';
-import CatalogoVd from '../pages/CatalogoVd';
-import CatalogoV from '../pages/CatalogoV';
+import CatalogoVi from '../pages/ViCatalog';
+import CatalogoVd from '../pages/VdCatalog';
+import CatalogoV from '../pages/VCatalog';
 import PageNotFound from '../pages/PageNotFound';
 import AdminPage from '../pages/AdminPage';
 import Dashboard from '../pages/Dashboard';
@@ -21,6 +21,16 @@ import ManageUsers from '../pages/ManageUsers';
 import VariavelIndependente from '../pages/VariavelIndependente';
 import VariavelDependente from '../pages/VariavelDependente';
 import ManageVariables from '../pages/ManageVariables';
+import ManageDependentVariables from '../pages/ManageDependentVariables';
+import ManageIndependentVariables from '../pages/ManageIndependentVariables';
+import ManageMetricsInstruments from '../pages/ManageMetricsInstruments';
+import ManageFactorsTreatments from '../pages/ManageFactorsTreatments';
+import ManageMetrics from '../pages/ManageMetrics';
+import ManageInstruments from '../pages/ManageInstruments';
+import ManageFactors from '../pages/ManageFactors';
+import ManageTreatments from '../pages/ManageTreatments';
+import EditVi from '../pages/EditVi';
+import EditViForms from '../pages/EditViForms';
 
 const Rotas = ({ setToken, user }) => {
   return (
@@ -55,6 +65,16 @@ const Rotas = ({ setToken, user }) => {
           <Route path='gerenciar-dados' element={<ManageData />} />
           <Route path='gerenciar-usuarios' element={<ManageUsers />} />
           <Route path='gerenciar-variaveis' element={<ManageVariables />} />
+          <Route path='gerenciar-variaveis/independentes' element={<ManageIndependentVariables />} />
+          <Route path='gerenciar-variaveis/independentes/editar' element={<EditVi />} />
+          <Route path='gerenciar-variaveis/independentes/editar/:id' element={<EditViForms />} />
+          <Route path='gerenciar-variaveis/dependentes' element={<ManageDependentVariables />} />
+          <Route path='gerenciar-metricas-instrumentos' element={<ManageMetricsInstruments />} />
+          <Route path='gerenciar-metricas-instrumentos/metricas' element={<ManageMetrics />} />
+          <Route path='gerenciar-metricas-instrumentos/instrumentos' element={<ManageInstruments />} />
+          <Route path='gerenciar-fatores-tratamentos' element={<ManageFactorsTreatments />} />
+          <Route path='gerenciar-fatores-tratamentos/fatores' element={<ManageFactors/>} />
+          <Route path='gerenciar-fatores-tratamentos/tratamentos' element={<ManageTreatments />} />
           <Route path='cadastro' element={<Cadastro />} />
         </Route>
         <Route path='*' element={<PageNotFound />} />

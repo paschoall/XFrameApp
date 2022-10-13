@@ -19,8 +19,8 @@ import { Link } from 'react-router-dom';
 import { asyncLogout } from '../store/reducers/userSlice';
 import ThemeToggler from './ThemeToggler';
 
-const pages = ['Variáveis Independentes', 'Variáveis Dependentes', 'Variáveis', 'Sobre'];
-const settings = ['Dashboard', 'Profile', 'Logout'];
+const pages = ['Variáveis Independentes', 'Variáveis Dependentes', 'Sobre'];
+const settings = ['Admin Page', 'Profile', 'Logout'];
 
 function getPageLink(page) {
   switch (page) {
@@ -30,8 +30,8 @@ function getPageLink(page) {
       return '/catalogo-variaveis-independentes';
     case 'Variáveis':
       return '/catalogo-variaveis';
-    case 'Dashboard':
-      return '/admin-page/dashboard';
+    case 'Admin Page':
+      return '/admin-page/gerenciar-dados';
     case 'Logout':
       return '/';
     default:
@@ -45,7 +45,6 @@ const ResponsiveAppBar = () => {
   // const doThis = () =>{
   //   console.log(currentUser)
   // }
-
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const dispatch = useDispatch();
@@ -60,11 +59,9 @@ const ResponsiveAppBar = () => {
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
-
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
   const handleCloseUserMenu = (setting) => {
     if (setting === 'Logout') {
       logOut()
@@ -205,7 +202,7 @@ const ResponsiveAppBar = () => {
                           <Typography textAlign='center'>{setting}</Typography>
                         </MenuItem>
                       ) : (
-                        setting !== 'Dashboard' &&
+                        setting !== 'Admin Page' &&
                         <MenuItem
                           component={Link}
                           to={getPageLink(setting)}
@@ -221,10 +218,8 @@ const ResponsiveAppBar = () => {
             ) : (
               <>
                 <Button component={Link} to='/login' color="inherit">Log In</Button>
-                <Button component={Link} to='/signup' color="inherit">Sign Up</Button>
               </>
             )}
-
             <ThemeToggler />
             {/* <Button onClick={doThis}>a</Button> */}
 

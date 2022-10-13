@@ -14,8 +14,9 @@ import Footer from '../components/Footer';
 const VariavelIndependente = () => {
   const [data, setData] = useState([{}])
   const { id } = useParams();
+  const proxy = 'https://5de3-2804-431-cfec-d6de-f8b2-c8c9-59cf-21e.sa.ngrok.io';
   useEffect(() => {
-    fetch('/independent_variable/' + id).then(
+    fetch(proxy+'/independent_variable/' + id).then(
       res => res.json()
     ).then(
       data => {
@@ -65,7 +66,6 @@ const VariavelIndependente = () => {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 240,
                   }}
                 >
                   <Typography variant="h5" gutterBottom>
@@ -74,16 +74,10 @@ const VariavelIndependente = () => {
                   <Typography
                     sx={{
                       marginBottom: '0.5rem',
-                      height: '9em',
                       fontSize: '1rem',
                       lineHeight: '1.5em',
                       fontWeight: 'normal',
                       width: '100%',
-
-                      overflow: 'hidden',
-                      display: '-webkit-box',
-                      WebkitLineClamp: '3',
-                      WebkitBoxOrient: 'vertical',
                     }}
                   >
                     {data.data['description']}
@@ -97,7 +91,6 @@ const VariavelIndependente = () => {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 240,
                   }}
                 >
                   <Typography variant="h5" gutterBottom>
@@ -166,7 +159,6 @@ const VariavelIndependente = () => {
                 </Paper>
               </Grid>
             </Grid>
-            <Footer />
           </Container>
         </Box>
         <Footer />

@@ -2,7 +2,7 @@ import TextField from '@mui/material/TextField';
 import { Controller } from "react-hook-form";
 import React from "react";
 
-export const FormInputText = ({ required, name, control, label }) => {
+export const FormInputText = ({ required, multiline, name, control, label }) => {
 
   return (
 
@@ -13,6 +13,7 @@ export const FormInputText = ({ required, name, control, label }) => {
       render={({ field: { onChange, value } }) => (
         <TextField
           required={required}
+          multiline={multiline}
           onChange={onChange}
           value={value}
           id={name}

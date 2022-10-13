@@ -1,16 +1,17 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { useForm } from "react-hook-form";
+
 // import Typography from '@mui/material/Typography';
+// import FormControlLabel from '@mui/material/FormControlLabel';
+// import Checkbox from '@mui/material/Checkbox';
 import Grid from '@mui/material/Grid';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import { FormInputText } from './FormInputText';
 import AlertDialog from './AlertDialog';
 
-export default function Forms() {
+export default function Forms(props) {
   const { handleSubmit, reset, control } = useForm();
   const [open, setOpen] = useState(false);
   const [openError, setOpenError] = useState(false);
@@ -27,16 +28,14 @@ export default function Forms() {
     setOpen(false)
     setOpenError(false)
 
-    data.level = 0
-    data.stats = 0
-
+    const proxy = 'https://5de3-2804-431-cfec-d6de-f8b2-c8c9-59cf-21e.sa.ngrok.io';
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     }
 
-    fetch('/independent_variable', requestOptions)
+    fetch(proxy+props.fetchlink, requestOptions)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not OK');
@@ -61,7 +60,6 @@ export default function Forms() {
         <Grid item xs={12}>
           <FormInputText
             required
-            // name="email"
             name="name"
             control={control}
             label="Nome da Variável"
@@ -70,7 +68,7 @@ export default function Forms() {
         <Grid item xs={12}>
           <FormInputText
             required
-            // name="password"
+            multiline
             name="description"
             control={control}
             label="Descrição"
@@ -84,10 +82,10 @@ export default function Forms() {
         /> */}
         </Grid>
         <Grid item xs={12}>
-          <FormControlLabel
+          {/* <FormControlLabel
             control={<Checkbox color="primary" name="saveAddress" value="yes" />}
             label="checkbox caso seja necessária"
-          />
+          /> */}
         </Grid>
       </Grid>
       <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>

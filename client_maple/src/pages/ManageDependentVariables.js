@@ -11,10 +11,11 @@ import ListItemText from '@mui/material/ListItemText';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ListAltIcon from '@mui/icons-material/ListAlt';
+import AddIcon from '@mui/icons-material/Add';
 
 import Footer from '../components/Footer';
 
-const ManageVariables = () => {
+const ManageDependentVariables = () => {
   return (
     <>
       <CssBaseline />
@@ -23,14 +24,14 @@ const ManageVariables = () => {
           display: 'flex',
           flexGrow: 1,
           overflow: 'auto',
-          paddingTop: { xs: 'none', md: '14vh' },
+          paddingTop: {xs:'none', md:'14vh'},
           alignContent: 'center',
           justifyContent: 'center',
         }}
       >
         <Container maxWidth="xl" sx={{ mt: 4, mb: 4, }} >
-          <Grid container spacing={8}>
-            <Grid item xs={0} md={2} lg={2} />
+          <Grid container spacing={8} rowSpacing={20}>
+            <Grid item xs={12} md={2} lg={2}/>
             <Grid item xs={12} md={4} lg={4}>
               <Paper
                 sx={{
@@ -45,7 +46,55 @@ const ManageVariables = () => {
               >
                 <ListItemButton
                   component={Link}
-                  to='/admin-page/gerenciar-variaveis/independentes'
+                  to='/admin-page/cadastro'
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    width: '100%',
+                    height: '100%',
+                    padding: '1vh',
+                  }}
+                >
+                  <ListItemIcon>
+                    <AddIcon
+                      sx={{
+                        fontSize: '24vh',
+                        textAlign: 'center',
+                      }}
+                    />
+                  </ListItemIcon>
+                  <ListItemText
+                    disableTypography
+                    primary={
+                      <Typography
+                        type="body2"
+                        sx={{
+                          marginTop: '2vh',
+                          fontSize: '3.6vh',
+                          textAlign: 'center',
+                        }}
+                      >
+                        Adicionar Variável Dependente
+                      </Typography>}
+                  />
+                </ListItemButton>
+              </Paper>
+            </Grid>
+            <Grid item xs={12} md={4} lg={4}>
+              <Paper
+                sx={{
+                  p: 2,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  height: '44vh',
+                  alignItems: 'center',
+                  alignContent: 'center',
+                  padding: '0',
+                }}
+              >
+                <ListItemButton
+                  component={Link}
+                  to='/admin-page/cadastro'
                   sx={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -73,61 +122,12 @@ const ManageVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Gerenciar Variáveis Independentes
+                        Editar Variável Dependente
                       </Typography>}
                   />
                 </ListItemButton>
               </Paper>
             </Grid>
-            <Grid item xs={12} md={4} lg={4}>
-              <Paper
-                sx={{
-                  p: 2,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  height: '44vh',
-                  alignItems: 'center',
-                  alignContent: 'center',
-                  padding: '0',
-                }}
-              >
-                <ListItemButton
-                  component={Link}
-                  to='/admin-page/gerenciar-variaveis/dependentes'
-                  sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    width: '100%',
-                    height: '100%',
-                    padding: '1vh',
-                  }}
-                >
-                  <ListItemIcon>
-                    <ListAltIcon
-                      sx={{
-                        fontSize: '24vh',
-                        textAlign: 'center',
-                      }}
-                    />
-                  </ListItemIcon>
-                  <ListItemText
-                    disableTypography
-                    primary={
-                      <Typography
-                        type="body2"
-                        sx={{
-                          marginTop: '2vh',
-                          fontSize: '3.6vh',
-                          textAlign: 'center',
-                        }}
-                      >
-                        Gerenciar Variáveis Dependentes
-                      </Typography>}
-                  />
-                </ListItemButton>
-              </Paper>
-            </Grid>
-            <Grid item md={2} lg={2} />
             <Grid item xs={12} md={12} lg={12} >
               <Footer />
             </Grid>
@@ -138,4 +138,4 @@ const ManageVariables = () => {
   );
 }
 
-export default ManageVariables;
+export default ManageDependentVariables;

@@ -12,7 +12,8 @@ import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import BarChartIcon from '@mui/icons-material/BarChart';
-import AddLinkIcon from '@mui/icons-material/AddLink';
+import RuleIcon from '@mui/icons-material/Rule';
+// import AddLinkIcon from '@mui/icons-material/AddLink';
 
 import Footer from '../components/Footer';
 
@@ -25,20 +26,20 @@ const ManageData = () => {
           display: 'flex',
           flexGrow: 1,
           overflow: 'auto',
-          paddingTop: '14vh',
+          paddingTop: { xs: 'none', md: '14vh' },
           alignContent: 'center',
           justifyContent: 'center',
         }}
       >
         <Container maxWidth="xl" sx={{ mt: 4, mb: 4, }} >
-          <Grid container spacing={8} rowSpacing={20}>
+          <Grid container spacing={8}>
             <Grid item xs={12} md={4} lg={4}>
               <Paper
                 sx={{
                   p: 2,
                   display: 'flex',
                   flexDirection: 'column',
-                  height: '40vh',
+                  height: '44vh',
                   alignItems: 'center',
                   alignContent: 'center',
                   padding: '0',
@@ -80,13 +81,61 @@ const ManageData = () => {
                 </ListItemButton>
               </Paper>
             </Grid>
+
+            <Grid item xs={12} md={4} lg={4}>
+              <Paper sx={{
+                p: 2,
+                display: 'flex',
+                flexDirection: 'column',
+                height: '44vh',
+                alignItems: 'center',
+                alignContent: 'center',
+                padding: '0',
+              }}
+              >
+                <ListItemButton
+                  component={Link}
+                  to='/admin-page/gerenciar-fatores-tratamentos'
+                  sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    width: '100%',
+                    height: '100%',
+                    padding: '1vh',
+                  }}
+                >
+                  <ListItemIcon>
+                    <RuleIcon
+                      sx={{
+                        fontSize: '24vh',
+                        textAlign: 'center',
+                      }}
+                    />
+                  </ListItemIcon>
+                  <ListItemText
+                    disableTypography
+                    primary={
+                      <Typography
+                        type="body2"
+                        sx={{
+                          marginTop: '2vh',
+                          fontSize: '3.6vh',
+                          textAlign: 'center',
+                        }}
+                      >
+                        Gerenciar Fatores e Tratamentos
+                      </Typography>}
+                  />
+                </ListItemButton>
+              </Paper>
+            </Grid>
             <Grid item xs={12} md={4} lg={4}>
               <Paper
                 sx={{
                   p: 2,
                   display: 'flex',
                   flexDirection: 'column',
-                  height: '40vh',
+                  height: '44vh',
                   alignItems: 'center',
                   alignContent: 'center',
                   padding: '0',
@@ -94,7 +143,7 @@ const ManageData = () => {
               >
                 <ListItemButton
                   component={Link}
-                  to='/admin-page/cadastro'
+                  to='/admin-page/gerenciar-metricas-instrumentos'
                   sx={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -122,59 +171,10 @@ const ManageData = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Gerenciar Métricas
+                        Gerenciar Métricas e Instrumentos
                       </Typography>}
                   />
                 </ListItemButton>
-              </Paper>
-            </Grid>
-            {/* Recent Orders */}
-            <Grid item xs={12} md={4} lg={4}>
-              <Paper sx={{
-                p: 2,
-                display: 'flex',
-                flexDirection: 'column',
-                height: '40vh',
-                alignItems: 'center',
-                alignContent: 'center',
-                padding: '0',
-              }}
-              >
-                <ListItemButton
-                  component={Link}
-                  to='/admin-page/cadastro'
-                  sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    width: '100%',
-                    height: '100%',
-                    padding: '1vh',
-                  }}
-                >
-                  <ListItemIcon>
-                    <AddLinkIcon
-                      sx={{
-                        fontSize: '24vh',
-                        textAlign: 'center',
-                      }}
-                    />
-                  </ListItemIcon>
-                  <ListItemText
-                    disableTypography
-                    primary={
-                      <Typography
-                        type="body2"
-                        sx={{
-                          marginTop: '2vh',
-                          fontSize: '3.6vh',
-                          textAlign: 'center',
-                        }}
-                      >
-                        Gerenciar Referências
-                      </Typography>}
-                  />
-                </ListItemButton>
-
               </Paper>
             </Grid>
             <Grid item xs={12} md={12} lg={12} >

@@ -14,8 +14,9 @@ import Footer from '../components/Footer';
 const VariavelDependente = () => {
   const [data, setData] = useState([{}])
   const { id } = useParams();
+  const proxy = 'https://5de3-2804-431-cfec-d6de-f8b2-c8c9-59cf-21e.sa.ngrok.io';
   useEffect(() => {
-    fetch('/dependent_variable/' + id).then(
+    fetch(proxy+'/dependent_variable/' + id).then(
       res => res.json()
     ).then(
       data => {
@@ -65,7 +66,6 @@ const VariavelDependente = () => {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 240,
                   }}
                 >
                   <Typography variant="h5" gutterBottom>
@@ -74,20 +74,13 @@ const VariavelDependente = () => {
                   <Typography
                     sx={{
                       marginBottom: '0.5rem',
-                      height: '9em',
                       fontSize: '1rem',
                       lineHeight: '1.5em',
                       fontWeight: 'normal',
                       width: '100%',
-
-                      overflow: 'hidden',
-                      display: '-webkit-box',
-                      WebkitLineClamp: '3',
-                      WebkitBoxOrient: 'vertical',
                     }}
                   >
                     {data.data['description']}
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
                   </Typography>
                 </Paper>
               </Grid>

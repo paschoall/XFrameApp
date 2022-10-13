@@ -10,11 +10,12 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import ListAltIcon from '@mui/icons-material/ListAlt';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import SquareFootIcon from '@mui/icons-material/SquareFoot';
 
 import Footer from '../components/Footer';
 
-const ManageVariables = () => {
+const ManageMetricsInstruments = () => {
   return (
     <>
       <CssBaseline />
@@ -37,7 +38,7 @@ const ManageVariables = () => {
                   p: 2,
                   display: 'flex',
                   flexDirection: 'column',
-                  height: '44vh',
+                  height: '40vh',
                   alignItems: 'center',
                   alignContent: 'center',
                   padding: '0',
@@ -45,7 +46,7 @@ const ManageVariables = () => {
               >
                 <ListItemButton
                   component={Link}
-                  to='/admin-page/gerenciar-variaveis/independentes'
+                  to='/admin-page/gerenciar-metricas-instrumentos/metricas'
                   sx={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -55,7 +56,7 @@ const ManageVariables = () => {
                   }}
                 >
                   <ListItemIcon>
-                    <ListAltIcon
+                    <BarChartIcon
                       sx={{
                         fontSize: '24vh',
                         textAlign: 'center',
@@ -73,7 +74,7 @@ const ManageVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Gerenciar Variáveis Independentes
+                        Gerenciar Métricas
                       </Typography>}
                   />
                 </ListItemButton>
@@ -85,7 +86,7 @@ const ManageVariables = () => {
                   p: 2,
                   display: 'flex',
                   flexDirection: 'column',
-                  height: '44vh',
+                  height: '40vh',
                   alignItems: 'center',
                   alignContent: 'center',
                   padding: '0',
@@ -93,7 +94,7 @@ const ManageVariables = () => {
               >
                 <ListItemButton
                   component={Link}
-                  to='/admin-page/gerenciar-variaveis/dependentes'
+                  to='/admin-page/gerenciar-metricas-instrumentos/instrumentos'
                   sx={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -103,7 +104,7 @@ const ManageVariables = () => {
                   }}
                 >
                   <ListItemIcon>
-                    <ListAltIcon
+                    <SquareFootIcon
                       sx={{
                         fontSize: '24vh',
                         textAlign: 'center',
@@ -121,7 +122,7 @@ const ManageVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Gerenciar Variáveis Dependentes
+                        Gerenciar Instrumentos
                       </Typography>}
                   />
                 </ListItemButton>
@@ -138,4 +139,4 @@ const ManageVariables = () => {
   );
 }
 
-export default ManageVariables;
+export default ManageMetricsInstruments;
