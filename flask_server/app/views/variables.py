@@ -75,13 +75,18 @@ def get_dependent_variable(id):
 
 # Update
 def update_independent_variable(id):
-    if ("name" in request.json):
-        name = request.json['name']
-    if ("description" in request.json):
-        description = request.json['description']
-
     independent_variable = variavel_independente.query.get(id)
+    name = independent_variable.name
+    description = independent_variable.description
 
+    if ("name" in request.json):
+        if request.json['name'] != '':
+            name = request.json['name']
+    if ("description" in request.json):
+        if request.json['description'] != '':
+            description = request.json['description']
+
+    
     if not independent_variable:
         return jsonify({'message': "variable doesn't exist", 'data': {}}), 404
 
@@ -98,12 +103,17 @@ def update_independent_variable(id):
 
 
 def update_dependent_variable(id):
-    if ("name" in request.json):
-        name = request.json['name']
-    if ("description" in request.json):
-        description = request.json['description']
-
     dependent_variable = variavel_dependente.query.get(id)
+    name = dependent_variable.name
+    description = dependent_variable .description
+
+    if ("name" in request.json):
+        if request.json['name'] != '':
+            name = request.json['name']
+    if ("description" in request.json):
+        if request.json['description'] != '':
+            description = request.json['description']
+
 
     if not dependent_variable:
         return jsonify({'message': "variable doesn't exist", 'data': {}}), 404
