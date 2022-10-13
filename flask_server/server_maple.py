@@ -1,4 +1,5 @@
 from flask import Flask, Response, request
+from flask_cors import CORS
 from flask_marshmallow import Marshmallow
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql.expression import select,func
@@ -12,6 +13,7 @@ MYSQL_USER = os.environ["MYSQL_USER"]
 MYSQL_PASSWORD = os.environ["MYSQL_PASSWORD"]
 
 app = Flask(__name__)
+CORS(app)
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://"+MYSQL_USER+":"+MYSQL_PASSWORD+"@localhost/maple"
 
