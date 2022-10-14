@@ -1,4 +1,3 @@
-
 from sqlalchemy import UniqueConstraint
 
 from app import db, ma
@@ -43,16 +42,14 @@ class metrica(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False, unique=True)
     description = db.Column(db.String(500), nullable=False)
-    instrument = db.Column(db.String(100))
     # create A String
 
     def __repr__(self):
         return "<name: %r>" % (self.name)
 
-    def __init__(self, name, description, instrument):
+    def __init__(self, name, description):
         self.name = name
         self.description = description
-        self.instrument = instrument
 
 
 
@@ -139,7 +136,7 @@ variables_schema = VariableSchema(many=True)
 
 class MetricSchema(ma.Schema):
     class Meta:
-        fields = ('id', 'name', 'description', 'instrument')
+        fields = ('id', 'name', 'description')
 
 
 metric_schema = MetricSchema()

@@ -8,9 +8,8 @@ from ..models.models import metrica, metric_schema, metrics_schema
 def post_metric():
     name = request.json['name']
     description = request.json['description']
-    instrument = request.json['instrument']
 
-    metric = metrica(name, description, instrument)
+    metric = metrica(name, description)
     try:
         db.session.add(metric)
         db.session.commit()
@@ -48,8 +47,6 @@ def update_metric(id):
         name = request.json['name']
     if ("description" in request.json):
         description = request.json['description']
-    if ("instrument" in request.json):
-        instrument = request.json['instrument']
 
     metric = metrica.query.get(id)
 
@@ -59,7 +56,6 @@ def update_metric(id):
     try:
         metric.name = name
         metric.description = description
-        metric.instrument = instrument
         db.session.commit()
         result = metric_schema.dump(metric)
         return jsonify({'messasge': 'successfully updated', 'data': result}), 200
