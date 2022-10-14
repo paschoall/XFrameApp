@@ -7,7 +7,7 @@ import {
 import ProtectedRoute from '../components/ProtectedRoute';
 
 import Home from '../pages/Home';
-import Cadastro from '../pages/Cadastro';
+import RegisterVi from '../pages/RegisterVi';
 import Login from '../pages/Login'
 import SignUp from '../pages/SignUp';
 import CatalogoVi from '../pages/ViCatalog';
@@ -66,6 +66,7 @@ const Rotas = ({ setToken, user }) => {
           <Route path='gerenciar-usuarios' element={<ManageUsers />} />
           <Route path='gerenciar-variaveis' element={<ManageVariables />} />
           <Route path='gerenciar-variaveis/independentes' element={<ManageIndependentVariables />} />
+          <Route path='gerenciar-variaveis/independentes/cadastrar' element={<RegisterVi />} />
           <Route path='gerenciar-variaveis/independentes/editar' element={<EditVi />} />
           <Route path='gerenciar-variaveis/independentes/editar/:id' element={<EditViForms />} />
           <Route path='gerenciar-variaveis/dependentes' element={<ManageDependentVariables />} />
@@ -75,7 +76,6 @@ const Rotas = ({ setToken, user }) => {
           <Route path='gerenciar-fatores-tratamentos' element={<ManageFactorsTreatments />} />
           <Route path='gerenciar-fatores-tratamentos/fatores' element={<ManageFactors/>} />
           <Route path='gerenciar-fatores-tratamentos/tratamentos' element={<ManageTreatments />} />
-          <Route path='cadastro' element={<Cadastro />} />
         </Route>
         <Route path='*' element={<PageNotFound />} />
       </Routes>

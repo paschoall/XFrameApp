@@ -46,7 +46,7 @@ const ManageIndependentVariables = () => {
               >
                 <ListItemButton
                   component={Link}
-                  to='/admin-page/cadastro'
+                  to='cadastrar'
                   sx={{
                     display: 'flex',
                     flexDirection: 'column',

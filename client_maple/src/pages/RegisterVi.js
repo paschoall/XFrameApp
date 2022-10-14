@@ -7,14 +7,14 @@ import Footer from '../components/Footer';
 import Forms from '../components/Forms'
 
 
-const Cadastro = () => {
+const RegisterVi = () => {
   return (
     <>
       <CssBaseline />
       <Container component='main' maxWidth='sm' sx={{ mb: 4 }}>
         <Paper variant='outlined' sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component='h1' variant='h4' align='center' m={2}>
-            Cadastro de Variável
+            Cadastro de Variável Independente
           </Typography>
           <React.Fragment>
             <Forms fetchlink = '/independent_variable'/>
@@ -26,4 +26,4 @@ const Cadastro = () => {
   );
 }
 
-export default Cadastro;
+export default RegisterVi;
