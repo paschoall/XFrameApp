@@ -29,7 +29,7 @@ const ManageUsers = () => {
         }}
       >
         <Container maxWidth="xl" sx={{ mt: 4, mb: 4, }} >
-          <Grid container spacing={8} rowSpacing={20}>
+          <Grid container spacing={8}>
             <Grid item xs={12} md={4} lg={4}>
               
             </Grid>

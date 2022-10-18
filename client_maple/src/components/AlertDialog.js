@@ -6,11 +6,12 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export default function AlertDialog(props) {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     setOpen(props.open)
@@ -19,6 +20,9 @@ export default function AlertDialog(props) {
   const handleClose = (link) => {
     if(link){
       navigate('/login')
+    }
+    if(location.pathname.includes('/editar')){
+      navigate(0)
     }
     setOpen(false);
   };

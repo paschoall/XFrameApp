@@ -20,9 +20,11 @@ export default function CardTemplate(props) {
                 sx={{
                     display: 'flex',
                     flexWrap: 'wrap',
+                    width: '100%',
                 }}
             >
                 <Typography
+                    gutterBottom
                     variant='h4'
                     sx={{
                         fontSize: '1.5rem',
@@ -34,7 +36,7 @@ export default function CardTemplate(props) {
                     // noWrap
                     variant=''
                     sx={{
-                        marginBottom: '0.5rem',
+                        marginBottom: '1rem',
                         height: '6em',
                         fontSize: '1rem',
                         lineHeight: '1.5em',

@@ -16,7 +16,7 @@ export default function EditCardTemplate(props) {
     const [open, setOpen] = useState(false);
     const [openError, setOpenError] = useState(false);
     const navigate = useNavigate();
-    
+
     const handleClick = () => {
         if (open === true) {
             setOpen(!open);
@@ -39,7 +39,7 @@ export default function EditCardTemplate(props) {
                 method: 'DELETE',
             }
 
-            fetch(proxy + '/independent_variable/' + id, requestOptions).then(
+            fetch(proxy + props.fetchlink + '/' + id, requestOptions).then(
                 response => {
                     if (!response.ok) {
                         throw new Error('Network response was not OK');
@@ -66,7 +66,7 @@ export default function EditCardTemplate(props) {
         <Card
             sx={{
                 minHeight: '16rem',
-                maxHeight: '22rem',
+                maxHeight: '20rem',
                 margin: 'auto',
                 marginTop: '1rem',
                 textAlign: 'left',
@@ -78,13 +78,14 @@ export default function EditCardTemplate(props) {
                 sx={{
                     display: 'flex',
                     flexWrap: 'wrap',
+                    width: '100%',
                 }}
             >
-                <Typography gutterBottom
+                <Typography
+                    gutterBottom
                     variant='h4'
                     sx={{
                         fontSize: '1.5rem',
-                        fontWeight: '700'
                     }}
                 >
                     {props.nomeVariavel}

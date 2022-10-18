@@ -26,7 +26,7 @@ import { useTheme } from '@mui/material/styles';
 import Footer from '../components/Footer';
 import EditForms from '../components/EditForms';
 
-const VariavelIndependente = () => {
+const EditVariavelIndependente = () => {
   const [data, setData] = useState([{}])
   const [openDesc, setOpenDesc] = React.useState(false);
   const [openFt, setOpenFt] = React.useState(false);
@@ -149,15 +149,10 @@ const VariavelIndependente = () => {
                     flexDirection: 'column',
                   }}
                 >
-
                   <Typography variant="h5" gutterBottom>
                     Use Examples
                   </Typography>
-                  <Grid container spacing={6}
-                    sx={{
-                      display: 'flex',
-                      height: '100%',
-                    }}>
+                  <Grid container spacing={6}>
                     <Grid item xs={12} md={4} lg={4}>
                       <Paper
                         sx={{
@@ -177,7 +172,7 @@ const VariavelIndependente = () => {
                           container spacing={2}
                           rowSpacing={1}
                           sx={{
-                            margin: '0 1rem 0 0'
+                            margin: '0.5rem 1rem 0 0'
                           }}
                         >
                           <Button onClick={handleClickFT}>Delete</Button>
@@ -242,7 +237,7 @@ const VariavelIndependente = () => {
           aria-labelledby="responsive-dialog-title"
         >
           <DialogContent>
-            <EditForms formTitle={'Edit Name and Description'} fetchlink='/independent_variable/' />
+            <EditForms formTitle={'Edit Name and Description'} fetchlink='/dependent_variable/' />
           </DialogContent>
         </Dialog>
 
@@ -272,7 +267,6 @@ const VariavelIndependente = () => {
             </Button>
           </DialogActions>
         </Dialog>
-
         <Dialog
           fullScreen={fullScreen}
           open={openRef}
@@ -305,4 +299,4 @@ const VariavelIndependente = () => {
   );
 }
 
-export default VariavelIndependente;
+export default EditVariavelIndependente;

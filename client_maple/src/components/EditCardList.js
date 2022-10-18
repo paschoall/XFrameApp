@@ -1,4 +1,5 @@
 import React from 'react';
+import { Toolbar } from '@mui/material';
 import { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
 import EditCardTemplate from './EditCardTemplate';
@@ -9,12 +10,11 @@ const EditCardList = (props) => {
   const location = useLocation()
   const proxy = 'https://5de3-2804-431-cfec-d6de-f8b2-c8c9-59cf-21e.sa.ngrok.io';
   useEffect(() => {
-    fetch(proxy + props.fetchlink).then(
+    fetch(proxy + props.fetchlink + 's').then(
       res => res.json()
     ).then(
       data => {
         setData(data)
-        console.log(data)
       }
     )
   }, [props.fetchlink])
@@ -27,22 +27,31 @@ const EditCardList = (props) => {
     >
       {
         (typeof data.data === 'undefined') ? (
-          <p>Loading...</p>
+          <>
+            <Toolbar /><p>Loading...</p>
+          </>
         ) : (
-          data.data.map((data, i) => {
-            return (
-              <Grid key={data['id']} item
-                xs={12}
-                md={6}
-              >
-                <EditCardTemplate
-                  id={data['id']}
-                  link={location.pathname}
-                  nomeVariavel={data['name']}
-                  descricao={data['description']} />
-              </Grid>
+          (Object.keys(data.data).length === 0) ? (
+            <p><Toolbar />Nothing Found</p>
+          ) : (
+            data.data.map((data, i) => {
+              return (
+                <Grid
+                  item
+                  key={data['id']}
+                  xs={12} md={6}
+                >
+                  <EditCardTemplate
+                    id={data['id']}
+                    link={location.pathname}
+                    nomeVariavel={data['name']}
+                    descricao={data['description']}
+                    fetchlink={props.fetchlink}
+                  />
+                </Grid>
+              )
+            }
             )
-          }
           )
         )
       }

@@ -30,7 +30,7 @@ const ManageMetrics = () => {
         }}
       >
         <Container maxWidth="xl" sx={{ mt: 4, mb: 4, }} >
-          <Grid container spacing={8} rowSpacing={20}>
+          <Grid container spacing={8}>
             <Grid item xs={12} md={2} lg={2}/>
             <Grid item xs={12} md={4} lg={4}>
               <Paper
@@ -46,7 +46,7 @@ const ManageMetrics = () => {
               >
                 <ListItemButton
                   component={Link}
-                  to='/admin-page/cadastro'
+                  to='cadastrar'
                   sx={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -94,7 +94,7 @@ const ManageMetrics = () => {
               >
                 <ListItemButton
                   component={Link}
-                  to='/admin-page/cadastro'
+                  to='editar'
                   sx={{
                     display: 'flex',
                     flexDirection: 'column',

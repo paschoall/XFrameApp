@@ -4,14 +4,14 @@ import Footer from '../components/Footer';
 import EditCardBox from '../components/EditCardBox';
 
 
-const EditVi = () => {
+const EditVd = () => {
   return (
     <>
       <CssBaseline />
-      <EditCardBox fetchlink='/independent_variable' />
+      <EditCardBox fetchlink='/dependent_variable' />
       <Footer />
     </>
   );
 }
 
-export default EditVi;
+export default EditVd;

@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import CssBaseline from '@mui/material/CssBaseline';
 import {
   Box,
+  Button,
   Container,
   Grid,
   List,
@@ -109,18 +110,22 @@ const VariavelIndependente = () => {
                     }}>
                     <Grid item xs={12} md={4} lg={4}>
                       <Paper
+                        component={Button}
                         sx={{
                           p: 2,
                           display: 'flex',
                           flexDirection: 'column',
                           height: '100%',
+                          width: '100%',
+                          textTransform: 'none',
+                          alignItems: 'flex-start',
                         }}
                       >
                         <Typography variant="body1" gutterBottom>
-                          1 Factor
+                          1 Factor{(1===1)?(''):('s')}
                         </Typography>
                         <Typography variant="body1" gutterBottom>
-                          1 Tratamento
+                          1 Treatment
                         </Typography>
                       </Paper>
                     </Grid>

@@ -62,7 +62,7 @@ export default function Forms(props) {
             required
             name="name"
             control={control}
-            label="Nome da Variável"
+            label="Name"
           />
         </Grid>
         <Grid item xs={12}>
@@ -71,7 +71,7 @@ export default function Forms(props) {
             multiline
             name="description"
             control={control}
-            label="Descrição"
+            label="Description"
           />
         </Grid>
         <Grid item xs={12}>

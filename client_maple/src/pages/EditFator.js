@@ -26,10 +26,9 @@ import { useTheme } from '@mui/material/styles';
 import Footer from '../components/Footer';
 import EditForms from '../components/EditForms';
 
-const EditVariavelDependente = () => {
+const EditFator = () => {
   const [data, setData] = useState([{}])
   const [openDesc, setOpenDesc] = React.useState(false);
-  const [openFt, setOpenFt] = React.useState(false);
   const [openRef, setOpenRef] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -39,7 +38,7 @@ const EditVariavelDependente = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(proxy + '/dependent_variable/' + id).then(
+    fetch(proxy + '/metric/' + id).then(
       res => res.json()
     ).then(
       data => {
@@ -49,25 +48,17 @@ const EditVariavelDependente = () => {
     )
   }, [id])
 
-  const handleClickFT = () => {
-    navigate('fatores-tratamentos')
-  }
   const handleClickRef = () => {
     navigate('ref')
   }
-
   const handleClickOpenDesc = () => {
     setOpenDesc(true);
-  };
-  const handleClickOpenFt = () => {
-    setOpenFt(true);
   };
   const handleClickOpenRef = () => {
     setOpenRef(true);
   };
   const handleClose = () => {
     setOpenDesc(false);
-    setOpenFt(false);
     setOpenRef(false);
   };
 
@@ -105,7 +96,7 @@ const EditVariavelDependente = () => {
               {data.data['name']}
             </Typography>
             <Grid container spacing={3}>
-              <Grid item xs={12} md={5} lg={5}>
+              <Grid item xs={12}>
                 <Paper
                   sx={{
                     p: 2,
@@ -137,54 +128,6 @@ const EditVariavelDependente = () => {
                     }}
                   >
                     <Button onClick={handleClickOpenDesc}>Edit Name and Description</Button>
-                  </Grid>
-                </Paper>
-              </Grid>
-              <Grid item xs={12} md={7} lg={7}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                  }}
-                >
-                  <Typography variant="h5" gutterBottom>
-                    Metrics and Instruments
-                  </Typography>
-                  <Grid container spacing={6}>
-                    <Grid item xs={12} md={4} lg={4}>
-                      <Paper
-                        sx={{
-                          p: 2,
-                          display: 'flex',
-                          flexDirection: 'column',
-                          height: '100%',
-                        }}
-                      >
-                        <Typography variant="body1" gutterBottom>
-                          Instrument 1
-                        </Typography>
-                        <Grid
-                          container spacing={2}
-                          rowSpacing={1}
-                          sx={{
-                            margin: '0.5rem 1rem 0 0'
-                          }}
-                        >
-                          <Button onClick={handleClickFT}>Delete</Button>
-                        </Grid>
-                      </Paper>
-                    </Grid>
-                  </Grid>
-                  <Grid
-                    container spacing={2}
-                    rowSpacing={1}
-                    sx={{
-                      margin: '1rem 0 0 0'
-                    }}
-                  >
-                    <Button onClick={handleClickOpenFt}>Add Factors and Treatments</Button>
                   </Grid>
                 </Paper>
               </Grid>
@@ -234,35 +177,8 @@ const EditVariavelDependente = () => {
           aria-labelledby="responsive-dialog-title"
         >
           <DialogContent>
-            <EditForms formTitle={'Edit Name and Description'} fetchlink='/dependent_variable/' />
+            <EditForms formTitle={'Edit Name and Description'} fetchlink='/metric/' />
           </DialogContent>
-        </Dialog>
-
-        <Dialog
-          fullScreen={fullScreen}
-          open={openFt}
-          onClose={handleClose}
-          aria-labelledby="responsive-dialog-title"
-        >
-          <DialogTitle id="responsive-dialog-title">
-            {"Add Factors and Treatments"}
-          </DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              Choose Factors
-            </DialogContentText>
-            <DialogContentText>
-              Choose Treatments
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button autoFocus onClick={handleClose}>
-              Cancel
-            </Button>
-            <Button onClick={handleClose} autoFocus>
-              Agree
-            </Button>
-          </DialogActions>
         </Dialog>
         <Dialog
           fullScreen={fullScreen}
@@ -296,4 +212,4 @@ const EditVariavelDependente = () => {
   );
 }
 
-export default EditVariavelDependente;
+export default EditFator;
