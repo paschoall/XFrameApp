@@ -8,6 +8,7 @@ import {
   Paper,
   List,
   ListItemButton,
+  ListItemText,
   Toolbar,
   Typography,
 } from '@mui/material'
@@ -135,12 +136,11 @@ const Home = () => {
                             }
                             sx={{
                               width: '100%',
-                              height: '3rem',
+                              minHeight: '3rem',
                               padding: '1vh',
                             }}
                           >
-
-                            {data['name']}
+                            <ListItemText primary={data['name']} />
                             {open === data['id'] ? <ExpandLess /> : <ExpandMore />}
                           </ListItemButton>
                           <Collapse in={open === data['id']} timeout="auto" unmountOnExit>
@@ -154,16 +154,17 @@ const Home = () => {
                                       (event) => handleListItemClick(
                                         event,
                                         data['id'],
-                                        data['id_vd_array'].split(',')
+                                        data['id_vd_array'].split(',').map((item)=>{return parseInt(item)})
                                       )
                                     }
                                     sx={{
                                       width: '100%',
-                                      height: '3rem',
+                                      minHeight: '3rem',
                                       padding: '1vh',
+                                      paddingLeft: '2vh',
                                     }}
                                   >
-                                    Design {i+1}
+                                    {'Design'} {i + 1}
                                   </ListItemButton>
                                 )
                               })}
@@ -222,14 +223,14 @@ const Home = () => {
                       return (
                         <ListItemButton
                           key={i}
-                          selected={indexArray.includes(data['id'].toString())}
+                          selected={indexArray.includes(data['id'])}
                           sx={{
                             width: '100%',
-                            height: '3rem',
+                            minHeight: '3rem',
                             padding: '1vh',
                           }}
                         >
-                          {data['name']}
+                          <ListItemText primary={data['name']} />
                         </ListItemButton>
                       )
                     }

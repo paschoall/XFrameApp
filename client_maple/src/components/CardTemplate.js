@@ -26,7 +26,6 @@ export default function CardTemplate(props) {
                     variant='h4'
                     sx={{
                         fontSize: '1.5rem',
-                        fontWeight: '700'
                     }}
                 >
                     {props.nomeVariavel}

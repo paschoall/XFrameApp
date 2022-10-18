@@ -6,6 +6,9 @@ import {
   Box,
   Container,
   Grid,
+  List,
+  ListItem,
+  ListItemText,
   Paper,
   Typography,
 } from '@mui/material';
@@ -66,10 +69,11 @@ const VariavelIndependente = () => {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
+                    height: '100%',
                   }}
                 >
                   <Typography variant="h5" gutterBottom>
-                    Descrição
+                    Description
                   </Typography>
                   <Typography
                     sx={{
@@ -78,10 +82,10 @@ const VariavelIndependente = () => {
                       lineHeight: '1.5em',
                       fontWeight: 'normal',
                       width: '100%',
+                      height: '100%'
                     }}
                   >
                     {data.data['description']}
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
                   </Typography>
                 </Paper>
               </Grid>
@@ -89,53 +93,34 @@ const VariavelIndependente = () => {
                 <Paper
                   sx={{
                     p: 2,
+                    height: '100%',
                     display: 'flex',
                     flexDirection: 'column',
                   }}
                 >
+
                   <Typography variant="h5" gutterBottom>
-                    Demonstrações de Uso
+                    Use Examples
                   </Typography>
-                  <Grid container spacing={6}>
-                    <Grid item xs={4} md={4} lg={4}>
+                  <Grid container spacing={6}
+                    sx={{
+                      display: 'flex',
+                      height: '100%',
+                    }}>
+                    <Grid item xs={12} md={4} lg={4}>
                       <Paper
                         sx={{
                           p: 2,
                           display: 'flex',
                           flexDirection: 'column',
-                          height: '10rem',
+                          height: '100%',
                         }}
                       >
                         <Typography variant="body1" gutterBottom>
-                          1 fator, 1 tratamento
+                          1 Factor
                         </Typography>
-                      </Paper>
-                    </Grid>
-                    <Grid item xs={4} md={4} lg={4}>
-                      <Paper
-                        sx={{
-                          p: 2,
-                          display: 'flex',
-                          flexDirection: 'column',
-                          height: '10rem',
-                        }}
-                      >
                         <Typography variant="body1" gutterBottom>
-                          1 fator, 2 tratamentos
-                        </Typography>
-                      </Paper>
-                    </Grid>
-                    <Grid item xs={4} md={4} lg={4}>
-                      <Paper
-                        sx={{
-                          p: 2,
-                          display: 'flex',
-                          flexDirection: 'column',
-                          height: '10rem',
-                        }}
-                      >
-                        <Typography variant="body1" gutterBottom>
-                        
+                          1 Tratamento
                         </Typography>
                       </Paper>
                     </Grid>
@@ -151,11 +136,13 @@ const VariavelIndependente = () => {
                   }}
                 >
                   <Typography variant="h6" gutterBottom>
-                    Referências
+                    References
                   </Typography>
-                  <Typography variant="body2" gutterBottom>
-                    Lorem Ipsum
-                  </Typography>
+                  <List>
+                    <ListItem>
+                      <ListItemText primary={'Lorem Ipsum'} />
+                    </ListItem>
+                  </List>
                 </Paper>
               </Grid>
             </Grid>

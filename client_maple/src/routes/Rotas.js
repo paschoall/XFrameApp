@@ -15,7 +15,6 @@ import CatalogoVd from '../pages/VdCatalog';
 import CatalogoV from '../pages/VCatalog';
 import PageNotFound from '../pages/PageNotFound';
 import AdminPage from '../pages/AdminPage';
-import Dashboard from '../pages/Dashboard';
 import ManageData from '../pages/ManageData';
 import ManageUsers from '../pages/ManageUsers';
 import VariavelIndependente from '../pages/VariavelIndependente';
@@ -30,6 +29,7 @@ import ManageInstruments from '../pages/ManageInstruments';
 import ManageFactors from '../pages/ManageFactors';
 import ManageTreatments from '../pages/ManageTreatments';
 import EditVi from '../pages/EditVi';
+import EditVariavelIndependente from '../pages/EditVariavelIndependente';
 import EditViForms from '../pages/EditViForms';
 
 const Rotas = ({ setToken, user }) => {
@@ -45,7 +45,6 @@ const Rotas = ({ setToken, user }) => {
         <Route path='catalogo-variaveis-dependentes' element={<CatalogoVd />} />
         <Route path='catalogo-variaveis-dependentes/:id' element={<VariavelDependente />} />
         <Route path='admin-page-dev' element={<AdminPage />} >
-          <Route path='dashboard' element={<Dashboard />} />
           <Route path='gerenciar-dados' element={<ManageData />} />
           <Route path=':gerenciar-usuarios' element={<ManageUsers />} />
         </Route>
@@ -61,14 +60,13 @@ const Rotas = ({ setToken, user }) => {
             </ProtectedRoute>
           }
         >
-          <Route path='dashboard' element={<Dashboard />} />
           <Route path='gerenciar-dados' element={<ManageData />} />
           <Route path='gerenciar-usuarios' element={<ManageUsers />} />
           <Route path='gerenciar-variaveis' element={<ManageVariables />} />
           <Route path='gerenciar-variaveis/independentes' element={<ManageIndependentVariables />} />
           <Route path='gerenciar-variaveis/independentes/cadastrar' element={<RegisterVi />} />
           <Route path='gerenciar-variaveis/independentes/editar' element={<EditVi />} />
-          <Route path='gerenciar-variaveis/independentes/editar/:id' element={<EditViForms />} />
+          <Route path='gerenciar-variaveis/independentes/editar/:id' element={<EditVariavelIndependente />} />
           <Route path='gerenciar-variaveis/dependentes' element={<ManageDependentVariables />} />
           <Route path='gerenciar-metricas-instrumentos' element={<ManageMetricsInstruments />} />
           <Route path='gerenciar-metricas-instrumentos/metricas' element={<ManageMetrics />} />

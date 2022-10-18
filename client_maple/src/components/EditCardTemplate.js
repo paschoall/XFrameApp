@@ -16,6 +16,7 @@ export default function EditCardTemplate(props) {
     const [open, setOpen] = useState(false);
     const [openError, setOpenError] = useState(false);
     const navigate = useNavigate();
+    
     const handleClick = () => {
         if (open === true) {
             setOpen(!open);
@@ -107,17 +108,18 @@ export default function EditCardTemplate(props) {
                 >
                     {props.descricao}
                 </Typography>
-                <Grid container spacing={2} rowSpacing={1}
+                <Grid
+                    container spacing={2}
+                    rowSpacing={1}
                     sx={{
+                        margin: '0'
                     }}
                 >
-                    <Grid item xs={12} md={12} lg={12}>
+                    <Grid item xs={12} md={9} lg={9} >
                         <ButtonTemplate link={props.link} id={props.id} text={'Editar'} />
                     </Grid>
-                    <Grid item xs={12} md={9} lg={9}>
-                        <ButtonTemplate link={props.link} id={props.id} text={'Adicionar Referência'} />
-                    </Grid>
-                    <Grid item xs={12} md={3} lg={3}>
+
+                    <Grid item xs={12} md={3} lg={3} >
                         <Button onClick={handleClick}>Delete</Button>
                     </Grid>
                 </Grid>
