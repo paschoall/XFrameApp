@@ -4,8 +4,8 @@ from flask import Response, request
 from flask import jsonify
 
 from app import app
-from ..views import helper
-from ..views import users, variables, metrics, references, relationships
+from ..views import helper, instruments
+from ..views import users, variables, metrics, instruments, factors, treatments, references, relationships
 
 # Members API Route
 @app.route("/")
@@ -97,6 +97,57 @@ def update_metric(id):
 def delete_metric(id):
     return metrics.delete_metric(id)
 
+# instruments CRUD
+@app.route("/instrument", methods=['POST'])
+def post_instrument():
+    return instruments.post_instrument()
+@app.route("/instruments", methods=['GET'])
+def get_instruments():
+    return instruments.get_instruments()
+@app.route("/instrument/<id>", methods=['GET'])
+def get_instrument(id):
+    return instruments.get_instrument(id)
+@app.route("/instrument/<id>", methods=['PUT'])
+def update_instrument(id):
+    return instruments.update_instrument(id)
+@app.route("/instrument/<id>", methods=['DELETE'])
+def delete_instrument(id):
+    return instruments.delete_instrument(id)
+
+# factors CRUD
+@app.route("/factor", methods=['POST'])
+def post_factor():
+    return factors.post_factor()
+@app.route("/factors", methods=['GET'])
+def get_factors():
+    return factors.get_factors()
+@app.route("/factor/<id>", methods=['GET'])
+def get_factor(id):
+    return factors.get_factor(id)
+@app.route("/factor/<id>", methods=['PUT'])
+def update_factor(id):
+    return factors.update_factor(id)
+@app.route("/factor/<id>", methods=['DELETE'])
+def delete_factor(id):
+    return factors.delete_factor(id)
+    # treatments CRUD
+
+@app.route("/treatment", methods=['POST'])
+def post_treatment():
+    return treatments.post_treatment()
+@app.route("/treatments", methods=['GET'])
+def get_treatments():
+    return treatments.get_treatments()
+@app.route("/treatment/<id>", methods=['GET'])
+def get_treatment(id):
+    return treatments.get_treatment(id)
+@app.route("/treatment/<id>", methods=['PUT'])
+def update_treatment(id):
+    return treatments.update_treatment(id)
+@app.route("/treatment/<id>", methods=['DELETE'])
+def delete_treatment(id):
+    return treatments.delete_treatment(id)
+
 # References CRUD
 @app.route("/reference", methods=['POST'])
 def post_reference():
@@ -130,6 +181,51 @@ def update_metric_reference(id):
 @app.route("/metric_reference/<id>", methods=['DELETE'])
 def delete_metric_reference(id):
     return relationships.delete_metric_reference(id)
+@app.route("/instrument_reference", methods=['POST'])
+def post_instrument_reference():
+    return relationships.post_instrument_reference()
+@app.route("/instrument_references", methods=['GET'])
+def get_instrument_references():
+    return relationships.get_instrument_references()
+@app.route("/instrument_reference/<id>", methods=['GET'])
+def get_instrument_reference(id):
+    return relationships.get_instrument_reference(id)
+@app.route("/instrument_reference/<id>", methods=['PUT'])
+def update_instrument_reference(id):
+    return relationships.update_instrument_reference(id)
+@app.route("/instrument_reference/<id>", methods=['DELETE'])
+def delete_instrument_reference(id):
+    return relationships.delete_instrument_reference(id)
+@app.route("/factor_reference", methods=['POST'])
+def post_factor_reference():
+    return relationships.post_factor_reference()
+@app.route("/factor_references", methods=['GET'])
+def get_factor_references():
+    return relationships.get_factor_references()
+@app.route("/factor_reference/<id>", methods=['GET'])
+def get_factor_reference(id):
+    return relationships.get_factor_reference(id)
+@app.route("/factor_reference/<id>", methods=['PUT'])
+def update_factor_reference(id):
+    return relationships.update_factor_reference(id)
+@app.route("/factor_reference/<id>", methods=['DELETE'])
+def delete_factor_reference(id):
+    return relationships.delete_factor_reference(id)
+@app.route("/treatment_reference", methods=['POST'])
+def post_treatment_reference():
+    return relationships.post_treatment_reference()
+@app.route("/treatment_references", methods=['GET'])
+def get_treatment_references():
+    return relationships.get_treatment_references()
+@app.route("/treatment_reference/<id>", methods=['GET'])
+def get_treatment_reference(id):
+    return relationships.get_treatment_reference(id)
+@app.route("/treatment_reference/<id>", methods=['PUT'])
+def update_treatment_reference(id):
+    return relationships.update_treatment_reference(id)
+@app.route("/treatment_reference/<id>", methods=['DELETE'])
+def delete_treatment_reference(id):
+    return relationships.delete_treatment_reference(id)
 @app.route("/vi_reference", methods=['POST'])
 def post_vi_reference():
     return relationships.post_vi_reference()
@@ -175,3 +271,33 @@ def update_vi_vd_relationship(id):
 @app.route("/vi_vd_relationship/<id>", methods=['DELETE'])
 def delete_vi_vd_relationship(id):
     return relationships.delete_vi_vd_relationship(id)
+@app.route("/metric_instrument_relationship", methods=['POST'])
+def post_metric_instrument_relationship():
+    return relationships.post_metric_instrument_relationship()
+@app.route("/metric_instrument_relationships", methods=['GET'])
+def get_metric_instrument_relationships():
+    return relationships.get_metric_instrument_relationships()
+@app.route("/metric_instrument_relationship/<id>", methods=['GET'])
+def get_metric_instrument_relationship(id):
+    return relationships.get_metric_instrument_relationship(id)
+@app.route("/metric_instrument_relationship/<id>", methods=['PUT'])
+def update_metric_instrument_relationship(id):
+    return relationships.update_metric_instrument_relationship(id)
+@app.route("/metric_instrument_relationship/<id>", methods=['DELETE'])
+def delete_metric_instrument_relationship(id):
+    return relationships.delete_metric_instrument_relationship(id)
+@app.route("/factors_treatments_relationship", methods=['POST'])
+def post_factors_treatments_relationship():
+    return relationships.post_factors_treatments_relationship()
+@app.route("/factors_treatments_relationships", methods=['GET'])
+def get_factors_treatments_relationships():
+    return relationships.get_factors_treatments_relationships()
+@app.route("/factors_treatments_relationship/<id>", methods=['GET'])
+def get_factors_treatments_relationship(id):
+    return relationships.get_factors_treatments_relationship(id)
+@app.route("/factors_treatments_relationship/<id>", methods=['PUT'])
+def update_factors_treatments_relationship(id):
+    return relationships.update_factors_treatments_relationship(id)
+@app.route("/factors_treatments_relationship/<id>", methods=['DELETE'])
+def delete_factors_treatments_relationship(id):
+    return relationships.delete_factors_treatments_relationship(id)
