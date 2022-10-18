@@ -4,7 +4,7 @@ from app import db
 from ..models.models import referencia_metrica, metric_reference_schema, metric_references_schema
 from ..models.models import referencia_vi, vi_reference_schema, vi_references_schema
 from ..models.models import referencia_vd, vd_reference_schema, vd_references_schema
-from ..models.models import vi_vd, vi_vd_schema, vi_vds_schema
+from ..models.models import design_vi_vd, vi_vd_schema, vi_vds_schema
 from flask import request, jsonify
 
 # Metric References CRUD
@@ -239,9 +239,9 @@ def delete_vd_reference(id):
 # Create
 def post_vi_vd_relationship():
     id_vi = request.json['id_vi']
-    id_vd = request.json['id_vd']
+    id_vd_array = request.json['id_vd_array']
 
-    vi_vd_relationship = vi_vd(id_vi, id_vd)
+    vi_vd_relationship = design_vi_vd(id_vi, id_vd_array)
     try:
         db.session.add(vi_vd_relationship)
         db.session.commit()
@@ -253,7 +253,7 @@ def post_vi_vd_relationship():
 
 # Read
 def get_vi_vd_relationships():
-    vi_vd_relationships = vi_vd.query.all()
+    vi_vd_relationships = design_vi_vd.query.all()
 
     if vi_vd_relationships:
         result = vi_vds_schema.dump(vi_vd_relationships)
@@ -262,7 +262,7 @@ def get_vi_vd_relationships():
     return jsonify({'message': "nothing found", 'data': {}})
 
 def get_vi_vd_relationship(id):
-    vi_vd_relationship = vi_vd.query.get(id)
+    vi_vd_relationship = design_vi_vd.query.get(id)
 
     if vi_vd_relationship:
         result = vi_vd_schema.dump(vi_vd_relationship)
@@ -277,7 +277,7 @@ def update_vi_vd_relationship(id):
     if ("description" in request.json):
         description = request.json['description']
 
-    vi_vd_relationship = vi_vd.query.get(id)
+    vi_vd_relationship = design_vi_vd.query.get(id)
 
     if not vi_vd_relationship:
         return jsonify({'message': "relationship doesn't exist", 'data': {}}), 404
@@ -295,7 +295,7 @@ def update_vi_vd_relationship(id):
 
 # Delete
 def delete_vi_vd_relationship(id):
-    vi_vd_relationship = vi_vd.query.get(id)
+    vi_vd_relationship = design_vi_vd.query.get(id)
 
     if not vi_vd_relationship:
         return jsonify({'message': "relationship doesn't exist", 'data': {}}), 404

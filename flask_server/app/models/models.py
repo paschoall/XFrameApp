@@ -1,4 +1,5 @@
 from sqlalchemy import UniqueConstraint
+from sqlalchemy.types import JSON
 
 from app import db, ma
 
@@ -72,7 +73,7 @@ class referencia_vi(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     id_vi = db.Column(db.Integer, nullable=False)
     id_ref = db.Column(db.Integer, nullable=False)
-    __table_args__ = (UniqueConstraint('id_vi', 'id_ref', name='vi_ref_uc'),
+    __table_args__ = (UniqueConstraint('id_vi', 'id_ref', name='uc_vi_ref'),
                       )
 
     def __init__(self, id_vi, id_ref):
@@ -87,7 +88,7 @@ class referencia_vd(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     id_vd = db.Column(db.Integer, nullable=False)
     id_ref = db.Column(db.Integer, nullable=False)
-    __table_args__ = (UniqueConstraint('id_vd', 'id_ref', name='vd_ref_uc'),
+    __table_args__ = (UniqueConstraint('id_vd', 'id_ref', name='uc_vd_ref'),
                       )
 
     def __init__(self, id_vd, id_ref):
@@ -102,7 +103,7 @@ class referencia_metrica(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     id_metric = db.Column(db.Integer, nullable=False)
     id_ref = db.Column(db.Integer, nullable=False)
-    __table_args__ = (UniqueConstraint('id_metric', 'id_ref', name='metric_ref_uc'),
+    __table_args__ = (UniqueConstraint('id_metric', 'id_ref', name='uc_metric_ref'),
                       )
 
     def __init__(self, id_metric, id_ref):
@@ -110,19 +111,19 @@ class referencia_metrica(db.Model):
         self.id_ref = id_ref
 
 
-class vi_vd(db.Model):
+class design_vi_vd(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     id_vi = db.Column(db.Integer, nullable=False)
-    id_vd = db.Column(db.Integer, nullable=False)
-    __table_args__ = (UniqueConstraint('id_vi', 'id_vd', name='vi_vd_uc'),
+    id_vd_array = db.Column(db.String(100), nullable=False)
+    __table_args__ = (UniqueConstraint('id_vi', 'id_vd_array', name='uc_vi_vd'),
                       )
 
-    def __init__(self, id_vi, id_vd):
+    def __init__(self, id_vi, id_vd_array):
         self.id_vi = id_vi
-        self.id_vd = id_vd
+        self.id_vd_array = id_vd_array
 
     def to_json(self):
-        return {"id": self.id, "id_vi": self.id_vi, "id_vd": self.id_vd}
+        return {"id": self.id, "id_vi": self.id_vi, "id_vd_array": self.id_vd_array}
 
 
 class VariableSchema(ma.Schema):
@@ -175,14 +176,14 @@ class MetricReferenceSchema(ma.Schema):
         fields = ('id', 'id_metric', 'id_ref')
 
 
-metric_reference_schema = VdReferenceSchema()
-metric_references_schema = VdReferenceSchema(many=True)
+metric_reference_schema = MetricReferenceSchema()
+metric_references_schema = MetricReferenceSchema(many=True)
 
 
 class ViVdSchema(ma.Schema):
     class Meta:
-        fields = ('id', 'id_vi', 'id_vd')
+        fields = ('id', 'id_vi', 'id_vd_array')
 
 
-vi_vd_schema = VdReferenceSchema()
-vi_vds_schema = VdReferenceSchema(many=True)
+vi_vd_schema = ViVdSchema()
+vi_vds_schema = ViVdSchema(many=True)

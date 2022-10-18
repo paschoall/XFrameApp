@@ -15,6 +15,7 @@ const CardList = (props) => {
       data => {
         setData(data)
         console.log(data)
+        console.log(data.data)
       }
     )
   }, [props.fetchlink])
