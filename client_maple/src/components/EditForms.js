@@ -30,7 +30,7 @@ export default function Formulario(props) {
     setOpen(false)
     setOpenError(false)
 
-    const proxy = 'https://5de3-2804-431-cfec-d6de-f8b2-c8c9-59cf-21e.sa.ngrok.io';
+    
     const requestOptions = {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
@@ -38,7 +38,7 @@ export default function Formulario(props) {
     }
     console.log(data)
 
-    fetch(proxy+props.fetchlink+id, requestOptions)
+    fetch(props.fetchlink+id, requestOptions)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not OK');

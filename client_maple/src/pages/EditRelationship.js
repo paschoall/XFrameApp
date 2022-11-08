@@ -1,8 +1,15 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom';
 // import { useLocation } from 'react-router-dom';
 import {
   Box,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Button,
   Collapse,
   Grid,
   Paper,
@@ -16,19 +23,25 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import CssBaseline from '@mui/material/CssBaseline';
 import Footer from '../components/Footer';
+import AlertDialog from '../components/AlertDialog';
 
 
-const Home = () => {
+const EditRelationship = () => {
   const [selectedIndex, setSelectedIndex] = useState(null);
+  const [selectedDesign, setSelectedDesign] = useState(null);
   const [indexArray, setIndexArray] = useState([]);
   const [vi, setVi] = useState([{}])
   const [vd, setVd] = useState([{}])
   const [vi_vd, setVivd] = useState([{}])
+  const [open, setOpen] = useState(false);
+  const [openError, setOpenError] = useState(false);
+  const [openWarning, setOpenWarning] = useState(false);
+  const navigate = useNavigate();
 
-  const [open, setOpen] = React.useState(null);
+  
 
   const handleViListItemClick = (event, index) => {
-    setOpen(index)
+    setSelectedDesign(index)
     setIndexArray([])
   };
 
@@ -36,6 +49,27 @@ const Home = () => {
     setSelectedIndex(index);
     setIndexArray(array)
   };
+
+  const handleClick = () => {
+    if (open === true) {
+      setOpen(!open);
+      setOpenWarning(!openWarning);
+    }
+    if (!!!selectedDesign) {
+      setOpenWarning(!openWarning);
+    }
+    else {
+      setOpen(!open);
+    }
+  }
+
+  useEffect(() => {
+    setOpenError(openError);
+  }, [openError])
+
+  useEffect(() => {
+    setOpen(open);
+  }, [open])
 
   useEffect(() => {
     fetch('/independent_variables').then(
@@ -67,6 +101,40 @@ const Home = () => {
       }
     )
   }, [])
+
+  const handleCloseDelete = (deleteFlag) => {
+    if (deleteFlag) {
+      const requestOptions = {
+        method: 'DELETE',
+      }
+
+      fetch('/vi_vd_relationship/' + selectedDesign, requestOptions).then(
+        response => {
+          if (!response.ok) {
+            throw new Error('Network response was not OK');
+          }
+          console.log(response)
+          return response.json()
+        }).then(
+          data => {
+            console.log(data)
+            navigate(0)
+          }
+        ).catch(
+          (error) => {
+            console.error('There has been a problem with your delete operation:', error);
+            setOpenError(true)
+          }
+        )
+
+    }
+    setOpen(false);
+    setOpenWarning(false);
+  };
+  const handleClose = () => {
+    setOpen(false);
+    setOpenWarning(false);
+  }
 
   return (
     <>
@@ -109,6 +177,8 @@ const Home = () => {
                   padding: '0',
                 }}
               >
+
+
                 {
                   (typeof vi_vd.data === 'undefined' || typeof vi.data === 'undefined') ? (
                     <p>Loading...</p>
@@ -124,7 +194,7 @@ const Home = () => {
                           }}
                         >
                           <ListItemButton
-                            selected={open === data['id']}
+                            selected={selectedDesign === data['id']}
                             onClick={
                               (event) => handleViListItemClick(
                                 event,
@@ -138,9 +208,9 @@ const Home = () => {
                             }}
                           >
                             <ListItemText primary={data['name']} />
-                            {open === data['id'] ? <ExpandLess /> : <ExpandMore />}
+                            {selectedDesign === data['id'] ? <ExpandLess /> : <ExpandMore />}
                           </ListItemButton>
-                          <Collapse in={open === data['id']} timeout="auto" unmountOnExit>
+                          <Collapse in={selectedDesign === data['id']} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
                               {vi_vd.data.filter(({ id_vi }) => id_vi === data['id']).map((data, i) => {
                                 return (
@@ -237,11 +307,76 @@ const Home = () => {
               </Paper>
             </Paper>
           </Grid>
+          <Grid item xs={6.25} md={6.25} lg={6.25} />
+          <Grid item
+            xs={5} md={5} lg={5}
+            sx={{
+              display: 'flex',
+              justifyContent: 'flex-end'
+            }}
+          >
+            <Button
+              variant="contained"
+              onClick={handleClick}
+              sx={{
+                marginTop: '2rem'
+              }}
+            >
+              Delete
+            </Button>
+          </Grid>
         </Grid>
       </Box>
+      <Dialog
+        open={open}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          DELETE
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Do you really want to delete this?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => handleCloseDelete(true)} autoFocus>
+            Delete
+          </Button>
+          <Button onClick={() => handleCloseDelete()} autoFocus>
+            Cancel
+          </Button>
+        </DialogActions>
+      </Dialog>
+      <AlertDialog
+        open={openError}
+        title='Erro ao Deletar'
+        message='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+      />
+      <Dialog
+        open={openWarning}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">
+          Select the Design
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => handleCloseDelete()} autoFocus>
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
       <Footer />
     </>
   );
 }
 
-export default Home;
+export default EditRelationship;

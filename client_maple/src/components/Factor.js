@@ -1,10 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
 import CssBaseline from '@mui/material/CssBaseline';
 import {
   Box,
-  Button,
   Container,
   Grid,
   List,
@@ -13,21 +11,23 @@ import {
   Paper,
   Typography,
 } from '@mui/material';
-import Footer from '../components/Footer';
 
-const VariavelIndependente = () => {
+const Factor = (props) => {
   const [data, setData] = useState([{}])
-  const { id } = useParams();
+
   
+
   useEffect(() => {
-    fetch('/independent_variable/' + id).then(
+    fetch('/factor/' + props.id).then(
       res => res.json()
     ).then(
       data => {
         setData(data)
+        console.log(data)
       }
     )
-  }, [id])
+  }, [props.id])
+
 
   return (
     (typeof data.data === 'undefined') ? (
@@ -45,7 +45,7 @@ const VariavelIndependente = () => {
         }}
       >
         <Typography variant="h4" gutterBottom>
-          Loading...
+          
         </Typography>
       </Box>
     ) : (
@@ -54,7 +54,6 @@ const VariavelIndependente = () => {
         <Box
           sx={{
             flexGrow: 1,
-            height: '100vh',
             overflow: 'auto',
           }}
         >
@@ -63,7 +62,7 @@ const VariavelIndependente = () => {
               {data.data['name']}
             </Typography>
             <Grid container spacing={3}>
-              <Grid item xs={12} md={5} lg={5}>
+              <Grid item xs={12}>
                 <Paper
                   sx={{
                     p: 2,
@@ -89,48 +88,6 @@ const VariavelIndependente = () => {
                   </Typography>
                 </Paper>
               </Grid>
-              <Grid item xs={12} md={7} lg={7}>
-                <Paper
-                  sx={{
-                    p: 2,
-                    height: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                  }}
-                >
-                  <Typography variant="h5" gutterBottom>
-                    Use Examples
-                  </Typography>
-                  <Grid container spacing={6}
-                    sx={{
-                      display: 'flex',
-                      height: '100%',
-                    }}
-                    >
-                    <Grid item xs={12} md={4} lg={4}>
-                      <Paper
-                        component={Button}
-                        sx={{
-                          p: 2,
-                          display: 'flex',
-                          flexDirection: 'column',
-                          height: '100%',
-                          width: '100%',
-                          textTransform: 'none',
-                          alignItems: 'flex-start',
-                        }}
-                      >
-                        <Typography variant="body1" gutterBottom>
-                          1 Factor{(1+1===2)?(''):('s')}
-                        </Typography>
-                        <Typography variant="body1" gutterBottom>
-                          1 Treatment
-                        </Typography>
-                      </Paper>
-                    </Grid>
-                  </Grid>
-                </Paper>
-              </Grid>
               <Grid item xs={12}>
                 <Paper
                   sx={{
@@ -152,10 +109,9 @@ const VariavelIndependente = () => {
             </Grid>
           </Container>
         </Box>
-        <Footer />
       </>
     )
   );
 }
 
-export default VariavelIndependente;
+export default Factor;

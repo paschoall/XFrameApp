@@ -18,7 +18,7 @@ export default function AlertDialog(props) {
   },[props.open])
 
   const handleClose = (link) => {
-    if(link){
+    if(link && location.pathname.includes('/signup')){
       navigate('/login')
     }
     if(location.pathname.includes('/editar')){

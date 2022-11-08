@@ -158,14 +158,9 @@ def get_references():
 @app.route("/reference/<id>", methods=['GET'])
 def get_reference(id):
     return references.get_reference(id)
-@app.route("/reference/<id>", methods=['PUT'])
-def update_reference(id):
-    return references.update_reference(id)
 @app.route("/reference/<id>", methods=['DELETE'])
 def delete_reference(id):
     return references.delete_reference(id)
-
-# Relationships CRUD
 @app.route("/metric_reference", methods=['POST'])
 def post_metric_reference():
     return relationships.post_metric_reference()
@@ -175,9 +170,6 @@ def get_metric_references():
 @app.route("/metric_reference/<id>", methods=['GET'])
 def get_metric_reference(id):
     return relationships.get_metric_reference(id)
-@app.route("/metric_reference/<id>", methods=['PUT'])
-def update_metric_reference(id):
-    return relationships.update_metric_reference(id)
 @app.route("/metric_reference/<id>", methods=['DELETE'])
 def delete_metric_reference(id):
     return relationships.delete_metric_reference(id)
@@ -190,9 +182,6 @@ def get_instrument_references():
 @app.route("/instrument_reference/<id>", methods=['GET'])
 def get_instrument_reference(id):
     return relationships.get_instrument_reference(id)
-@app.route("/instrument_reference/<id>", methods=['PUT'])
-def update_instrument_reference(id):
-    return relationships.update_instrument_reference(id)
 @app.route("/instrument_reference/<id>", methods=['DELETE'])
 def delete_instrument_reference(id):
     return relationships.delete_instrument_reference(id)
@@ -205,9 +194,6 @@ def get_factor_references():
 @app.route("/factor_reference/<id>", methods=['GET'])
 def get_factor_reference(id):
     return relationships.get_factor_reference(id)
-@app.route("/factor_reference/<id>", methods=['PUT'])
-def update_factor_reference(id):
-    return relationships.update_factor_reference(id)
 @app.route("/factor_reference/<id>", methods=['DELETE'])
 def delete_factor_reference(id):
     return relationships.delete_factor_reference(id)
@@ -220,9 +206,6 @@ def get_treatment_references():
 @app.route("/treatment_reference/<id>", methods=['GET'])
 def get_treatment_reference(id):
     return relationships.get_treatment_reference(id)
-@app.route("/treatment_reference/<id>", methods=['PUT'])
-def update_treatment_reference(id):
-    return relationships.update_treatment_reference(id)
 @app.route("/treatment_reference/<id>", methods=['DELETE'])
 def delete_treatment_reference(id):
     return relationships.delete_treatment_reference(id)
@@ -235,9 +218,6 @@ def get_vi_references():
 @app.route("/vi_reference/<id>", methods=['GET'])
 def get_vi_reference(id):
     return relationships.get_vi_reference(id)
-@app.route("/vi_reference/<id>", methods=['PUT'])
-def update_vi_reference(id):
-    return relationships.update_vi_reference(id)
 @app.route("/vi_reference/<id>", methods=['DELETE'])
 def delete_vi_reference(id):
     return relationships.delete_vi_reference(id)
@@ -250,12 +230,11 @@ def get_vd_references():
 @app.route("/vd_reference/<id>", methods=['GET'])
 def get_vd_reference(id):
     return relationships.get_vd_reference(id)
-@app.route("/vd_reference/<id>", methods=['PUT'])
-def update_vd_reference(id):
-    return relationships.update_vd_reference(id)
 @app.route("/vd_reference/<id>", methods=['DELETE'])
 def delete_vd_reference(id):
     return relationships.delete_vd_reference(id)
+
+# Relationships CRUD
 @app.route("/vi_vd_relationship", methods=['POST'])
 def post_vi_vd_relationship():
     return relationships.post_vi_vd_relationship()
@@ -265,9 +244,6 @@ def get_vi_vd_relationships():
 @app.route("/vi_vd_relationship/<id>", methods=['GET'])
 def get_vi_vd_relationship(id):
     return relationships.get_vi_vd_relationship(id)
-@app.route("/vi_vd_relationship/<id>", methods=['PUT'])
-def update_vi_vd_relationship(id):
-    return relationships.update_vi_vd_relationship(id)
 @app.route("/vi_vd_relationship/<id>", methods=['DELETE'])
 def delete_vi_vd_relationship(id):
     return relationships.delete_vi_vd_relationship(id)
@@ -280,9 +256,6 @@ def get_metric_instrument_relationships():
 @app.route("/metric_instrument_relationship/<id>", methods=['GET'])
 def get_metric_instrument_relationship(id):
     return relationships.get_metric_instrument_relationship(id)
-@app.route("/metric_instrument_relationship/<id>", methods=['PUT'])
-def update_metric_instrument_relationship(id):
-    return relationships.update_metric_instrument_relationship(id)
 @app.route("/metric_instrument_relationship/<id>", methods=['DELETE'])
 def delete_metric_instrument_relationship(id):
     return relationships.delete_metric_instrument_relationship(id)
@@ -295,9 +268,7 @@ def get_factors_treatments_relationships():
 @app.route("/factors_treatments_relationship/<id>", methods=['GET'])
 def get_factors_treatments_relationship(id):
     return relationships.get_factors_treatments_relationship(id)
-@app.route("/factors_treatments_relationship/<id>", methods=['PUT'])
-def update_factors_treatments_relationship(id):
-    return relationships.update_factors_treatments_relationship(id)
+
 @app.route("/factors_treatments_relationship/<id>", methods=['DELETE'])
 def delete_factors_treatments_relationship(id):
     return relationships.delete_factors_treatments_relationship(id)

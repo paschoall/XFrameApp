@@ -28,19 +28,19 @@ export default function Forms(props) {
     setOpen(false)
     setOpenError(false)
 
-    const proxy = 'https://5de3-2804-431-cfec-d6de-f8b2-c8c9-59cf-21e.sa.ngrok.io';
+    
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     }
 
-    fetch(proxy+props.fetchlink, requestOptions)
+    fetch(props.fetchlink, requestOptions)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not OK');
         }
-        console.log(response)
+        // console.log(response)
         setOpen(true)
         reset()
         return response.json()
@@ -111,7 +111,7 @@ export default function Forms(props) {
       />
       <AlertDialog
         open={open}
-        title='Variável Cadastrada com Sucesso'
+        title='Cadastro Bem Sucedido'
         message='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
       />
     </React.Fragment>

@@ -217,32 +217,36 @@ class design_vi_vd(db.Model):
 
 class metric_instrument(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    id_vd = db.Column(db.Integer, nullable=False)
     id_metric = db.Column(db.Integer, nullable=False)
     id_instrument = db.Column(db.Integer, nullable=False)
-    __table_args__ = (UniqueConstraint('id_metric', 'id_instrument', name='uc_metric_instrument'),
+    __table_args__ = (UniqueConstraint('id_vd', 'id_metric', 'id_instrument', name='uc_metric_instrument'),
                       )
 
-    def __init__(self, id_metric, id_instrument):
+    def __init__(self, id_vd, id_metric, id_instrument):
+        self.id_vd = id_vd
         self.id_metric = id_metric
         self.id_instrument = id_instrument
 
     def to_json(self):
-        return {"id": self.id, "id_metric": self.id_metric, "id_instrument": self.id_instrument}
+        return {"id": self.id, "id_vd": self.id_vd, "id_metric": self.id_metric, "id_instrument": self.id_instrument}
 
 
 class factors_treatments(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    id_vi = db.Column(db.Integer, nullable=False)
     id_factors_array = db.Column(db.String(100), nullable=False)
     id_treatments_array = db.Column(db.String(100), nullable=False)
-    __table_args__ = (UniqueConstraint('id_factors_array', 'id_treatments_array', name='uc_factor_treatment'),
+    __table_args__ = (UniqueConstraint('id_vi', 'id_factors_array', 'id_treatments_array', name='uc_factor_treatment'),
                       )
 
-    def __init__(self, id_factors_array, id_treatments_array):
+    def __init__(self, id_vi, id_factors_array, id_treatments_array):
+        self.id_vi = id_vi
         self.id_factors_array = id_factors_array
         self.id_treatments_array = id_treatments_array
 
     def to_json(self):
-        return {"id": self.id, "id_factors_array": self.id_factors_array, "id_treatments_array": self.id_treatments_array}
+        return {"id": self.id, "id_vi": self.id_vi, "id_factors_array": self.id_factors_array, "id_treatments_array": self.id_treatments_array}
 
 
 class VariableSchema(ma.Schema):
@@ -364,7 +368,7 @@ vi_vds_schema = ViVdSchema(many=True)
 
 class MetricInstrumentSchema(ma.Schema):
     class Meta:
-        fields = ('id', 'id_metric', 'id_instrument')
+        fields = ('id', 'id_vd', 'id_metric', 'id_instrument')
 
 
 metric_instrument_schema = MetricInstrumentSchema()
@@ -373,7 +377,7 @@ metric_instruments_schema = MetricInstrumentSchema(many=True)
 
 class FactorTreatmentSchema(ma.Schema):
     class Meta:
-        fields = ('id', 'id_factors_array', 'id_treatments_array')
+        fields = ('id', 'id_vi', 'id_factors_array', 'id_treatments_array')
 
 
 factor_treatment_schema = FactorTreatmentSchema()

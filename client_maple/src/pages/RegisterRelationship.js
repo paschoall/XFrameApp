@@ -3,38 +3,44 @@ import { useState, useEffect } from 'react'
 // import { useLocation } from 'react-router-dom';
 import {
   Box,
-  Collapse,
+  Button,
   Grid,
   Paper,
-  List,
   ListItemButton,
   ListItemText,
   Toolbar,
   Typography,
 } from '@mui/material'
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
 import CssBaseline from '@mui/material/CssBaseline';
 import Footer from '../components/Footer';
+import AlertDialog from '../components/AlertDialog';
 
-
-const Home = () => {
-  const [selectedIndex, setSelectedIndex] = useState(null);
+const RegisterRelationship = () => {
+  const [selectedViIndex, setSelectedViIndex] = useState(null);
+  const [selectedViIndex2, setSelectedViIndex2] = useState(null);
   const [indexArray, setIndexArray] = useState([]);
+  const [open, setOpen] = useState(false);
+  const [openError, setOpenError] = useState(false);
   const [vi, setVi] = useState([{}])
   const [vd, setVd] = useState([{}])
   const [vi_vd, setVivd] = useState([{}])
+  
 
-  const [open, setOpen] = React.useState(null);
 
   const handleViListItemClick = (event, index) => {
-    setOpen(index)
-    setIndexArray([])
+    setSelectedViIndex(index);
   };
 
-  const handleListItemClick = (event, index, array) => {
-    setSelectedIndex(index);
-    setIndexArray(array)
+  const handleVdListItemClick = (event, index) => {
+    setSelectedViIndex2(selectedViIndex2);
+    setSelectedViIndex2(index);
+    if (indexArray.includes(index)) {
+      setIndexArray(indexArray.filter((value => (value !== index))));
+    }
+    else {
+      indexArray.push(index)
+      setIndexArray(indexArray.sort());
+    }
   };
 
   useEffect(() => {
@@ -68,6 +74,37 @@ const Home = () => {
     )
   }, [])
 
+  const handleClick = () => {
+    setOpen(false)
+    setOpenError(false)
+
+    const data = {
+      id_vi: selectedViIndex,
+      id_vd_array: indexArray.toString(),
+    }
+    
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }
+
+    fetch('/vi_vd_relationship', requestOptions)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not OK');
+        }
+        // console.log(response)
+        setOpen(true)
+        return response.json()
+      })
+      .then(data => console.log(data))
+      .catch((error) => {
+        console.error('There has been a problem with your fetch operation:', error);
+        setOpenError(true)
+      });
+  }
+
   return (
     <>
       <CssBaseline />
@@ -80,6 +117,7 @@ const Home = () => {
               variant='outlined'
               sx={{
                 p: 2,
+                height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
@@ -100,15 +138,17 @@ const Home = () => {
                 variant='outlined'
                 sx={{
                   p: 2,
+                  height: '100%',
                   display: 'flex',
                   flexDirection: 'column',
                   width: '100%',
-                  height: '100%',
                   alignItems: 'center',
                   alignContent: 'center',
                   padding: '0',
                 }}
               >
+
+
                 {
                   (typeof vi_vd.data === 'undefined' || typeof vi.data === 'undefined') ? (
                     <p>Loading...</p>
@@ -119,12 +159,11 @@ const Home = () => {
                           key={i}
                           sx={{
                             width: '100%',
-
                             padding: '0',
                           }}
                         >
                           <ListItemButton
-                            selected={open === data['id']}
+                            selected={selectedViIndex === data['id']}
                             onClick={
                               (event) => handleViListItemClick(
                                 event,
@@ -138,35 +177,7 @@ const Home = () => {
                             }}
                           >
                             <ListItemText primary={data['name']} />
-                            {open === data['id'] ? <ExpandLess /> : <ExpandMore />}
                           </ListItemButton>
-                          <Collapse in={open === data['id']} timeout="auto" unmountOnExit>
-                            <List component="div" disablePadding>
-                              {vi_vd.data.filter(({ id_vi }) => id_vi === data['id']).map((data, i) => {
-                                return (
-                                  <ListItemButton
-                                    key={i}
-                                    selected={selectedIndex === data['id']}
-                                    onClick={
-                                      (event) => handleListItemClick(
-                                        event,
-                                        data['id'],
-                                        data['id_vd_array'].split(',').map((item) => { return parseInt(item) })
-                                      )
-                                    }
-                                    sx={{
-                                      width: '100%',
-                                      minHeight: '3rem',
-                                      padding: '1vh',
-                                      paddingLeft: '2vh',
-                                    }}
-                                  >
-                                    {'Design'} {i + 1}
-                                  </ListItemButton>
-                                )
-                              })}
-                            </List>
-                          </Collapse>
                         </Box>
                       )
                     }
@@ -182,6 +193,7 @@ const Home = () => {
               variant='outlined'
               sx={{
                 p: 2,
+                height: '100%',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
@@ -221,6 +233,12 @@ const Home = () => {
                         <ListItemButton
                           key={i}
                           selected={indexArray.includes(data['id'])}
+                          onClick={
+                            (event) => handleVdListItemClick(
+                              event,
+                              data['id']
+                            )
+                          }
                           sx={{
                             width: '100%',
                             minHeight: '3rem',
@@ -237,11 +255,39 @@ const Home = () => {
               </Paper>
             </Paper>
           </Grid>
+          <Grid item xs={6.25} md={6.25} lg={6.25} />
+          <Grid item
+            xs={5} md={5} lg={5}
+            sx={{
+              display: 'flex',
+              justifyContent: 'flex-end'
+            }}
+          >
+            <Button
+              variant="contained"
+              onClick={handleClick}
+              sx={{
+                marginTop: '2rem'
+              }}
+            >
+              Add
+            </Button>
+          </Grid>
         </Grid>
       </Box>
+      <AlertDialog
+        open={openError}
+        title='Erro no Cadastro'
+        message='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+      />
+      <AlertDialog
+        open={open}
+        title='Cadastro Bem Sucedido'
+        message='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+      />
       <Footer />
     </>
   );
 }
 
-export default Home;
+export default RegisterRelationship;

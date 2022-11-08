@@ -21,6 +21,7 @@ import EditMetrica from '../pages/EditMetrica';
 import EditInstrumento from '../pages/EditInstrumento';
 import EditFator from '../pages/EditFator';
 import EditTratamento from '../pages/EditTratamento';
+import EditRelationship from '../pages/EditRelationship';
 import Home from '../pages/Home';
 import Login from '../pages/Login'
 import ManageData from '../pages/ManageData';
@@ -34,6 +35,7 @@ import ManageMetricsInstruments from '../pages/ManageMetricsInstruments';
 import ManageFactors from '../pages/ManageFactors';
 import ManageTreatments from '../pages/ManageTreatments';
 import ManageFactorsTreatments from '../pages/ManageFactorsTreatments';
+import ManageRelationships from '../pages/ManageRelationships';
 import PageNotFound from '../pages/PageNotFound';
 import RegisterVi from '../pages/RegisterVi';
 import RegisterVd from '../pages/RegisterVd';
@@ -41,6 +43,7 @@ import RegisterMetric from '../pages/RegisterMetric';
 import RegisterInstrument from '../pages/RegisterInstrument';
 import RegisterFactor from '../pages/RegisterFactor';
 import RegisterTreatment from '../pages/RegisterTreatment';
+import RegisterRelationship from '../pages/RegisterRelationship';
 import SignUp from '../pages/SignUp';
 import VariavelIndependente from '../pages/VariavelIndependente';
 import VariavelDependente from '../pages/VariavelDependente';
@@ -78,6 +81,7 @@ const Rotas = ({ setToken, user }) => {
           <Route path='gerenciar-metricas-instrumentos' element={<ManageMetricsInstruments />} />
           <Route path='gerenciar-fatores-tratamentos' element={<ManageFactorsTreatments />} />
 
+
           <Route path='gerenciar-variaveis/independentes' element={<ManageIndependentVariables />} />
           <Route path='gerenciar-variaveis/independentes/cadastrar' element={<RegisterVi />} />
           <Route path='gerenciar-variaveis/independentes/editar' element={<EditVi />} />
@@ -108,6 +112,10 @@ const Rotas = ({ setToken, user }) => {
           <Route path='gerenciar-fatores-tratamentos/tratamentos/editar' element={<EditTreatment />} />
           <Route path='gerenciar-fatores-tratamentos/tratamentos/editar/:id' element={<EditTratamento />} />
 
+          <Route path='gerenciar-variaveis/relacoes' element={<ManageRelationships />} />
+          <Route path='gerenciar-variaveis/relacoes/cadastrar' element={<RegisterRelationship />} />
+          <Route path='gerenciar-variaveis/relacoes/deletar' element={<EditRelationship />} />
+          
         </Route>
         <Route path='*' element={<PageNotFound />} />
       </Routes>

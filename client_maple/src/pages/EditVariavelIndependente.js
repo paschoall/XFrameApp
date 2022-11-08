@@ -11,8 +11,10 @@ import {
   List,
   ListItem,
   ListItemText,
+  ListItemButton,
   Paper,
   Typography,
+  TextField,
 } from '@mui/material';
 import {
   Dialog,
@@ -25,35 +27,140 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import Footer from '../components/Footer';
 import EditForms from '../components/EditForms';
+import AlertDialog from '../components/AlertDialog';
+import Treatment from '../components/Treatment'
 
 const EditVariavelIndependente = () => {
-  const [data, setData] = useState([{}])
+  const [data, setData] = useState([{}]);
+  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [treatment, setTreatment] = useState([{}]);
+  const [factorTreatment, setFactorTreatment] = useState([{}]);
+  const [references, setReferences] = useState([{}]);
+  const [viReferences, setViReferences] = useState([{}]);
+  const [reference, setReference] = useState(-1);
+  const [treatmentArray, setTreatmentArray] = useState([]);
+
+  const [open, setOpen] = useState(false);
+  const [openDelete, setOpenDelete] = useState(false);
+  const [openDeleteRef, setOpenDeleteRef] = useState(false);
+  const [openMore, setOpenMore] = useState(false);
+  const [openError, setOpenError] = useState(false);
   const [openDesc, setOpenDesc] = React.useState(false);
   const [openFt, setOpenFt] = React.useState(false);
   const [openRef, setOpenRef] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
   const { id } = useParams();
-
-  const proxy = 'https://5de3-2804-431-cfec-d6de-f8b2-c8c9-59cf-21e.sa.ngrok.io';
   const navigate = useNavigate();
 
+
+  const variable_id = id
+
+  const handleTreatmentListItemClick = (event, index) => {
+    setSelectedIndex(selectedIndex)
+    setSelectedIndex(index)
+    if (treatmentArray.includes(index)) {
+      setTreatmentArray(treatmentArray.filter((value => (value !== index))));
+    }
+    else {
+      treatmentArray.push(index)
+      setTreatmentArray(treatmentArray.sort());
+    }
+  };
+
   useEffect(() => {
-    fetch(proxy + '/independent_variable/' + id).then(
+    fetch('/independent_variable/' + id).then(
       res => res.json()
     ).then(
       data => {
         setData(data)
-        console.log(data)
       }
     )
   }, [id])
 
-  const handleClickFT = () => {
-    navigate('fatores-tratamentos')
+  useEffect(() => {
+    fetch('/treatments').then(
+      res => res.json()
+    ).then(
+      data => {
+        setTreatment(data);
+      }
+    )
+  }, [])
+
+  useEffect(() => {
+    fetch('/factors_treatments_relationships').then(
+      res => res.json()
+    ).then(
+      data => {
+        setFactorTreatment(data);
+      }
+    )
+  }, [])
+
+  useEffect(() => {
+    fetch('/references').then(
+      res => res.json()
+    ).then(
+      data => {
+        setReferences(data);
+      }
+    )
+  }, [])
+
+  useEffect(() => {
+    fetch('/vi_references').then(
+      res => res.json()
+    ).then(
+      data => {
+        setViReferences(data);
+      }
+    )
+  }, [])
+
+  useEffect(() => {
+    if (reference !== -1) {
+      const data = {
+        id_vi: id,
+        id_ref: reference,
+      }
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }
+
+      fetch('/vi_reference', requestOptions)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not OK');
+          }
+          // console.log(response)
+          setOpen(true)
+          return response.json()
+        })
+        // .then(data => console.log(data))
+        .catch((error) => {
+          console.error('There has been a problem with your operation:', error);
+          setOpenError(true)
+        });
+    }
+  }, [reference, id])
+
+  const handleClickMore = (event, more_id) => {
+    setSelectedIndex(more_id)
+    setOpenMore(true)
   }
-  const handleClickRef = () => {
-    navigate('ref')
+
+  const handleClickFT = (event, delete_id) => {
+    setSelectedIndex(delete_id)
+    setOpenDelete(true)
+  }
+
+  const handleClickRef = (event, delete_id) => {
+    setSelectedIndex(delete_id)
+    setOpenDeleteRef(true)
+
   }
 
   const handleClickOpenDesc = () => {
@@ -69,6 +176,136 @@ const EditVariavelIndependente = () => {
     setOpenDesc(false);
     setOpenFt(false);
     setOpenRef(false);
+    setOpenDelete(false);
+    setOpenDeleteRef(false);
+    setOpenMore(false);
+  };
+
+  const handleAddFT = () => {
+    setOpen(false)
+    setOpenError(false)
+
+    const data = {
+      id_vi: id,
+      id_factors_array: '',
+      id_treatments_array: treatmentArray.toString(),
+    }
+
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }
+
+    fetch('/factors_treatments_relationship', requestOptions)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not OK');
+        }
+        // console.log(response)
+        setOpen(true)
+        return response.json()
+      })
+      // .then(data => console.log(data))
+      .catch((error) => {
+        console.error('There has been a problem with your operation:', error);
+        setOpenError(true)
+      });
+  };
+
+  const handleCloseDelete = (deleteFlag, delete_id) => {
+    if (deleteFlag) {
+      const requestOptions = {
+        method: 'DELETE',
+      }
+
+      fetch('/factors_treatments_relationship/' + delete_id, requestOptions).then(
+        response => {
+          if (!response.ok) {
+            throw new Error('Network response was not OK');
+          }
+          return response.json()
+        }).then(
+          data => {
+            navigate(0)
+          }
+        ).catch(
+          (error) => {
+            console.error('There has been a problem with your delete operation:', error);
+            setOpenError(true)
+          }
+        )
+
+    }
+    setOpenDelete(false);
+  };
+
+  const handleCloseDeleteRef = (deleteFlag, delete_id) => {
+    if (deleteFlag) {
+      const requestOptions = {
+        method: 'DELETE',
+      }
+
+      fetch('/vi_reference/' + delete_id, requestOptions).then(
+        response => {
+          if (!response.ok) {
+            throw new Error('Network response was not OK');
+          }
+          return response.json()
+        }).then(
+          data => {
+            navigate(0)
+          }
+        ).catch(
+          (error) => {
+            console.error('There has been a problem with your delete operation:', error);
+            setOpenError(true)
+          }
+        )
+    }
+    setOpenDeleteRef(false);
+
+  }
+
+  const handleAddRef = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+
+    try {
+      setReference(references.data.find(o => o.referencia === formData.get('reference')).id)
+    } catch (e) {
+      if (e instanceof TypeError) {
+        const refData = {
+          reference: formData.get('reference')
+        }
+
+        const requestOptions = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(refData)
+        }
+
+        fetch('/reference', requestOptions)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not OK');
+            }
+            return response.json()
+          })
+          .then(data => {
+            setReference(data.data.id)
+          })
+          .catch((error) => {
+            console.error('There has been a problem with your operation:', error);
+          });
+      }
+      else {
+        console.error('There has been a problem with your operation:', e)
+      }
+    } finally {
+
+    }
+
   };
 
   return (
@@ -96,7 +333,7 @@ const EditVariavelIndependente = () => {
         <Box
           sx={{
             flexGrow: 1,
-            height: '100vh',
+            height: '100%',
             overflow: 'auto',
           }}
         >
@@ -150,44 +387,59 @@ const EditVariavelIndependente = () => {
                   }}
                 >
                   <Typography variant="h5" gutterBottom>
-                    Use Examples
+                    Treatments
                   </Typography>
                   <Grid container spacing={6}>
-                    <Grid item xs={12} md={4} lg={4}>
-                      <Paper
-                        sx={{
-                          p: 2,
-                          display: 'flex',
-                          flexDirection: 'column',
-                          height: '100%',
-                        }}
-                      >
-                        <Typography variant="body1" gutterBottom>
-                          1 Factor
-                        </Typography>
-                        <Typography variant="body1" gutterBottom>
-                          1 Tratamento
-                        </Typography>
-                        <Grid
-                          container spacing={2}
-                          rowSpacing={1}
-                          sx={{
-                            margin: '0.5rem 1rem 0 0'
-                          }}
-                        >
-                          <Button onClick={handleClickFT}>Delete</Button>
-                        </Grid>
-                      </Paper>
-                    </Grid>
+                    {
+                      (typeof factorTreatment.data === 'undefined') ? (
+                        <p>Loading...</p>
+                      ) : (
+                        factorTreatment.data.filter(({ id_vi }) => id_vi.toString() === variable_id).map((data, i) => {
+                          return (
+                            <Grid key={i} item xs={12} md={4} lg={4}>
+                              <Paper
+                                // component={Button}
+                                sx={{
+                                  p: 2,
+                                  display: 'flex',
+                                  flexDirection: 'column',
+                                  height: '100%',
+                                  width: '100%',
+                                  textTransform: 'none',
+                                  alignItems: 'flex-start',
+                                }}
+                              >
+                                <Typography variant="body1" gutterBottom>
+                                  {data.id_treatments_array.split(',').length}{' '}
+                                  Treatment{(data.id_treatments_array.split(',').length > 1) ? ('s') : ('')}
+                                </Typography>
+                                <Grid
+                                  container spacing={2}
+                                  rowSpacing={1}
+                                  sx={{
+                                    margin: '0.5rem 1rem 0 0'
+                                  }}
+                                >
+                                  <Button onClick={(event) => handleClickMore(event, data.id)}>More</Button>
+
+                                  <Button onClick={(event) => handleClickFT(event, data.id)}>Delete</Button>
+                                </Grid>
+                              </Paper>
+                            </Grid>
+                          )
+                        }
+                        )
+                      )
+                    }
                   </Grid>
                   <Grid
                     container spacing={2}
                     rowSpacing={1}
                     sx={{
-                      margin: '1rem 0 0 0'
+                      margin: '3rem 0 0 0'
                     }}
                   >
-                    <Button onClick={handleClickOpenFt}>Add Factors and Treatments</Button>
+                    <Button onClick={handleClickOpenFt}>Add Treatments</Button>
                   </Grid>
                 </Paper>
               </Grid>
@@ -203,18 +455,30 @@ const EditVariavelIndependente = () => {
                     References
                   </Typography>
                   <List>
-                    <ListItem>
-                      <ListItemText primary={'Lorem Ipsum'} />
-                      <Button onClick={handleClickRef}>DELETE</Button>
-                    </ListItem>
-                    <ListItem>
-                      <ListItemText primary={'Lorem Ipsum'} />
-                      <Button onClick={handleClickRef}>DELETE</Button>
-                    </ListItem>
-                    <ListItem>
-                      <ListItemText primary={'Lorem Ipsum'} />
-                      <Button onClick={handleClickRef}>DELETE</Button>
-                    </ListItem>
+
+                    {(typeof viReferences.data === 'undefined' || typeof references.data === 'undefined') ? (
+                      <p>Loading...</p>
+                    ) : (
+                      viReferences.data.filter(({ id_vi }) => id_vi.toString() === variable_id).map((data, i) => {
+                        return (
+                          <ListItem key={i}>
+                            <ListItemText primary={references.data.find(o => o.id === data.id_ref).referencia} />
+                            <Button
+                              onClick={
+                                (event) => handleClickRef(
+                                  event,
+                                  data['id']
+                                )
+                              }
+                            >
+                              DELETE
+                            </Button>
+                          </ListItem>
+                        )
+                      }
+                      )
+                    )
+                    }
                   </List>
                   <Grid
                     container spacing={2}
@@ -230,6 +494,10 @@ const EditVariavelIndependente = () => {
             </Grid>
           </Container>
         </Box>
+        <Footer />
+
+        {/* -------------------------------------------------------- */}
+
         <Dialog
           fullScreen={fullScreen}
           open={openDesc}
@@ -241,59 +509,223 @@ const EditVariavelIndependente = () => {
           </DialogContent>
         </Dialog>
 
+        {/* -------------------------------------------------------- */}
+
         <Dialog
+          fullWidth
           fullScreen={fullScreen}
           open={openFt}
           onClose={handleClose}
           aria-labelledby="responsive-dialog-title"
+          PaperProps={{ sx: { minHeight: "60%" } }}
         >
-          <DialogTitle id="responsive-dialog-title">
-            {"Add Factors and Treatments"}
+          <DialogTitle id="responsive-dialog-title"
+          >
+            {"Add Treatments"}
           </DialogTitle>
           <DialogContent>
-            <DialogContentText>
-              Choose Factors
-            </DialogContentText>
-            <DialogContentText>
-              Choose Treatments
-            </DialogContentText>
+            <Grid container spacing={3}>
+
+              <Grid item xs={12} md={12} lg={12}>
+                <DialogContentText>
+                  Choose Treatments
+                </DialogContentText>
+                <Paper square
+                  variant='outlined'
+                  sx={{
+                    p: 2,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    width: '100%',
+                    alignItems: 'center',
+                    alignContent: 'center',
+                    padding: '0',
+                  }}
+                >
+
+                  {
+                    (typeof treatment.data === 'undefined') ? (
+                      <p>Loading...</p>
+                    ) : (
+                      treatment.data.map((data, i) => {
+                        return (
+                          <ListItemButton
+                            key={i}
+                            selected={treatmentArray.includes(data['id'])}
+                            onClick={
+                              (event) => handleTreatmentListItemClick(
+                                event,
+                                data['id']
+                              )
+                            }
+                            sx={{
+                              width: '100%',
+                              minHeight: '3rem',
+                              padding: '1vh',
+                            }}
+                          >
+                            <ListItemText primary={data['name']} />
+                          </ListItemButton>
+                        )
+                      }
+                      )
+                    )
+                  }
+                </Paper>
+              </Grid>
+            </Grid>
           </DialogContent>
           <DialogActions>
             <Button autoFocus onClick={handleClose}>
               Cancel
             </Button>
-            <Button onClick={handleClose} autoFocus>
-              Agree
+            <Button onClick={handleAddFT} autoFocus>
+              Add
             </Button>
           </DialogActions>
         </Dialog>
+
+        {/* -------------------------------------------------------- */}
+
         <Dialog
           fullScreen={fullScreen}
           open={openRef}
           onClose={handleClose}
           aria-labelledby="responsive-dialog-title"
         >
-          <DialogTitle id="responsive-dialog-title">
-            {"Add Reference"}
+          <Container component="form" onSubmit={handleAddRef}>
+            <DialogTitle id="responsive-dialog-title">
+              {"Add Reference"}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                Add the reference link below
+              </DialogContentText>
+              <TextField
+                autoFocus
+                margin="dense"
+                id="reference"
+                label="Reference"
+                name="reference"
+                type="link"
+                fullWidth
+                variant="standard"
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button autoFocus onClick={handleClose}>
+                Cancel
+              </Button>
+              <Button type="submit" autoFocus>
+                Add
+              </Button>
+            </DialogActions>
+          </Container>
+        </Dialog>
+
+        {/* -------------------------------------------------------- */}
+
+        <AlertDialog
+          open={openError}
+          title='Erro no Cadastro'
+          message='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+        />
+        <AlertDialog
+          open={open}
+          title='Cadastro Bem Sucedido'
+          message='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+        />
+
+        {/* -------------------------------------------------------- */}
+
+        <Dialog
+          open={openDelete}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            DELETE
           </DialogTitle>
           <DialogContent>
-            <DialogContentText>
-              Choose Factors
-            </DialogContentText>
-            <DialogContentText>
-              Choose Treatments
+            <DialogContentText id="alert-dialog-description">
+              Do you really want to delete this?
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button autoFocus onClick={handleClose}>
-              Cancel
+            <Button onClick={() => handleCloseDelete(true, selectedIndex)} autoFocus>
+              Delete
             </Button>
-            <Button onClick={handleClose} autoFocus>
-              Agree
+            <Button onClick={() => handleCloseDelete()} autoFocus>
+              Cancel
             </Button>
           </DialogActions>
         </Dialog>
-        <Footer />
+
+        {/* -------------------------------------------------------- */}
+
+        <Dialog
+          open={openDeleteRef}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            DELETE
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Do you really want to delete this?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => handleCloseDeleteRef(true, selectedIndex)} autoFocus>
+              Delete
+            </Button>
+            <Button onClick={() => handleCloseDeleteRef()} autoFocus>
+              Cancel
+            </Button>
+          </DialogActions>
+        </Dialog>
+
+        {/* -------------------------------------------------------- */}
+
+        <Dialog
+          fullWidth
+          open={openMore}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+          PaperProps={{
+            sx: {
+              fullWidth: 'true',
+              maxWidth: 'lg',
+              maxHeight: '80%',
+            }
+          }}
+        >
+          <DialogContent>
+            {(typeof factorTreatment.data === 'undefined') ? (
+              <Typography variant="h4" gutterBottom>
+                Loading...
+              </Typography>
+            ) : (factorTreatment.data.filter(({ id }) => id === selectedIndex).map((data, i) => {
+              return (
+                <>
+                  <Typography>
+                    {data['id_treatments_array'].split(',').map((id, i) => { return (<Treatment key={i} id={id} />) })}
+                  </Typography>
+                </>
+              )
+            })
+            )}
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => handleClose()} autoFocus>
+              Cancel
+            </Button>
+          </DialogActions>
+        </Dialog>
       </>
     )
   );

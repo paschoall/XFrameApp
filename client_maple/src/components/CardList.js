@@ -7,9 +7,9 @@ import Grid from '@mui/material/Grid';
 const CardList = (props) => {
   const [data, setData] = useState([{}])
   const location = useLocation()
-  const proxy = 'https://5de3-2804-431-cfec-d6de-f8b2-c8c9-59cf-21e.sa.ngrok.io';
+  
   useEffect(() => {
-    fetch(proxy + props.fetchlink).then(
+    fetch(props.fetchlink).then(
       res => res.json()
     ).then(
       data => {

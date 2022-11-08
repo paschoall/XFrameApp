@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { Link, Outlet } from 'react-router-dom';
-
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { useSelector, useDispatch } from "react-redux";
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
 import MuiAppBar from '@mui/material/AppBar';
+import Button from '@mui/material/IconButton';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
@@ -31,7 +31,6 @@ import { Container } from '@mui/material';
 
 const drawerWidth = 240;
 const settings = ['Admin Page', 'Profile', 'Logout'];
-
 function getPageLink(page) {
   switch (page) {
     case 'Admin Page':
@@ -93,6 +92,8 @@ function DashboardContent() {
   const [open, setOpen] = React.useState(false);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const logOut = React.useCallback(() => {
     dispatch(asyncLogout());
@@ -242,6 +243,22 @@ function DashboardContent() {
             overflow: 'auto',
           }}
         >
+          {(
+            !(location.pathname === '/admin-page/gerenciar-dados') &&
+            <Button
+              xs={'none'}
+              size="large"
+              onClick={() => navigate(-1)}
+              sx={{
+                display: { xs: 'none', md: 'flex' },
+                position: 'absolute',
+                marginLeft: '1rem',
+                top: '80px',
+              }}
+            >
+              <ChevronLeftIcon fontSize="large" />
+            </Button>
+          )}
           <Toolbar />
           <Container maxWidth="lg">
             <Outlet />

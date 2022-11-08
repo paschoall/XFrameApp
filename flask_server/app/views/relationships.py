@@ -49,26 +49,26 @@ def get_metric_reference(id):
     return jsonify({'message': "metric reference doesn't exist", 'data': {}}), 404
 
 # Update
-def update_metric_reference(id):
-    if ("id_metric" in request.json):
-        id_metric = request.json['id_metric']
-    if ("id_ref" in request.json):
-        id_ref = request.json['id_ref']
+# def update_metric_reference(id):
+#     if ("id_metric" in request.json):
+#         id_metric = request.json['id_metric']
+#     if ("id_ref" in request.json):
+#         id_ref = request.json['id_ref']
 
-    metric_reference = referencia_metrica.query.get(id)
+#     metric_reference = referencia_metrica.query.get(id)
 
-    if not metric_reference:
-        return jsonify({'message': "metric reference doesn't exist", 'data': {}}), 404
+#     if not metric_reference:
+#         return jsonify({'message': "metric reference doesn't exist", 'data': {}}), 404
 
-    try:
-        metric_reference.id_metric = id_metric
-        metric_reference.id_ref = id_ref
-        db.session.commit()
-        result = metric_reference_schema.dump(metric_reference)
-        return jsonify({'messasge': 'successfully updated', 'data': result}), 200
-    except Exception as e:
-        # print(e)
-        return jsonify({'message': 'unable to update', 'data': {}}), 500
+#     try:
+#         metric_reference.id_metric = id_metric
+#         metric_reference.id_ref = id_ref
+#         db.session.commit()
+#         result = metric_reference_schema.dump(metric_reference)
+#         return jsonify({'messasge': 'successfully updated', 'data': result}), 200
+#     except Exception as e:
+#         # print(e)
+#         return jsonify({'message': 'unable to update', 'data': {}}), 500
 
 # Delete
 def delete_metric_reference(id):
@@ -124,27 +124,27 @@ def get_instrument_reference(id):
 
     return jsonify({'message': "instrument reference doesn't exist", 'data': {}}), 404
 
-# Update
-def update_instrument_reference(id):
-    if ("id_instrument" in request.json):
-        id_instrument = request.json['id_instrument']
-    if ("id_ref" in request.json):
-        id_ref = request.json['id_ref']
+# # Update
+# def update_instrument_reference(id):
+#     if ("id_instrument" in request.json):
+#         id_instrument = request.json['id_instrument']
+#     if ("id_ref" in request.json):
+#         id_ref = request.json['id_ref']
 
-    instrument_reference = referencia_instrumento.query.get(id)
+#     instrument_reference = referencia_instrumento.query.get(id)
 
-    if not instrument_reference:
-        return jsonify({'message': "instrument reference doesn't exist", 'data': {}}), 404
+#     if not instrument_reference:
+#         return jsonify({'message': "instrument reference doesn't exist", 'data': {}}), 404
 
-    try:
-        instrument_reference.id_instrument = id_instrument
-        instrument_reference.id_ref = id_ref
-        db.session.commit()
-        result = instrument_reference_schema.dump(instrument_reference)
-        return jsonify({'messasge': 'successfully updated', 'data': result}), 200
-    except Exception as e:
-        # print(e)
-        return jsonify({'message': 'unable to update', 'data': {}}), 500
+#     try:
+#         instrument_reference.id_instrument = id_instrument
+#         instrument_reference.id_ref = id_ref
+#         db.session.commit()
+#         result = instrument_reference_schema.dump(instrument_reference)
+#         return jsonify({'messasge': 'successfully updated', 'data': result}), 200
+#     except Exception as e:
+#         # print(e)
+#         return jsonify({'message': 'unable to update', 'data': {}}), 500
 
 # Delete
 def delete_instrument_reference(id):
@@ -200,27 +200,27 @@ def get_factor_reference(id):
 
     return jsonify({'message': "factor reference doesn't exist", 'data': {}}), 404
 
-# Update
-def update_factor_reference(id):
-    if ("id_factor" in request.json):
-        id_factor = request.json['id_factor']
-    if ("id_ref" in request.json):
-        id_ref = request.json['id_ref']
+# # Update
+# def update_factor_reference(id):
+#     if ("id_factor" in request.json):
+#         id_factor = request.json['id_factor']
+#     if ("id_ref" in request.json):
+#         id_ref = request.json['id_ref']
 
-    factor_reference = referencia_fator.query.get(id)
+#     factor_reference = referencia_fator.query.get(id)
 
-    if not factor_reference:
-        return jsonify({'message': "factor reference doesn't exist", 'data': {}}), 404
+#     if not factor_reference:
+#         return jsonify({'message': "factor reference doesn't exist", 'data': {}}), 404
 
-    try:
-        factor_reference.id_factor = id_factor
-        factor_reference.id_ref = id_ref
-        db.session.commit()
-        result = factor_reference_schema.dump(factor_reference)
-        return jsonify({'messasge': 'successfully updated', 'data': result}), 200
-    except Exception as e:
-        # print(e)
-        return jsonify({'message': 'unable to update', 'data': {}}), 500
+#     try:
+#         factor_reference.id_factor = id_factor
+#         factor_reference.id_ref = id_ref
+#         db.session.commit()
+#         result = factor_reference_schema.dump(factor_reference)
+#         return jsonify({'messasge': 'successfully updated', 'data': result}), 200
+#     except Exception as e:
+#         # print(e)
+#         return jsonify({'message': 'unable to update', 'data': {}}), 500
 
 # Delete
 def delete_factor_reference(id):
@@ -276,27 +276,27 @@ def get_treatment_reference(id):
 
     return jsonify({'message': "treatment reference doesn't exist", 'data': {}}), 404
 
-# Update
-def update_treatment_reference(id):
-    if ("id_treatment" in request.json):
-        id_treatment = request.json['id_treatment']
-    if ("id_ref" in request.json):
-        id_ref = request.json['id_ref']
+# # Update
+# def update_treatment_reference(id):
+#     if ("id_treatment" in request.json):
+#         id_treatment = request.json['id_treatment']
+#     if ("id_ref" in request.json):
+#         id_ref = request.json['id_ref']
 
-    treatment_reference = referencia_tratamento.query.get(id)
+#     treatment_reference = referencia_tratamento.query.get(id)
 
-    if not treatment_reference:
-        return jsonify({'message': "treatment reference doesn't exist", 'data': {}}), 404
+#     if not treatment_reference:
+#         return jsonify({'message': "treatment reference doesn't exist", 'data': {}}), 404
 
-    try:
-        treatment_reference.id_treatment = id_treatment
-        treatment_reference.id_ref = id_ref
-        db.session.commit()
-        result = treatment_reference_schema.dump(treatment_reference)
-        return jsonify({'messasge': 'successfully updated', 'data': result}), 200
-    except Exception as e:
-        # print(e)
-        return jsonify({'message': 'unable to update', 'data': {}}), 500
+#     try:
+#         treatment_reference.id_treatment = id_treatment
+#         treatment_reference.id_ref = id_ref
+#         db.session.commit()
+#         result = treatment_reference_schema.dump(treatment_reference)
+#         return jsonify({'messasge': 'successfully updated', 'data': result}), 200
+#     except Exception as e:
+#         # print(e)
+#         return jsonify({'message': 'unable to update', 'data': {}}), 500
 
 # Delete
 def delete_treatment_reference(id):
@@ -351,28 +351,28 @@ def get_vi_reference(id):
 
     return jsonify({'message': "variable reference doesn't exist", 'data': {}}), 404
 
-# Update
-def update_vi_reference(id):
-    if ("name" in request.json):
-        name = request.json['name']
-    if ("description" in request.json):
-        description = request.json['description']
+# # Update
+# def update_vi_reference(id):
+#     if ("name" in request.json):
+#         name = request.json['name']
+#     if ("description" in request.json):
+#         description = request.json['description']
 
-    vi_reference = referencia_vi.query.get(id)
+#     vi_reference = referencia_vi.query.get(id)
 
-    if not vi_reference:
-        return jsonify({'message': "variable reference doesn't exist", 'data': {}}), 404
+#     if not vi_reference:
+#         return jsonify({'message': "variable reference doesn't exist", 'data': {}}), 404
 
-    try:
-        vi_reference.name = name
-        vi_reference.description = description
-        # db.session.add(user)
-        db.session.commit()
-        result = vi_reference_schema.dump(vi_reference)
-        return jsonify({'messasge': 'successfully updated', 'data': result}), 200
-    except Exception as e:
-        # print(e)
-        return jsonify({'message': 'unable to update', 'data': {}}), 500
+#     try:
+#         vi_reference.name = name
+#         vi_reference.description = description
+#         # db.session.add(user)
+#         db.session.commit()
+#         result = vi_reference_schema.dump(vi_reference)
+#         return jsonify({'messasge': 'successfully updated', 'data': result}), 200
+#     except Exception as e:
+#         # print(e)
+#         return jsonify({'message': 'unable to update', 'data': {}}), 500
 
 # Delete
 def delete_vi_reference(id):
@@ -427,28 +427,28 @@ def get_vd_reference(id):
 
     return jsonify({'message': "variable reference doesn't exist", 'data': {}}), 404
 
-# Update
-def update_vd_reference(id):
-    if ("name" in request.json):
-        name = request.json['name']
-    if ("description" in request.json):
-        description = request.json['description']
+# # Update
+# def update_vd_reference(id):
+#     if ("name" in request.json):
+#         name = request.json['name']
+#     if ("description" in request.json):
+#         description = request.json['description']
 
-    vd_reference = referencia_vd.query.get(id)
+#     vd_reference = referencia_vd.query.get(id)
 
-    if not vd_reference:
-        return jsonify({'message': "variable reference doesn't exist", 'data': {}}), 404
+#     if not vd_reference:
+#         return jsonify({'message': "variable reference doesn't exist", 'data': {}}), 404
 
-    try:
-        vd_reference.name = name
-        vd_reference.description = description
-        # db.session.add(user)
-        db.session.commit()
-        result = vd_reference_schema.dump(vd_reference)
-        return jsonify({'messasge': 'successfully updated', 'data': result}), 200
-    except Exception as e:
-        # print(e)
-        return jsonify({'message': 'unable to update', 'data': {}}), 500
+#     try:
+#         vd_reference.name = name
+#         vd_reference.description = description
+#         # db.session.add(user)
+#         db.session.commit()
+#         result = vd_reference_schema.dump(vd_reference)
+#         return jsonify({'messasge': 'successfully updated', 'data': result}), 200
+#     except Exception as e:
+#         # print(e)
+#         return jsonify({'message': 'unable to update', 'data': {}}), 500
 
 # Delete
 def delete_vd_reference(id):
@@ -503,28 +503,28 @@ def get_vi_vd_relationship(id):
 
     return jsonify({'message': "relationship doesn't exist", 'data': {}}), 404
 
-# Update
-def update_vi_vd_relationship(id):
-    if ("name" in request.json):
-        name = request.json['name']
-    if ("description" in request.json):
-        description = request.json['description']
+# # Update
+# def update_vi_vd_relationship(id):
+#     if ("name" in request.json):
+#         name = request.json['name']
+#     if ("description" in request.json):
+#         description = request.json['description']
 
-    vi_vd_relationship = design_vi_vd.query.get(id)
+#     vi_vd_relationship = design_vi_vd.query.get(id)
 
-    if not vi_vd_relationship:
-        return jsonify({'message': "relationship doesn't exist", 'data': {}}), 404
+#     if not vi_vd_relationship:
+#         return jsonify({'message': "relationship doesn't exist", 'data': {}}), 404
 
-    try:
-        vi_vd_relationship.name = name
-        vi_vd_relationship.description = description
-        # db.session.add(user)
-        db.session.commit()
-        result = vi_vd_schema.dump(vi_vd_relationship)
-        return jsonify({'messasge': 'successfully updated', 'data': result}), 200
-    except Exception as e:
-        # print(e)
-        return jsonify({'message': 'unable to update', 'data': {}}), 500
+#     try:
+#         vi_vd_relationship.name = name
+#         vi_vd_relationship.description = description
+#         # db.session.add(user)
+#         db.session.commit()
+#         result = vi_vd_schema.dump(vi_vd_relationship)
+#         return jsonify({'messasge': 'successfully updated', 'data': result}), 200
+#     except Exception as e:
+#         # print(e)
+#         return jsonify({'message': 'unable to update', 'data': {}}), 500
 
 # Delete
 def delete_vi_vd_relationship(id):
@@ -547,10 +547,11 @@ def delete_vi_vd_relationship(id):
 #Metric - Instrument Relationship CRUD
 # Create
 def post_metric_instrument_relationship():
+    id_vd = request.json['id_vd']
     id_metric = request.json['id_metric']
     id_instrument = request.json['id_instrument']
 
-    metric_instrument_relationship = metric_instrument(id_metric, id_instrument)
+    metric_instrument_relationship = metric_instrument(id_vd, id_metric, id_instrument)
     try:
         db.session.add(metric_instrument_relationship)
         db.session.commit()
@@ -579,28 +580,28 @@ def get_metric_instrument_relationship(id):
 
     return jsonify({'message': "relationship doesn't exist", 'data': {}}), 404
 
-# Update
-def update_metric_instrument_relationship(id):
-    if ("name" in request.json):
-        name = request.json['name']
-    if ("description" in request.json):
-        description = request.json['description']
+# # Update
+# def update_metric_instrument_relationship(id):
+#     if ("name" in request.json):
+#         name = request.json['name']
+#     if ("description" in request.json):
+#         description = request.json['description']
 
-    metric_instrument_relationship = metric_instrument.query.get(id)
+#     metric_instrument_relationship = metric_instrument.query.get(id)
 
-    if not metric_instrument_relationship:
-        return jsonify({'message': "relationship doesn't exist", 'data': {}}), 404
+#     if not metric_instrument_relationship:
+#         return jsonify({'message': "relationship doesn't exist", 'data': {}}), 404
 
-    try:
-        metric_instrument_relationship.name = name
-        metric_instrument_relationship.description = description
-        # db.session.add(user)
-        db.session.commit()
-        result = metric_instrument_schema.dump(metric_instrument_relationship)
-        return jsonify({'messasge': 'successfully updated', 'data': result}), 200
-    except Exception as e:
-        # print(e)
-        return jsonify({'message': 'unable to update', 'data': {}}), 500
+#     try:
+#         metric_instrument_relationship.name = name
+#         metric_instrument_relationship.description = description
+#         # db.session.add(user)
+#         db.session.commit()
+#         result = metric_instrument_schema.dump(metric_instrument_relationship)
+#         return jsonify({'messasge': 'successfully updated', 'data': result}), 200
+#     except Exception as e:
+#         # print(e)
+#         return jsonify({'message': 'unable to update', 'data': {}}), 500
 
 # Delete
 def delete_metric_instrument_relationship(id):
@@ -623,10 +624,11 @@ def delete_metric_instrument_relationship(id):
 #Factors - Treatments Relationship CRUD
 # Create
 def post_factors_treatments_relationship():
+    id_vi = request.json['id_vi']
     id_factors_array = request.json['id_factors_array']
     id_treatments_array = request.json['id_treatments_array']
 
-    factors_treatments_relationship = factors_treatments(id_factors_array, id_treatments_array)
+    factors_treatments_relationship = factors_treatments(id_vi, id_factors_array, id_treatments_array)
     try:
         db.session.add(factors_treatments_relationship)
         db.session.commit()
@@ -655,28 +657,28 @@ def get_factors_treatments_relationship(id):
 
     return jsonify({'message': "relationship doesn't exist", 'data': {}}), 404
 
-# Update
-def update_factors_treatments_relationship(id):
-    if ("name" in request.json):
-        name = request.json['name']
-    if ("description" in request.json):
-        description = request.json['description']
+# # Update
+# def update_factors_treatments_relationship(id):
+#     if ("name" in request.json):
+#         name = request.json['name']
+#     if ("description" in request.json):
+#         description = request.json['description']
 
-    factors_treatments_relationship = factors_treatments.query.get(id)
+#     factors_treatments_relationship = factors_treatments.query.get(id)
 
-    if not factors_treatments_relationship:
-        return jsonify({'message': "relationship doesn't exist", 'data': {}}), 404
+#     if not factors_treatments_relationship:
+#         return jsonify({'message': "relationship doesn't exist", 'data': {}}), 404
 
-    try:
-        factors_treatments_relationship.name = name
-        factors_treatments_relationship.description = description
-        # db.session.add(user)
-        db.session.commit()
-        result = factor_treatment_schema.dump(factors_treatments_relationship)
-        return jsonify({'messasge': 'successfully updated', 'data': result}), 200
-    except Exception as e:
-        # print(e)
-        return jsonify({'message': 'unable to update', 'data': {}}), 500
+#     try:
+#         factors_treatments_relationship.name = name
+#         factors_treatments_relationship.description = description
+#         # db.session.add(user)
+#         db.session.commit()
+#         result = factor_treatment_schema.dump(factors_treatments_relationship)
+#         return jsonify({'messasge': 'successfully updated', 'data': result}), 200
+#     except Exception as e:
+#         # print(e)
+#         return jsonify({'message': 'unable to update', 'data': {}}), 500
 
 # Delete
 def delete_factors_treatments_relationship(id):

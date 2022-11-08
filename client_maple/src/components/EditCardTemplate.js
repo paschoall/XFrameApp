@@ -32,14 +32,14 @@ export default function EditCardTemplate(props) {
         setOpen(open);
     }, [open])
 
-    const proxy = 'https://5de3-2804-431-cfec-d6de-f8b2-c8c9-59cf-21e.sa.ngrok.io';
+    
     const handleClose = (deleteFlag, id) => {
         if (deleteFlag) {
             const requestOptions = {
                 method: 'DELETE',
             }
 
-            fetch(proxy + props.fetchlink + '/' + id, requestOptions).then(
+            fetch(props.fetchlink + '/' + id, requestOptions).then(
                 response => {
                     if (!response.ok) {
                         throw new Error('Network response was not OK');

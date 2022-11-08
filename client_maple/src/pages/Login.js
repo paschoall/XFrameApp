@@ -47,7 +47,7 @@ export default function Login({ setToken }) {
 
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const proxy = 'https://5de3-2804-431-cfec-d6de-f8b2-c8c9-59cf-21e.sa.ngrok.io';
+    
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -55,7 +55,7 @@ export default function Login({ setToken }) {
 
     requestOptions.headers.Authorization = 'Basic ' + btoa(data.get('username') + ":" + data.get('password'))
 
-    fetch(proxy+'/auth', requestOptions)
+    fetch('/auth', requestOptions)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not OK');

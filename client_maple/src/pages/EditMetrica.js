@@ -34,11 +34,11 @@ const EditMetrica = () => {
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
   const { id } = useParams();
 
-  const proxy = 'https://5de3-2804-431-cfec-d6de-f8b2-c8c9-59cf-21e.sa.ngrok.io';
+  
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(proxy + '/metric/' + id).then(
+    fetch('/metric/' + id).then(
       res => res.json()
     ).then(
       data => {

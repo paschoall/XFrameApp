@@ -4,8 +4,12 @@ import { useParams } from 'react-router-dom'
 import CssBaseline from '@mui/material/CssBaseline';
 import {
   Box,
+  Button,
   Container,
   Grid,
+  List,
+  ListItem,
+  ListItemText,
   Paper,
   Typography,
 } from '@mui/material';
@@ -14,9 +18,9 @@ import Footer from '../components/Footer';
 const VariavelDependente = () => {
   const [data, setData] = useState([{}])
   const { id } = useParams();
-  const proxy = 'https://5de3-2804-431-cfec-d6de-f8b2-c8c9-59cf-21e.sa.ngrok.io';
+  
   useEffect(() => {
-    fetch(proxy+'/dependent_variable/' + id).then(
+    fetch('/dependent_variable/' + id).then(
       res => res.json()
     ).then(
       data => {
@@ -66,10 +70,11 @@ const VariavelDependente = () => {
                     p: 2,
                     display: 'flex',
                     flexDirection: 'column',
+                    height: '100%',
                   }}
                 >
                   <Typography variant="h5" gutterBottom>
-                    Descrição
+                    Description
                   </Typography>
                   <Typography
                     sx={{
@@ -78,6 +83,7 @@ const VariavelDependente = () => {
                       lineHeight: '1.5em',
                       fontWeight: 'normal',
                       width: '100%',
+                      height: '100%'
                     }}
                   >
                     {data.data['description']}
@@ -88,54 +94,35 @@ const VariavelDependente = () => {
                 <Paper
                   sx={{
                     p: 2,
+                    height: '100%',
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 240,
                   }}
                 >
                   <Typography variant="h5" gutterBottom>
-                    Metricas e Instrumentos de Apoio
+                    Metrics and Instruments
                   </Typography>
-                  <Grid container spacing={6}>
+                  <Grid container spacing={6}
+                    sx={{
+                      display: 'flex',
+                      height: '100%',
+                    }}
+                  >
                     <Grid item xs={12} md={4} lg={4}>
                       <Paper
+                        component={Button}
                         sx={{
                           p: 2,
                           display: 'flex',
                           flexDirection: 'column',
-                          height: '10rem',
+                          height: '100%',
+                          width: '100%',
+                          textTransform: 'none',
+                          alignItems: 'flex-start',
                         }}
                       >
                         <Typography variant="body1" gutterBottom>
                           Instrumento 1
-                        </Typography>
-                      </Paper>
-                    </Grid>
-                    <Grid item xs={12} md={4} lg={4}>
-                      <Paper
-                        sx={{
-                          p: 2,
-                          display: 'flex',
-                          flexDirection: 'column',
-                          height: '10rem',
-                        }}
-                      >
-                        <Typography variant="body1" gutterBottom>
-                          Instrumento 2
-                        </Typography>
-                      </Paper>
-                    </Grid>
-                    <Grid item xs={12} md={4} lg={4}>
-                      <Paper
-                        sx={{
-                          p: 2,
-                          display: 'flex',
-                          flexDirection: 'column',
-                          height: '10rem',
-                        }}
-                      >
-                        <Typography variant="body1" gutterBottom>
-                          Instrumento 3
                         </Typography>
                       </Paper>
                     </Grid>
@@ -151,15 +138,16 @@ const VariavelDependente = () => {
                   }}
                 >
                   <Typography variant="h6" gutterBottom>
-                    Referências
+                    References
                   </Typography>
-                  <Typography variant="body2" gutterBottom>
-                    Lorem Ipsum
-                  </Typography>
+                  <List>
+                    <ListItem>
+                      <ListItemText primary={'Lorem Ipsum'} />
+                    </ListItem>
+                  </List>
                 </Paper>
               </Grid>
             </Grid>
-            <Footer />
           </Container>
         </Box>
         <Footer />
