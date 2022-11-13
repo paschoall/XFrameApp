@@ -25,11 +25,15 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import Footer from '../components/Footer';
 import EditForms from '../components/EditForms';
+import Metric from '../components/Metric'
 
 const EditVariavelDependente = () => {
   const [data, setData] = useState([{}])
+  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [metric, setMetrics] = useState([{}]);
   const [openDesc, setOpenDesc] = React.useState(false);
   const [openFt, setOpenFt] = React.useState(false);
+  const [openMore, setOpenMore] = useState(false);
   const [openRef, setOpenRef] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
@@ -49,6 +53,16 @@ const EditVariavelDependente = () => {
     )
   }, [id])
 
+  useEffect(() => {
+    fetch('/metrics').then(
+      res => res.json()
+    ).then(
+      data => {
+        setMetrics(data);
+      }
+    )
+  }, [])
+
   const handleClickFT = () => {
     navigate('fatores-tratamentos')
   }
@@ -59,6 +73,10 @@ const EditVariavelDependente = () => {
   const handleClickOpenDesc = () => {
     setOpenDesc(true);
   };
+  const handleClickMore = (event, more_id) => {
+    setSelectedIndex(more_id)
+    setOpenMore(true)
+  }
   const handleClickOpenFt = () => {
     setOpenFt(true);
   };
@@ -67,6 +85,7 @@ const EditVariavelDependente = () => {
   };
   const handleClose = () => {
     setOpenDesc(false);
+    setOpenMore(false);
     setOpenFt(false);
     setOpenRef(false);
   };
@@ -163,7 +182,7 @@ const EditVariavelDependente = () => {
                         }}
                       >
                         <Typography variant="body1" gutterBottom>
-                          Instrument 1
+                          1 Metric
                         </Typography>
                         <Grid
                           container spacing={2}
@@ -172,6 +191,8 @@ const EditVariavelDependente = () => {
                             margin: '0.5rem 1rem 0 0'
                           }}
                         >
+                          <Button onClick={(event) => handleClickMore(event, data.id)}>More</Button>
+
                           <Button onClick={handleClickFT}>Delete</Button>
                         </Grid>
                       </Paper>
@@ -184,7 +205,7 @@ const EditVariavelDependente = () => {
                       margin: '1rem 0 0 0'
                     }}
                   >
-                    <Button onClick={handleClickOpenFt}>Add Factors and Treatments</Button>
+                    <Button onClick={handleClickOpenFt}>Add Metrics and Instruments</Button>
                   </Grid>
                 </Paper>
               </Grid>
@@ -287,6 +308,44 @@ const EditVariavelDependente = () => {
             </Button>
             <Button onClick={handleClose} autoFocus>
               Agree
+            </Button>
+          </DialogActions>
+        </Dialog>
+        {/* -------------------------------------------------------- */}
+
+        <Dialog
+          fullWidth
+          open={openMore}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+          PaperProps={{
+            sx: {
+              fullWidth: 'true',
+              maxWidth: 'lg',
+              maxHeight: '80%',
+            }
+          }}
+        >
+          <DialogContent>
+            {(typeof metric.data === 'undefined') ? (
+              <Typography variant="h4" gutterBottom>
+                Loading...
+              </Typography>
+            ) : (metric.data.filter(({ id }) => id === selectedIndex).map((data, i) => {
+              return (
+                <>
+                  <Typography>
+                    {data['id_treatments_array'].split(',').map((id, i) => { return (<Metric key={i} id={id} />) })}
+                  </Typography>
+                </>
+              )
+            })
+            )}
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => handleClose()} autoFocus>
+              Cancel
             </Button>
           </DialogActions>
         </Dialog>

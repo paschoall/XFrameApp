@@ -13,11 +13,24 @@ import {
   Paper,
   Typography,
 } from '@mui/material';
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+} from '@mui/material';
 import Footer from '../components/Footer';
+import Treatment from '../components/Treatment'
 
 const VariavelIndependente = () => {
   const [data, setData] = useState([{}])
+  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [factorTreatment, setFactorTreatment] = useState([{}]);
+  const [references, setReferences] = useState([{}]);
+  const [viReferences, setViReferences] = useState([{}]);
+  const [openMore, setOpenMore] = useState(false);
   const { id } = useParams();
+
+  const variable_id = id
   
   useEffect(() => {
     fetch('/independent_variable/' + id).then(
@@ -28,6 +41,44 @@ const VariavelIndependente = () => {
       }
     )
   }, [id])
+
+  useEffect(() => {
+    fetch('/factors_treatments_relationships').then(
+      res => res.json()
+    ).then(
+      data => {
+        setFactorTreatment(data);
+      }
+    )
+  }, [])
+
+  useEffect(() => {
+    fetch('/references').then(
+      res => res.json()
+    ).then(
+      data => {
+        setReferences(data);
+      }
+    )
+  }, [])
+
+  useEffect(() => {
+    fetch('/vi_references').then(
+      res => res.json()
+    ).then(
+      data => {
+        setViReferences(data);
+      }
+    )
+  }, [])
+  
+  const handleClose = () => {
+    setOpenMore(false);
+  };
+  const handleClickMore = (event, more_id) => {
+    setSelectedIndex(more_id)
+    setOpenMore(true)
+  }
 
   return (
     (typeof data.data === 'undefined') ? (
@@ -99,35 +150,48 @@ const VariavelIndependente = () => {
                   }}
                 >
                   <Typography variant="h5" gutterBottom>
-                    Use Examples
+                    Treatments
                   </Typography>
-                  <Grid container spacing={6}
-                    sx={{
-                      display: 'flex',
-                      height: '100%',
-                    }}
-                    >
-                    <Grid item xs={12} md={4} lg={4}>
-                      <Paper
-                        component={Button}
-                        sx={{
-                          p: 2,
-                          display: 'flex',
-                          flexDirection: 'column',
-                          height: '100%',
-                          width: '100%',
-                          textTransform: 'none',
-                          alignItems: 'flex-start',
-                        }}
-                      >
-                        <Typography variant="body1" gutterBottom>
-                          1 Factor{(1+1===2)?(''):('s')}
-                        </Typography>
-                        <Typography variant="body1" gutterBottom>
-                          1 Treatment
-                        </Typography>
-                      </Paper>
-                    </Grid>
+                  <Grid container spacing={6}>
+                    {
+                      (typeof factorTreatment.data === 'undefined') ? (
+                        <p></p>
+                      ) : (
+                        factorTreatment.data.filter(({ id_vi }) => id_vi.toString() === variable_id).map((data, i) => {
+                          return (
+                            <Grid key={i} item xs={12} md={4} lg={4}>
+                              <Paper
+                                // component={Button}
+                                sx={{
+                                  p: 2,
+                                  display: 'flex',
+                                  flexDirection: 'column',
+                                  height: '100%',
+                                  width: '100%',
+                                  textTransform: 'none',
+                                  alignItems: 'flex-start',
+                                }}
+                              >
+                                <Typography variant="body1" gutterBottom>
+                                  {data.id_treatments_array.split(',').length}{' '}
+                                  Treatment{(data.id_treatments_array.split(',').length > 1) ? ('s') : ('')}
+                                </Typography>
+                                <Grid
+                                  container spacing={2}
+                                  rowSpacing={1}
+                                  sx={{
+                                    margin: '0.5rem 1rem 0 0'
+                                  }}
+                                >
+                                  <Button onClick={(event) => handleClickMore(event, data.id)}>More</Button>
+                                </Grid>
+                              </Paper>
+                            </Grid>
+                          )
+                        }
+                        )
+                      )
+                    }
                   </Grid>
                 </Paper>
               </Grid>
@@ -143,9 +207,19 @@ const VariavelIndependente = () => {
                     References
                   </Typography>
                   <List>
-                    <ListItem>
-                      <ListItemText primary={'Lorem Ipsum'} />
-                    </ListItem>
+                  {(typeof viReferences.data === 'undefined' || typeof references.data === 'undefined') ? (
+                      <p>Loading...</p>
+                    ) : (
+                      viReferences.data.filter(({ id_vi }) => id_vi.toString() === variable_id).map((data, i) => {
+                        return (
+                          <ListItem component="a" href={references.data.find(o => o.id === data.id_ref).referencia} key={i}>
+                            <ListItemText  primary={references.data.find(o => o.id === data.id_ref).referencia} />
+                          </ListItem>
+                        )
+                      }
+                      )
+                    )
+                    }
                   </List>
                 </Paper>
               </Grid>
@@ -153,6 +227,45 @@ const VariavelIndependente = () => {
           </Container>
         </Box>
         <Footer />
+
+{/* -------------------------------------------------------- */}
+
+<Dialog
+  fullWidth
+  open={openMore}
+  onClose={handleClose}
+  aria-labelledby="alert-dialog-title"
+  aria-describedby="alert-dialog-description"
+  PaperProps={{
+    sx: {
+      fullWidth: 'true',
+      maxWidth: 'lg',
+      maxHeight: '80%',
+    }
+  }}
+>
+  <DialogContent>
+    {(typeof factorTreatment.data === 'undefined') ? (
+      <Typography variant="h4" gutterBottom>
+        Loading...
+      </Typography>
+    ) : (factorTreatment.data.filter(({ id }) => id === selectedIndex).map((data, i) => {
+      return (
+        <>
+          <Typography>
+            {data['id_treatments_array'].split(',').map((id, i) => { return (<Treatment key={i} id={id} />) })}
+          </Typography>
+        </>
+      )
+    })
+    )}
+  </DialogContent>
+  <DialogActions>
+    <Button onClick={() => handleClose()} autoFocus>
+      Cancel
+    </Button>
+  </DialogActions>
+</Dialog>
       </>
     )
   );

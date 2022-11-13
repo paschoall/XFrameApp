@@ -392,7 +392,7 @@ const EditVariavelIndependente = () => {
                   <Grid container spacing={6}>
                     {
                       (typeof factorTreatment.data === 'undefined') ? (
-                        <p>Loading...</p>
+                        <p></p>
                       ) : (
                         factorTreatment.data.filter(({ id_vi }) => id_vi.toString() === variable_id).map((data, i) => {
                           return (
@@ -455,13 +455,12 @@ const EditVariavelIndependente = () => {
                     References
                   </Typography>
                   <List>
-
                     {(typeof viReferences.data === 'undefined' || typeof references.data === 'undefined') ? (
                       <p>Loading...</p>
                     ) : (
                       viReferences.data.filter(({ id_vi }) => id_vi.toString() === variable_id).map((data, i) => {
                         return (
-                          <ListItem key={i}>
+                          <ListItem component="a" href={references.data.find(o => o.id === data.id_ref).referencia} key={i}>
                             <ListItemText primary={references.data.find(o => o.id === data.id_ref).referencia} />
                             <Button
                               onClick={
