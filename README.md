@@ -8,8 +8,11 @@ basta é necessário cumprir alguns requisitos:
 1. Ter o gerenciador de banco de dados MySQL instalado na maquina <https://www.mysql.com/>
 2. Ter Node.js instalado na maquina <https://nodejs.org/en/>
 3. Ter Python instalado na maquina <https://www.python.org/downloads/>
+
+
 Após cumprir com os requisitos basta seguir os seguintes passos:
-1. Acessar o repositório disponível em <https://github.com/paschoall/variaveisExperimentais>
+
+1. Acessar o repositório disponível em <[https://github.com/paschoall/variaveisExperimentais](https://github.com/paschoall/Var-MAP-chatbots)>
 2. Realizar a clonagem do repositório
 3. Abrir um terminal na pasta clonada
 4. No terminal acessar a pasta \client_maple
