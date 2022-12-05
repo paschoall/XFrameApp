@@ -42,9 +42,8 @@ $ python run.py
 na maquina local e qualquer modificação nas páginas web e na API poderão ser testadas
 em um navegador.
 
-Para realização de um deploy e instalação em um servidor próprio do back-end, o Flask
-oferece as instruções no seguinte endereço:
+Para realização de um deploy e instalação em um servidor próprio do back-end, o Flask oferece as instruções no seguinte endereço:
 <https://flask.palletsprojects.com/en/2.2.x/deploying/>.
-Já para o front-end o seguinte tutorial feita pela plataforma de ensino Alura foi disponibi-
-lizado a seguir:
+
+Já para o front-end o seguinte tutorial feita pela plataforma de ensino Alura foi disponibilizado a seguir:
 <https://www.alura.com.br/artigos/como-preparar-uma-aplicacao-react-para-o-deploy>.
