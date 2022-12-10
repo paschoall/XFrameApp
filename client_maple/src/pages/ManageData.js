@@ -75,7 +75,7 @@ const ManageData = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Gerenciar Variables
+                        Gerenciar Variáveis
                       </Typography>}
                   />
                 </ListItemButton>
@@ -123,7 +123,7 @@ const ManageData = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Gerenciar Treatments
+                        Gerenciar Tratamentos
                       </Typography>}
                   />
                 </ListItemButton>

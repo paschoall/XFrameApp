@@ -74,7 +74,7 @@ const ManageDependentVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Add Dependent Variable
+                        Adicionar Variável Dependente
                       </Typography>}
                   />
                 </ListItemButton>
@@ -122,7 +122,7 @@ const ManageDependentVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Edit Variáveis Dependentes
+                        Editar Variáveis Dependentes
                       </Typography>}
                   />
                 </ListItemButton>

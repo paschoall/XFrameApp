@@ -28,7 +28,7 @@ const EditCardList = (props) => {
       {
         (typeof data.data === 'undefined' || Object.keys(data.data).length === 0) ? (
           <>
-            <Toolbar /><p>Loading...</p>
+            <Toolbar /><p></p>
           </>
         ) : (
           (Object.keys(data.data).length === 0) ? (

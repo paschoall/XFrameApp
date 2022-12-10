@@ -362,7 +362,7 @@ const EditInstrumento = () => {
             </DialogTitle>
             <DialogContent>
               <DialogContentText>
-                Add the reference link below
+                Adicione o link de referência  abaixo
               </DialogContentText>
               <TextField
                 autoFocus

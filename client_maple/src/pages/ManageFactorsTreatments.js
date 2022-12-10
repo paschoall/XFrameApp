@@ -73,7 +73,7 @@ const ManageFactorsTreatments = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Gerenciar Treatments
+                        Gerenciar Tratamentos
                       </Typography>}
                   />
                 </ListItemButton>

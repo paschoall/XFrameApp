@@ -73,7 +73,7 @@ const ManageRelationships = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Add Relationship
+                        Adicionar Relacionamento
                       </Typography>}
                   />
                 </ListItemButton>

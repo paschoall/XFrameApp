@@ -433,7 +433,7 @@ const EditVariavelIndependente = () => {
                       margin: '3rem 0 0 0'
                     }}
                   >
-                    <Button onClick={handleClickOpenFt}>Add Treatments</Button>
+                    <Button onClick={handleClickOpenFt}>Adicionar Tratamentos</Button>
                   </Grid>
                 </Paper>
               </Grid>
@@ -518,7 +518,7 @@ const EditVariavelIndependente = () => {
         >
           <DialogTitle id="responsive-dialog-title"
           >
-            {"Add Treatments"}
+            {"Adicionar Tratamentos"}
           </DialogTitle>
           <DialogContent>
             <Grid container spacing={3}>
@@ -596,7 +596,7 @@ const EditVariavelIndependente = () => {
             </DialogTitle>
             <DialogContent>
               <DialogContentText>
-                Add the reference link below
+                Adicione o link de referência  abaixo
               </DialogContentText>
               <TextField
                 autoFocus
