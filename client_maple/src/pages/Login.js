@@ -153,7 +153,7 @@ export default function Login({ setToken }) {
         <AlertDialog
           open={openError}
           title='Erro no Login'
-          message='Usuário ou Senha incorretos'
+          message='User or Password invalid'
         />
       </Container>
       <Footer />

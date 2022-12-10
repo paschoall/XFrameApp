@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import PeopleIcon from '@mui/icons-material/People';
 import BarChartIcon from '@mui/icons-material/BarChart';
+// import PeopleIcon from '@mui/icons-material/People';
 // import DashboardIcon from '@mui/icons-material/Dashboard';
 // import ListSubheader from '@mui/material/ListSubheader';
 // import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
@@ -35,17 +35,17 @@ export const mainListItems = (
       <ListItemIcon>
         <BarChartIcon />
       </ListItemIcon>
-      <ListItemText primary="Gerenciar Dados" />
+      <ListItemText primary="Gerenciar Data" />
     </ListItemButton>
-    <ListItemButton
+    {/* <ListItemButton
       component={Link}
       to='/admin-page/gerenciar-usuarios'
     >
       <ListItemIcon>
         <PeopleIcon />
       </ListItemIcon>
-      <ListItemText primary="Gerenciar Usuários" />
-    </ListItemButton>
+      <ListItemText primary="Gerenciar Users" />
+    </ListItemButton> */}
     {/* <ListItemButton>
       <ListItemIcon>
         <LayersIcon />

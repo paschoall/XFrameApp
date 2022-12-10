@@ -25,7 +25,7 @@ const CardList = (props) => {
       columns={{ xs: 4, sm: 8, md: 12 }}
     >
       {
-        (typeof data.data === 'undefined') ? (
+        (typeof data.data === 'undefined' || Object.keys(data.data).length === 0) ? (
           <p>Loading...</p>
         ) : (
           data.data.map((data, i) => {

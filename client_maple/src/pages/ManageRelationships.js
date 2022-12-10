@@ -73,7 +73,7 @@ const ManageRelationships = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Adicionar Relações
+                        Add Relationship
                       </Typography>}
                   />
                 </ListItemButton>
@@ -121,7 +121,7 @@ const ManageRelationships = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Deletar Relações
+                        Delete Relationships
                       </Typography>}
                   />
                 </ListItemButton>

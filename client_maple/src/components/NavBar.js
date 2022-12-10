@@ -13,26 +13,24 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import AdbIcon from '@mui/icons-material/Adb';
+// import AdbIcon from '@mui/icons-material/Adb';
 import { Link } from 'react-router-dom';
 
 import { asyncLogout } from '../store/reducers/userSlice';
 import ThemeToggler from './ThemeToggler';
 
-const pages = ['Variáveis Independentes', 'Variáveis Dependentes', 'Sobre'];
-const settings = ['Admin Page', 'Profile', 'Logout'];
+const pages = ['Variáveis Independentes', 'Variáveis Dependentes'];
+const settings = ['Página do Admin', 'Perfil', 'Sair'];
 
 function getPageLink(page) {
   switch (page) {
-    case 'Variáveis Dependentes':
-      return '/catalogo-variaveis-dependentes';
     case 'Variáveis Independentes':
       return '/catalogo-variaveis-independentes';
-    case 'Variáveis':
-      return '/catalogo-variaveis';
-    case 'Admin Page':
+    case 'Variáveis Dependentes':
+      return '/catalogo-variaveis-dependentes';
+    case 'Página do Admin':
       return '/admin-page/gerenciar-dados';
-    case 'Logout':
+    case 'Sair':
       return '/';
     default:
       return ''
@@ -63,7 +61,7 @@ const ResponsiveAppBar = () => {
     setAnchorElNav(null);
   };
   const handleCloseUserMenu = (setting) => {
-    if (setting === 'Logout') {
+    if (setting === 'Sair') {
       logOut()
     }
     setAnchorElUser(null);
@@ -73,7 +71,7 @@ const ResponsiveAppBar = () => {
     <AppBar position='static'>
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
-          <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           <Typography
             variant='h6'
             noWrap
@@ -89,7 +87,7 @@ const ResponsiveAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            Var-MAP
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -133,7 +131,7 @@ const ResponsiveAppBar = () => {
               ))}
             </Menu>
           </Box>
-          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
           <Typography
             variant='h5'
             noWrap
@@ -150,7 +148,7 @@ const ResponsiveAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            LOGO
+            Var-MAP
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
@@ -202,7 +200,7 @@ const ResponsiveAppBar = () => {
                           <Typography textAlign='center'>{setting}</Typography>
                         </MenuItem>
                       ) : (
-                        setting !== 'Admin Page' &&
+                        setting !== 'Página do Admin' &&
                         <MenuItem
                           component={Link}
                           to={getPageLink(setting)}

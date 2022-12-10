@@ -69,7 +69,7 @@ export default function Formulario(props) {
               <FormInputText
                 name="name"
                 control={control}
-                label="Name"
+                label="Nome"
               />
             </Grid>
             <Grid item xs={12}>
@@ -77,7 +77,7 @@ export default function Formulario(props) {
                 multiline
                 name="description"
                 control={control}
-                label="Description"
+                label="Descrição"
               />
             </Grid>
             <Grid item xs={12}>
@@ -103,13 +103,13 @@ export default function Formulario(props) {
           </Box>
           <AlertDialog
             open={openError}
-            title='Erro no Update'
-            message='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+            title='Update Error'
+            message="Couldn't edit the varible!"
           />
           <AlertDialog
             open={open}
-            title='Variável Atualizada com Sucesso'
-            message='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+            title='Successful Update'
+            message='A variável foi editada com sucesso!'
           />
         </React.Fragment>
       </Paper>

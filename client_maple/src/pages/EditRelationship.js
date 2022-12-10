@@ -180,7 +180,7 @@ const EditRelationship = () => {
 
 
                 {
-                  (typeof vi_vd.data === 'undefined' || typeof vi.data === 'undefined') ? (
+                  (typeof vi_vd.data === 'undefined' || Object.keys(vi_vd.data).length === 0 || typeof vi.data === 'undefined') ? (
                     <p>Loading...</p>
                   ) : (
                     vi.data.map((data, i) => {
@@ -283,7 +283,7 @@ const EditRelationship = () => {
               >
 
                 {
-                  (typeof vi_vd.data === 'undefined' || typeof vd.data === 'undefined') ? (
+                  (typeof vi_vd.data === 'undefined' || Object.keys(vi_vd.data).length === 0 || typeof vd.data === 'undefined') ? (
                     <p>Loading...</p>
                   ) : (
                     vd.data.map((data, i) => {
@@ -322,7 +322,7 @@ const EditRelationship = () => {
                 marginTop: '2rem'
               }}
             >
-              Delete
+              Deletar
             </Button>
           </Grid>
         </Grid>
@@ -333,26 +333,25 @@ const EditRelationship = () => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          DELETE
+          DELETAR
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Do you really want to delete this?
+            Quer realmente deletar?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => handleCloseDelete(true)} autoFocus>
-            Delete
+            Deletar
           </Button>
           <Button onClick={() => handleCloseDelete()} autoFocus>
-            Cancel
+            Cancelar
           </Button>
         </DialogActions>
       </Dialog>
       <AlertDialog
         open={openError}
-        title='Erro ao Deletar'
-        message='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+        title='Delete Error'
       />
       <Dialog
         open={openWarning}
@@ -365,7 +364,6 @@ const EditRelationship = () => {
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
           </DialogContentText>
         </DialogContent>
         <DialogActions>

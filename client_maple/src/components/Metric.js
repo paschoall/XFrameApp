@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import CssBaseline from '@mui/material/CssBaseline';
 import {
   Box,
@@ -14,20 +15,41 @@ import {
 
 const Metric = (props) => {
   const [data, setData] = useState([{}])
-  
-  
+  const { id } = useParams();
+  const [references, setReferences] = useState([{}]);
+  const [metricReferences, setMetricReferences] = useState([{}]);
+
+  const variable_id = id
 
   useEffect(() => {
-    fetch('/metrics/' + props.id).then(
+    fetch('/metric/' + props.id).then(
       res => res.json()
     ).then(
       data => {
         setData(data)
-        console.log(data)
       }
     )
   }, [props.id])
 
+  useEffect(() => {
+    fetch('/references').then(
+      res => res.json()
+    ).then(
+      data => {
+        setReferences(data);
+      }
+    )
+  }, [])
+
+  useEffect(() => {
+    fetch('/metric_references').then(
+      res => res.json()
+    ).then(
+      data => {
+        setMetricReferences(data);
+      }
+    )
+  }, [])
 
   return (
     (typeof data.data === 'undefined') ? (
@@ -45,7 +67,7 @@ const Metric = (props) => {
         }}
       >
         <Typography variant="h4" gutterBottom>
-          
+
         </Typography>
       </Box>
     ) : (
@@ -72,7 +94,7 @@ const Metric = (props) => {
                   }}
                 >
                   <Typography variant="h5" gutterBottom>
-                    Description
+                    Descrição
                   </Typography>
                   <Typography
                     sx={{
@@ -97,11 +119,23 @@ const Metric = (props) => {
                   }}
                 >
                   <Typography variant="h6" gutterBottom>
-                    References
+                    Referências
                   </Typography>
                   <List>
                     <ListItem>
-                      <ListItemText primary={'Lorem Ipsum'} />
+                      {(typeof metricReferences.data === 'undefined' || Object.keys(metricReferences.data).length === 0 || typeof references.data === 'undefined') ? (
+                        <p></p>
+                      ) : (
+                        metricReferences.data.filter(({ id_metric }) => id_metric.toString() === variable_id).map((data, i) => {
+                          return (
+                            <ListItem component="a" href={references.data.find(o => o.id === data.id_ref).referencia} key={i}>
+                              <ListItemText primary={references.data.find(o => o.id === data.id_ref).referencia} />
+                            </ListItem>
+                          )
+                        }
+                        )
+                      )
+                      }
                     </ListItem>
                   </List>
                 </Paper>

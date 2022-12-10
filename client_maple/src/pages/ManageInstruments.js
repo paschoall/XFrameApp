@@ -74,7 +74,7 @@ const ManageInstruments = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Adicionar Instrumento
+                        Add Instrument
                       </Typography>}
                   />
                 </ListItemButton>
@@ -122,7 +122,7 @@ const ManageInstruments = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Editar Instrumentos
+                        Edit Instruments
                       </Typography>}
                   />
                 </ListItemButton>

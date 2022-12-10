@@ -53,12 +53,11 @@ const EditVariavelIndependente = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-
   const variable_id = id
 
   const handleTreatmentListItemClick = (event, index) => {
-    setSelectedIndex(selectedIndex)
-    setSelectedIndex(index)
+    setSelectedIndex(selectedIndex);
+    setSelectedIndex(index);
     if (treatmentArray.includes(index)) {
       setTreatmentArray(treatmentArray.filter((value => (value !== index))));
     }
@@ -160,7 +159,6 @@ const EditVariavelIndependente = () => {
   const handleClickRef = (event, delete_id) => {
     setSelectedIndex(delete_id)
     setOpenDeleteRef(true)
-
   }
 
   const handleClickOpenDesc = () => {
@@ -235,7 +233,6 @@ const EditVariavelIndependente = () => {
             setOpenError(true)
           }
         )
-
     }
     setOpenDelete(false);
   };
@@ -264,7 +261,6 @@ const EditVariavelIndependente = () => {
         )
     }
     setOpenDeleteRef(false);
-
   }
 
   const handleAddRef = async (event) => {
@@ -303,9 +299,7 @@ const EditVariavelIndependente = () => {
         console.error('There has been a problem with your operation:', e)
       }
     } finally {
-
     }
-
   };
 
   return (
@@ -352,7 +346,7 @@ const EditVariavelIndependente = () => {
                   }}
                 >
                   <Typography variant="h5" gutterBottom>
-                    Description
+                    Descrição
                   </Typography>
                   <Typography
                     sx={{
@@ -373,7 +367,7 @@ const EditVariavelIndependente = () => {
                       margin: '0',
                     }}
                   >
-                    <Button onClick={handleClickOpenDesc}>Edit Name and Description</Button>
+                    <Button onClick={handleClickOpenDesc}>Editar Nome ou Descrição</Button>
                   </Grid>
                 </Paper>
               </Grid>
@@ -391,7 +385,7 @@ const EditVariavelIndependente = () => {
                   </Typography>
                   <Grid container spacing={6}>
                     {
-                      (typeof factorTreatment.data === 'undefined') ? (
+                      (typeof factorTreatment.data === 'undefined' || Object.keys(factorTreatment.data).length === 0) ? (
                         <p></p>
                       ) : (
                         factorTreatment.data.filter(({ id_vi }) => id_vi.toString() === variable_id).map((data, i) => {
@@ -420,9 +414,9 @@ const EditVariavelIndependente = () => {
                                     margin: '0.5rem 1rem 0 0'
                                   }}
                                 >
-                                  <Button onClick={(event) => handleClickMore(event, data.id)}>More</Button>
+                                  <Button onClick={(event) => handleClickMore(event, data.id)}>Mais</Button>
 
-                                  <Button onClick={(event) => handleClickFT(event, data.id)}>Delete</Button>
+                                  <Button onClick={(event) => handleClickFT(event, data.id)}>Deletar</Button>
                                 </Grid>
                               </Paper>
                             </Grid>
@@ -452,16 +446,20 @@ const EditVariavelIndependente = () => {
                   }}
                 >
                   <Typography variant="h6" gutterBottom>
-                    References
+                    Referências
                   </Typography>
                   <List>
-                    {(typeof viReferences.data === 'undefined' || typeof references.data === 'undefined') ? (
-                      <p>Loading...</p>
+                    {(typeof viReferences.data === 'undefined' || Object.keys(viReferences.data).length === 0 || typeof references.data === 'undefined') ? (
+                      <p></p>
                     ) : (
                       viReferences.data.filter(({ id_vi }) => id_vi.toString() === variable_id).map((data, i) => {
                         return (
-                          <ListItem component="a" href={references.data.find(o => o.id === data.id_ref).referencia} key={i}>
-                            <ListItemText primary={references.data.find(o => o.id === data.id_ref).referencia} />
+                          <Grid container >
+                            <Grid item xs={10.5} md={10.5} lg={10.5}>
+                              <ListItem component="a" href={references.data.find(o => o.id === data.id_ref).referencia} key={i}>
+                                <ListItemText primary={references.data.find(o => o.id === data.id_ref).referencia} />
+                              </ListItem>
+                            </Grid>
                             <Button
                               onClick={
                                 (event) => handleClickRef(
@@ -470,9 +468,9 @@ const EditVariavelIndependente = () => {
                                 )
                               }
                             >
-                              DELETE
+                              DELETAR
                             </Button>
-                          </ListItem>
+                          </Grid>
                         )
                       }
                       )
@@ -486,7 +484,7 @@ const EditVariavelIndependente = () => {
                       margin: '0.5rem 0 0 0'
                     }}
                   >
-                    <Button onClick={handleClickOpenRef}>Add Reference</Button>
+                    <Button onClick={handleClickOpenRef}>Adicionar Referência</Button>
                   </Grid>
                 </Paper>
               </Grid>
@@ -504,7 +502,7 @@ const EditVariavelIndependente = () => {
           aria-labelledby="responsive-dialog-title"
         >
           <DialogContent>
-            <EditForms formTitle={'Edit Name and Description'} fetchlink='/dependent_variable/' />
+            <EditForms formTitle={'Editar Nome ou Descrição'} fetchlink='/independent_variable/' />
           </DialogContent>
         </Dialog>
 
@@ -543,7 +541,7 @@ const EditVariavelIndependente = () => {
                 >
 
                   {
-                    (typeof treatment.data === 'undefined') ? (
+                    (typeof treatment.data === 'undefined' || Object.keys(treatment.data).length === 0) ? (
                       <p>Loading...</p>
                     ) : (
                       treatment.data.map((data, i) => {
@@ -576,7 +574,7 @@ const EditVariavelIndependente = () => {
           </DialogContent>
           <DialogActions>
             <Button autoFocus onClick={handleClose}>
-              Cancel
+              Cancelar
             </Button>
             <Button onClick={handleAddFT} autoFocus>
               Add
@@ -594,7 +592,7 @@ const EditVariavelIndependente = () => {
         >
           <Container component="form" onSubmit={handleAddRef}>
             <DialogTitle id="responsive-dialog-title">
-              {"Add Reference"}
+              {"Adicionar Referência"}
             </DialogTitle>
             <DialogContent>
               <DialogContentText>
@@ -613,7 +611,7 @@ const EditVariavelIndependente = () => {
             </DialogContent>
             <DialogActions>
               <Button autoFocus onClick={handleClose}>
-                Cancel
+                Cancelar
               </Button>
               <Button type="submit" autoFocus>
                 Add
@@ -627,12 +625,12 @@ const EditVariavelIndependente = () => {
         <AlertDialog
           open={openError}
           title='Erro no Cadastro'
-          message='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+          message='Falha no registro.'
         />
         <AlertDialog
           open={open}
-          title='Cadastro Bem Sucedido'
-          message='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+          title='Adicionado com Sucesso'
+          message='Registro bem sucedido!'
         />
 
         {/* -------------------------------------------------------- */}
@@ -644,19 +642,19 @@ const EditVariavelIndependente = () => {
           aria-describedby="alert-dialog-description"
         >
           <DialogTitle id="alert-dialog-title">
-            DELETE
+            DELETAR
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              Do you really want to delete this?
+              Quer realmente deletar?
             </DialogContentText>
           </DialogContent>
           <DialogActions>
             <Button onClick={() => handleCloseDelete(true, selectedIndex)} autoFocus>
-              Delete
+              Deletar
             </Button>
             <Button onClick={() => handleCloseDelete()} autoFocus>
-              Cancel
+              Cancelar
             </Button>
           </DialogActions>
         </Dialog>
@@ -670,19 +668,19 @@ const EditVariavelIndependente = () => {
           aria-describedby="alert-dialog-description"
         >
           <DialogTitle id="alert-dialog-title">
-            DELETE
+            DELETAR
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              Do you really want to delete this?
+              Quer realmente deletar?
             </DialogContentText>
           </DialogContent>
           <DialogActions>
             <Button onClick={() => handleCloseDeleteRef(true, selectedIndex)} autoFocus>
-              Delete
+              Deletar
             </Button>
             <Button onClick={() => handleCloseDeleteRef()} autoFocus>
-              Cancel
+              Cancelar
             </Button>
           </DialogActions>
         </Dialog>
@@ -704,7 +702,7 @@ const EditVariavelIndependente = () => {
           }}
         >
           <DialogContent>
-            {(typeof factorTreatment.data === 'undefined') ? (
+            {(typeof factorTreatment.data === 'undefined' || Object.keys(factorTreatment.data).length === 0) ? (
               <Typography variant="h4" gutterBottom>
                 Loading...
               </Typography>
@@ -721,7 +719,7 @@ const EditVariavelIndependente = () => {
           </DialogContent>
           <DialogActions>
             <Button onClick={() => handleClose()} autoFocus>
-              Cancel
+              Cancelar
             </Button>
           </DialogActions>
         </Dialog>

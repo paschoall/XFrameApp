@@ -13,13 +13,13 @@ import EditVi from '../pages/EditVi';
 import EditVd from '../pages/EditVd';
 import EditMetric from '../pages/EditMetric';
 import EditInstrument from '../pages/EditInstrument';
-import EditFactor from '../pages/EditFactor';
+// import EditFactor from '../pages/EditFactor';
 import EditTreatment from '../pages/EditTreatment';
 import EditVariavelIndependente from '../pages/EditVariavelIndependente';
 import EditVariavelDependente from '../pages/EditVariavelDependente';
 import EditMetrica from '../pages/EditMetrica';
 import EditInstrumento from '../pages/EditInstrumento';
-import EditFator from '../pages/EditFator';
+// import EditFator from '../pages/EditFator';
 import EditTratamento from '../pages/EditTratamento';
 import EditRelationship from '../pages/EditRelationship';
 import Home from '../pages/Home';
@@ -32,7 +32,7 @@ import ManageVariables from '../pages/ManageVariables';
 import ManageMetrics from '../pages/ManageMetrics';
 import ManageInstruments from '../pages/ManageInstruments';
 import ManageMetricsInstruments from '../pages/ManageMetricsInstruments';
-import ManageFactors from '../pages/ManageFactors';
+// import ManageFactors from '../pages/ManageFactors';
 import ManageTreatments from '../pages/ManageTreatments';
 import ManageFactorsTreatments from '../pages/ManageFactorsTreatments';
 import ManageRelationships from '../pages/ManageRelationships';
@@ -41,7 +41,7 @@ import RegisterVi from '../pages/RegisterVi';
 import RegisterVd from '../pages/RegisterVd';
 import RegisterMetric from '../pages/RegisterMetric';
 import RegisterInstrument from '../pages/RegisterInstrument';
-import RegisterFactor from '../pages/RegisterFactor';
+// import RegisterFactor from '../pages/RegisterFactor';
 import RegisterTreatment from '../pages/RegisterTreatment';
 import RegisterRelationship from '../pages/RegisterRelationship';
 import SignUp from '../pages/SignUp';
@@ -102,15 +102,10 @@ const Rotas = ({ setToken, user }) => {
           <Route path='gerenciar-metricas-instrumentos/instrumentos/editar' element={<EditInstrument />} />
           <Route path='gerenciar-metricas-instrumentos/instrumentos/editar/:id' element={<EditInstrumento />} />
           
-          <Route path='gerenciar-fatores-tratamentos/fatores' element={<ManageFactors/>} />
-          <Route path='gerenciar-fatores-tratamentos/fatores/cadastrar' element={<RegisterFactor />} />
-          <Route path='gerenciar-fatores-tratamentos/fatores/editar' element={<EditFactor />} />
-          <Route path='gerenciar-fatores-tratamentos/fatores/editar/:id' element={<EditFator />} />
-
-          <Route path='gerenciar-fatores-tratamentos/tratamentos' element={<ManageTreatments />} />
-          <Route path='gerenciar-fatores-tratamentos/tratamentos/cadastrar' element={<RegisterTreatment />} />
-          <Route path='gerenciar-fatores-tratamentos/tratamentos/editar' element={<EditTreatment />} />
-          <Route path='gerenciar-fatores-tratamentos/tratamentos/editar/:id' element={<EditTratamento />} />
+          <Route path='gerenciar-tratamentos/tratamentos' element={<ManageTreatments />} />
+          <Route path='gerenciar-tratamentos/tratamentos/cadastrar' element={<RegisterTreatment />} />
+          <Route path='gerenciar-tratamentos/tratamentos/editar' element={<EditTreatment />} />
+          <Route path='gerenciar-tratamentos/tratamentos/editar/:id' element={<EditTratamento />} />
 
           <Route path='gerenciar-variaveis/relacoes' element={<ManageRelationships />} />
           <Route path='gerenciar-variaveis/relacoes/cadastrar' element={<RegisterRelationship />} />

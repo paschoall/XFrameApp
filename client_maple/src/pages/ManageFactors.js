@@ -74,7 +74,7 @@ const ManageFactors = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Adicionar Fatores
+                        Add Factors
                       </Typography>}
                   />
                 </ListItemButton>
@@ -122,7 +122,7 @@ const ManageFactors = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Editar Fatores
+                        Edit Factors
                       </Typography>}
                   />
                 </ListItemButton>

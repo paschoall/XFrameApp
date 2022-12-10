@@ -74,7 +74,7 @@ const ManageMetricsInstruments = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Gerenciar Métricas
+                        Gerenciar Metrics
                       </Typography>}
                   />
                 </ListItemButton>
@@ -122,7 +122,7 @@ const ManageMetricsInstruments = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Gerenciar Instrumentos
+                        Gerenciar Instruments
                       </Typography>}
                   />
                 </ListItemButton>

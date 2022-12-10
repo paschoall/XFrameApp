@@ -13,6 +13,7 @@ import {
   ListItemText,
   Paper,
   Typography,
+  TextField,
 } from '@mui/material';
 import {
   Dialog,
@@ -24,18 +25,27 @@ import {
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { useTheme } from '@mui/material/styles';
 import Footer from '../components/Footer';
+import AlertDialog from '../components/AlertDialog';
 import EditForms from '../components/EditForms';
 
 const EditMetrica = () => {
   const [data, setData] = useState([{}])
+  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [references, setReferences] = useState([{}]);
+  const [metricReferences, setMetricReferences] = useState([{}]);
+  const [reference, setReference] = useState(-1);
+
+  const [open, setOpen] = useState(false);
+  const [openDeleteRef, setOpenDeleteRef] = useState(false);
+  const [openError, setOpenError] = useState(false);
   const [openDesc, setOpenDesc] = React.useState(false);
   const [openRef, setOpenRef] = React.useState(false);
   const theme = useTheme();
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
   const { id } = useParams();
-
-  
   const navigate = useNavigate();
+
+  const variable_id = id
 
   useEffect(() => {
     fetch('/metric/' + id).then(
@@ -48,19 +58,132 @@ const EditMetrica = () => {
     )
   }, [id])
 
-  const handleClickRef = () => {
-    navigate('ref')
+  useEffect(() => {
+    fetch('/references').then(
+      res => res.json()
+    ).then(
+      data => {
+        setReferences(data);
+      }
+    )
+  }, [])
+
+  useEffect(() => {
+    fetch('/metric_references').then(
+      res => res.json()
+    ).then(
+      data => {
+        setMetricReferences(data);
+      }
+    )
+  }, [])
+
+  useEffect(() => {
+    if (reference !== -1) {
+      const data = {
+        id_metric: id,
+        id_ref: reference,
+      }
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }
+
+      fetch('/metric_reference', requestOptions)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not OK');
+          }
+          // console.log(response)
+          setOpen(true)
+          return response.json()
+        })
+        // .then(data => console.log(data))
+        .catch((error) => {
+          console.error('There has been a problem with your operation:', error);
+          setOpenError(true)
+        });
+    }
+  }, [reference, id])
+
+  const handleClickRef = (event, delete_id) => {
+    setSelectedIndex(delete_id)
+    setOpenDeleteRef(true)
   }
+
   const handleClickOpenDesc = () => {
     setOpenDesc(true);
   };
-
   const handleClickOpenRef = () => {
     setOpenRef(true);
   };
   const handleClose = () => {
     setOpenDesc(false);
     setOpenRef(false);
+  };
+
+  const handleCloseDeleteRef = (deleteFlag, delete_id) => {
+    if (deleteFlag) {
+      const requestOptions = {
+        method: 'DELETE',
+      }
+      fetch('/metric_reference/' + delete_id, requestOptions).then(
+        response => {
+          if (!response.ok) {
+            throw new Error('Network response was not OK');
+          }
+          return response.json()
+        }).then(
+          data => {
+            navigate(0)
+          }
+        ).catch(
+          (error) => {
+            console.error('There has been a problem with your delete operation:', error);
+            setOpenError(true)
+          }
+        )
+    }
+    setOpenDeleteRef(false);
+  }
+
+  const handleAddRef = async (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    try {
+      setReference(references.data.find(o => o.referencia === formData.get('reference')).id)
+    } catch (e) {
+      if (e instanceof TypeError) {
+        const refData = {
+          reference: formData.get('reference')
+        }
+
+        const requestOptions = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(refData)
+        }
+
+        fetch('/reference', requestOptions)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not OK');
+            }
+            return response.json()
+          })
+          .then(data => {
+            setReference(data.data.id)
+          })
+          .catch((error) => {
+            console.error('There has been a problem with your operation:', error);
+          });
+      }
+      else {
+        console.error('There has been a problem with your operation:', e)
+      }
+    } finally {
+    }
   };
 
   return (
@@ -107,7 +230,7 @@ const EditMetrica = () => {
                   }}
                 >
                   <Typography variant="h5" gutterBottom>
-                    Description
+                    Descrição
                   </Typography>
                   <Typography
                     sx={{
@@ -128,7 +251,7 @@ const EditMetrica = () => {
                       margin: '0',
                     }}
                   >
-                    <Button onClick={handleClickOpenDesc}>Edit Name and Description</Button>
+                    <Button onClick={handleClickOpenDesc}>Editar Nome ou Descrição</Button>
                   </Grid>
                 </Paper>
               </Grid>
@@ -141,21 +264,36 @@ const EditMetrica = () => {
                   }}
                 >
                   <Typography variant="h6" gutterBottom>
-                    References
+                    Referências
                   </Typography>
                   <List>
-                    <ListItem>
-                      <ListItemText primary={'Lorem Ipsum'} />
-                      <Button onClick={handleClickRef}>DELETE</Button>
-                    </ListItem>
-                    <ListItem>
-                      <ListItemText primary={'Lorem Ipsum'} />
-                      <Button onClick={handleClickRef}>DELETE</Button>
-                    </ListItem>
-                    <ListItem>
-                      <ListItemText primary={'Lorem Ipsum'} />
-                      <Button onClick={handleClickRef}>DELETE</Button>
-                    </ListItem>
+                    {(typeof metricReferences.data === 'undefined' || Object.keys(metricReferences.data).length === 0 || typeof references.data === 'undefined') ? (
+                      <p></p>
+                    ) : (
+                      metricReferences.data.filter(({ id_metric }) => id_metric.toString() === variable_id).map((data, i) => {
+                        return (
+                          <Grid container >
+                            <Grid item xs={10.5} md={10.5} lg={10.5}>
+                              <ListItem component="a" href={references.data.find(o => o.id === data.id_ref).referencia} key={i}>
+                                <ListItemText primary={references.data.find(o => o.id === data.id_ref).referencia} />
+                              </ListItem>
+                            </Grid>
+                            <Button
+                              onClick={
+                                (event) => handleClickRef(
+                                  event,
+                                  data['id']
+                                )
+                              }
+                            >
+                              DELETAR
+                            </Button>
+                          </Grid>
+                        )
+                      }
+                      )
+                    )
+                    }
                   </List>
                   <Grid
                     container spacing={2}
@@ -164,7 +302,7 @@ const EditMetrica = () => {
                       margin: '0.5rem 0 0 0'
                     }}
                   >
-                    <Button onClick={handleClickOpenRef}>Add Reference</Button>
+                    <Button onClick={handleClickOpenRef}>Adicionar Referência</Button>
                   </Grid>
                 </Paper>
               </Grid>
@@ -178,7 +316,7 @@ const EditMetrica = () => {
           aria-labelledby="responsive-dialog-title"
         >
           <DialogContent>
-            <EditForms formTitle={'Edit Name and Description'} fetchlink='/metric/' />
+            <EditForms formTitle={'Editar Nome ou Descrição'} fetchlink='/metric/' />
           </DialogContent>
         </Dialog>
         <Dialog
@@ -188,7 +326,7 @@ const EditMetrica = () => {
           aria-labelledby="responsive-dialog-title"
         >
           <DialogTitle id="responsive-dialog-title">
-            {"Add Reference"}
+            {"Adicionar Referência"}
           </DialogTitle>
           <DialogContent>
             <DialogContentText>
@@ -200,7 +338,7 @@ const EditMetrica = () => {
           </DialogContent>
           <DialogActions>
             <Button autoFocus onClick={handleClose}>
-              Cancel
+              Cancelar
             </Button>
             <Button onClick={handleClose} autoFocus>
               Agree
@@ -208,6 +346,83 @@ const EditMetrica = () => {
           </DialogActions>
         </Dialog>
         <Footer />
+        {/* -------------------------------------------------------- */}
+
+        <Dialog
+          fullScreen={fullScreen}
+          open={openRef}
+          onClose={handleClose}
+          aria-labelledby="responsive-dialog-title"
+        >
+          <Container component="form" onSubmit={handleAddRef}>
+            <DialogTitle id="responsive-dialog-title">
+              {"Adicionar Referência"}
+            </DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                Add the reference link below
+              </DialogContentText>
+              <TextField
+                autoFocus
+                margin="dense"
+                id="reference"
+                label="Reference"
+                name="reference"
+                type="link"
+                fullWidth
+                variant="standard"
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button autoFocus onClick={handleClose}>
+                Cancelar
+              </Button>
+              <Button type="submit" autoFocus>
+                Add
+              </Button>
+            </DialogActions>
+          </Container>
+        </Dialog>
+
+
+        {/* -------------------------------------------------------- */}
+
+        <AlertDialog
+          open={openError}
+          title='Erro no Cadastro'
+          message='Falha no registro.'
+        />
+        <AlertDialog
+          open={open}
+          title='Adicionado com Sucesso'
+          message='Registro bem sucedido!'
+        />
+
+        {/* -------------------------------------------------------- */}
+
+        <Dialog
+          open={openDeleteRef}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title">
+            DELETAR
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-description">
+              Quer realmente deletar?
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => handleCloseDeleteRef(true, selectedIndex)} autoFocus>
+              Deletar
+            </Button>
+            <Button onClick={() => handleCloseDeleteRef()} autoFocus>
+              Cancelar
+            </Button>
+          </DialogActions>
+        </Dialog>
       </>
     )
   );

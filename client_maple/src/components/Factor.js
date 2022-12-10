@@ -72,7 +72,7 @@ const Factor = (props) => {
                   }}
                 >
                   <Typography variant="h5" gutterBottom>
-                    Description
+                    Descrição
                   </Typography>
                   <Typography
                     sx={{
@@ -97,7 +97,7 @@ const Factor = (props) => {
                   }}
                 >
                   <Typography variant="h6" gutterBottom>
-                    References
+                    Referências
                   </Typography>
                   <List>
                     <ListItem>

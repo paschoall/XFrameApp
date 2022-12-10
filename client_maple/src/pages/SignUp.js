@@ -94,7 +94,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="name"
-                  label="Name"
+                  label="Nome"
                   autoFocus
                 />
               </Grid>
@@ -156,12 +156,12 @@ export default function SignUp() {
         <AlertDialog
           open={openError}
           title='Erro no Cadastro'
-          message='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+          message='Falha no registro.'
         />
         <AlertDialog
           open={open}
-          title='Usuário Cadastrado com Sucesso'
-          message='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+          title='User registered'
+          message='The User was registered successfully!'
           link='/login'
         />
       </Container>

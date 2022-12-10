@@ -76,7 +76,7 @@ const ManageUsers = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Gerenciar Usuários
+                        Gerenciar Users
                       </Typography>}
                   />
                 </ListItemButton>

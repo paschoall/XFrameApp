@@ -9,7 +9,6 @@ import {
   List,
   ListItemButton,
   ListItemText,
-  Toolbar,
   Typography,
 } from '@mui/material'
 import ExpandLess from '@mui/icons-material/ExpandLess';
@@ -34,7 +33,7 @@ const Home = () => {
 
   const handleListItemClick = (event, index, array) => {
     setSelectedIndex(index);
-    setIndexArray(array)
+    setIndexArray(array);
   };
 
   useEffect(() => {
@@ -72,7 +71,14 @@ const Home = () => {
     <>
       <CssBaseline />
       <Box>
-        <Toolbar />
+        <Typography
+          component="h1"
+          variant="h4"
+          align="center"
+          sx={{ margin: '2rem' }}
+        >
+          Catálogo de variáveis sobre chatbots na educação
+        </Typography>
         <Grid container spacing={0.5}>
           <Grid item xs={0.75} md={0.75} lg={0.75} />
           <Grid item xs={5} md={5} lg={5}>
@@ -110,7 +116,7 @@ const Home = () => {
                 }}
               >
                 {
-                  (typeof vi_vd.data === 'undefined' || typeof vi.data === 'undefined') ? (
+                  (typeof vi_vd.data === 'undefined' || Object.keys(vi_vd.data).length === 0 || typeof vi.data === 'undefined') ? (
                     <p>Loading...</p>
                   ) : (
                     vi.data.map((data, i) => {
@@ -213,7 +219,7 @@ const Home = () => {
               >
 
                 {
-                  (typeof vi_vd.data === 'undefined' || typeof vd.data === 'undefined') ? (
+                  (typeof vi_vd.data === 'undefined' || Object.keys(vi_vd.data).length === 0 || typeof vd.data === 'undefined') ? (
                     <p>Loading...</p>
                   ) : (
                     vd.data.map((data, i) => {

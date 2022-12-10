@@ -23,15 +23,15 @@ import Treatment from '../components/Treatment'
 
 const VariavelIndependente = () => {
   const [data, setData] = useState([{}])
+  const { id } = useParams();
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [factorTreatment, setFactorTreatment] = useState([{}]);
   const [references, setReferences] = useState([{}]);
   const [viReferences, setViReferences] = useState([{}]);
   const [openMore, setOpenMore] = useState(false);
-  const { id } = useParams();
 
   const variable_id = id
-  
+
   useEffect(() => {
     fetch('/independent_variable/' + id).then(
       res => res.json()
@@ -71,7 +71,7 @@ const VariavelIndependente = () => {
       }
     )
   }, [])
-  
+
   const handleClose = () => {
     setOpenMore(false);
   };
@@ -124,7 +124,7 @@ const VariavelIndependente = () => {
                   }}
                 >
                   <Typography variant="h5" gutterBottom>
-                    Description
+                    Descrição
                   </Typography>
                   <Typography
                     sx={{
@@ -154,7 +154,7 @@ const VariavelIndependente = () => {
                   </Typography>
                   <Grid container spacing={6}>
                     {
-                      (typeof factorTreatment.data === 'undefined') ? (
+                      (typeof factorTreatment.data === 'undefined' || Object.keys(factorTreatment.data).length === 0) ? (
                         <p></p>
                       ) : (
                         factorTreatment.data.filter(({ id_vi }) => id_vi.toString() === variable_id).map((data, i) => {
@@ -183,7 +183,7 @@ const VariavelIndependente = () => {
                                     margin: '0.5rem 1rem 0 0'
                                   }}
                                 >
-                                  <Button onClick={(event) => handleClickMore(event, data.id)}>More</Button>
+                                  <Button onClick={(event) => handleClickMore(event, data.id)}>Mais</Button>
                                 </Grid>
                               </Paper>
                             </Grid>
@@ -204,16 +204,16 @@ const VariavelIndependente = () => {
                   }}
                 >
                   <Typography variant="h6" gutterBottom>
-                    References
+                    Referências
                   </Typography>
                   <List>
-                  {(typeof viReferences.data === 'undefined' || typeof references.data === 'undefined') ? (
+                    {(typeof viReferences.data === 'undefined' || Object.keys(viReferences.data).length === 0 || typeof references.data === 'undefined') ? (
                       <p>Loading...</p>
                     ) : (
                       viReferences.data.filter(({ id_vi }) => id_vi.toString() === variable_id).map((data, i) => {
                         return (
                           <ListItem component="a" href={references.data.find(o => o.id === data.id_ref).referencia} key={i}>
-                            <ListItemText  primary={references.data.find(o => o.id === data.id_ref).referencia} />
+                            <ListItemText primary={references.data.find(o => o.id === data.id_ref).referencia} />
                           </ListItem>
                         )
                       }
@@ -228,44 +228,44 @@ const VariavelIndependente = () => {
         </Box>
         <Footer />
 
-{/* -------------------------------------------------------- */}
+        {/* -------------------------------------------------------- */}
 
-<Dialog
-  fullWidth
-  open={openMore}
-  onClose={handleClose}
-  aria-labelledby="alert-dialog-title"
-  aria-describedby="alert-dialog-description"
-  PaperProps={{
-    sx: {
-      fullWidth: 'true',
-      maxWidth: 'lg',
-      maxHeight: '80%',
-    }
-  }}
->
-  <DialogContent>
-    {(typeof factorTreatment.data === 'undefined') ? (
-      <Typography variant="h4" gutterBottom>
-        Loading...
-      </Typography>
-    ) : (factorTreatment.data.filter(({ id }) => id === selectedIndex).map((data, i) => {
-      return (
-        <>
-          <Typography>
-            {data['id_treatments_array'].split(',').map((id, i) => { return (<Treatment key={i} id={id} />) })}
-          </Typography>
-        </>
-      )
-    })
-    )}
-  </DialogContent>
-  <DialogActions>
-    <Button onClick={() => handleClose()} autoFocus>
-      Cancel
-    </Button>
-  </DialogActions>
-</Dialog>
+        <Dialog
+          fullWidth
+          open={openMore}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+          PaperProps={{
+            sx: {
+              fullWidth: 'true',
+              maxWidth: 'lg',
+              maxHeight: '80%',
+            }
+          }}
+        >
+          <DialogContent>
+            {(typeof factorTreatment.data === 'undefined' || Object.keys(factorTreatment.data).length === 0) ? (
+              <Typography variant="h4" gutterBottom>
+                Loading...
+              </Typography>
+            ) : (factorTreatment.data.filter(({ id }) => id === selectedIndex).map((data, i) => {
+              return (
+                <>
+                  <Typography>
+                    {data['id_treatments_array'].split(',').map((id, i) => { return (<Treatment key={i} id={id} />) })}
+                  </Typography>
+                </>
+              )
+            })
+            )}
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => handleClose()} autoFocus>
+              Cancelar
+            </Button>
+          </DialogActions>
+        </Dialog>
       </>
     )
   );

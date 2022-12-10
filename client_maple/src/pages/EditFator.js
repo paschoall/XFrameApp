@@ -105,7 +105,7 @@ const EditFator = () => {
                   }}
                 >
                   <Typography variant="h5" gutterBottom>
-                    Description
+                    Descrição
                   </Typography>
                   <Typography
                     sx={{
@@ -126,7 +126,7 @@ const EditFator = () => {
                       margin: '0',
                     }}
                   >
-                    <Button onClick={handleClickOpenDesc}>Edit Name and Description</Button>
+                    <Button onClick={handleClickOpenDesc}>Editar Nome ou Descrição</Button>
                   </Grid>
                 </Paper>
               </Grid>
@@ -139,20 +139,20 @@ const EditFator = () => {
                   }}
                 >
                   <Typography variant="h6" gutterBottom>
-                    References
+                    Referências
                   </Typography>
                   <List>
                     <ListItem>
                       <ListItemText primary={'Lorem Ipsum'} />
-                      <Button onClick={handleClickRef}>DELETE</Button>
+                      <Button onClick={handleClickRef}>Deletar</Button>
                     </ListItem>
                     <ListItem>
                       <ListItemText primary={'Lorem Ipsum'} />
-                      <Button onClick={handleClickRef}>DELETE</Button>
+                      <Button onClick={handleClickRef}>Deletar</Button>
                     </ListItem>
                     <ListItem>
                       <ListItemText primary={'Lorem Ipsum'} />
-                      <Button onClick={handleClickRef}>DELETE</Button>
+                      <Button onClick={handleClickRef}>Deletar</Button>
                     </ListItem>
                   </List>
                   <Grid
@@ -162,7 +162,7 @@ const EditFator = () => {
                       margin: '0.5rem 0 0 0'
                     }}
                   >
-                    <Button onClick={handleClickOpenRef}>Add Reference</Button>
+                    <Button onClick={handleClickOpenRef}>Adicionar Referência</Button>
                   </Grid>
                 </Paper>
               </Grid>
@@ -176,7 +176,7 @@ const EditFator = () => {
           aria-labelledby="responsive-dialog-title"
         >
           <DialogContent>
-            <EditForms formTitle={'Edit Name and Description'} fetchlink='/metric/' />
+            <EditForms formTitle={'Editar Nome ou Descrição'} fetchlink='/metric/' />
           </DialogContent>
         </Dialog>
         <Dialog
@@ -186,7 +186,7 @@ const EditFator = () => {
           aria-labelledby="responsive-dialog-title"
         >
           <DialogTitle id="responsive-dialog-title">
-            {"Add Reference"}
+            {"Adicionar Referência"}
           </DialogTitle>
           <DialogContent>
             <DialogContentText>

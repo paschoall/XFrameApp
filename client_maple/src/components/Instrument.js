@@ -13,21 +13,20 @@ import {
   Typography,
 } from '@mui/material';
 
-const Treatment = (props) => {
+const Instrument = (props) => {
   const [data, setData] = useState([{}])
   const { id } = useParams();
   const [references, setReferences] = useState([{}]);
-  const [treatmentReferences, setTreatmentReferences] = useState([{}]);
-  
+  const [instrumentReferences, setInstrumentReferences] = useState([{}]);
+
   const variable_id = id
 
   useEffect(() => {
-    fetch('/treatment/' + props.id).then(
+    fetch('/instrument/' + props.id).then(
       res => res.json()
     ).then(
       data => {
         setData(data)
-        console.log(data)
       }
     )
   }, [props.id])
@@ -43,15 +42,14 @@ const Treatment = (props) => {
   }, [])
 
   useEffect(() => {
-    fetch('/metric_references').then(
+    fetch('/instrument_references').then(
       res => res.json()
     ).then(
       data => {
-        setTreatmentReferences(data);
+        setInstrumentReferences(data);
       }
     )
   }, [])
-
 
   return (
     (typeof data.data === 'undefined') ? (
@@ -69,7 +67,7 @@ const Treatment = (props) => {
         }}
       >
         <Typography variant="h4" gutterBottom>
-          
+
         </Typography>
       </Box>
     ) : (
@@ -125,10 +123,10 @@ const Treatment = (props) => {
                   </Typography>
                   <List>
                     <ListItem>
-                    {(typeof treatmentReferences.data === 'undefined' || Object.keys(treatmentReferences.data).length === 0 || typeof references.data === 'undefined') ? (
+                      {(typeof instrumentReferences.data === 'undefined' || Object.keys(instrumentReferences.data).length === 0 || typeof references.data === 'undefined') ? (
                         <p></p>
                       ) : (
-                        treatmentReferences.data.filter(({ id_treatment }) => id_treatment.toString() === variable_id).map((data, i) => {
+                        instrumentReferences.data.filter(({ id_instrument }) => id_instrument.toString() === variable_id).map((data, i) => {
                           return (
                             <ListItem component="a" href={references.data.find(o => o.id === data.id_ref).referencia} key={i}>
                               <ListItemText primary={references.data.find(o => o.id === data.id_ref).referencia} />
@@ -150,4 +148,4 @@ const Treatment = (props) => {
   );
 }
 
-export default Treatment;
+export default Instrument;

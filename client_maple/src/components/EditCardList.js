@@ -26,7 +26,7 @@ const EditCardList = (props) => {
       columns={{ xs: 12, sm: 12, md: 12 }}
     >
       {
-        (typeof data.data === 'undefined') ? (
+        (typeof data.data === 'undefined' || Object.keys(data.data).length === 0) ? (
           <>
             <Toolbar /><p>Loading...</p>
           </>

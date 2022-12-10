@@ -17,7 +17,6 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 // import Badge from '@mui/material/Badge';
 // import NotificationsIcon from '@mui/icons-material/Notifications';
 
-import AdbIcon from '@mui/icons-material/Adb';
 import Avatar from '@mui/material/Avatar';
 import Tooltip from '@mui/material/Tooltip';
 import Menu from '@mui/material/Menu';
@@ -30,12 +29,12 @@ import { asyncLogout } from '../store/reducers/userSlice';
 import { Container } from '@mui/material';
 
 const drawerWidth = 240;
-const settings = ['Admin Page', 'Profile', 'Logout'];
+const settings = ['Página do Admin', 'Perfil', 'Sair'];
 function getPageLink(page) {
   switch (page) {
-    case 'Admin Page':
+    case 'Página do Admin':
       return '/admin-page/gerenciar-dados';
-    case 'Logout':
+    case 'Sair':
       return '/';
     default:
       return ''
@@ -108,7 +107,7 @@ function DashboardContent() {
   };
 
   const handleCloseUserMenu = (setting) => {
-    if (setting === 'Logout') {
+    if (setting === 'Sair') {
       logOut()
     }
     setAnchorElUser(null);
@@ -136,7 +135,7 @@ function DashboardContent() {
             >
               <MenuIcon />
             </IconButton>
-            <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+            {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
             <Typography
               variant='h6'
               noWrap
@@ -152,7 +151,7 @@ function DashboardContent() {
                 textDecoration: 'none',
               }}
             >
-              LOGO
+              Var-MAP
             </Typography>
             <Typography
               component="h1"
@@ -161,7 +160,7 @@ function DashboardContent() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Admin Page
+              Página do Admin
             </Typography>
             <Tooltip title='Open settings'>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
@@ -196,7 +195,7 @@ function DashboardContent() {
                       <Typography textAlign='center'>{setting}</Typography>
                     </MenuItem>
                   ) : (
-                    setting !== 'Admin Page' &&
+                    setting !== 'Página do Admin' &&
                     <MenuItem
                       component={Link}
                       to={getPageLink(setting)}

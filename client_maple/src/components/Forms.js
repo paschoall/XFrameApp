@@ -62,7 +62,7 @@ export default function Forms(props) {
             required
             name="name"
             control={control}
-            label="Name"
+            label="Nome"
           />
         </Grid>
         <Grid item xs={12}>
@@ -71,7 +71,7 @@ export default function Forms(props) {
             multiline
             name="description"
             control={control}
-            label="Description"
+            label="Descrição"
           />
         </Grid>
         <Grid item xs={12}>
@@ -107,12 +107,12 @@ export default function Forms(props) {
       <AlertDialog
         open={openError}
         title='Erro no Cadastro'
-        message='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+        message='Falha no registro.'
       />
       <AlertDialog
         open={open}
-        title='Cadastro Bem Sucedido'
-        message='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+        title='Adicionado com Sucesso'
+        message='Registro bem sucedido!'
       />
     </React.Fragment>
   );

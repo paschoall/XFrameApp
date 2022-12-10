@@ -74,7 +74,7 @@ const ManageMetrics = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Adicionar Métrica
+                        Add Metric
                       </Typography>}
                   />
                 </ListItemButton>
@@ -122,7 +122,7 @@ const ManageMetrics = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Editar Métricas
+                        Edit Metrics
                       </Typography>}
                   />
                 </ListItemButton>

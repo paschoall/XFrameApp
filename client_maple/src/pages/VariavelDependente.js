@@ -13,12 +13,26 @@ import {
   Paper,
   Typography,
 } from '@mui/material';
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+} from '@mui/material';
 import Footer from '../components/Footer';
+import Metric from '../components/Metric'
+import Instrument from '../components/Instrument'
 
 const VariavelDependente = () => {
   const [data, setData] = useState([{}])
   const { id } = useParams();
-  
+  const [selectedIndex, setSelectedIndex] = useState(null);
+  const [metricInstrument, setMetricInstrument] = useState([{}]);
+  const [references, setReferences] = useState([{}]);
+  const [vdReferences, setVdReferences] = useState([{}]);
+  const [openMore, setOpenMore] = useState(false);
+
+  const variable_id = id
+
   useEffect(() => {
     fetch('/dependent_variable/' + id).then(
       res => res.json()
@@ -30,8 +44,48 @@ const VariavelDependente = () => {
     )
   }, [id])
 
+  useEffect(() => {
+    fetch('/metric_instrument_relationships').then(
+      res => res.json()
+    ).then(
+      data => {
+        setMetricInstrument(data);
+      }
+    )
+  }, [])
+
+  useEffect(() => {
+    fetch('/references').then(
+      res => res.json()
+    ).then(
+      data => {
+        setReferences(data);
+      }
+    )
+  }, [])
+
+  useEffect(() => {
+    fetch('/vd_references').then(
+      res => res.json()
+    ).then(
+      data => {
+        setVdReferences(data);
+      }
+    )
+  }, [])
+
+  const handleClose = () => {
+    setOpenMore(false);
+  };
+  const handleClickMore = (event, more_id) => {
+    setSelectedIndex(more_id)
+    setOpenMore(true)
+  }
+
   return (
+    
     (typeof data.data === 'undefined') ? (
+      
       <Box
         sx={{
           display: 'flex',
@@ -74,7 +128,7 @@ const VariavelDependente = () => {
                   }}
                 >
                   <Typography variant="h5" gutterBottom>
-                    Description
+                    Descrição
                   </Typography>
                   <Typography
                     sx={{
@@ -100,32 +154,48 @@ const VariavelDependente = () => {
                   }}
                 >
                   <Typography variant="h5" gutterBottom>
-                    Metrics and Instruments
+                    Métricas e Instrumentos
                   </Typography>
-                  <Grid container spacing={6}
-                    sx={{
-                      display: 'flex',
-                      height: '100%',
-                    }}
-                  >
-                    <Grid item xs={12} md={4} lg={4}>
-                      <Paper
-                        component={Button}
-                        sx={{
-                          p: 2,
-                          display: 'flex',
-                          flexDirection: 'column',
-                          height: '100%',
-                          width: '100%',
-                          textTransform: 'none',
-                          alignItems: 'flex-start',
-                        }}
-                      >
-                        <Typography variant="body1" gutterBottom>
-                          Instrumento 1
-                        </Typography>
-                      </Paper>
-                    </Grid>
+                  <Grid container spacing={6}>
+                    {
+                      (typeof metricInstrument.data === 'undefined' || Object.keys(metricInstrument.data).length === 0) ? (
+                        <p></p>
+                      ) : (
+                        metricInstrument.data.filter(({ id_vd }) => id_vd.toString() === variable_id).map((data, i) => {
+                          return (
+                            <Grid key={i} item xs={12} md={4} lg={4}>
+                              <Paper
+                                // component={Button}
+                                sx={{
+                                  p: 2,
+                                  display: 'flex',
+                                  flexDirection: 'column',
+                                  height: '100%',
+                                  width: '100%',
+                                  textTransform: 'none',
+                                  alignItems: 'flex-start',
+                                }}
+                              >
+                                <Typography variant="body1" gutterBottom>
+                                  {(data['id_metric'] === 0 ? '' : 'Métrica')}
+                                  {(data['id_instrument'] === 0 ? '' : 'Instrumento')}
+                                </Typography>
+                                <Grid
+                                  container spacing={2}
+                                  rowSpacing={1}
+                                  sx={{
+                                    margin: '0.5rem 0 0 -0.5rem'
+                                  }}
+                                >
+                                  <Button onClick={(event) => handleClickMore(event, data.id)}>Mais</Button>
+                                </Grid>
+                              </Paper>
+                            </Grid>
+                          )
+                        }
+                        )
+                      )
+                    }
                   </Grid>
                 </Paper>
               </Grid>
@@ -138,12 +208,22 @@ const VariavelDependente = () => {
                   }}
                 >
                   <Typography variant="h6" gutterBottom>
-                    References
+                    Referências
                   </Typography>
                   <List>
-                    <ListItem>
-                      <ListItemText primary={'Lorem Ipsum'} />
-                    </ListItem>
+                    {(typeof vdReferences.data === 'undefined' || Object.keys(vdReferences.data).length === 0 || typeof references.data === 'undefined') ? (
+                      <p>Loading...</p>
+                    ) : (
+                      vdReferences.data.filter(({ id_vd }) => id_vd.toString() === variable_id).map((data, i) => {
+                        return (
+                          <ListItem component="a" href={references.data.find(o => o.id === data.id_ref).referencia} key={i}>
+                            <ListItemText primary={references.data.find(o => o.id === data.id_ref).referencia} />
+                          </ListItem>
+                        )
+                      }
+                      )
+                    )
+                    }
                   </List>
                 </Paper>
               </Grid>
@@ -151,6 +231,54 @@ const VariavelDependente = () => {
           </Container>
         </Box>
         <Footer />
+
+        {/* -------------------------------------------------------- */}
+
+        <Dialog
+          fullWidth
+          open={openMore}
+          onClose={handleClose}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+          PaperProps={{
+            sx: {
+              fullWidth: 'true',
+              maxWidth: 'lg',
+              maxHeight: '80%',
+            }
+          }}
+        >
+          <DialogContent>
+            {(typeof metricInstrument.data === 'undefined' || Object.keys(metricInstrument.data).length === 0) ? (
+              <Typography variant="h4" gutterBottom>
+                Loading...
+              </Typography>
+            ) : (metricInstrument.data.filter(({ id }) => id === selectedIndex).map((data, i) => {
+              return (
+                (data['id_instrument'] === 0) ?
+                  (
+                    <>
+                      <Typography>
+                        <Metric key={i} id={data['id_metric']} />
+                      </Typography>
+                    </>
+                  ) : (
+                    <>
+                      <Typography>
+                        <Instrument key={i} id={data['id_instrument']} />
+                      </Typography>
+                    </>
+                  )
+              )
+            })
+            )}
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => handleClose()} autoFocus>
+              Cancelar
+            </Button>
+          </DialogActions>
+        </Dialog>
       </>
     )
   );

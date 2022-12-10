@@ -75,7 +75,7 @@ const ManageData = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Gerenciar Variáveis
+                        Gerenciar Variables
                       </Typography>}
                   />
                 </ListItemButton>
@@ -95,7 +95,7 @@ const ManageData = () => {
               >
                 <ListItemButton
                   component={Link}
-                  to='/admin-page/gerenciar-fatores-tratamentos'
+                  to='/admin-page/gerenciar-tratamentos/tratamentos'
                   sx={{
                     display: 'flex',
                     flexDirection: 'column',
@@ -123,7 +123,7 @@ const ManageData = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Gerenciar Fatores e Tratamentos
+                        Gerenciar Treatments
                       </Typography>}
                   />
                 </ListItemButton>

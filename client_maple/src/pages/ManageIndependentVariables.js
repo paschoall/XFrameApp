@@ -74,7 +74,7 @@ const ManageIndependentVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Adicionar Variável Independente
+                        Add Independent Variable
                       </Typography>}
                   />
                 </ListItemButton>
@@ -122,7 +122,7 @@ const ManageIndependentVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Editar Variável Independente
+                        Edit Variáveis Independentes
                       </Typography>}
                   />
                 </ListItemButton>

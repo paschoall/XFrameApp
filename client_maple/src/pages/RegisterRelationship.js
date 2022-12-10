@@ -24,7 +24,7 @@ const RegisterRelationship = () => {
   const [vi, setVi] = useState([{}])
   const [vd, setVd] = useState([{}])
   const [vi_vd, setVivd] = useState([{}])
-  
+
 
 
   const handleViListItemClick = (event, index) => {
@@ -82,7 +82,7 @@ const RegisterRelationship = () => {
       id_vi: selectedViIndex,
       id_vd_array: indexArray.toString(),
     }
-    
+
     const requestOptions = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -150,7 +150,7 @@ const RegisterRelationship = () => {
 
 
                 {
-                  (typeof vi_vd.data === 'undefined' || typeof vi.data === 'undefined') ? (
+                  (typeof vi_vd.data === 'undefined' || Object.keys(vi_vd.data).length === 0 || typeof vi.data === 'undefined') ? (
                     <p>Loading...</p>
                   ) : (
                     vi.data.map((data, i) => {
@@ -225,7 +225,7 @@ const RegisterRelationship = () => {
               >
 
                 {
-                  (typeof vi_vd.data === 'undefined' || typeof vd.data === 'undefined') ? (
+                  (typeof vi_vd.data === 'undefined' || Object.keys(vi_vd.data).length === 0 || typeof vd.data === 'undefined') ? (
                     <p>Loading...</p>
                   ) : (
                     vd.data.map((data, i) => {
@@ -278,12 +278,12 @@ const RegisterRelationship = () => {
       <AlertDialog
         open={openError}
         title='Erro no Cadastro'
-        message='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+        message='Falha no registro.'
       />
       <AlertDialog
         open={open}
-        title='Cadastro Bem Sucedido'
-        message='Lorem Ipsum is simply dummy text of the printing and typesetting industry.'
+        title='Adicionado com Sucesso'
+        message='Registro bem sucedido!'
       />
       <Footer />
     </>

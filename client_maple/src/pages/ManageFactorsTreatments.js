@@ -30,55 +30,7 @@ const ManageFactorsTreatments = () => {
       >
         <Container maxWidth="xl" sx={{ mt: 4, mb: 4, }} >
           <Grid container spacing={8}>
-            <Grid item xs={0} md={2} lg={2} />
-            <Grid item xs={12} md={4} lg={4}>
-              <Paper
-                sx={{
-                  p: 2,
-                  display: 'flex',
-                  flexDirection: 'column',
-                  height: '40vh',
-                  alignItems: 'center',
-                  alignContent: 'center',
-                  padding: '0',
-                }}
-              >
-                <ListItemButton
-                  component={Link}
-                  to='/admin-page/gerenciar-fatores-tratamentos/fatores'
-                  sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    width: '100%',
-                    height: '100%',
-                    padding: '1vh',
-                  }}
-                >
-                  <ListItemIcon>
-                    <RuleIcon
-                      sx={{
-                        fontSize: '24vh',
-                        textAlign: 'center',
-                      }}
-                    />
-                  </ListItemIcon>
-                  <ListItemText
-                    disableTypography
-                    primary={
-                      <Typography
-                        type="body2"
-                        sx={{
-                          marginTop: '2vh',
-                          fontSize: '3.6vh',
-                          textAlign: 'center',
-                        }}
-                      >
-                        Gerenciar Fatores
-                      </Typography>}
-                  />
-                </ListItemButton>
-              </Paper>
-            </Grid>
+            <Grid item xs={0} md={4} lg={4} />
             <Grid item xs={12} md={4} lg={4}>
               <Paper
                 sx={{
@@ -121,7 +73,7 @@ const ManageFactorsTreatments = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Gerenciar Tratamentos
+                        Gerenciar Treatments
                       </Typography>}
                   />
                 </ListItemButton>
