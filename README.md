@@ -7,12 +7,13 @@ basta é necessário cumprir alguns requisitos:
 
 1. Ter o gerenciador de banco de dados MySQL instalado na maquina <https://www.mysql.com/>
 2. Ter Node.js instalado na maquina <https://nodejs.org/en/>
-3. Ter Python instalado na maquina <https://www.python.org/downloads/>
+3. Ter npm instalado na maquina <https://www.npmjs.com/>
+4. Ter Python instalado na maquina <https://www.python.org/downloads/>
 
 
 Após cumprir com os requisitos basta seguir os seguintes passos:
 
-1. Acessar o repositório disponível em <[https://github.com/paschoall/variaveisExperimentais](https://github.com/paschoall/Var-MAP-chatbots)>
+1. Acessar o repositório disponível em <https://github.com/paschoall/Var-MAP-chatbots>
 2. Realizar a clonagem do repositório
 3. Abrir um terminal na pasta clonada
 4. No terminal acessar a pasta \client_maple
@@ -27,7 +28,7 @@ $ pip install -r requirements.txt
 acordo com o usuário e senha do banco de dados instalado anteriormente
 10. Dentro da pasta \flask_server acessar a pasta \createdb
 11. alterar as informações de usuário e senha utilizando as mesmas credencias do banco de
-dados, que foram usados no passo anterior, no arquivo ".env".
+dados, que foram usados no passo anterior, no arquivo "sqlcreatedb.py".
 12. Executar o script "sqlcreatedb.py"presente na pasta, abrindo um terminal no local da pasta
 e executando o comando:
 $ python sqlcreatedb.py
@@ -44,6 +45,8 @@ $ python run.py
 16. Agora os servidores front-end e back-end estarão rodando em modo de desenvolvimento
 na maquina local e qualquer modificação nas páginas web e na API poderão ser testadas
 em um navegador.
+17. Para acessar as páginas de administrador é necessário alterar o acesso no mysql, para isso basta cadastrar um usuário pelo próprio ambiente, em seguida acessar o servidor mysql e executar o seguinte comando, substituinfo o nome_do_usuario_criado pelo que foi utilizado durante o cadastro:
+UPDATE variable_selection_tool.users SET admin = 1 WHERE username = "nome_do_usuario_criado";
 
 Para realização de um deploy e instalação em um servidor próprio do back-end, o Flask oferece as instruções no seguinte endereço:
 <https://flask.palletsprojects.com/en/2.2.x/deploying/>.
