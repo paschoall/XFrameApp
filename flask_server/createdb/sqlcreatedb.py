@@ -3,8 +3,8 @@ import mysql.connector
 from dotenv import load_dotenv
 
 load_dotenv()
-MYSQL_USER = os.environ['MYSQL_USER']
-MYSQL_PASSWORD = os.environ['MYSQL_PASSWORD']
+MYSQL_USER = 'root'
+MYSQL_PASSWORD = 'VarMap*123'
 
 connection = mysql.connector.connect(
     host='localhost',
