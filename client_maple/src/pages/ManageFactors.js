@@ -11,7 +11,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ListAltIcon from '@mui/icons-material/ListAlt';
-import AddIcon from '@mui/icons-material/Add';
+import AddIcon from '@mui/icons-material/Adicionar';
 
 import Footer from '../components/Footer';
 
@@ -74,7 +74,7 @@ const ManageFactors = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Add Factors
+                        Adicionar Fatores
                       </Typography>}
                   />
                 </ListItemButton>

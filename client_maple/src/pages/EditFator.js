@@ -193,15 +193,15 @@ const EditFator = () => {
               Choose Factors
             </DialogContentText>
             <DialogContentText>
-              Choose Treatments
+              Escolher Tratamentos
             </DialogContentText>
           </DialogContent>
           <DialogActions>
             <Button autoFocus onClick={handleClose}>
-              Cancel
+              Cancelar
             </Button>
             <Button onClick={handleClose} autoFocus>
-              Agree
+              Escolher
             </Button>
           </DialogActions>
         </Dialog>

@@ -628,7 +628,7 @@ const EditVariavelDependente = () => {
               Cancelar
             </Button>
             <Button onClick={handleAddMI} autoFocus>
-              Add
+              Adicionar
             </Button>
           </DialogActions>
         </Dialog>
@@ -664,7 +664,7 @@ const EditVariavelDependente = () => {
             </DialogTitle>
             <DialogContent>
               <DialogContentText>
-                Add the reference link below
+                Adicionar o link de referência abaixo
               </DialogContentText>
               <TextField
                 autoFocus
@@ -682,7 +682,7 @@ const EditVariavelDependente = () => {
                 Cancelar
               </Button>
               <Button type="submit" autoFocus>
-                Add
+                Adicionar
               </Button>
             </DialogActions>
           </Container>

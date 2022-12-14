@@ -381,7 +381,7 @@ const EditVariavelIndependente = () => {
                   }}
                 >
                   <Typography variant="h5" gutterBottom>
-                    Treatments
+                    Tratamentos
                   </Typography>
                   <Grid container spacing={6}>
                     {
@@ -405,7 +405,7 @@ const EditVariavelIndependente = () => {
                               >
                                 <Typography variant="body1" gutterBottom>
                                   {data.id_treatments_array.split(',').length}{' '}
-                                  Treatment{(data.id_treatments_array.split(',').length > 1) ? ('s') : ('')}
+                                  Tratamento{(data.id_treatments_array.split(',').length > 1) ? ('s') : ('')}
                                 </Typography>
                                 <Grid
                                   container spacing={2}
@@ -433,7 +433,7 @@ const EditVariavelIndependente = () => {
                       margin: '3rem 0 0 0'
                     }}
                   >
-                    <Button onClick={handleClickOpenFt}>Add Treatments</Button>
+                    <Button onClick={handleClickOpenFt}>Adicionar Tratamentos</Button>
                   </Grid>
                 </Paper>
               </Grid>
@@ -518,14 +518,14 @@ const EditVariavelIndependente = () => {
         >
           <DialogTitle id="responsive-dialog-title"
           >
-            {"Add Treatments"}
+            {"Adicionar Tratamentos"}
           </DialogTitle>
           <DialogContent>
             <Grid container spacing={3}>
 
               <Grid item xs={12} md={12} lg={12}>
                 <DialogContentText>
-                  Choose Treatments
+                  Escolha os Tratamentos
                 </DialogContentText>
                 <Paper square
                   variant='outlined'
@@ -542,7 +542,7 @@ const EditVariavelIndependente = () => {
 
                   {
                     (typeof treatment.data === 'undefined' || Object.keys(treatment.data).length === 0) ? (
-                      <p>Loading...</p>
+                      <p></p>
                     ) : (
                       treatment.data.map((data, i) => {
                         return (
@@ -577,7 +577,7 @@ const EditVariavelIndependente = () => {
               Cancelar
             </Button>
             <Button onClick={handleAddFT} autoFocus>
-              Add
+              Adicionar
             </Button>
           </DialogActions>
         </Dialog>
@@ -596,7 +596,7 @@ const EditVariavelIndependente = () => {
             </DialogTitle>
             <DialogContent>
               <DialogContentText>
-                Add the reference link below
+                Adicionar o link de referência abaixo
               </DialogContentText>
               <TextField
                 autoFocus
@@ -614,7 +614,7 @@ const EditVariavelIndependente = () => {
                 Cancelar
               </Button>
               <Button type="submit" autoFocus>
-                Add
+                Adicionar
               </Button>
             </DialogActions>
           </Container>

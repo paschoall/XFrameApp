@@ -150,7 +150,7 @@ const VariavelIndependente = () => {
                   }}
                 >
                   <Typography variant="h5" gutterBottom>
-                    Treatments
+                  Tratamentos
                   </Typography>
                   <Grid container spacing={6}>
                     {
@@ -174,7 +174,7 @@ const VariavelIndependente = () => {
                               >
                                 <Typography variant="body1" gutterBottom>
                                   {data.id_treatments_array.split(',').length}{' '}
-                                  Treatment{(data.id_treatments_array.split(',').length > 1) ? ('s') : ('')}
+                                  Tratamento{(data.id_treatments_array.split(',').length > 1) ? ('s') : ('')}
                                 </Typography>
                                 <Grid
                                   container spacing={2}

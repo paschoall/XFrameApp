@@ -168,7 +168,7 @@ const ManageVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Gerenciar Relationships
+                        Gerenciar Relacionamentos
                       </Typography>}
                   />
                 </ListItemButton>

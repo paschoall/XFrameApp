@@ -270,7 +270,7 @@ const RegisterRelationship = () => {
                 marginTop: '2rem'
               }}
             >
-              Add
+              Adicionar
             </Button>
           </Grid>
         </Grid>

@@ -14,10 +14,10 @@ const RegisterTreatment = () => {
       <Container component='main' maxWidth='sm' sx={{ mb: 4 }}>
         <Paper variant='outlined' sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Typography component='h1' variant='h4' align='center' m={2}>
-            Register Treatment
+            Cadastrar Tratamento
           </Typography>
           <React.Fragment>
-            <Forms fetchlink = '/treatment'/>
+            <Forms fetchlink='/treatment' />
           </React.Fragment>
         </Paper>
       </Container>

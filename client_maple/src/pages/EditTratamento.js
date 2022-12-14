@@ -319,32 +319,6 @@ const EditTratamento = () => {
             <EditForms formTitle={'Editar Nome ou Descrição'} fetchlink='/metric/' />
           </DialogContent>
         </Dialog>
-        <Dialog
-          fullScreen={fullScreen}
-          open={openRef}
-          onClose={handleClose}
-          aria-labelledby="responsive-dialog-title"
-        >
-          <DialogTitle id="responsive-dialog-title">
-            {"Adicionar Referência"}
-          </DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              Choose Factors
-            </DialogContentText>
-            <DialogContentText>
-              Choose Treatments
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button autoFocus onClick={handleClose}>
-              Cancelar
-            </Button>
-            <Button onClick={handleClose} autoFocus>
-              Agree
-            </Button>
-          </DialogActions>
-        </Dialog>
         <Footer />
         
         {/* -------------------------------------------------------- */}
@@ -361,7 +335,7 @@ const EditTratamento = () => {
             </DialogTitle>
             <DialogContent>
               <DialogContentText>
-                Add the reference link below
+                Adicionar o link de referência abaixo
               </DialogContentText>
               <TextField
                 autoFocus
@@ -379,7 +353,7 @@ const EditTratamento = () => {
                 Cancelar
               </Button>
               <Button type="submit" autoFocus>
-                Add
+                Adicionar
               </Button>
             </DialogActions>
           </Container>
