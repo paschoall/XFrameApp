@@ -37,7 +37,7 @@ const EditTratamento = () => {
 
   const [open, setOpen] = useState(false);
   const [openDeleteRef, setOpenDeleteRef] = useState(false);
-  const [openError, setOpenError] = useState(false); 
+  const [openError, setOpenError] = useState(false);
   const [openDesc, setOpenDesc] = React.useState(false);
   const [openRef, setOpenRef] = React.useState(false);
   const theme = useTheme();
@@ -274,15 +274,15 @@ const EditTratamento = () => {
                           <Grid container >
                             <Grid item xs={10.5} md={10.5} lg={10.5}>
                               <ListItem key={i}>
-                            <a
-                            target="_blank"
-                            href={((references.data.find(o => o.id === data.id_ref).referencia.includes("//"))?(""):("//"))+
-                            references.data.find(o => o.id === data.id_ref).referencia}
-                            style={{ textDecoration: 'none' }}
-                            >
-                                <ListItemText primary={references.data.find(o => o.id === data.id_ref).referencia} />
+                                <a
+                                  target="_blank"
+                                  href={((references.data.find(o => o.id === data.id_ref).referencia.includes("//")) ? ("") : ("//")) +
+                                    references.data.find(o => o.id === data.id_ref).referencia}
+                                  style={{ textDecoration: 'none' }}
+                                >
+                                  <ListItemText primary={references.data.find(o => o.id === data.id_ref).referencia} />
                                 </a>
-                          </ListItem>
+                              </ListItem>
                             </Grid>
                             <Button
                               onClick={

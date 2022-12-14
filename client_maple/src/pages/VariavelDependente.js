@@ -83,9 +83,9 @@ const VariavelDependente = () => {
   }
 
   return (
-    
+
     (typeof data.data === 'undefined') ? (
-      
+
       <Box
         sx={{
           display: 'flex',
@@ -218,12 +218,12 @@ const VariavelDependente = () => {
                         return (
                           <ListItem key={i}>
                             <a
-                            target="_blank"
-                            href={((references.data.find(o => o.id === data.id_ref).referencia.includes("//"))?(""):("//"))+
-                            references.data.find(o => o.id === data.id_ref).referencia}
-                            style={{ textDecoration: 'none' }}
+                              target="_blank"
+                              href={((references.data.find(o => o.id === data.id_ref).referencia.includes("//")) ? ("") : ("//")) +
+                                references.data.find(o => o.id === data.id_ref).referencia}
+                              style={{ textDecoration: 'none' }}
                             >
-                            <ListItemText primary={references.data.find(o => o.id === data.id_ref).referencia} />
+                              <ListItemText primary={references.data.find(o => o.id === data.id_ref).referencia} />
                             </a>
                           </ListItem>
                         )

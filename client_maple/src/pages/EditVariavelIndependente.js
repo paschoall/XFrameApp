@@ -318,7 +318,7 @@ const EditVariavelIndependente = () => {
         }}
       >
         <Typography variant="h4" gutterBottom>
-          
+
         </Typography>
       </Box>
     ) : (
@@ -457,15 +457,15 @@ const EditVariavelIndependente = () => {
                           <Grid container >
                             <Grid item xs={10.5} md={10.5} lg={10.5}>
                               <ListItem key={i}>
-                            <a
-                            target="_blank"
-                            href={((references.data.find(o => o.id === data.id_ref).referencia.includes("//"))?(""):("//"))+
-                            references.data.find(o => o.id === data.id_ref).referencia}
-                            style={{ textDecoration: 'none' }}
-                            >
-                                <ListItemText primary={references.data.find(o => o.id === data.id_ref).referencia} />
+                                <a
+                                  target="_blank"
+                                  href={((references.data.find(o => o.id === data.id_ref).referencia.includes("//")) ? ("") : ("//")) +
+                                    references.data.find(o => o.id === data.id_ref).referencia}
+                                  style={{ textDecoration: 'none' }}
+                                >
+                                  <ListItemText primary={references.data.find(o => o.id === data.id_ref).referencia} />
                                 </a>
-                          </ListItem>
+                              </ListItem>
                             </Grid>
                             <Button
                               onClick={

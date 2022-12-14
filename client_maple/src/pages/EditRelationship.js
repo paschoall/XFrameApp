@@ -38,13 +38,13 @@ const EditRelationship = () => {
   const [openWarning, setOpenWarning] = useState(false);
   const navigate = useNavigate();
 
-  
+
 
   const handleViListItemClick = (event, index) => {
     setSelectedDesign(index)
     setIndexArray([])
   };
-  
+
   const handleListItemClick = (event, index, array) => {
     setSelectedIndex(index);
     setIndexArray(array)
