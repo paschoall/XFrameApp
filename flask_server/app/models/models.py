@@ -253,7 +253,6 @@ class VariableSchema(ma.Schema):
     class Meta:
         fields = ('id', 'name', 'description')
 
-
 variable_schema = VariableSchema()
 variables_schema = VariableSchema(many=True)
 
