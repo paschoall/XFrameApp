@@ -128,9 +128,16 @@ const Metric = (props) => {
                       ) : (
                         metricReferences.data.filter(({ id_metric }) => id_metric.toString() === variable_id).map((data, i) => {
                           return (
-                            <ListItem component="a" href={references.data.find(o => o.id === data.id_ref).referencia} key={i}>
+                            <ListItem key={i}>
+                            <a
+                            target="_blank"
+                            href={((references.data.find(o => o.id === data.id_ref).referencia.includes("//"))?(""):("//"))+
+                            references.data.find(o => o.id === data.id_ref).referencia}
+                            style={{ textDecoration: 'none' }}
+                            >
                               <ListItemText primary={references.data.find(o => o.id === data.id_ref).referencia} />
-                            </ListItem>
+                              </a>
+                          </ListItem>
                           )
                         }
                         )
