@@ -67,7 +67,6 @@ export default function Forms(props) {
         </Grid>
         <Grid item xs={12}>
           <FormInputText
-            required
             multiline
             name="description"
             control={control}
