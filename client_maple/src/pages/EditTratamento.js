@@ -90,7 +90,7 @@ const EditTratamento = () => {
         body: JSON.stringify(data)
       }
 
-      fetch('/instrument_reference', requestOptions)
+      fetch('/treatment_reference', requestOptions)
         .then(response => {
           if (!response.ok) {
             throw new Error('Network response was not OK');
@@ -202,7 +202,6 @@ const EditTratamento = () => {
         }}
       >
         <Typography variant="h4" gutterBottom>
-          Loading...
         </Typography>
       </Box>
     ) : (
@@ -316,11 +315,10 @@ const EditTratamento = () => {
           aria-labelledby="responsive-dialog-title"
         >
           <DialogContent>
-            <EditForms formTitle={'Editar Nome ou Descrição'} fetchlink='/metric/' />
+            <EditForms formTitle={'Editar Nome ou Descrição'} fetchlink='/treatment/' />
           </DialogContent>
         </Dialog>
         <Footer />
-        
         {/* -------------------------------------------------------- */}
 
         <Dialog

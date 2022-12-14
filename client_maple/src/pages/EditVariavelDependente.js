@@ -326,7 +326,6 @@ const EditVariavelDependente = () => {
         }}
       >
         <Typography variant="h4" gutterBottom>
-          Loading...
         </Typography>
       </Box>
     ) : (
@@ -457,7 +456,7 @@ const EditVariavelDependente = () => {
                   </Typography>
                   <List>
                     {(typeof vdReferences.data === 'undefined' || Object.keys(vdReferences.data).length === 0 || typeof references.data === 'undefined') ? (
-                      <p>Loading...</p>
+                      <p></p>
                     ) : (
                       vdReferences.data.filter(({ id_vd }) => id_vd.toString() === variable_id).map((data, i) => {
                         return (
@@ -543,8 +542,8 @@ const EditVariavelDependente = () => {
                 >
 
                   {
-                    (typeof metrics.data === 'undefined') ? (
-                      <p>Loading...</p>
+                    (typeof metrics.data === 'undefined' || Object.keys(metrics.data).length === 0) ? (
+                      <p></p>
                     ) : (
                       metrics.data.map((data, i) => {
                         return (
@@ -591,8 +590,8 @@ const EditVariavelDependente = () => {
                 >
 
                   {
-                    (typeof instruments.data === 'undefined') ? (
-                      <p>Loading...</p>
+                    (typeof instruments.data === 'undefined' || Object.keys(instruments.data).length === 0) ? (
+                      <p></p>
                     ) : (
                       instruments.data.map((data, i) => {
                         return (
@@ -771,7 +770,6 @@ const EditVariavelDependente = () => {
           <DialogContent>
             {(typeof metricInstrument.data === 'undefined' || Object.keys(metricInstrument.data).length === 0) ? (
               <Typography variant="h4" gutterBottom>
-                Loading...
               </Typography>
             ) : (metricInstrument.data.filter(({ id }) => id === selectedIndex).map((data, i) => {
               return (

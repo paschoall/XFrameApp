@@ -318,7 +318,7 @@ const EditVariavelIndependente = () => {
         }}
       >
         <Typography variant="h4" gutterBottom>
-          Loading...
+          
         </Typography>
       </Box>
     ) : (
@@ -704,7 +704,6 @@ const EditVariavelIndependente = () => {
           <DialogContent>
             {(typeof factorTreatment.data === 'undefined' || Object.keys(factorTreatment.data).length === 0) ? (
               <Typography variant="h4" gutterBottom>
-                Loading...
               </Typography>
             ) : (factorTreatment.data.filter(({ id }) => id === selectedIndex).map((data, i) => {
               return (

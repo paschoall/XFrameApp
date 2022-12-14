@@ -121,7 +121,7 @@ const Treatment = (props) => {
                   }}
                 >
                   <Typography variant="h6" gutterBottom>
-                    Referências
+                    Referência
                   </Typography>
                   <List>
                     <ListItem>

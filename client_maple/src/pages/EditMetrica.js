@@ -202,7 +202,6 @@ const EditMetrica = () => {
         }}
       >
         <Typography variant="h4" gutterBottom>
-          Loading...
         </Typography>
       </Box>
     ) : (

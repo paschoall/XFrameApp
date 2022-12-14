@@ -44,7 +44,7 @@ const EditRelationship = () => {
     setSelectedDesign(index)
     setIndexArray([])
   };
-
+  
   const handleListItemClick = (event, index, array) => {
     setSelectedIndex(index);
     setIndexArray(array)
@@ -108,7 +108,7 @@ const EditRelationship = () => {
         method: 'DELETE',
       }
 
-      fetch('/vi_vd_relationship/' + selectedDesign, requestOptions).then(
+      fetch('/vi_vd_relationship/' + selectedIndex, requestOptions).then(
         response => {
           if (!response.ok) {
             throw new Error('Network response was not OK');
@@ -351,7 +351,7 @@ const EditRelationship = () => {
       </Dialog>
       <AlertDialog
         open={openError}
-        title='Delete Error'
+        title='Erro ao Deletar'
       />
       <Dialog
         open={openWarning}
@@ -360,7 +360,7 @@ const EditRelationship = () => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          Select the Design
+          Selecione o Design
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -368,7 +368,7 @@ const EditRelationship = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={() => handleCloseDelete()} autoFocus>
-            Close
+            Fechar
           </Button>
         </DialogActions>
       </Dialog>

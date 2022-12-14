@@ -208,7 +208,7 @@ const VariavelIndependente = () => {
                   </Typography>
                   <List>
                     {(typeof viReferences.data === 'undefined' || Object.keys(viReferences.data).length === 0 || typeof references.data === 'undefined') ? (
-                      <p>Loading...</p>
+                      <p></p>
                     ) : (
                       viReferences.data.filter(({ id_vi }) => id_vi.toString() === variable_id).map((data, i) => {
                         return (

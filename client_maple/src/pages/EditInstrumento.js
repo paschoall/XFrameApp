@@ -203,7 +203,6 @@ const EditInstrumento = () => {
         }}
       >
         <Typography variant="h4" gutterBottom>
-          Loading...
         </Typography>
       </Box>
     ) : (
@@ -317,7 +316,7 @@ const EditInstrumento = () => {
           aria-labelledby="responsive-dialog-title"
         >
           <DialogContent>
-            <EditForms formTitle={'Editar Nome ou Descrição'} fetchlink='/metric/' />
+            <EditForms formTitle={'Editar Nome ou Descrição'} fetchlink='/instrument/' />
           </DialogContent>
         </Dialog>
         <Footer />

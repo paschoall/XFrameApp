@@ -212,7 +212,7 @@ const VariavelDependente = () => {
                   </Typography>
                   <List>
                     {(typeof vdReferences.data === 'undefined' || Object.keys(vdReferences.data).length === 0 || typeof references.data === 'undefined') ? (
-                      <p>Loading...</p>
+                      <p></p>
                     ) : (
                       vdReferences.data.filter(({ id_vd }) => id_vd.toString() === variable_id).map((data, i) => {
                         return (
