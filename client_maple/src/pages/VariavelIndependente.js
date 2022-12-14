@@ -204,16 +204,23 @@ const VariavelIndependente = () => {
                   }}
                 >
                   <Typography variant="h6" gutterBottom>
-                    Referências
+                    Referênciasa
                   </Typography>
                   <List>
                     {(typeof viReferences.data === 'undefined' || Object.keys(viReferences.data).length === 0 || typeof references.data === 'undefined') ? (
-                      <p>Loading...</p>
+                      <p></p>
                     ) : (
                       viReferences.data.filter(({ id_vi }) => id_vi.toString() === variable_id).map((data, i) => {
                         return (
-                          <ListItem component="a" href={references.data.find(o => o.id === data.id_ref).referencia} key={i}>
+                          <ListItem key={i}>
+                            <a
+                            target="_blank"
+                            href={((references.data.find(o => o.id === data.id_ref).referencia.includes("//"))?(""):("//"))+
+                            references.data.find(o => o.id === data.id_ref).referencia}
+                            style={{ textDecoration: 'none' }}
+                            >
                             <ListItemText primary={references.data.find(o => o.id === data.id_ref).referencia} />
+                            </a>
                           </ListItem>
                         )
                       }

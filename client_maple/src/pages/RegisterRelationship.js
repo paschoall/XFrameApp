@@ -150,7 +150,7 @@ const RegisterRelationship = () => {
 
 
                 {
-                  (typeof vi_vd.data === 'undefined' || typeof vi.data === 'undefined') ? (
+                  (typeof vi_vd.data === 'undefined' || typeof vi.data === 'undefined' || Object.keys(vi.data).length === 0) ? (
                     <p>Loading...</p>
                   ) : (
                     vi.data.map((data, i) => {
@@ -225,7 +225,7 @@ const RegisterRelationship = () => {
               >
 
                 {
-                  (typeof vi_vd.data === 'undefined' || typeof vd.data === 'undefined') ? (
+                  (typeof vi_vd.data === 'undefined' || typeof vd.data === 'undefined' || Object.keys(vd.data).length === 0) ? (
                     <p>Loading...</p>
                   ) : (
                     vd.data.map((data, i) => {

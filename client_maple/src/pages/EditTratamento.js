@@ -90,7 +90,7 @@ const EditTratamento = () => {
         body: JSON.stringify(data)
       }
 
-      fetch('/instrument_reference', requestOptions)
+      fetch('/treatment_reference', requestOptions)
         .then(response => {
           if (!response.ok) {
             throw new Error('Network response was not OK');
@@ -202,7 +202,6 @@ const EditTratamento = () => {
         }}
       >
         <Typography variant="h4" gutterBottom>
-          Loading...
         </Typography>
       </Box>
     ) : (
@@ -274,9 +273,16 @@ const EditTratamento = () => {
                         return (
                           <Grid container >
                             <Grid item xs={10.5} md={10.5} lg={10.5}>
-                              <ListItem component="a" href={references.data.find(o => o.id === data.id_ref).referencia} key={i}>
+                              <ListItem key={i}>
+                            <a
+                            target="_blank"
+                            href={((references.data.find(o => o.id === data.id_ref).referencia.includes("//"))?(""):("//"))+
+                            references.data.find(o => o.id === data.id_ref).referencia}
+                            style={{ textDecoration: 'none' }}
+                            >
                                 <ListItemText primary={references.data.find(o => o.id === data.id_ref).referencia} />
-                              </ListItem>
+                                </a>
+                          </ListItem>
                             </Grid>
                             <Button
                               onClick={
@@ -316,11 +322,10 @@ const EditTratamento = () => {
           aria-labelledby="responsive-dialog-title"
         >
           <DialogContent>
-            <EditForms formTitle={'Editar Nome ou Descrição'} fetchlink='/metric/' />
+            <EditForms formTitle={'Editar Nome ou Descrição'} fetchlink='/treatment/' />
           </DialogContent>
         </Dialog>
         <Footer />
-        
         {/* -------------------------------------------------------- */}
 
         <Dialog

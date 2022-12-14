@@ -103,12 +103,12 @@ export default function Formulario(props) {
           </Box>
           <AlertDialog
             open={openError}
-            title='Update Error'
-            message="Couldn't edit the varible!"
+            title='Erro na Edição'
+            message="Erro ao editar a variável"
           />
           <AlertDialog
             open={open}
-            title='Successful Update'
+            title='Atualização Bem Sucedida'
             message='A variável foi editada com sucesso!'
           />
         </React.Fragment>
