@@ -179,3 +179,4 @@ dmypy.json
 cython_debug/
 
 *.pyc 
+client_maple/package-lock.json
