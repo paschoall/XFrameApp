@@ -152,7 +152,7 @@ const EditMetrica = () => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     try {
-      setReference(references.data.find(o => o.referencia === formData.get('reference')).id)
+      setReference(references.data.find(o => o.referencia === formData.get('reference') && o.referencia_bib === formData.get('bib_reference')).id)
     } catch (e) {
       if (e instanceof TypeError) {
         const refData = {
@@ -267,45 +267,47 @@ const EditMetrica = () => {
                     Referências
                   </Typography>
                   <List>
-                    <Grid container spacing={2}>
-                      {(typeof metricReferences.data === 'undefined' || Object.keys(metricReferences.data).length === 0 || typeof references.data === 'undefined') ? (
-                        <p></p>
-                      ) : (
-                        metricReferences.data.filter(({ id_metric }) => id_metric.toString() === variable_id).map((data, i) => {
-                          return (
-                            <Grid container item key={i} xs={12} md={12} lg={12} alignItems="flex-start">
-                              <Grid item xs={5} md={5} lg={5} zeroMinWidth>
-                                {references.data.find(o => o.id === data.id_ref).referencia_bib}
-                              </Grid>
-                              <Grid item xs={5.5} md={5.5} lg={5.5} alignItems="flex-start" zeroMinWidth>
-                                {"Disponível em: "}
-                                <a
-                                  target="_blank"
-                                  rel='noreferrer'
-                                  href={((references.data.find(o => o.id === data.id_ref).referencia.includes("//")) ? ("") : ("//")) +
-                                    references.data.find(o => o.id === data.id_ref).referencia}
-                                  style={{ textDecoration: 'none' }}
+                    <ListItem>
+                      <Grid container spacing={2}>
+                        {(typeof metricReferences.data === 'undefined' || Object.keys(metricReferences.data).length === 0 || typeof references.data === 'undefined') ? (
+                          <p></p>
+                        ) : (
+                          metricReferences.data.filter(({ id_metric }) => id_metric.toString() === variable_id).map((data, i) => {
+                            return (
+                              <Grid container item key={i} xs={12} md={12} lg={12} alignItems="flex-start">
+                                <Grid item xs={5} md={5} lg={5} zeroMinWidth>
+                                  {references.data.find(o => o.id === data.id_ref).referencia_bib}
+                                </Grid>
+                                <Grid item xs={5.5} md={5.5} lg={5.5} alignItems="flex-start" zeroMinWidth>
+                                  {"Disponível em: "}
+                                  <a
+                                    target="_blank"
+                                    rel='noreferrer'
+                                    href={((references.data.find(o => o.id === data.id_ref).referencia.includes("//")) ? ("") : ("//")) +
+                                      references.data.find(o => o.id === data.id_ref).referencia}
+                                    style={{ textDecoration: 'none' }}
+                                  >
+                                    <ListItemText primary={references.data.find(o => o.id === data.id_ref).referencia} />
+                                  </a>
+                                </Grid>
+                                <Button
+                                  onClick={
+                                    (event) => handleClickRef(
+                                      event,
+                                      data['id']
+                                    )
+                                  }
                                 >
-                                  <ListItemText primary={references.data.find(o => o.id === data.id_ref).referencia} />
-                                </a>
+                                  DELETAR
+                                </Button>
                               </Grid>
-                              <Button
-                                onClick={
-                                  (event) => handleClickRef(
-                                    event,
-                                    data['id']
-                                  )
-                                }
-                              >
-                                DELETAR
-                              </Button>
-                            </Grid>
+                            )
+                          }
                           )
-                        }
                         )
-                      )
-                      }
-                    </Grid>
+                        }
+                      </Grid>
+                    </ListItem>
                   </List>
                   <Grid
                     container spacing={2}

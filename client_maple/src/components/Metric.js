@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
 import CssBaseline from '@mui/material/CssBaseline';
 import {
   Box,
@@ -15,11 +14,8 @@ import {
 
 const Metric = (props) => {
   const [data, setData] = useState([{}])
-  const { id } = useParams();
   const [references, setReferences] = useState([{}]);
   const [metricReferences, setMetricReferences] = useState([{}]);
-
-  const variable_id = id
 
   useEffect(() => {
     fetch('/metric/' + props.id).then(

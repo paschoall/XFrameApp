@@ -97,9 +97,8 @@ class tratamento(db.Model):
 
 class referencia(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    referencia = db.Column(db.String(500), nullable=False, unique=True)
-    referencia_bib = db.Column(db.String(500), nullable=False, unique=True)
-
+    referencia = db.Column(db.String(500), nullable=False)
+    referencia_bib = db.Column(db.String(500), nullable=False)
     # create A String
     def __repr__(self):
         return "<referencia: %r>" % (self.referencia)

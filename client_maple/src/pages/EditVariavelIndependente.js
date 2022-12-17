@@ -267,7 +267,7 @@ const EditVariavelIndependente = () => {
     const formData = new FormData(event.currentTarget);
 
     try {
-      setReference(references.data.find(o => o.referencia === formData.get('reference')).id)
+      setReference(references.data.find(o => o.referencia === formData.get('reference') && o.referencia_bib === formData.get('bib_reference')).id)
     } catch (e) {
       if (e instanceof TypeError) {
         const refData = {
