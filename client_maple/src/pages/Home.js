@@ -3,22 +3,17 @@ import { useState, useEffect } from 'react'
 // import { useLocation } from 'react-router-dom';
 import {
   Box,
-  Collapse,
   Grid,
   Paper,
-  List,
   ListItemButton,
   ListItemText,
   Typography,
 } from '@mui/material'
-import ExpandLess from '@mui/icons-material/ExpandLess';
-import ExpandMore from '@mui/icons-material/ExpandMore';
 import CssBaseline from '@mui/material/CssBaseline';
 import Footer from '../components/Footer';
 
 
 const Home = () => {
-  const [selectedIndex, setSelectedIndex] = useState(null);
   const [indexArray, setIndexArray] = useState([]);
   const [vi, setVi] = useState([{}])
   const [vd, setVd] = useState([{}])
@@ -27,14 +22,25 @@ const Home = () => {
   const [open, setOpen] = React.useState(null);
 
   const handleViListItemClick = (event, index) => {
-    setOpen(index)
-    setIndexArray([])
+    var vd_array;
+    const selected_vi_vd = vi_vd.data.find(o => o.id_vi === index);
+
+    console.log(selected_vi_vd)
+    if (selected_vi_vd !== undefined){
+      vd_array = selected_vi_vd['id_vd_array'].split(',').map((item) => { return parseInt(item)})
+    }
+    else{
+      vd_array = [];
+    }
+
+    setOpen(index);
+    setIndexArray(vd_array);
   };
 
-  const handleListItemClick = (event, index, array) => {
-    setSelectedIndex(index);
-    setIndexArray(array);
-  };
+  // const handleListItemClick = (event, index, array) => {
+  //   setSelectedIndex(index);
+  //   setIndexArray(array);
+  // };
 
   useEffect(() => {
     fetch('/independent_variables').then(
@@ -144,35 +150,7 @@ const Home = () => {
                             }}
                           >
                             <ListItemText primary={data['name']} />
-                            {open === data['id'] ? <ExpandLess /> : <ExpandMore />}
                           </ListItemButton>
-                          <Collapse in={open === data['id']} timeout="auto" unmountOnExit>
-                            <List component="div" disablePadding>
-                              {vi_vd.data.filter(({ id_vi }) => id_vi === data['id']).map((data, i) => {
-                                return (
-                                  <ListItemButton
-                                    key={i}
-                                    selected={selectedIndex === data['id']}
-                                    onClick={
-                                      (event) => handleListItemClick(
-                                        event,
-                                        data['id'],
-                                        data['id_vd_array'].split(',').map((item) => { return parseInt(item) })
-                                      )
-                                    }
-                                    sx={{
-                                      width: '100%',
-                                      minHeight: '3rem',
-                                      padding: '1vh',
-                                      paddingLeft: '2vh',
-                                    }}
-                                  >
-                                    {'Design'} {i + 1}
-                                  </ListItemButton>
-                                )
-                              })}
-                            </List>
-                          </Collapse>
                         </Box>
                       )
                     }

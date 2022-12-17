@@ -18,7 +18,7 @@ const Treatment = (props) => {
   const { id } = useParams();
   const [references, setReferences] = useState([{}]);
   const [treatmentReferences, setTreatmentReferences] = useState([{}]);
-  
+
   const variable_id = id
 
   useEffect(() => {
@@ -27,7 +27,6 @@ const Treatment = (props) => {
     ).then(
       data => {
         setData(data)
-        console.log(data)
       }
     )
   }, [props.id])
@@ -43,11 +42,12 @@ const Treatment = (props) => {
   }, [])
 
   useEffect(() => {
-    fetch('/metric_references').then(
+    fetch('/treatment_references').then(
       res => res.json()
     ).then(
       data => {
         setTreatmentReferences(data);
+        console.log(data)
       }
     )
   }, [])
@@ -69,7 +69,7 @@ const Treatment = (props) => {
         }}
       >
         <Typography variant="h4" gutterBottom>
-          
+
         </Typography>
       </Box>
     ) : (
@@ -121,30 +121,39 @@ const Treatment = (props) => {
                   }}
                 >
                   <Typography variant="h6" gutterBottom>
-                    Referência
+                    Referências
                   </Typography>
                   <List>
                     <ListItem>
-                    {(typeof treatmentReferences.data === 'undefined' || Object.keys(treatmentReferences.data).length === 0 || typeof references.data === 'undefined') ? (
-                        <p></p>
-                      ) : (
-                        treatmentReferences.data.filter(({ id_treatment }) => id_treatment.toString() === variable_id).map((data, i) => {
-                          return (
-                            <ListItem key={i}>
-                            <a
-                            target="_blank"
-                            href={((references.data.find(o => o.id === data.id_ref).referencia.includes("//"))?(""):("//"))+
-                            references.data.find(o => o.id === data.id_ref).referencia}
-                            style={{ textDecoration: 'none' }}
-                            >
-                              <ListItemText primary={references.data.find(o => o.id === data.id_ref).referencia} />
-                              </a>
-                          </ListItem>
+                      <Grid container spacing={2}>
+                        {(typeof treatmentReferences.data === 'undefined' || Object.keys(treatmentReferences.data).length === 0 || typeof references.data === 'undefined') ? (
+                          <p></p>
+                        ) : (
+                          treatmentReferences.data.filter(({ id_treatment }) => id_treatment.toString() === props.id).map((data, i) => {
+                            return (
+                              <Grid container item key={i} xs={12} md={12} lg={12} alignItems="flex-start">
+                                <Grid item xs={6} md={6} lg={6} zeroMinWidth>
+                                  {references.data.find(o => o.id === data.id_ref).referencia_bib}
+                                </Grid>
+                                <Grid item xs={6} md={6} lg={6} alignItems="flex-start" zeroMinWidth>
+                                  {"Disponível em: "}
+                                  <a
+                                    target="_blank"
+                                    rel='noreferrer'
+                                    href={((references.data.find(o => o.id === data.id_ref).referencia.includes("//")) ? ("") : ("//")) +
+                                      references.data.find(o => o.id === data.id_ref).referencia}
+                                    style={{ textDecoration: 'none' }}
+                                  >
+                                    <ListItemText primary={references.data.find(o => o.id === data.id_ref).referencia} />
+                                  </a>
+                                </Grid>
+                              </Grid>
+                            )
+                          }
                           )
-                        }
                         )
-                      )
-                      }
+                        }
+                      </Grid>
                     </ListItem>
                   </List>
                 </Paper>

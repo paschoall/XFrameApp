@@ -7,8 +7,9 @@ from ..models.models import referencia, reference_schema, references_schema
 # Create
 def post_reference():
     reference = request.json['reference']
+    bib_reference = request.json['bib_reference']
 
-    ref = referencia(reference)
+    ref = referencia(reference, bib_reference)
     try:
         db.session.add(ref)
         db.session.commit()
@@ -44,6 +45,7 @@ def get_reference(id):
 def update_reference(id):
     if ("reference" in request.json):
         reference = request.json['reference']
+        bib_reference = request.json['bib_reference']
 
     ref = referencia.query.get(id)
 
@@ -52,6 +54,7 @@ def update_reference(id):
 
     try:
         ref.referencia = reference
+        ref.referencia_bib = bib_reference
         # db.session.add(user)
         db.session.commit()
         result = reference_schema.dump(ref)

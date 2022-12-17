@@ -123,27 +123,35 @@ const Instrument = (props) => {
                   </Typography>
                   <List>
                     <ListItem>
-                      {(typeof instrumentReferences.data === 'undefined' || Object.keys(instrumentReferences.data).length === 0 || typeof references.data === 'undefined') ? (
-                        <p></p>
-                      ) : (
-                        instrumentReferences.data.filter(({ id_instrument }) => id_instrument.toString() === variable_id).map((data, i) => {
-                          return (
-                            <ListItem key={i}>
-                            <a
-                            target="_blank"
-                            href={((references.data.find(o => o.id === data.id_ref).referencia.includes("//"))?(""):("//"))+
-                            references.data.find(o => o.id === data.id_ref).referencia}
-                            style={{ textDecoration: 'none' }}
-                            >
-                              <ListItemText primary={references.data.find(o => o.id === data.id_ref).referencia} />
-                            
-                              </a>
-                          </ListItem>
+                      <Grid container spacing={2}>
+                        {(typeof instrumentReferences.data === 'undefined' || Object.keys(instrumentReferences.data).length === 0 || typeof references.data === 'undefined') ? (
+                          <p></p>
+                        ) : (
+                          instrumentReferences.data.filter(({ id_instrument }) => id_instrument.toString() === props.id).map((data, i) => {
+                            return (
+                              <Grid container item key={i} xs={12} md={12} lg={12} alignItems="flex-start">
+                                <Grid item xs={6} md={6} lg={6} zeroMinWidth>
+                                  {references.data.find(o => o.id === data.id_ref).referencia_bib}
+                                </Grid>
+                                <Grid item xs={6} md={6} lg={6} alignItems="flex-start" zeroMinWidth>
+                                  {"Disponível em: "}
+                                  <a
+                                    target="_blank"
+                                    rel='noreferrer'
+                                    href={((references.data.find(o => o.id === data.id_ref).referencia.includes("//")) ? ("") : ("//")) +
+                                      references.data.find(o => o.id === data.id_ref).referencia}
+                                    style={{ textDecoration: 'none' }}
+                                  >
+                                    <ListItemText primary={references.data.find(o => o.id === data.id_ref).referencia} />
+                                  </a>
+                                </Grid>
+                              </Grid>
+                            )
+                          }
                           )
-                        }
                         )
-                      )
-                      }
+                        }
+                      </Grid>
                     </ListItem>
                   </List>
                 </Paper>

@@ -98,16 +98,18 @@ class tratamento(db.Model):
 class referencia(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     referencia = db.Column(db.String(500), nullable=False, unique=True)
+    referencia_bib = db.Column(db.String(500), nullable=False, unique=True)
 
     # create A String
     def __repr__(self):
         return "<referencia: %r>" % (self.referencia)
 
-    def __init__(self, referencia):
+    def __init__(self, referencia, referencia_bib):
         self.referencia = referencia
+        self.referencia_bib = referencia_bib
 
     def to_json(self):
-        return {"id": self.id, "referencia": self.referencia}
+        return {"id": self.id, "referencia": self.referencia, "referencia_bib": self.referencia_bib}
 
 
 class referencia_vi(db.Model):
@@ -202,7 +204,7 @@ class referencia_tratamento(db.Model):
 
 class design_vi_vd(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    id_vi = db.Column(db.Integer, nullable=False)
+    id_vi = db.Column(db.Integer, nullable=False, unique=True)
     id_vd_array = db.Column(db.String(100), nullable=False)
     __table_args__ = (UniqueConstraint('id_vi', 'id_vd_array', name='uc_vi_vd'),
                       )
@@ -295,7 +297,7 @@ treatments_schema = TreatmentSchema(many=True)
 
 class ReferenceSchema(ma.Schema):
     class Meta:
-        fields = ('id', 'referencia')
+        fields = ('id', 'referencia', 'referencia_bib')
 
 
 reference_schema = ReferenceSchema()

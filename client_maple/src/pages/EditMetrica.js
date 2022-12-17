@@ -156,7 +156,8 @@ const EditMetrica = () => {
     } catch (e) {
       if (e instanceof TypeError) {
         const refData = {
-          reference: formData.get('reference')
+          reference: formData.get('reference'),
+          bib_reference: formData.get('bib_reference')
         }
 
         const requestOptions = {
@@ -266,40 +267,45 @@ const EditMetrica = () => {
                     Referências
                   </Typography>
                   <List>
-                    {(typeof metricReferences.data === 'undefined' || Object.keys(metricReferences.data).length === 0 || typeof references.data === 'undefined') ? (
-                      <p></p>
-                    ) : (
-                      metricReferences.data.filter(({ id_metric }) => id_metric.toString() === variable_id).map((data, i) => {
-                        return (
-                          <Grid container >
-                            <Grid item xs={10.5} md={10.5} lg={10.5}>
-                              <ListItem key={i}>
+                    <Grid container spacing={2}>
+                      {(typeof metricReferences.data === 'undefined' || Object.keys(metricReferences.data).length === 0 || typeof references.data === 'undefined') ? (
+                        <p></p>
+                      ) : (
+                        metricReferences.data.filter(({ id_metric }) => id_metric.toString() === variable_id).map((data, i) => {
+                          return (
+                            <Grid container item key={i} xs={12} md={12} lg={12} alignItems="flex-start">
+                              <Grid item xs={5} md={5} lg={5} zeroMinWidth>
+                                {references.data.find(o => o.id === data.id_ref).referencia_bib}
+                              </Grid>
+                              <Grid item xs={5.5} md={5.5} lg={5.5} alignItems="flex-start" zeroMinWidth>
+                                {"Disponível em: "}
                                 <a
                                   target="_blank"
+                                  rel='noreferrer'
                                   href={((references.data.find(o => o.id === data.id_ref).referencia.includes("//")) ? ("") : ("//")) +
                                     references.data.find(o => o.id === data.id_ref).referencia}
                                   style={{ textDecoration: 'none' }}
                                 >
                                   <ListItemText primary={references.data.find(o => o.id === data.id_ref).referencia} />
                                 </a>
-                              </ListItem>
+                              </Grid>
+                              <Button
+                                onClick={
+                                  (event) => handleClickRef(
+                                    event,
+                                    data['id']
+                                  )
+                                }
+                              >
+                                DELETAR
+                              </Button>
                             </Grid>
-                            <Button
-                              onClick={
-                                (event) => handleClickRef(
-                                  event,
-                                  data['id']
-                                )
-                              }
-                            >
-                              DELETAR
-                            </Button>
-                          </Grid>
+                          )
+                        }
                         )
-                      }
                       )
-                    )
-                    }
+                      }
+                    </Grid>
                   </List>
                   <Grid
                     container spacing={2}
@@ -326,6 +332,7 @@ const EditMetrica = () => {
           </DialogContent>
         </Dialog>
         <Footer />
+
         {/* -------------------------------------------------------- */}
 
         <Dialog
@@ -340,13 +347,22 @@ const EditMetrica = () => {
             </DialogTitle>
             <DialogContent>
               <DialogContentText>
-                Adicionar o link de referência abaixo
+                Adicione a referência e o link de referência abaixo
               </DialogContentText>
               <TextField
                 autoFocus
+                multiline
+                margin="dense"
+                id="bib_reference"
+                label="Referência Bibliografica"
+                name="bib_reference"
+                fullWidth
+                variant="standard"
+              />
+              <TextField
                 margin="dense"
                 id="reference"
-                label="Reference"
+                label="Link da Referência"
                 name="reference"
                 type="link"
                 fullWidth
@@ -363,7 +379,6 @@ const EditMetrica = () => {
             </DialogActions>
           </Container>
         </Dialog>
-
 
         {/* -------------------------------------------------------- */}
 
