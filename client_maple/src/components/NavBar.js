@@ -20,7 +20,7 @@ import { asyncLogout } from '../store/reducers/userSlice';
 import ThemeToggler from './ThemeToggler';
 
 const pages = ['Variáveis Independentes', 'Variáveis Dependentes'];
-const settings = ['Página do Admin', 'Perfil', 'Sair'];
+const settings = ['Página do Admin', 'Sair'];
 
 function getPageLink(page) {
   switch (page) {

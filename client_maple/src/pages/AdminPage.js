@@ -29,7 +29,7 @@ import { asyncLogout } from '../store/reducers/userSlice';
 import { Container } from '@mui/material';
 
 const drawerWidth = 240;
-const settings = ['Página do Admin', 'Perfil', 'Sair'];
+const settings = ['Página do Admin', 'Sair'];
 function getPageLink(page) {
   switch (page) {
     case 'Página do Admin':

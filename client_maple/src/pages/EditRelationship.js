@@ -231,7 +231,7 @@ const EditRelationship = () => {
                                       paddingLeft: '2vh',
                                     }}
                                   >
-                                    {'Design'} {i + 1}
+                                    {'Relacionamento'} {i + 1}
                                   </ListItemButton>
                                 )
                               })}
