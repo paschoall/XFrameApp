@@ -328,7 +328,7 @@ const EditInstrumento = () => {
           aria-labelledby="responsive-dialog-title"
         >
           <DialogContent>
-            <EditForms formTitle={'Editar Nome ou Descrição'} fetchlink='/instrument/' />
+            <EditForms formTitle={'Editar Nome ou Descrição'} fetchlink='/instrument/' nome={data.data['name']} descricao={data.data['description']}/>
           </DialogContent>
         </Dialog>
         <Footer />

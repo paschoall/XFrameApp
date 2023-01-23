@@ -514,7 +514,7 @@ const EditVariavelIndependente = () => {
           aria-labelledby="responsive-dialog-title"
         >
           <DialogContent>
-            <EditForms formTitle={'Editar Nome ou Descrição'} fetchlink='/independent_variable/' />
+            <EditForms formTitle={'Editar Nome ou Descrição'} fetchlink='/independent_variable/' nome={data.data['name']} descricao={data.data['description']} />
           </DialogContent>
         </Dialog>
 

@@ -70,6 +70,7 @@ export default function Formulario(props) {
                 name="name"
                 control={control}
                 label="Nome"
+                defaultV={props.nome}
               />
             </Grid>
             <Grid item xs={12}>
@@ -78,6 +79,7 @@ export default function Formulario(props) {
                 name="description"
                 control={control}
                 label="Descrição"
+                defaultV={props.descricao}
               />
             </Grid>
             <Grid item xs={12}>

@@ -330,7 +330,7 @@ const EditMetrica = () => {
           aria-labelledby="responsive-dialog-title"
         >
           <DialogContent>
-            <EditForms formTitle={'Editar Nome ou Descrição'} fetchlink='/metric/' />
+            <EditForms formTitle={'Editar Nome ou Descrição'} fetchlink='/metric/' nome={data.data['name']} descricao={data.data['description']}/>
           </DialogContent>
         </Dialog>
         <Footer />

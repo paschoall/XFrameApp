@@ -72,7 +72,7 @@ export default function Login({ setToken }) {
           roles: decodedtoken.roles,
         }
         logIn(data.token, user)
-        navigate('/', { replace: true })
+        navigate('/admin-page/gerenciar-dados', { replace: true })
       })
       .catch((error) => {
         console.error('There has been a problem with your fetch operation:', error);
@@ -81,7 +81,7 @@ export default function Login({ setToken }) {
   };
 
   if (currentUser.isLoggedIn) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/admin-page/gerenciar-dados" replace />;
   }
 
   return (
@@ -153,7 +153,7 @@ export default function Login({ setToken }) {
         <AlertDialog
           open={openError}
           title='Erro no Login'
-          message='User or Password invalid'
+          message='Usuário ou Senha invalidos'
         />
       </Container>
       <Footer />
