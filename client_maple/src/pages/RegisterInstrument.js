@@ -17,7 +17,7 @@ const RegisterInstrument = () => {
             Cadastrar Instrumento
           </Typography>
           <React.Fragment>
-            <Forms fetchlink='/instrument' />
+            <Forms fetchlink='/instrument' tipo='Instrumento'/>
           </React.Fragment>
         </Paper>
       </Container>

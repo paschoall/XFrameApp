@@ -17,7 +17,7 @@ const RegisterVi = () => {
             Adicionar Variável Independente
           </Typography>
           <React.Fragment>
-            <Forms fetchlink='/independent_variable' />
+            <Forms fetchlink='/independent_variable' tipo='Variável'/>
           </React.Fragment>
         </Paper>
       </Container>

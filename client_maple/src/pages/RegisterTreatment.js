@@ -17,7 +17,7 @@ const RegisterTreatment = () => {
             Cadastrar Tratamento
           </Typography>
           <React.Fragment>
-            <Forms fetchlink='/treatment' />
+            <Forms fetchlink='/treatment' tipo='Tratamento'/>
           </React.Fragment>
         </Paper>
       </Container>

@@ -17,7 +17,7 @@ const RegisterMetric = () => {
             Cadastrar Métrica
           </Typography>
           <React.Fragment>
-            <Forms fetchlink = '/metric'/>
+            <Forms fetchlink = '/metric' tipo='Métrica'/>
           </React.Fragment>
         </Paper>
       </Container>

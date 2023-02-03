@@ -17,7 +17,7 @@ const RegisterVd = () => {
             Adicionar Variável Dependente
           </Typography>
           <React.Fragment>
-            <Forms fetchlink='/dependent_variable' />
+            <Forms fetchlink='/dependent_variable' tipo='Variável'/>
           </React.Fragment>
         </Paper>
       </Container>

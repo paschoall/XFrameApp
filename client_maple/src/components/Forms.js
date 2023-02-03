@@ -40,7 +40,7 @@ export default function Forms(props) {
       .then(response => {
         if (!response.ok) {
           if (response.status === 409) {
-            setErrorText('Nome já existente')
+            setErrorText(props.tipo + ' já existente')
             throw new Error('409');
           }
           throw new Error('Network response was not OK');
