@@ -24,6 +24,8 @@ import Instrument from '../components/Instrument'
 
 const VariavelDependente = () => {
   const [data, setData] = useState([{}])
+  const [metrics, setMetrics] = useState([{}])
+  const [instruments, setInstruments] = useState([{}])
   const { id } = useParams();
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [metricInstrument, setMetricInstrument] = useState([{}]);
@@ -39,10 +41,31 @@ const VariavelDependente = () => {
     ).then(
       data => {
         setData(data)
-        console.log(data)
       }
     )
   }, [id])
+
+  useEffect(() => {
+    fetch('/metrics').then(
+      res => res.json()
+    ).then(
+      data => {
+        setMetrics(data)
+        console.log(data.data.find(({ id }) => id.toString() === "8")['name'])
+      }
+    )
+  }, [id])
+
+  useEffect(() => {
+    fetch('/instruments').then(
+      res => res.json()
+    ).then(
+      data => {
+        setInstruments(data)
+      }
+    )
+  }, [id])
+
 
   useEffect(() => {
     fetch('/metric_instrument_relationships').then(
@@ -163,7 +186,7 @@ const VariavelDependente = () => {
                       ) : (
                         metricInstrument.data.filter(({ id_vd }) => id_vd.toString() === variable_id).map((data, i) => {
                           return (
-                            <Grid key={i} item xs={12} md={4} lg={4}>
+                            <Grid key={i} item xs={12} md={6} lg={6}>
                               <Paper
                                 // component={Button}
                                 sx={{
@@ -177,8 +200,8 @@ const VariavelDependente = () => {
                                 }}
                               >
                                 <Typography variant="body1" gutterBottom>
-                                  {(data['id_metric'] === 0 ? '' : 'Métrica')}
-                                  {(data['id_instrument'] === 0 ? '' : 'Instrumento')}
+                                  {(data['id_metric'] === 0 ? '' : metrics.data.find(({ id }) => id.toString() === data['id_metric'].toString())['name'])}
+                                  {(data['id_instrument'] === 0 ? '' : instruments.data.find(({ id }) => id.toString() === data['id_metric'].toString())['name'])}
                                 </Typography>
                                 <Grid
                                   container spacing={2}
@@ -293,7 +316,7 @@ const VariavelDependente = () => {
           </DialogContent>
           <DialogActions>
             <Button onClick={() => handleClose()} autoFocus>
-              Cancelar
+            Fechar
             </Button>
           </DialogActions>
         </Dialog>

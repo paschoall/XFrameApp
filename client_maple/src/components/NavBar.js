@@ -215,7 +215,7 @@ const ResponsiveAppBar = () => {
               </>
             ) : (
               <>
-                <Button component={Link} to='/login' color="inherit">Log In</Button>
+                <Button component={Link} to='/login' color="inherit">Login</Button>
               </>
             )}
             <ThemeToggler />

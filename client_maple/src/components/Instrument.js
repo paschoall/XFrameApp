@@ -123,7 +123,7 @@ const Instrument = (props) => {
                         {(typeof instrumentReferences.data === 'undefined' || Object.keys(instrumentReferences.data).length === 0 || typeof references.data === 'undefined') ? (
                           <p></p>
                         ) : (
-                          instrumentReferences.data.filter(({ id_instrument }) => id_instrument.toString() === props.id).map((data, i) => {
+                          instrumentReferences.data.filter(({ id_instrument }) => id_instrument.toString() === props.id.toString()).map((data, i) => {
                             return (
                               <Grid container item key={i} xs={12} md={12} lg={12} alignItems="flex-start">
                                 <Grid item xs={6} md={6} lg={6} zeroMinWidth>

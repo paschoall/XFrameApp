@@ -160,8 +160,8 @@ export default function SignUp() {
         />
         <AlertDialog
           open={open}
-          title='User registered'
-          message='The User was registered successfully!'
+          title='Usuario Cadastrado!'
+          message='Usuario cadastrado com sucesso!'
           link='/login'
         />
       </Container>

@@ -739,7 +739,7 @@ const EditVariavelIndependente = () => {
           </DialogContent>
           <DialogActions>
             <Button onClick={() => handleClose()} autoFocus>
-              Cancelar
+            Fechar
             </Button>
           </DialogActions>
         </Dialog>

@@ -81,7 +81,7 @@ export default function Login({ setToken }) {
   };
 
   if (currentUser.isLoggedIn) {
-    return <Navigate to="/admin-page/gerenciar-dados" replace />;
+    return <Navigate to="/" replace />;
   }
 
   return (

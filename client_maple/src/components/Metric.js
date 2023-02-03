@@ -23,6 +23,7 @@ const Metric = (props) => {
     ).then(
       data => {
         setData(data)
+        console.log(data)
       }
     )
   }, [props.id])
@@ -121,9 +122,9 @@ const Metric = (props) => {
                     <ListItem>
                       <Grid container spacing={2}>
                         {(typeof metricReferences.data === 'undefined' || Object.keys(metricReferences.data).length === 0 || typeof references.data === 'undefined') ? (
-                          <p></p>
+                          <></>
                         ) : (
-                          metricReferences.data.filter(({ id_metric }) => id_metric.toString() === props.id).map((data, i) => {
+                          metricReferences.data.filter(({ id_metric }) => id_metric.toString() === props.id.toString()).map((data, i) => {
                             return (
                               <Grid container item key={i} xs={12} md={12} lg={12} alignItems="flex-start">
                                 <Grid item xs={6} md={6} lg={6} zeroMinWidth>

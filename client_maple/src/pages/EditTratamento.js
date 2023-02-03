@@ -275,7 +275,7 @@ const EditTratamento = () => {
                         ) : (
                           treatmentReferences.data.filter(({ id_treatment }) => id_treatment.toString() === variable_id).map((data, i) => {
                             return (
-                              <Grid container item key={i} xs={12} md={12} lg={12} alignItems="flex-start">
+                              <Grid container item key={i} xs={12} md={12} lg={12} spacing={1} alignItems="flex-start">
                                 <Grid item xs={5} md={5} lg={5} zeroMinWidth>
                                   {references.data.find(o => o.id === data.id_ref).referencia_bib}
                                 </Grid>
