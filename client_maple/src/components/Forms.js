@@ -15,6 +15,7 @@ export default function Forms(props) {
   const { handleSubmit, reset, control } = useForm();
   const [open, setOpen] = useState(false);
   const [openError, setOpenError] = useState(false);
+  const [errorText, setErrorText] = useState('Falha no registro.');
 
   useEffect(() => {
     setOpenError(openError)
@@ -38,6 +39,10 @@ export default function Forms(props) {
     fetch(props.fetchlink, requestOptions)
       .then(response => {
         if (!response.ok) {
+          if (response.status === 409) {
+            setErrorText('Nome já existente')
+            throw new Error('409');
+          }
           throw new Error('Network response was not OK');
         }
         // console.log(response)
@@ -71,6 +76,7 @@ export default function Forms(props) {
             name="description"
             control={control}
             label="Descrição"
+            defaultV=""
           />
         </Grid>
         <Grid item xs={12}>
@@ -106,7 +112,7 @@ export default function Forms(props) {
       <AlertDialog
         open={openError}
         title='Erro no Cadastro'
-        message='Falha no registro.'
+        message={errorText}
       />
       <AlertDialog
         open={open}

@@ -3,9 +3,7 @@ import { Controller } from "react-hook-form";
 import React from "react";
 
 export const FormInputText = ({ required, multiline, name, control, label, defaultV }) => {
-
   return (
-
     <Controller
       defaultValue={defaultV}
       name={name}

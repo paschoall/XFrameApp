@@ -26,6 +26,8 @@ def post_metric_reference():
         return jsonify({'messasge': 'successfully registered', 'data': result}), 201
     except Exception as e:
         # print(e)
+        if(e.orig.args[0] == 1062):
+            return jsonify({'message': e.orig.args[1], 'data': {}}), 409
         return jsonify({'message': 'unable to register', 'data': {}}), 500
 
 # Read
@@ -102,6 +104,8 @@ def post_instrument_reference():
         return jsonify({'messasge': 'successfully registered', 'data': result}), 201
     except Exception as e:
         # print(e)
+        if(e.orig.args[0] == 1062):
+            return jsonify({'message': e.orig.args[1], 'data': {}}), 409
         return jsonify({'message': 'unable to register', 'data': {}}), 500
 
 # Read
@@ -178,6 +182,8 @@ def post_factor_reference():
         return jsonify({'messasge': 'successfully registered', 'data': result}), 201
     except Exception as e:
         # print(e)
+        if(e.orig.args[0] == 1062):
+            return jsonify({'message': e.orig.args[1], 'data': {}}), 409
         return jsonify({'message': 'unable to register', 'data': {}}), 500
 
 # Read
@@ -254,6 +260,8 @@ def post_treatment_reference():
         return jsonify({'messasge': 'successfully registered', 'data': result}), 201
     except Exception as e:
         # print(e)
+        if(e.orig.args[0] == 1062):
+            return jsonify({'message': e.orig.args[1], 'data': {}}), 409
         return jsonify({'message': 'unable to register', 'data': {}}), 500
 
 # Read
@@ -330,6 +338,8 @@ def post_vi_reference():
         return jsonify({'messasge': 'successfully registered', 'data': result}), 201
     except Exception as e:
         # print(e)
+        if(e.orig.args[0] == 1062):
+            return jsonify({'message': e.orig.args[1], 'data': {}}), 409
         return jsonify({'message': 'unable to register', 'data': {}}), 500
 
 # Read
@@ -406,6 +416,8 @@ def post_vd_reference():
         return jsonify({'messasge': 'successfully registered', 'data': result}), 201
     except Exception as e:
         # print(e)
+        if(e.orig.args[0] == 1062):
+            return jsonify({'message': e.orig.args[1], 'data': {}}), 409
         return jsonify({'message': 'unable to register', 'data': {}}), 500
 
 # Read
@@ -482,6 +494,8 @@ def post_vi_vd_relationship():
         return jsonify({'messasge': 'successfully registered', 'data': result}), 201
     except Exception as e:
         # print(e)
+        if(e.orig.args[0] == 1062):
+            return jsonify({'message': e.orig.args[1], 'data': {}}), 409
         return jsonify({'message': 'unable to register', 'data': {}}), 500
 
 # Read
@@ -559,6 +573,8 @@ def post_metric_instrument_relationship():
         return jsonify({'messasge': 'successfully registered', 'data': result}), 201
     except Exception as e:
         # print(e)
+        if(e.orig.args[0] == 1062):
+            return jsonify({'message': e.orig.args[1], 'data': {}}), 409
         return jsonify({'message': 'unable to register', 'data': {}}), 500
 
 # Read
@@ -636,6 +652,8 @@ def post_factors_treatments_relationship():
         return jsonify({'messasge': 'successfully registered', 'data': result}), 201
     except Exception as e:
         # print(e)
+        if(e.orig.args[0] == 1062):
+            return jsonify({'message': e.orig.args[1], 'data': {}}), 409
         return jsonify({'message': 'unable to register', 'data': {}}), 500
 
 # Read

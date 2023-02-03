@@ -17,6 +17,8 @@ def post_reference():
         return jsonify({'messasge': 'successfully registered', 'data': result}), 201
     except Exception as e:
         # print(e)
+        if(e.orig.args[0] == 1062):
+            return jsonify({'message': e.orig.args[1], 'data': {}}), 409
         return jsonify({'message': 'unable to register', 'data': {}}), 500
 
 
@@ -61,6 +63,8 @@ def update_reference(id):
         return jsonify({'messasge': 'successfully updated', 'data': result}), 200
     except Exception as e:
         # print(e)
+        if(e.orig.args[0] == 1062):
+            return jsonify({'message': e.orig.args[1], 'data': {}}), 409
         return jsonify({'message': 'unable to update', 'data': {}}), 500
 
 

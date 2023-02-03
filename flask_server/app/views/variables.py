@@ -17,6 +17,8 @@ def post_independent_variable():
         return jsonify({'messasge': 'successfully registered', 'data': result}), 201
     except Exception as e:
         # print(e)
+        if(e.orig.args[0] == 1062):
+            return jsonify({'message': e.orig.args[1], 'data': {}}), 409
         return jsonify({'message': 'unable to register', 'data': {}}), 500
 
 def post_dependent_variable():
@@ -31,6 +33,8 @@ def post_dependent_variable():
         return jsonify({'messasge': 'successfully registered', 'data': result}), 201
     except Exception as e:
         # print(e)
+        if(e.orig.args[0] == 1062):
+            return jsonify({'message': e.orig.args[1], 'data': {}}), 409
         return jsonify({'message': 'unable to register', 'data': {}}), 500
 
 # Read
