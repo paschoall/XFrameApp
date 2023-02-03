@@ -81,6 +81,9 @@ export default function Login({ setToken }) {
   };
 
   if (currentUser.isLoggedIn) {
+    if(currentUser.roles.includes('admin') ){
+      return <Navigate to="/admin-page/gerenciar-dados" replace />;
+    }
     return <Navigate to="/" replace />;
   }
 
