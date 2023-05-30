@@ -6,14 +6,7 @@ import Typography from '@mui/material/Typography';
 function Footer() {
   return (
     <Box sx={{ p: 6 }} component="footer">
-      <Typography variant="body2" color="text.secondary" align="center" gutterBottom>
-        {'Copyright © '}
-        <Typography color="inherit" component={Link} to="/">
-          Your Website
-        </Typography>{' '}
-        {new Date().getFullYear()}
-        {'.'}
-      </Typography>
+
     </Box>
   );
 }

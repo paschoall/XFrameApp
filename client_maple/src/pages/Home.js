@@ -83,7 +83,7 @@ const Home = () => {
           align="center"
           sx={{ margin: '2rem' }}
         >
-          A causa e seus efeitos em estudos experimentais de chatbots na educação
+          Relações causais em estudos experimentais de chatbots na educação
         </Typography>
         <Grid container spacing={0.5}>
           <Grid item xs={0.75} md={0.75} lg={0.75} />

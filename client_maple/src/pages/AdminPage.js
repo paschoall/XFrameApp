@@ -33,7 +33,7 @@ const settings = ['Página do Admin', 'Sair'];
 function getPageLink(page) {
   switch (page) {
     case 'Página do Admin':
-      return '/admin-page/gerenciar-dados';
+      return '/admin-page/gerenciar-variaveis';
     case 'Sair':
       return '/';
     default:
@@ -243,7 +243,7 @@ function DashboardContent() {
           }}
         >
           {(
-            !(location.pathname === '/admin-page/gerenciar-dados') &&
+            !(location.pathname === '/admin-page/gerenciar-variaveis') &&
             <Button
               xs={'none'}
               size="large"

@@ -72,7 +72,7 @@ export default function Login({ setToken }) {
           roles: decodedtoken.roles,
         }
         logIn(data.token, user)
-        navigate('/admin-page/gerenciar-dados', { replace: true })
+        navigate('/admin-page/gerenciar-variaveis', { replace: true })
       })
       .catch((error) => {
         console.error('There has been a problem with your fetch operation:', error);
@@ -82,7 +82,7 @@ export default function Login({ setToken }) {
 
   if (currentUser.isLoggedIn) {
     if(currentUser.roles.includes('admin') ){
-      return <Navigate to="/admin-page/gerenciar-dados" replace />;
+      return <Navigate to="/admin-page/gerenciar-variaveis" replace />;
     }
     return <Navigate to="/" replace />;
   }

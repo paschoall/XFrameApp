@@ -29,7 +29,7 @@ function getPageLink(page) {
     case 'Variáveis Dependentes':
       return '/catalogo-variaveis-dependentes';
     case 'Página do Admin':
-      return '/admin-page/gerenciar-dados';
+      return '/admin-page/gerenciar-variaveis';
     case 'Sair':
       return '/';
     default:

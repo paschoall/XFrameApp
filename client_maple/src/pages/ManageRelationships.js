@@ -23,13 +23,22 @@ const ManageRelationships = () => {
           display: 'flex',
           flexGrow: 1,
           overflow: 'auto',
-          paddingTop: { xs: 'none', md: '14vh' },
+          paddingTop: { xs: 'none', md: '10vh' },
           alignContent: 'center',
           justifyContent: 'center',
         }}
       >
         <Container maxWidth="xl" sx={{ mt: 4, mb: 4, }} >
           <Grid container spacing={8}>
+            <Grid item xs={12} md={12} lg={12} >
+              <Typography variant="h3" gutterBottom
+                sx={{
+                  textAlign: 'center',
+                }}
+              >
+                Gerenciamento de relações causais
+              </Typography>
+            </Grid>
             <Grid item xs={0} md={2} lg={2} />
             <Grid item xs={12} md={4} lg={4}>
               <Paper
