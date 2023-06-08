@@ -1,4 +1,4 @@
-# tcc
+# 
 
 INSTRUÇÕES DE INSTALAÇÃO PARA DESENVOLVIMENTO
 
@@ -12,7 +12,7 @@ basta é necessário cumprir alguns requisitos:
 
 Após cumprir com os requisitos basta seguir os seguintes passos:
 
-1. Acessar o repositório disponível em <[https://github.com/paschoall/variaveisExperimentais](https://github.com/paschoall/Var-MAP-chatbots)>
+1. Acessar o repositório disponível em <[https://github.com/paschoall/variaveisExperimentais](https://github.com/paschoall/XFrameApp)>
 2. Realizar a clonagem do repositório
 3. Abrir um terminal na pasta clonada
 4. No terminal acessar a pasta \client_maple
