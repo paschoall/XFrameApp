@@ -87,7 +87,7 @@ const ResponsiveAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            Var-MAP
+            XFrameApp
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -148,7 +148,7 @@ const ResponsiveAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            Var-MAP
+            XFrameApp
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
@@ -169,7 +169,7 @@ const ResponsiveAppBar = () => {
               <>
                 <Tooltip title='Open settings'>
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt='Eiji Ich' src='/static/images/avatar/2.jpg' />
+                    <Avatar alt='Lucas M' src='/static/images/avatar/admin.png' />
                   </IconButton>
                 </Tooltip>
                 <Menu
