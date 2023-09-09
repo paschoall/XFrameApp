@@ -37,7 +37,7 @@ const ManageDependentVariables = () => {
                   textAlign: 'center',
                 }}
               >
-                Gerenciamento de variáveis dependentes
+                Manage dependent variables
               </Typography>
             </Grid>
             <Grid item xs={0} md={2} lg={2} />
@@ -83,7 +83,7 @@ const ManageDependentVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Adicionar Variável Dependente
+                        Create Variable
                       </Typography>}
                   />
                 </ListItemButton>
@@ -131,7 +131,7 @@ const ManageDependentVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Editar Variáveis Dependentes
+                        Edit Variable
                       </Typography>}
                   />
                 </ListItemButton>

@@ -29,11 +29,16 @@ import { asyncLogout } from '../store/reducers/userSlice';
 import { Container } from '@mui/material';
 
 const drawerWidth = 240;
+const pages = ['Variáveis Independentes', 'Variáveis Dependentes'];
 const settings = ['Página do Admin', 'Sair'];
 function getPageLink(page) {
   switch (page) {
     case 'Página do Admin':
       return '/admin-page/gerenciar-variaveis';
+    case 'Variáveis Independentes':
+      return '/catalogo-variaveis-independentes';
+    case 'Variáveis Dependentes':
+      return '/catalogo-variaveis-dependentes';
     case 'Sair':
       return '/';
     default:
@@ -151,20 +156,33 @@ function DashboardContent() {
                 textDecoration: 'none',
               }}
             >
-              Var-MAP
+              XFrameApp
             </Typography>
-            <Typography
-              component="h1"
-              variant="h6"
-              color="inherit"
-              noWrap
-              sx={{ flexGrow: 1 }}
+            <Box
+            sx={{ display: 'inline-flex',
+              flexGrow: 1 }}
             >
-              Página do Admin
-            </Typography>
+              {pages.map((page) => (
+                <MenuItem
+                component={Link}
+                to={getPageLink(page)}
+                key={page}
+                >
+                  <Typography 
+                    textAlign='center'
+                    component="h1"
+                    variant="h6"
+                    color="inherit"
+                    noWrap
+                    marginRight='10px'>
+                      {page}
+                  </Typography>
+                </MenuItem>
+              ))}
+            </Box>
             <Tooltip title='Open settings'>
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt='Eiji Ich' src='/static/images/avatar/2.jpg' />
+                <Avatar alt='Lucas M' src='/static/images/avatar/admin.png' />
               </IconButton>
             </Tooltip>
             <Menu

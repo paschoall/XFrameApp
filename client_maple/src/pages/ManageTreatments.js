@@ -74,7 +74,7 @@ const ManageTreatments = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Adicionar Tratamentos
+                        Create Treatment
                       </Typography>}
                   />
                 </ListItemButton>
@@ -122,7 +122,7 @@ const ManageTreatments = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Editar Tratamentos
+                        Edit Treatments
                       </Typography>}
                   />
                 </ListItemButton>

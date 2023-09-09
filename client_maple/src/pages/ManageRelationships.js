@@ -36,7 +36,7 @@ const ManageRelationships = () => {
                   textAlign: 'center',
                 }}
               >
-                Gerenciamento de relações causais
+                Management of causal relationships
               </Typography>
             </Grid>
             <Grid item xs={0} md={2} lg={2} />
@@ -82,7 +82,7 @@ const ManageRelationships = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Adicionar Relacionamento
+                        Create Relationship
                       </Typography>}
                   />
                 </ListItemButton>
@@ -130,7 +130,7 @@ const ManageRelationships = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Deletar Relacionamentos
+                        Delete Relationship
                       </Typography>}
                   />
                 </ListItemButton>
