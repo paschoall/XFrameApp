@@ -283,7 +283,7 @@ function DashboardContent() {
         </Box>
       </Box>
     </>
-  );
+  ); 
 }
 
 export default function AdminPage() {
