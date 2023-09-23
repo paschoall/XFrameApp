@@ -13,8 +13,7 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-// import AdbIcon from '@mui/icons-material/Adb';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { asyncLogout } from '../store/reducers/userSlice';
 import ThemeToggler from './ThemeToggler';
@@ -33,16 +32,19 @@ function getPageLink(page) {
     case 'Sair':
       return '/';
     default:
-      return ''
+      return '';
   }
 }
 
 const ResponsiveAppBar = () => {
   const currentUser = useSelector((state) => state.user);
 
-  // const doThis = () =>{
-  //   console.log(currentUser)
-  // }
+  const location = useLocation();
+  const pathnameSegments = location.pathname.split('/'); // Divide a URL em segmentos
+  const isVariaveisIndependentesPage = pathnameSegments.includes('catalogo-variaveis-independentes');
+  const isVariaveisDependentesPage = pathnameSegments.includes('catalogo-variaveis-dependentes');
+
+
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
   const dispatch = useDispatch();
@@ -71,7 +73,6 @@ const ResponsiveAppBar = () => {
     <AppBar position='static'>
       <Container maxWidth='xl'>
         <Toolbar disableGutters>
-          {/* <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
           <Typography
             variant='h6'
             noWrap
@@ -131,7 +132,7 @@ const ResponsiveAppBar = () => {
               ))}
             </Menu>
           </Box>
-          {/* <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} /> */}
+
           <Typography
             variant='h5'
             noWrap
@@ -144,12 +145,12 @@ const ResponsiveAppBar = () => {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.3rem',
-              color: 'inherit',
               textDecoration: 'none',
             }}
           >
             XFrameApp
           </Typography>
+
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             {pages.map((page) => (
               <Button
@@ -157,12 +158,22 @@ const ResponsiveAppBar = () => {
                 to={getPageLink(page)}
                 key={page}
                 onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
+                sx={{
+                  my: 2,
+                  color: 'white',
+                  display: 'block',
+                  backgroundColor:
+                    (isVariaveisIndependentesPage && page === 'Variáveis Independentes') ||
+                    (isVariaveisDependentesPage && page === 'Variáveis Dependentes')
+                      ? 'blue'
+                      : 'inherit',
+                }}
               >
                 {page}
               </Button>
             ))}
           </Box>
+
 
           <Box sx={{ flexGrow: 0 }}>
             {currentUser.isLoggedIn ? (

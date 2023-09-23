@@ -11,6 +11,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import ListAltIcon from '@mui/icons-material/ListAlt';
+import EditIcon from '@mui/icons-material/Edit';
 import AddIcon from '@mui/icons-material/Add';
 
 import Footer from '../components/Footer';
@@ -24,13 +25,13 @@ const ManageIndependentVariables = () => {
           display: 'flex',
           flexGrow: 1,
           overflow: 'auto',
-          paddingTop: { xs: 'none', md: '10vh' },
+          paddingTop: { xs: 'none', md: 'none' },
           alignContent: 'center',
           justifyContent: 'center',
         }}
       >
-        <Container maxWidth="xl" sx={{ mt: 4, mb: 4, }} >
-          <Grid container spacing={12}>
+        <Container maxWidth="xl" sx={{ mt: 0, mb: 4, }} >
+          <Grid container spacing={2}> {/* Alterado de spacing={8} para spacing={2} */}
             <Grid item xs={12} md={12} lg={12} >
               <Typography variant="h3" gutterBottom
                 sx={{
@@ -40,7 +41,6 @@ const ManageIndependentVariables = () => {
                 Manage independent variables
               </Typography>
             </Grid>
-            <Grid item xs={12} md={2} lg={2}/>
             <Grid item xs={12} md={4} lg={4}>
               <Paper
                 sx={{
@@ -89,7 +89,6 @@ const ManageIndependentVariables = () => {
                 </ListItemButton>
               </Paper>
             </Grid>
-
             <Grid item xs={12} md={4} lg={4}>
               <Paper sx={{
                 p: 2,
@@ -113,7 +112,7 @@ const ManageIndependentVariables = () => {
                   }}
                 >
                   <ListItemIcon>
-                    <ListAltIcon
+                    <EditIcon
                       sx={{
                         fontSize: '24vh',
                         textAlign: 'center',
@@ -137,8 +136,6 @@ const ManageIndependentVariables = () => {
                 </ListItemButton>
               </Paper>
             </Grid>
-            <Grid item xs={12} md={2} lg={2}/>
-            <Grid item xs={12} md={2} lg={2}/>
             <Grid item xs={12} md={4} lg={4}>
               <Paper sx={{
                 p: 2,
@@ -234,7 +231,9 @@ const ManageIndependentVariables = () => {
                 </ListItemButton>
               </Paper>
             </Grid>
-            <Grid item md={2} lg={2} />
+            <Grid item xs={12} md={4} lg={4} />
+            <Grid item xs={12} md={4} lg={4} />
+            <Grid item md={4} lg={4} />
             <Grid item xs={12} md={12} lg={12} >
               <Footer />
             </Grid>
