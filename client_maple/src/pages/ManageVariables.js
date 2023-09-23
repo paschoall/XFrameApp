@@ -23,11 +23,7 @@ const ManageVariables = () => {
           display: 'flex',
           flexGrow: 1,
           overflow: 'auto',
-<<<<<<< HEAD
           paddingTop: { xs: 'none', md: 'none' },
-=======
-          paddingTop: { xs: 'none', md: '5vh' },
->>>>>>> main
           alignContent: 'center',
           justifyContent: 'center',
         }}
