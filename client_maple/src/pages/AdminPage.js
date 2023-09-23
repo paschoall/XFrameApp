@@ -27,6 +27,7 @@ import { mainListItems } from '../components/listItems';
 // import { mainListItems, secondaryListItems } from '../components/listItems';
 import { asyncLogout } from '../store/reducers/userSlice';
 import { Container } from '@mui/material';
+import NavBar from '../components/NavBar';
 
 const drawerWidth = 240;
 const pages = ['Variáveis Independentes', 'Variáveis Dependentes'];
@@ -92,36 +93,16 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 
 function DashboardContent() {
   const currentUser = useSelector((state) => state.user);
-
-  const [open, setOpen] = React.useState(false);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-
-  const logOut = React.useCallback(() => {
-    dispatch(asyncLogout());
-  }, [dispatch]);
-
-  const toggleDrawer = () => {
-    setOpen(!open);
-  };
-
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseUserMenu = (setting) => {
-    if (setting === 'Sair') {
-      logOut()
-    }
-    setAnchorElUser(null);
-  };
 
   return (
     <>
       <CssBaseline />
+      <NavBar />
       <Box sx={{ display: 'flex' }}>
+<<<<<<< HEAD
+=======
         <AppBar position="absolute" open={open}>
           <Toolbar
             sx={{
@@ -248,6 +229,7 @@ function DashboardContent() {
             {secondaryListItems} */}
           </List>
         </Drawer>
+>>>>>>> main
         <Box
           component="main"
           sx={{
@@ -268,22 +250,21 @@ function DashboardContent() {
               onClick={() => navigate(-1)}
               sx={{
                 display: { xs: 'none', md: 'flex' },
-                position: 'absolute',
+                position: 'relative',
                 marginLeft: '1rem',
-                top: '80px',
+                top: '10px',
               }}
             >
               <ChevronLeftIcon fontSize="large" />
             </Button>
           )}
-          <Toolbar />
           <Container maxWidth="lg">
             <Outlet />
           </Container>
         </Box>
       </Box>
     </>
-  );
+  ); 
 }
 
 export default function AdminPage() {

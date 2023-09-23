@@ -24,13 +24,13 @@ const ManageDependentVariables = () => {
           display: 'flex',
           flexGrow: 1,
           overflow: 'auto',
-          paddingTop: { xs: 'none', md: '10vh' },
+          paddingTop: { xs: 'none', md: 'none' },
           alignContent: 'center',
           justifyContent: 'center',
         }}
       >
-        <Container maxWidth="xl" sx={{ mt: 4, mb: 4, }} >
-          <Grid container spacing={8}>
+        <Container maxWidth="xl" sx={{ mt: 0, mb: 4, }} >
+          <Grid container spacing={2}>
             <Grid item xs={12} md={12} lg={12} >
               <Typography variant="h3" gutterBottom
                 sx={{
@@ -40,7 +40,6 @@ const ManageDependentVariables = () => {
                 Manage dependent variables
               </Typography>
             </Grid>
-            <Grid item xs={0} md={2} lg={2} />
             <Grid item xs={12} md={4} lg={4}>
               <Paper
                 sx={{
@@ -101,6 +100,7 @@ const ManageDependentVariables = () => {
                   padding: '0',
                 }}
               >
+                {/* Código do segundo card */}
                 <ListItemButton
                   component={Link}
                   to='editar'
@@ -137,8 +137,6 @@ const ManageDependentVariables = () => {
                 </ListItemButton>
               </Paper>
             </Grid>
-            <Grid item md={2} lg={2} />
-            <Grid item xs={0} md={2} lg={2} />
             <Grid item xs={12} md={4} lg={4}>
               <Paper
                 sx={{
@@ -151,6 +149,7 @@ const ManageDependentVariables = () => {
                   padding: '0',
                 }}
               >
+                {/* Código do terceiro card */}
                 <ListItemButton
                   component={Link}
                   to='/admin-page/gerenciar-metricas-instrumentos/metricas/cadastrar'
@@ -199,6 +198,7 @@ const ManageDependentVariables = () => {
                   padding: '0',
                 }}
               >
+                {/* Código do quarto card */}
                 <ListItemButton
                   component={Link}
                   to='/admin-page/gerenciar-metricas-instrumentos/metricas/editar'
@@ -235,8 +235,6 @@ const ManageDependentVariables = () => {
                 </ListItemButton>
               </Paper>
             </Grid>
-            <Grid item md={2} lg={2} />
-            <Grid item xs={0} md={2} lg={2} />
             <Grid item xs={12} md={4} lg={4}>
               <Paper
                 sx={{
@@ -249,6 +247,7 @@ const ManageDependentVariables = () => {
                   padding: '0',
                 }}
               >
+                {/* Código do quinto card */}
                 <ListItemButton
                   component={Link}
                   to='/admin-page/gerenciar-metricas-instrumentos/instrumentos/cadastrar'
@@ -297,6 +296,7 @@ const ManageDependentVariables = () => {
                   padding: '0',
                 }}
               >
+                {/* Código do sexto card */}
                 <ListItemButton
                   component={Link}
                   to='/admin-page/gerenciar-metricas-instrumentos/instrumentos/editar'
@@ -332,10 +332,6 @@ const ManageDependentVariables = () => {
                   />
                 </ListItemButton>
               </Paper>
-            </Grid>
-            <Grid item md={2} lg={2} />
-            <Grid item xs={12} md={12} lg={12} >
-              <Footer />
             </Grid>
           </Grid>
         </Container>

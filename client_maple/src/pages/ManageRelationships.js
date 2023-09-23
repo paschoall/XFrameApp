@@ -23,12 +23,12 @@ const ManageRelationships = () => {
           display: 'flex',
           flexGrow: 1,
           overflow: 'auto',
-          paddingTop: { xs: 'none', md: '10vh' },
+          paddingTop: { xs: 'none', md: 'none' },
           alignContent: 'center',
           justifyContent: 'center',
         }}
       >
-        <Container maxWidth="xl" sx={{ mt: 4, mb: 4, }} >
+        <Container maxWidth="xl" sx={{ mt: 0, mb: 4, }} >
           <Grid container spacing={8}>
             <Grid item xs={12} md={12} lg={12} >
               <Typography variant="h3" gutterBottom

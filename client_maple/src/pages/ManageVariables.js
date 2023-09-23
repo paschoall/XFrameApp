@@ -10,7 +10,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import ListAltIcon from '@mui/icons-material/ListAlt';
+import ListAltRoundedIcon from '@mui/icons-material/ListAltRounded';
 
 import Footer from '../components/Footer';
 
@@ -23,7 +23,11 @@ const ManageVariables = () => {
           display: 'flex',
           flexGrow: 1,
           overflow: 'auto',
+<<<<<<< HEAD
+          paddingTop: { xs: 'none', md: 'none' },
+=======
           paddingTop: { xs: 'none', md: '5vh' },
+>>>>>>> main
           alignContent: 'center',
           justifyContent: 'center',
         }}
@@ -70,7 +74,7 @@ const ManageVariables = () => {
                   }}
                 >
                   <ListItemIcon>
-                    <ListAltIcon
+                    <ListAltRoundedIcon
                       sx={{
                         fontSize: '24vh',
                         textAlign: 'center',
@@ -118,7 +122,7 @@ const ManageVariables = () => {
                   }}
                 >
                   <ListItemIcon>
-                    <ListAltIcon
+                    <ListAltRoundedIcon
                       sx={{
                         fontSize: '24vh',
                         textAlign: 'center',
@@ -166,7 +170,7 @@ const ManageVariables = () => {
                   }}
                 >
                   <ListItemIcon>
-                    <ListAltIcon
+                    <ListAltRoundedIcon
                       sx={{
                         fontSize: '24vh',
                         textAlign: 'center',
