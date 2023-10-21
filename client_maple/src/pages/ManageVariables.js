@@ -29,21 +29,14 @@ const ManageVariables = () => {
         }}
       >
         <Container maxWidth="xl" sx={{ mt: 0, mb: 5, }} >
-          <Typography variant="h6" gutterBottom
-            sx={{
-              textAlign: 'left',
-            }}
-          >
-            Administrator Page
-          </Typography>
           <Grid container spacing={8}>
             <Grid item xs={12} md={12} lg={12} >
               <Typography variant="h3" gutterBottom
                 sx={{
-                  textAlign: 'center',
+                  pt:'60px',
                 }}
               >
-                Variable Management
+                Gerenciar variáveis
               </Typography>
             </Grid>
             <Grid item xs={12} md={4} lg={4}>
@@ -88,7 +81,7 @@ const ManageVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Manage Independent Variables
+                        Variáveis independentes
                       </Typography>}
                   />
                 </ListItemButton>
@@ -136,7 +129,7 @@ const ManageVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Manage Dependent Variables
+                        Variáveis dependentes
                       </Typography>}
                   />
                 </ListItemButton>
@@ -184,7 +177,7 @@ const ManageVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Manage Relationships
+                        Gerenciar relacionamentos
                       </Typography>}
                   />
                 </ListItemButton>

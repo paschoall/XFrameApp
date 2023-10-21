@@ -34,10 +34,9 @@ const ManageDependentVariables = () => {
             <Grid item xs={12} md={12} lg={12} >
               <Typography variant="h3" gutterBottom
                 sx={{
-                  textAlign: 'center',
                 }}
               >
-                Manage dependent variables
+                Gerenciar variáveis depentendes
               </Typography>
             </Grid>
             <Grid item xs={12} md={4} lg={4}>
@@ -82,7 +81,7 @@ const ManageDependentVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Create Variable
+                        Cadastrar variável
                       </Typography>}
                   />
                 </ListItemButton>
@@ -131,7 +130,7 @@ const ManageDependentVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Edit Variable
+                        Editar variável
                       </Typography>}
                   />
                 </ListItemButton>
@@ -180,7 +179,7 @@ const ManageDependentVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Adicionar Métrica
+                        Cadastrar Métrica
                       </Typography>}
                   />
                 </ListItemButton>
@@ -278,7 +277,7 @@ const ManageDependentVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Adicionar Instrumento
+                        Cadastrar Instrumento
                       </Typography>}
                   />
                 </ListItemButton>

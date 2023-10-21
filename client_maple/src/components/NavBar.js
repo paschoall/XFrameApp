@@ -18,16 +18,16 @@ import { Link, useLocation } from 'react-router-dom';
 import { asyncLogout } from '../store/reducers/userSlice';
 import ThemeToggler from './ThemeToggler';
 
-const pages = ['Variáveis Independentes', 'Variáveis Dependentes'];
-const settings = ['Página do Admin', 'Sair'];
+const pages = ['Variáveis independentes', 'Variáveis dependentes'];
+const settings = ['Pagina de admin', 'Sair'];
 
 function getPageLink(page) {
   switch (page) {
-    case 'Variáveis Independentes':
+    case 'Variáveis independentes':
       return '/catalogo-variaveis-independentes';
-    case 'Variáveis Dependentes':
+    case 'Variáveis dependentes':
       return '/catalogo-variaveis-dependentes';
-    case 'Página do Admin':
+    case 'Pagina de admin':
       return '/admin-page/gerenciar-variaveis';
     case 'Sair':
       return '/';
@@ -163,9 +163,9 @@ const ResponsiveAppBar = () => {
                   color: 'white',
                   display: 'block',
                   backgroundColor:
-                    (isVariaveisIndependentesPage && page === 'Variáveis Independentes') ||
-                    (isVariaveisDependentesPage && page === 'Variáveis Dependentes')
-                      ? 'blue'
+                    (isVariaveisIndependentesPage && page === 'Variáveis independentes') ||
+                    (isVariaveisDependentesPage && page === 'Variáveis dependentes')
+                      ? 'red'
                       : 'inherit',
                 }}
               >
@@ -180,7 +180,7 @@ const ResponsiveAppBar = () => {
               <>
                 <Tooltip title='Open settings'>
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt='Lucas M' src='/static/images/avatar/admin.png' />
+                    <Button sx={{color: 'white'}}>Pagina de administrador</Button>
                   </IconButton>
                 </Tooltip>
                 <Menu
@@ -211,7 +211,7 @@ const ResponsiveAppBar = () => {
                           <Typography textAlign='center'>{setting}</Typography>
                         </MenuItem>
                       ) : (
-                        setting !== 'Página do Admin' &&
+                        setting !== 'Pagina de admin' &&
                         <MenuItem
                           component={Link}
                           to={getPageLink(setting)}

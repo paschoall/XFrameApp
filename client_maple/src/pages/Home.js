@@ -83,7 +83,8 @@ const Home = () => {
           align="center"
           sx={{ margin: '2rem' }}
         >
-          Relações causais em estudos experimentais de chatbots na educação
+          
+          Relações causais entre variáveis independentes e dependentes
         </Typography>
         <Grid container spacing={0.5}>
           <Grid item xs={0.75} md={0.75} lg={0.75} />
@@ -106,7 +107,7 @@ const Home = () => {
                   textAlign: 'center',
                 }}
               >
-                Variáveis Independentes
+                Variáveis independentes
               </Typography>
               <Paper square
                 variant='outlined'
@@ -180,7 +181,7 @@ const Home = () => {
                   textAlign: 'center',
                 }}
               >
-                Variáveis Dependentes
+                Variáveis dependentes
               </Typography>
               <Paper square
                 variant='outlined'

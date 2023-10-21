@@ -19,6 +19,7 @@ import {
 } from '@mui/material';
 import Footer from '../components/Footer';
 import Treatment from '../components/Treatment'
+import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 
 const VariavelIndependente = () => {
   const [data, setData] = useState([{}])
@@ -158,8 +159,8 @@ const VariavelIndependente = () => {
                       ) : (
                         factorTreatment.data.filter(({ id_vi }) => id_vi.toString() === variable_id).map((data, i) => {
                           return (
-                            <Grid key={i} item xs={12} md={4} lg={4}>
-                              <Paper
+                            <Grid key={i} item xs={12} md={8} lg={8}>
+                              <Box
                                 // component={Button}
                                 sx={{
                                   p: 2,
@@ -182,9 +183,18 @@ const VariavelIndependente = () => {
                                     margin: '0.5rem 1rem 0 0'
                                   }}
                                 >
-                                  <Button onClick={(event) => handleClickMore(event, data.id)}>Mais</Button>
+                                  <Button onClick={(event) => handleClickMore(event, data.id)}>Mais detalhes
+                                    <AddCircleRoundedIcon
+                                      sx={{
+                                        mt: '-5px',
+                                        ml: '5px',
+                                        fontSize: '16px',
+                                        textAlign: 'center',
+                                      }}
+                                    />
+                                  </Button>
                                 </Grid>
-                              </Paper>
+                              </Box>
                             </Grid>
                           )
                         }

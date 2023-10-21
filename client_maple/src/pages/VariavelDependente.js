@@ -21,6 +21,7 @@ import {
 import Footer from '../components/Footer';
 import Metric from '../components/Metric'
 import Instrument from '../components/Instrument'
+import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
 
 const VariavelDependente = () => {
   const [data, setData] = useState([{}])
@@ -187,7 +188,7 @@ const VariavelDependente = () => {
                         metricInstrument.data.filter(({ id_vd }) => id_vd.toString() === variable_id).map((data, i) => {
                           return (
                             <Grid key={i} item xs={12} md={6} lg={6}>
-                              <Paper
+                              <Box
                                 // component={Button}
                                 sx={{
                                   p: 2,
@@ -210,9 +211,18 @@ const VariavelDependente = () => {
                                     margin: '0.5rem 0 0 -0.5rem'
                                   }}
                                 >
-                                  <Button onClick={(event) => handleClickMore(event, data.id)}>Mais</Button>
+                                  <Button onClick={(event) => handleClickMore(event, data.id)}>Mais detalhes
+                                    <AddCircleRoundedIcon
+                                      sx={{
+                                        mt: '-5px',
+                                        ml: '5px',
+                                        fontSize: '16px',
+                                        textAlign: 'center',
+                                      }}
+                                    />
+                                  </Button>
                                 </Grid>
-                              </Paper>
+                              </Box>
                             </Grid>
                           )
                         }
