@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react'
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 // import { useLocation } from 'react-router-dom';
 import {
   Box,
@@ -11,6 +12,7 @@ import {
 } from '@mui/material'
 import CssBaseline from '@mui/material/CssBaseline';
 import Footer from '../components/Footer';
+import '../assets/App.css';
 
 
 const Home = () => {
@@ -81,7 +83,7 @@ const Home = () => {
           component="h1"
           variant="h4"
           align="center"
-          sx={{ margin: '2rem' }}
+          sx={{ margin: '2rem', fontSize: '2rem' }}
         >
           
           Relações causais entre variáveis independentes e dependentes
@@ -98,12 +100,13 @@ const Home = () => {
                 alignItems: 'center',
                 alignContent: 'center',
                 padding: '0',
+                
               }}
             >
               <Typography gutterBottom
                 sx={{
                   marginTop: '1vh',
-                  fontSize: { xs: '1rem', md: '1.5rem' },
+                  fontSize: { xs: '1rem', md: '1.2rem' },
                   textAlign: 'center',
                 }}
               >
@@ -150,7 +153,12 @@ const Home = () => {
                               padding: '1vh',
                             }}
                           >
-                            <ListItemText primary={data['name']} />
+                            <ListItemText primary={data['name']} 
+                            sx={{
+                              '& .MuiTypography-root': {
+                                fontSize: '0.9rem', // Ajuste a fonte conforme necessário
+                              },
+                            }}/>
                           </ListItemButton>
                         </Box>
                       )
@@ -177,7 +185,7 @@ const Home = () => {
               <Typography gutterBottom
                 sx={{
                   marginTop: '1vh',
-                  fontSize: { xs: '1rem', md: '1.5rem' },
+                  fontSize: { xs: '0.4rem', md: '1.2rem' },
                   textAlign: 'center',
                 }}
               >
@@ -212,7 +220,12 @@ const Home = () => {
                             padding: '1vh',
                           }}
                         >
-                          <ListItemText primary={data['name']} />
+                          <ListItemText primary={data['name']} 
+                          sx={{
+                            '& .MuiTypography-root': {
+                              fontSize: '0.9rem', // Ajuste a fonte conforme necessário
+                            },
+                          }}/>
                         </ListItemButton>
                       )
                     }
@@ -225,7 +238,7 @@ const Home = () => {
         </Grid>
       </Box>
       <Footer />
-    </>
+      </>
   );
 }
 

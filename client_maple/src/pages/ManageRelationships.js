@@ -10,7 +10,8 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import ListAltIcon from '@mui/icons-material/ListAlt';
+import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
 
 import Footer from '../components/Footer';
 
@@ -33,7 +34,7 @@ const ManageRelationships = () => {
             <Grid item xs={12} md={12} lg={12} >
               <Typography variant="h3" gutterBottom
                 sx={{
-                  mt:5,
+                  fontSize: '2.5rem',
                 }}
               >
                 Gerenciar relações causais
@@ -64,7 +65,7 @@ const ManageRelationships = () => {
                   }}
                 >
                   <ListItemIcon>
-                    <ListAltIcon
+                    <AddRoundedIcon
                       sx={{
                         fontSize: '24vh',
                         textAlign: 'center',
@@ -112,7 +113,7 @@ const ManageRelationships = () => {
                   }}
                 >
                   <ListItemIcon>
-                    <ListAltIcon
+                    <RemoveRoundedIcon
                       sx={{
                         fontSize: '24vh',
                         textAlign: 'center',

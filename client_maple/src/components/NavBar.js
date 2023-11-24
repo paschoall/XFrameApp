@@ -88,7 +88,7 @@ const ResponsiveAppBar = () => {
               textDecoration: 'none',
             }}
           >
-            XFrameApp
+            XFrameTool
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -151,7 +151,7 @@ const ResponsiveAppBar = () => {
             XFrameApp
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' }, height:'65px', }}>
             {pages.map((page) => (
               <Button
                 component={Link}
@@ -162,11 +162,16 @@ const ResponsiveAppBar = () => {
                   my: 2,
                   color: 'white',
                   display: 'block',
+                  margin:0,
+                  padding: '20px',
                   backgroundColor:
                     (isVariaveisIndependentesPage && page === 'Variáveis independentes') ||
                     (isVariaveisDependentesPage && page === 'Variáveis dependentes')
-                      ? 'red'
+                      ? '#104A85'
                       : 'inherit',
+                      '&:hover': {
+                        backgroundColor: '#104A85',
+                      },
                 }}
               >
                 {page}

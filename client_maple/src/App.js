@@ -64,6 +64,10 @@ const App = () => {
               theme.palette.mode === 'light'
                 ? theme.palette.grey[50]
                 : theme.palette.grey[800],
+            '& .MuiTypography-root': {
+              fontFamily: 'Poppins, sans-serif',  // Aumenta a especificidade para prevalecer sobre a regra do Material-UI
+              // ... outros estilos
+            },
             flexGrow: 1,
             height: '100vh',
             overflow: 'auto',

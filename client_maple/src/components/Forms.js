@@ -99,7 +99,7 @@ export default function Forms(props) {
           onClick={() => reset()}
           sx={{ mt: 3, ml: 1 }}
         >
-          Resetar
+          Limpar
         </Button>
         <Button
           variant='contained'

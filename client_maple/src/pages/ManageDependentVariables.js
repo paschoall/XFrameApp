@@ -10,8 +10,8 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
-import ListAltIcon from '@mui/icons-material/ListAlt';
-import AddIcon from '@mui/icons-material/Add';
+import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import ModeEditOutlineRoundedIcon from '@mui/icons-material/ModeEditOutlineRounded';
 
 import Footer from '../components/Footer';
 
@@ -34,6 +34,7 @@ const ManageDependentVariables = () => {
             <Grid item xs={12} md={12} lg={12} >
               <Typography variant="h3" gutterBottom
                 sx={{
+                  fontSize: '2.5rem',
                 }}
               >
                 Gerenciar variáveis depentendes
@@ -63,7 +64,7 @@ const ManageDependentVariables = () => {
                   }}
                 >
                   <ListItemIcon>
-                    <AddIcon
+                    <AddRoundedIcon
                       sx={{
                         fontSize: '24vh',
                         textAlign: 'center',
@@ -112,7 +113,7 @@ const ManageDependentVariables = () => {
                   }}
                 >
                   <ListItemIcon>
-                    <ListAltIcon
+                    <ModeEditOutlineRoundedIcon
                       sx={{
                         fontSize: '24vh',
                         textAlign: 'center',
@@ -161,7 +162,7 @@ const ManageDependentVariables = () => {
                   }}
                 >
                   <ListItemIcon>
-                    <AddIcon
+                    <AddRoundedIcon
                       sx={{
                         fontSize: '24vh',
                         textAlign: 'center',
@@ -210,7 +211,7 @@ const ManageDependentVariables = () => {
                   }}
                 >
                   <ListItemIcon>
-                    <ListAltIcon
+                    <ModeEditOutlineRoundedIcon
                       sx={{
                         fontSize: '24vh',
                         textAlign: 'center',
@@ -259,7 +260,7 @@ const ManageDependentVariables = () => {
                   }}
                 >
                   <ListItemIcon>
-                    <AddIcon
+                    <AddRoundedIcon
                       sx={{
                         fontSize: '24vh',
                         textAlign: 'center',
@@ -308,7 +309,7 @@ const ManageDependentVariables = () => {
                   }}
                 >
                   <ListItemIcon>
-                    <ListAltIcon
+                    <ModeEditOutlineRoundedIcon
                       sx={{
                         fontSize: '24vh',
                         textAlign: 'center',

@@ -10,7 +10,14 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
+
 import ListAltRoundedIcon from '@mui/icons-material/ListAltRounded';
+import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
+import BallotRoundedIcon from '@mui/icons-material/BallotRounded';
+import DisplaySettingsRoundedIcon from '@mui/icons-material/DisplaySettingsRounded';
+import FactCheckRoundedIcon from '@mui/icons-material/FactCheckRounded';
+import ListRoundedIcon from '@mui/icons-material/ListRounded';
+import MiscellaneousServicesRoundedIcon from '@mui/icons-material/MiscellaneousServicesRounded';
 
 import Footer from '../components/Footer';
 
@@ -34,6 +41,7 @@ const ManageVariables = () => {
               <Typography variant="h3" gutterBottom
                 sx={{
                   pt:'60px',
+                  fontSize: '2.5rem',
                 }}
               >
                 Gerenciar variáveis
@@ -63,7 +71,7 @@ const ManageVariables = () => {
                   }}
                 >
                   <ListItemIcon>
-                    <ListAltRoundedIcon
+                    <MiscellaneousServicesRoundedIcon
                       sx={{
                         fontSize: '24vh',
                         textAlign: 'center',
@@ -111,7 +119,7 @@ const ManageVariables = () => {
                   }}
                 >
                   <ListItemIcon>
-                    <ListAltRoundedIcon
+                    <SettingsApplicationsIcon
                       sx={{
                         fontSize: '24vh',
                         textAlign: 'center',
