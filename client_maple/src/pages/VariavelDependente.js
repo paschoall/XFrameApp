@@ -201,6 +201,8 @@ const VariavelDependente = () => {
                                 }}
                               >
                                 <Typography variant="body1" gutterBottom>
+                                  {console.log(metrics.data)}
+                                  {console.log(metrics.data.find(({ id }) => id.toString() === data['id_metric'].toString())['name'])}
                                   {(data['id_metric'] === 0 ? '' : metrics.data.find(({ id }) => id.toString() === data['id_metric'].toString())['name'])}
                                   {(data['id_instrument'] === 0 ? '' : instruments.data.find(({ id }) => id.toString() === data['id_metric'].toString())['name'])}
                                 </Typography>

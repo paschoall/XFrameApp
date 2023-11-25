@@ -26,6 +26,7 @@ const VariavelIndependente = () => {
   const { id } = useParams();
   const [selectedIndex, setSelectedIndex] = useState(null);
   const [factorTreatment, setFactorTreatment] = useState([{}]);
+  const [treatments, setTreatments] = useState([{}]);
   const [references, setReferences] = useState([{}]);
   const [viReferences, setViReferences] = useState([{}]);
   const [openMore, setOpenMore] = useState(false);
@@ -63,6 +64,20 @@ const VariavelIndependente = () => {
   }, [])
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('/treatments');
+        const data = await response.json();
+        setTreatments(data);
+      } catch (error) {
+        console.error('Erro ao buscar dados de tratamentos:', error);
+      }
+    };
+  
+    fetchData(); // Chama a função assíncrona
+  }, [id]);
+
+  useEffect(() => {
     fetch('/vi_references').then(
       res => res.json()
     ).then(
@@ -75,10 +90,10 @@ const VariavelIndependente = () => {
   const handleClose = () => {
     setOpenMore(false);
   };
-  const handleClickMore = (event, more_id) => {
-    setSelectedIndex(more_id)
-    setOpenMore(true)
-  }
+  const handleClickMore = (event, more_id, treatment_id) => {
+    setSelectedIndex({ more_id, treatment_id });
+    setOpenMore(true);
+  };
 
   return (
     (typeof data.data === 'undefined') ? (
@@ -153,54 +168,60 @@ const VariavelIndependente = () => {
                     Tratamentos
                   </Typography>
                   <Grid container spacing={6}>
-                    {
-                      (typeof factorTreatment.data === 'undefined' || Object.keys(factorTreatment.data).length === 0) ? (
-                        <p></p>
-                      ) : (
-                        factorTreatment.data.filter(({ id_vi }) => id_vi.toString() === variable_id).map((data, i) => {
-                          return (
-                            <Grid key={i} item xs={12} md={8} lg={8}>
-                              <Box
-                                // component={Button}
+                    {(typeof factorTreatment.data === 'undefined' || Object.keys(factorTreatment.data).length === 0) ? (
+                      <p></p>
+                    ) : (
+                      factorTreatment.data.filter(({ id_vi }) => id_vi.toString() === variable_id).map((data, i) => {
+                        const treatmentIds = data.id_treatments_array.split(',');
+                        const treatmentsData = treatmentIds.map((treatmentId, j) => ({
+                          id: data.id,
+                          id_factors_array: data.id_factors_array,
+                          id_treatments: treatmentId,
+                          id_vi: data.id_vi,
+                        }));
+
+                        return treatmentsData.map((treatmentData, j) => (
+                          <Grid key={j} item xs={12} md={6} lg={6}>
+                            <Box
+                              sx={{
+                                p: 2,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                height: '100%',
+                                width: '100%',
+                                textTransform: 'none',
+                                alignItems: 'flex-start',
+                              }}
+                            >
+                              <Typography variant="body1" gutterBottom>
+                                {treatments.data && console.log(treatments.data)}
+                                {treatments.data && console.log(treatments.data.find(({ id }) => id.toString() === treatmentData.id_treatments.toString())['name'])}
+                                {console.log('---------------------------------------')}
+                                {treatments.data && treatments.data.find(({ id }) => id.toString() === treatmentData.id_treatments.toString())['name']}
+                              </Typography>
+                              <Grid
+                                container spacing={2}
+                                rowSpacing={1}
                                 sx={{
-                                  p: 2,
-                                  display: 'flex',
-                                  flexDirection: 'column',
-                                  height: '100%',
-                                  width: '100%',
-                                  textTransform: 'none',
-                                  alignItems: 'flex-start',
+                                  margin: '0.5rem 1rem 0 0',
                                 }}
                               >
-                                <Typography variant="body1" gutterBottom>
-                                  {data.id_treatments_array.split(',').length}{' '}
-                                  Tratamento{(data.id_treatments_array.split(',').length > 1) ? ('s') : ('')}
-                                </Typography>
-                                <Grid
-                                  container spacing={2}
-                                  rowSpacing={1}
-                                  sx={{
-                                    margin: '0.5rem 1rem 0 0'
-                                  }}
-                                >
-                                  <Button onClick={(event) => handleClickMore(event, data.id)}>Mais detalhes
-                                    <AddCircleRoundedIcon
-                                      sx={{
-                                        mt: '-5px',
-                                        ml: '5px',
-                                        fontSize: '16px',
-                                        textAlign: 'center',
-                                      }}
-                                    />
-                                  </Button>
-                                </Grid>
-                              </Box>
-                            </Grid>
-                          )
-                        }
-                        )
-                      )
-                    }
+                                <Button onClick={(event) => handleClickMore(event, data.id, treatmentData.id_treatments)}>Mais detalhes
+                                  <AddCircleRoundedIcon
+                                    sx={{
+                                      mt: '-5px',
+                                      ml: '5px',
+                                      fontSize: '16px',
+                                      textAlign: 'center',
+                                    }}
+                                  />
+                                </Button>
+                              </Grid>
+                            </Box>
+                          </Grid>
+                        ));
+                      })
+                    )}
                   </Grid>
                 </Paper>
               </Grid>
@@ -267,26 +288,36 @@ const VariavelIndependente = () => {
               fullWidth: 'true',
               maxWidth: 'lg',
               maxHeight: '80%',
-            }
+            },
           }}
         >
           <DialogContent>
-            {(typeof factorTreatment.data === 'undefined' || Object.keys(factorTreatment.data).length === 0) ? (
+            {selectedIndex && (typeof factorTreatment.data === 'undefined' || Object.keys(factorTreatment.data).length === 0) ? (
               <Typography variant="h4" gutterBottom>
                 Loading...
               </Typography>
-            ) : (factorTreatment.data.filter(({ id }) => id === selectedIndex).map((data, i) => {
-              return (
-                <Typography key={i}>
-                  {data['id_treatments_array'].split(',').map((id, i) => { return (<Treatment key={i} id={id} />) })}
-                </Typography>
-              )
-            })
+            ) : (
+              selectedIndex && factorTreatment.data
+                .filter(({ id }) => id === selectedIndex.more_id)
+                .map((data, i) => {
+                  const { treatment_id } = selectedIndex;
+                  const treatment = treatments.data.find((t) => t.id.toString() === treatment_id.toString());
+
+                  if (!treatment) {
+                    return null;
+                  }
+
+                  return (
+                    <div key={i}>
+                      <Treatment id={treatment_id} />
+                    </div>
+                  );
+                })
             )}
           </DialogContent>
           <DialogActions>
             <Button onClick={() => handleClose()} autoFocus>
-            Fechar
+              Fechar
             </Button>
           </DialogActions>
         </Dialog>
