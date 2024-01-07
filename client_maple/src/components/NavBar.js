@@ -43,7 +43,8 @@ const ResponsiveAppBar = () => {
   const pathnameSegments = location.pathname.split('/'); // Divide a URL em segmentos
   const isVariaveisIndependentesPage = pathnameSegments.includes('catalogo-variaveis-independentes');
   const isVariaveisDependentesPage = pathnameSegments.includes('catalogo-variaveis-dependentes');
-
+  const isLoginPage = pathnameSegments.includes('login');
+  const isAdminPage = pathnameSegments.includes('admin-page', 'gerenciar-variaveis');
 
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [anchorElUser, setAnchorElUser] = useState(null);
@@ -168,7 +169,7 @@ const ResponsiveAppBar = () => {
                     (isVariaveisIndependentesPage && page === 'Variáveis independentes') ||
                     (isVariaveisDependentesPage && page === 'Variáveis dependentes')
                       ? '#104A85'
-                      : 'inherit',
+                      : 'inerit',
                       '&:hover': {
                         backgroundColor: '#104A85',
                       },
@@ -185,7 +186,17 @@ const ResponsiveAppBar = () => {
               <>
                 <Tooltip title='Open settings'>
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Button sx={{color: 'white'}}>Pagina de administrador</Button>
+                    <Button sx={{
+                      my: 2,
+                      color: 'white',
+                      display: 'block',
+                      margin:0,
+                      padding: '20px',
+                      backgroundColor: isAdminPage ? '#104A85' : 'inherit',
+                      '&:hover': {
+                        backgroundColor: '#104A85',
+                      },
+                      }}>Pagina de administrador</Button>
                   </IconButton>
                 </Tooltip>
                 <Menu
@@ -231,7 +242,20 @@ const ResponsiveAppBar = () => {
               </>
             ) : (
               <>
-                <Button component={Link} to='/login' color="inherit">Login</Button>
+                <Button component={Link} to='/login' color="inherit"
+                sx={{
+                  backgroundColor: isLoginPage ? '#104A85' : 'inherit',
+                  color: isLoginPage ? '#fff' : 'inherit',
+                  margin:0,
+                  padding: '20px',
+                  pl: '25px',
+                  pr: '25px',
+                  mr: '10px',
+                  '&:hover': {
+                    backgroundColor: '#104A85',
+                  },
+                }}
+                >Login</Button>
               </>
             )}
             <ThemeToggler />

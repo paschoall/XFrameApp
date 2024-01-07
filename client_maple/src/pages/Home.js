@@ -23,20 +23,24 @@ const Home = () => {
 
   const [open, setOpen] = React.useState(null);
 
+  const [highlightedDependencies, setHighlightedDependencies] = useState([]);
+
   const handleViListItemClick = (event, index) => {
     var vd_array;
-    const selected_vi_vd = vi_vd.data.find(o => o.id_vi === index);
-
-    console.log(selected_vi_vd)
-    if (selected_vi_vd !== undefined){
-      vd_array = selected_vi_vd['id_vd_array'].split(',').map((item) => { return parseInt(item)})
-    }
-    else{
+    const selected_vi_vd = vi_vd.data.find((o) => o.id_vi === index);
+  
+    console.log(selected_vi_vd);
+    if (selected_vi_vd !== undefined) {
+      vd_array = selected_vi_vd['id_vd_array']
+        .split(',')
+        .map((item) => parseInt(item));
+    } else {
       vd_array = [];
     }
-
+  
     setOpen(index);
     setIndexArray(vd_array);
+    setHighlightedDependencies(vd_array);
   };
 
   // const handleListItemClick = (event, index, array) => {
@@ -151,12 +155,13 @@ const Home = () => {
                               width: '100%',
                               minHeight: '3rem',
                               padding: '1vh',
+                              backgroundColor: open === data['id'] ? 'rgba(21, 123, 225, 0.34)!important' : 'inherit', /* Cor mais escura desejada */
                             }}
                           >
                             <ListItemText primary={data['name']} 
                             sx={{
                               '& .MuiTypography-root': {
-                                fontSize: '0.9rem', // Ajuste a fonte conforme necessário
+                                fontSize: '0.9rem',
                               },
                             }}/>
                           </ListItemButton>
@@ -218,12 +223,15 @@ const Home = () => {
                             width: '100%',
                             minHeight: '3rem',
                             padding: '1vh',
+                            backgroundColor: highlightedDependencies.includes(data['id']) 
+                            ? 'rgba(21, 123, 225, 0.34)!important'
+                            : 'inherit',
                           }}
                         >
                           <ListItemText primary={data['name']} 
                           sx={{
                             '& .MuiTypography-root': {
-                              fontSize: '0.9rem', // Ajuste a fonte conforme necessário
+                              fontSize: '0.9rem',
                             },
                           }}/>
                         </ListItemButton>

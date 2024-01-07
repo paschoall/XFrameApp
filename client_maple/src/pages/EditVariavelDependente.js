@@ -375,7 +375,7 @@ const EditVariavelDependente = () => {
                       margin: '0',
                     }}
                   >
-                    <Button onClick={handleClickOpenDesc}>Editar Nome ou Descrição</Button>
+                    <Button onClick={handleClickOpenDesc}>Alterar nome ou descrição</Button>
                   </Grid>
                 </Paper>
               </Grid>
@@ -654,7 +654,7 @@ const EditVariavelDependente = () => {
           aria-labelledby="responsive-dialog-title"
         >
           <DialogContent>
-            <EditForms formTitle={'Editar Nome ou Descrição'} fetchlink='/independent_variable/' nome={data.data['name']} descricao={data.data['description']} />
+            <EditForms formTitle={'Editar Nome ou Descrição'} fetchlink='/dependent_variable/' nome={data.data['name']} descricao={data.data['description']} />
           </DialogContent>
         </Dialog>
 

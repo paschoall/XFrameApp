@@ -22,6 +22,8 @@ import Footer from '../components/Footer';
 import Metric from '../components/Metric'
 import Instrument from '../components/Instrument'
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const VariavelDependente = () => {
   const [data, setData] = useState([{}])
@@ -106,6 +108,9 @@ const VariavelDependente = () => {
     setOpenMore(true)
   }
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
   return (
 
     (typeof data.data === 'undefined') ? (
@@ -137,6 +142,27 @@ const VariavelDependente = () => {
             overflow: 'auto',
           }}
         >
+          {(
+            !(location.pathname === '/catalogo-variaveis-dependentes') &&
+            <Button
+              xs={'none'}
+              size="large"
+              onClick={() => navigate(-1)}
+              sx={{
+                display: { xs: 'none', md: 'flex' },
+                position: 'relative',
+                marginLeft: '0.9rem',
+                top: '15px',
+                color: 'gray',
+                borderRadius: '100%',
+                '&:hover': {
+                  backgroundColor: (theme) => theme.palette.grey[200],
+                },
+              }}
+            >
+              <ChevronLeftIcon fontSize="large" />
+            </Button>
+          )}
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Typography variant="h4" gutterBottom>
               {data.data['name']}
@@ -201,8 +227,6 @@ const VariavelDependente = () => {
                                 }}
                               >
                                 <Typography variant="body1" gutterBottom>
-                                  {console.log(metrics.data)}
-                                  {console.log(metrics.data.find(({ id }) => id.toString() === data['id_metric'].toString())['name'])}
                                   {(data['id_metric'] === 0 ? '' : metrics.data.find(({ id }) => id.toString() === data['id_metric'].toString())['name'])}
                                   {(data['id_instrument'] === 0 ? '' : instruments.data.find(({ id }) => id.toString() === data['id_metric'].toString())['name'])}
                                 </Typography>

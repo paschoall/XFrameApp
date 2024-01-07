@@ -55,14 +55,10 @@ const EditVariavelIndependente = () => {
   const variable_id = id
 
   const handleTreatmentListItemClick = (event, index) => {
-    setSelectedIndex(selectedIndex);
-    setSelectedIndex(index);
     if (treatmentArray.includes(index)) {
-      setTreatmentArray(treatmentArray.filter((value => (value !== index))));
-    }
-    else {
-      treatmentArray.push(index)
-      setTreatmentArray(treatmentArray.sort());
+      setTreatmentArray([]);
+    } else {
+      setTreatmentArray([index]);
     }
   };
 
@@ -367,7 +363,7 @@ const EditVariavelIndependente = () => {
                       margin: '0',
                     }}
                   >
-                    <Button onClick={handleClickOpenDesc}>Editar Nome ou Descrição</Button>
+                    <Button onClick={handleClickOpenDesc}>Alterar nome ou descrição</Button>
                   </Grid>
                 </Paper>
               </Grid>
@@ -390,7 +386,7 @@ const EditVariavelIndependente = () => {
                       ) : (
                         factorTreatment.data.filter(({ id_vi }) => id_vi.toString() === variable_id).map((data, i) => {
                           return (
-                            <Grid key={i} item xs={12} md={4} lg={4}>
+                            <Grid key={i} item xs={12} md={6} lg={6}>
                               <Paper
                                 // component={Button}
                                 sx={{
@@ -404,8 +400,12 @@ const EditVariavelIndependente = () => {
                                 }}
                               >
                                 <Typography variant="body1" gutterBottom>
-                                  {data.id_treatments_array.split(',').length}{' '}
-                                  Tratamento{(data.id_treatments_array.split(',').length > 1) ? ('s') : ('')}
+                                  {data.id_treatments_array.split(',').map((treatmentId, index) => (
+                                    <span key={index}>
+                                      {treatment.data.find(t => t.id.toString() === treatmentId.toString()).name}
+                                      {index < data.id_treatments_array.split(',').length - 1 && ', '}
+                                    </span>
+                                  ))}
                                 </Typography>
                                 <Grid
                                   container spacing={2}
@@ -414,7 +414,7 @@ const EditVariavelIndependente = () => {
                                     margin: '0.5rem 1rem 0 0'
                                   }}
                                 >
-                                  <Button onClick={(event) => handleClickMore(event, data.id)}>Mais</Button>
+                                  <Button onClick={(event) => handleClickMore(event, data.id)}>Mais Detalhes</Button>
 
                                   <Button onClick={(event) => handleClickFT(event, data.id)}>Deletar</Button>
                                 </Grid>
@@ -433,7 +433,7 @@ const EditVariavelIndependente = () => {
                       margin: '3rem 0 0 0'
                     }}
                   >
-                    <Button onClick={handleClickOpenFt}>Adicionar Tratamentos</Button>
+                    <Button onClick={handleClickOpenFt}>Atribuir Tratamentos</Button>
                   </Grid>
                 </Paper>
               </Grid>
@@ -479,7 +479,7 @@ const EditVariavelIndependente = () => {
                                   )
                                 }
                               >
-                                DELETAR
+                                EXCLUIR
                               </Button>
                             </Grid>
                           )
@@ -514,7 +514,7 @@ const EditVariavelIndependente = () => {
           aria-labelledby="responsive-dialog-title"
         >
           <DialogContent>
-            <EditForms formTitle={'Editar Nome ou Descrição'} fetchlink='/independent_variable/' nome={data.data['name']} descricao={data.data['description']} />
+            <EditForms formTitle={'Alterar nome ou descrição'} fetchlink='/independent_variable/' nome={data.data['name']} descricao={data.data['description']} />
           </DialogContent>
         </Dialog>
 

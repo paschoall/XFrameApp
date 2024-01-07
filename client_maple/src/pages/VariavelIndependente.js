@@ -20,6 +20,8 @@ import {
 import Footer from '../components/Footer';
 import Treatment from '../components/Treatment'
 import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const VariavelIndependente = () => {
   const [data, setData] = useState([{}])
@@ -74,7 +76,7 @@ const VariavelIndependente = () => {
       }
     };
   
-    fetchData(); // Chama a função assíncrona
+    fetchData();
   }, [id]);
 
   useEffect(() => {
@@ -94,6 +96,9 @@ const VariavelIndependente = () => {
     setSelectedIndex({ more_id, treatment_id });
     setOpenMore(true);
   };
+
+  const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     (typeof data.data === 'undefined') ? (
@@ -124,6 +129,27 @@ const VariavelIndependente = () => {
             overflow: 'auto',
           }}
         >
+          {(
+            !(location.pathname === '/catalogo-variaveis-independentes') &&
+            <Button
+              xs={'none'}
+              size="large"
+              onClick={() => navigate(-1)}
+              sx={{
+                display: { xs: 'none', md: 'flex' },
+                position: 'relative',
+                marginLeft: '0.9rem',
+                top: '15px',
+                color: 'gray',
+                '&:hover': {
+                  backgroundColor: (theme) => theme.palette.grey[200],
+                  borderRadius: '100%',
+                },
+              }}
+            >
+              <ChevronLeftIcon fontSize="large" />
+            </Button>
+          )}
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Typography variant="h4" gutterBottom>
               {data.data['name']}
@@ -182,21 +208,19 @@ const VariavelIndependente = () => {
 
                         return treatmentsData.map((treatmentData, j) => (
                           <Grid key={j} item xs={12} md={6} lg={6}>
-                            <Box
-                              sx={{
-                                p: 2,
-                                display: 'flex',
-                                flexDirection: 'column',
-                                height: '100%',
-                                width: '100%',
-                                textTransform: 'none',
-                                alignItems: 'flex-start',
-                              }}
+                            <Paper
+                                // component={Button}
+                                sx={{
+                                  p: 2,
+                                  display: 'flex',
+                                  flexDirection: 'column',
+                                  height: '100%',
+                                  width: '100%',
+                                  textTransform: 'none',
+                                  alignItems: 'flex-start',
+                                }}
                             >
                               <Typography variant="body1" gutterBottom>
-                                {treatments.data && console.log(treatments.data)}
-                                {treatments.data && console.log(treatments.data.find(({ id }) => id.toString() === treatmentData.id_treatments.toString())['name'])}
-                                {console.log('---------------------------------------')}
                                 {treatments.data && treatments.data.find(({ id }) => id.toString() === treatmentData.id_treatments.toString())['name']}
                               </Typography>
                               <Grid
@@ -217,7 +241,7 @@ const VariavelIndependente = () => {
                                   />
                                 </Button>
                               </Grid>
-                            </Box>
+                            </Paper>
                           </Grid>
                         ));
                       })

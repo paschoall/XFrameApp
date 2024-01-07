@@ -36,23 +36,21 @@ export default function Formulario(props) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     }
-    console.log(data)
 
     fetch(props.fetchlink+id, requestOptions)
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not OK');
-        }
-        console.log(response)
-        setOpen(true)
-        reset()
-        return response.json()
-      })
-      .then(data => console.log(data))
-      .catch((error) => {
-        console.error('There has been a problem with your fetch operation:', error);
-        setOpenError(true)
-      });
+    .then(response => {
+      if (!response.ok) {
+        console.error('Network response was not OK:', response.status, response.statusText);
+        return response.text();
+      setOpen(true);
+      reset();
+      return response.json();
+    })
+    .then(data => console.log('Server response:', data))
+    .catch((error) => {
+      console.error('There has been a problem with your fetch operation:', error);
+      setOpenError(true);
+    });
 
     // console.log(JSON.stringify(data));
   }
@@ -88,13 +86,13 @@ export default function Formulario(props) {
             </Grid>
           </Grid>
           <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <Button
+            {/*<Button
               variant='contained'
               onClick={() => reset()}
               sx={{ mt: 3, ml: 1 }}
             >
               Resetar
-            </Button>
+            </Button>*/}
             <Button
               variant='contained'
               onClick={handleSubmit(onSubmit)}
