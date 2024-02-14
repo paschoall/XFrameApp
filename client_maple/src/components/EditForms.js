@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import Container from '@mui/material/Container';
 import Paper from '@mui/material/Paper';
@@ -17,6 +17,7 @@ export default function Formulario(props) {
   const [open, setOpen] = useState(false);
   const [openError, setOpenError] = useState(false);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setOpenError(openError)
@@ -42,6 +43,7 @@ export default function Formulario(props) {
       if (!response.ok) {
         console.error('Network response was not OK:', response.status, response.statusText);
         return response.text();
+      }
       setOpen(true);
       reset();
       return response.json();
@@ -54,6 +56,11 @@ export default function Formulario(props) {
 
     // console.log(JSON.stringify(data));
   }
+
+  const handleClose = () => {
+    setOpen(false);
+    navigate(0);
+  };
 
   return (
     <Container component='main' maxWidth='sm' sx={{ mb: 4 }}>
@@ -93,6 +100,13 @@ export default function Formulario(props) {
             >
               Resetar
             </Button>*/}
+            <Button
+              variant='outlined'
+              onClick={() => handleClose()}
+              sx={{ mt: 3, ml: 1 }}
+            >
+              Cancelar
+            </Button>
             <Button
               variant='contained'
               onClick={handleSubmit(onSubmit)}

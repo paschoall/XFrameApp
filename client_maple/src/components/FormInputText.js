@@ -2,7 +2,7 @@ import TextField from '@mui/material/TextField';
 import { Controller } from "react-hook-form";
 import React from "react";
 
-export const FormInputText = ({ required, multiline, name, control, label, defaultV }) => {
+export const FormInputText = ({ required, multiline, name, control, label, defaultV, maxLength }) => {
   return (
     <Controller
       defaultValue={defaultV}
@@ -18,6 +18,7 @@ export const FormInputText = ({ required, multiline, name, control, label, defau
           label={label}
           fullWidth
           variant="standard"
+          inputProps={{ maxLength: maxLength }}
         />
       )}
     />

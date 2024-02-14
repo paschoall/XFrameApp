@@ -22,7 +22,7 @@ db = SQLAlchemy(app)
 class variavel_independente(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(100), nullable=False, unique = True)
-    description = db.Column(db.String(500), nullable=False)
+    description = db.Column(db.String(1000), nullable=False)
 
     # create A String
     def __repr__(self):
@@ -38,7 +38,7 @@ class variavel_independente(db.Model):
 class variavel_dependente(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(100), nullable=False, unique = True)
-    description = db.Column(db.String(500), nullable=False)
+    description = db.Column(db.String(1000), nullable=False)
 
     # create A String
     def __repr__(self):
@@ -54,7 +54,7 @@ class variavel_dependente(db.Model):
 class metrica(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(100), nullable=False, unique = True)
-    description = db.Column(db.String(500), nullable=False)
+    description = db.Column(db.String(1000), nullable=False)
     instrument = db.Column(db.String(100))
     # create A String
     def __repr__(self):
@@ -68,7 +68,7 @@ class metrica(db.Model):
 
 class referencia(db.Model):
     id = db.Column(db.Integer, primary_key = True)
-    referencia = db.Column(db.String(500), nullable=False, unique = True)
+    referencia = db.Column(db.String(1000), nullable=False, unique = True)
 
     # create A String
     def __repr__(self):

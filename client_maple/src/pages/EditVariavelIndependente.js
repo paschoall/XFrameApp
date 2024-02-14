@@ -175,6 +175,12 @@ const EditVariavelIndependente = () => {
   };
 
   const handleAddFT = () => {
+    if (treatmentArray.length === 0) {
+      // Se nenhum tratamento estiver selecionado, exibe o modal de erro
+      setOpenError(true);
+      return;
+    }
+
     setOpen(false)
     setOpenError(false)
 
@@ -588,8 +594,8 @@ const EditVariavelIndependente = () => {
             <Button autoFocus onClick={handleClose}>
               Cancelar
             </Button>
-            <Button onClick={handleAddFT} autoFocus>
-              Adicionar
+            <Button variant="contained" onClick={handleAddFT} autoFocus>
+              Editar
             </Button>
           </DialogActions>
         </Dialog>
@@ -634,7 +640,7 @@ const EditVariavelIndependente = () => {
               <Button autoFocus onClick={handleClose}>
                 Cancelar
               </Button>
-              <Button type="submit" autoFocus>
+              <Button variant="contained" type="submit" autoFocus>
                 Adicionar
               </Button>
             </DialogActions>

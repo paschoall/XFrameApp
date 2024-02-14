@@ -137,6 +137,7 @@ const VariavelDependente = () => {
         <CssBaseline />
         <Box
           sx={{
+            mt: 7,
             flexGrow: 1,
             height: '100vh',
             overflow: 'auto',
@@ -214,7 +215,7 @@ const VariavelDependente = () => {
                         metricInstrument.data.filter(({ id_vd }) => id_vd.toString() === variable_id).map((data, i) => {
                           return (
                             <Grid key={i} item xs={12} md={6} lg={6}>
-                              <Box
+                              <Paper
                                 // component={Button}
                                 sx={{
                                   p: 2,
@@ -228,7 +229,7 @@ const VariavelDependente = () => {
                               >
                                 <Typography variant="body1" gutterBottom>
                                   {(data['id_metric'] === 0 ? '' : metrics.data.find(({ id }) => id.toString() === data['id_metric'].toString())['name'])}
-                                  {(data['id_instrument'] === 0 ? '' : instruments.data.find(({ id }) => id.toString() === data['id_metric'].toString())['name'])}
+                                  {(data['id_instrument'] === 0 ? '' : instruments.data.find(({ id }) => id.toString() === data['id_instrument'].toString())['name'])}
                                 </Typography>
                                 <Grid
                                   container spacing={2}
@@ -248,7 +249,7 @@ const VariavelDependente = () => {
                                     />
                                   </Button>
                                 </Grid>
-                              </Box>
+                              </Paper>
                             </Grid>
                           )
                         }

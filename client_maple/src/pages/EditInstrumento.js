@@ -373,7 +373,7 @@ const EditInstrumento = () => {
               <Button autoFocus onClick={handleClose}>
                 Cancelar
               </Button>
-              <Button type="submit" autoFocus>
+              <Button variant="contained" type="submit" autoFocus>
                 Adicionar
               </Button>
             </DialogActions>

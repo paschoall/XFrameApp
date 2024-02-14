@@ -10,8 +10,9 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 import Footer from '../components/Footer';
 import AlertDialog from '../components/AlertDialog';
@@ -21,6 +22,8 @@ export default function SignUp() {
   const currentUser = useSelector((state) => state.user);
   const [open, setOpen] = useState(false);
   const [openError, setOpenError] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     setOpenError(openError)
@@ -66,14 +69,34 @@ export default function SignUp() {
     return <Navigate to="/" replace />;
   }
 
+  
+
   return (
     <>
+    <Button
+      xs={'none'}
+      size="large"
+      onClick={() => navigate(-1)}
+      sx={{
+        display: { xs: 'none', md: 'flex' },
+        position: 'relative',
+        marginLeft: '0.9rem',
+        marginTop: 10,
+        color: 'gray',
+        '&:hover': {
+          backgroundColor: (theme) => theme.palette.grey[200],
+          borderRadius: '100%',
+        },
+      }}
+    >
+      <ChevronLeftIcon fontSize="large" />
+    </Button>
       <CssBaseline />
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: -1.4,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
@@ -83,7 +106,7 @@ export default function SignUp() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Cadastrar
+            Cadastrar usuário
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>

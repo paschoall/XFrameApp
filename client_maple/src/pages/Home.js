@@ -87,7 +87,7 @@ const Home = () => {
           component="h1"
           variant="h4"
           align="center"
-          sx={{ margin: '2rem', fontSize: '2rem' }}
+          sx={{ margin: '2rem', fontSize: '2rem', mt:'6rem'}}
         >
           
           Relações causais entre variáveis independentes e dependentes

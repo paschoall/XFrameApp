@@ -124,6 +124,7 @@ const VariavelIndependente = () => {
         <CssBaseline />
         <Box
           sx={{
+            mt: 7,
             flexGrow: 1,
             height: '100vh',
             overflow: 'auto',

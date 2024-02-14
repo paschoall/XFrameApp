@@ -58,6 +58,7 @@ export default function Forms(props) {
             name="name"
             control={control}
             label="Nome"
+            maxLength={100}
           />
         </Grid>
         <Grid item xs={12}>
@@ -67,6 +68,7 @@ export default function Forms(props) {
             control={control}
             label="Descrição"
             defaultV=""
+            maxLength={1000}
           />
         </Grid>
         {/* Outros campos do formulário, se houver */}

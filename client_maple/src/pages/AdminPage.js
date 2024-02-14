@@ -100,7 +100,7 @@ function DashboardContent() {
     <>
       <CssBaseline />
       <NavBar />
-      <Box sx={{ display: 'flex' }}>
+      <Box sx={{ display: 'flex', mt: 8 }}>
         <Box
           component="main"
           sx={{

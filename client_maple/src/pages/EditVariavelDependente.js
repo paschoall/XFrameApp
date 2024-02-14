@@ -208,7 +208,7 @@ const EditVariavelDependente = () => {
         if (!response.ok) {
           throw new Error('Network response was not OK');
         }
-        // console.log(response)
+        //console.log(response)
         setOpen(true)
         return response.json()
       })
@@ -392,46 +392,44 @@ const EditVariavelDependente = () => {
                     Métrica e Instrumentos
                   </Typography>
                   <Grid container spacing={6}>
-                    {
-                      (typeof metricInstrument.data === 'undefined' || Object.keys(metricInstrument.data).length === 0) ? (
-                        <p></p>
-                      ) : (
-                        metricInstrument.data.filter(({ id_vd }) => id_vd.toString() === variable_id).map((data, i) => {
-                          return (
-                            <Grid key={i} item xs={12} md={4} lg={4}>
-                              <Paper
-                                // component={Button}
-                                sx={{
-                                  p: 2,
-                                  display: 'flex',
-                                  flexDirection: 'column',
-                                  height: '100%',
-                                  width: '100%',
-                                  textTransform: 'none',
-                                  alignItems: 'flex-start',
-                                }}
-                              >
-                                <Typography variant="body1" gutterBottom>
-                                  {(data['id_metric'] === 0 ? '' : 'Métrica')}
-                                  {(data['id_instrument'] === 0 ? '' : 'Instrumento')}
-                                </Typography>
-                                <Grid
-                                  container spacing={2}
-                                  rowSpacing={1}
-                                  sx={{
-                                    margin: '0.5rem 0 0 -0.5rem'
-                                  }}
-                                >
-                                  <Button onClick={(event) => handleClickMore(event, data.id)}>Mais</Button>
-                                  <Button onClick={(event) => handleClickMI(event, data.id)}>Deletar</Button>
-                                </Grid>
-                              </Paper>
-                            </Grid>
-                          )
-                        }
-                        )
-                      )
-                    }
+                  {
+  metricInstrument.data.filter(({ id_vd }) => id_vd.toString() === variable_id).map((data, i) => {
+    const metricName = metrics.data.find(metric => metric.id === data['id_metric'])?.name;
+    const instrumentName = instruments.data.find(instrument => instrument.id === data['id_instrument'])?.name;
+    console.log(instrumentName)
+
+    return (
+      <Grid key={i} item xs={12} md={6} lg={6}>
+        <Paper
+          sx={{
+            p: 2,
+            display: 'flex',
+            flexDirection: 'column',
+            height: '100%',
+            width: '100%',
+            textTransform: 'none',
+            alignItems: 'flex-start',
+          }}
+        >
+          <Typography variant="body1" gutterBottom>
+            {data['id_metric'] !== 0 && <span>{metricName}</span>}
+            {data['id_instrument'] !== 0 && <span>{instrumentName}</span>}
+          </Typography>
+          <Grid
+            container spacing={2}
+            rowSpacing={1}
+            sx={{
+              margin: '0.5rem 0 0 -0.5rem'
+            }}
+          >
+            <Button onClick={(event) => handleClickMore(event, data.id)}>Mais Detalhes</Button>
+            <Button onClick={(event) => handleClickMI(event, data.id)}>Deletar</Button>
+          </Grid>
+        </Paper>
+      </Grid>
+    )
+  })
+}
                   </Grid>
                   <Grid
                     container spacing={2}
@@ -532,7 +530,7 @@ const EditVariavelDependente = () => {
         >
           <DialogTitle id="responsive-dialog-title"
           >
-            {"Adicionar Métrica ou Intsrumento"}
+            {"Adicionar Métrica ou Instrumentos"}
           </DialogTitle>
           <DialogContent>
             <Grid container spacing={3}>
@@ -639,7 +637,7 @@ const EditVariavelDependente = () => {
             <Button autoFocus onClick={handleClose}>
               Cancelar
             </Button>
-            <Button onClick={handleAddMI} autoFocus>
+            <Button variant="contained" onClick={handleAddMI} autoFocus>
               Adicionar
             </Button>
           </DialogActions>
@@ -698,7 +696,7 @@ const EditVariavelDependente = () => {
               <Button autoFocus onClick={handleClose}>
                 Cancelar
               </Button>
-              <Button type="submit" autoFocus>
+              <Button variant="contained" type="submit" autoFocus>
                 Adicionar
               </Button>
             </DialogActions>
