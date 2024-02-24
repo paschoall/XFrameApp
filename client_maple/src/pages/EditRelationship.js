@@ -162,7 +162,7 @@ const EditRelationship = () => {
                   textAlign: 'center',
                 }}
               >
-                Variáveis Independentes
+                Independent variables
               </Typography>
               <Paper square
                 variant='outlined'
@@ -266,7 +266,7 @@ const EditRelationship = () => {
                   textAlign: 'center',
                 }}
               >
-                Variáveis Dependentes
+                Dependent variables
               </Typography>
               <Paper square
                 variant='outlined'
@@ -322,7 +322,7 @@ const EditRelationship = () => {
                 marginTop: '2rem'
               }}
             >
-              Deletar
+              Delete
             </Button>
           </Grid>
         </Grid>
@@ -333,25 +333,25 @@ const EditRelationship = () => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          DELETAR
+          DELETE
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Quer realmente deletar?
+            Do you really want to delete it?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => handleCloseDelete(true)} autoFocus>
-            Deletar
+            Delete
           </Button>
           <Button onClick={() => handleCloseDelete()} autoFocus>
-            Cancelar
+            Cancel
           </Button>
         </DialogActions>
       </Dialog>
       <AlertDialog
         open={openError}
-        title='Erro ao Deletar'
+        title='Error when deleting'
       />
       <Dialog
         open={openWarning}
@@ -360,7 +360,7 @@ const EditRelationship = () => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          Selecione o Design
+          Select Design
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
@@ -368,7 +368,7 @@ const EditRelationship = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={() => handleCloseDelete()} autoFocus>
-            Fechar
+            Close
           </Button>
         </DialogActions>
       </Dialog>

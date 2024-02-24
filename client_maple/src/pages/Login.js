@@ -104,7 +104,7 @@ export default function Login({ setToken }) {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Entrar
+            Login
           </Typography>
           <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
             <TextField
@@ -112,7 +112,7 @@ export default function Login({ setToken }) {
               required
               fullWidth
               id="username"
-              label="Nome de Usuário"
+              label="User name"
               name="username"
               autoComplete="username"
               autoFocus
@@ -122,7 +122,7 @@ export default function Login({ setToken }) {
               required
               fullWidth
               name="password"
-              label="Senha"
+              label="Password"
               type="password"
               id="password"
               autoComplete="current-password"
@@ -137,7 +137,7 @@ export default function Login({ setToken }) {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Entrar
+              Login
             </Button>
             <Grid container>
               <Grid item xs>
@@ -147,7 +147,7 @@ export default function Login({ setToken }) {
               </Grid>
               <Grid item>
                 <Typography component={Link} to='/signup' variant="body2">
-                  {"Não possui uma conta? Cadastre-se"}
+                  {"Don't have an account? Register"}
                 </Typography>
               </Grid>
             </Grid>
@@ -155,8 +155,8 @@ export default function Login({ setToken }) {
         </Box>
         <AlertDialog
           open={openError}
-          title='Erro no Login'
-          message='Usuário ou Senha invalidos'
+          title='Login error'
+          message='Username or password is invalid'
         />
       </Container>
       <Footer />

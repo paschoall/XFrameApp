@@ -32,7 +32,7 @@ const EditVi = () => {
           <EditCardBox fetchlink='/independent_variable' />
         ) : (
           <Typography variant="h6" gutterBottom>
-            Não há variáveis independentes cadastradas...
+            There are no independent variables registered...
           </Typography>
         )}
       </Box>

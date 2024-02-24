@@ -22,7 +22,7 @@ const CatalogoVi = () => {
         }
       })
       .catch((error) => {
-        console.error('Erro ao verificar variáveis:', error);
+        console.error('Error checking variables:', error);
       });
   }, []);
 
@@ -34,7 +34,7 @@ const CatalogoVi = () => {
           <CardBox fetchlink='/independent_variables' />
         ) : (
           <Typography variant="h6" gutterBottom>
-            Não há variáveis independentes cadastradas...
+            There are no independent variables registered...
           </Typography>
         )}
       </Box>

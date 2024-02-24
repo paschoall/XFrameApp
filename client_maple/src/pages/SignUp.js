@@ -106,7 +106,7 @@ export default function SignUp() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Cadastrar usuário
+            Register user
           </Typography>
           <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
@@ -117,7 +117,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="name"
-                  label="Nome"
+                  label="Name"
                   autoFocus
                 />
               </Grid>
@@ -126,7 +126,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   id="username"
-                  label="Nome de Usuário"
+                  label="User name"
                   name="username"
                   autoComplete="username"
                 />
@@ -146,7 +146,7 @@ export default function SignUp() {
                   required
                   fullWidth
                   name="password"
-                  label="Senha"
+                  label="Password"
                   type="password"
                   id="password"
                   autoComplete="new-password"
@@ -165,12 +165,12 @@ export default function SignUp() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Cadastrar
+              Register
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Typography component={Link} to="/login" variant="body2">
-                  Já possui uma conta? Entrar
+                  Already have an account? Sign in.
                 </Typography>
               </Grid>
             </Grid>
@@ -178,13 +178,13 @@ export default function SignUp() {
         </Box>
         <AlertDialog
           open={openError}
-          title='Erro no Cadastro'
-          message='Falha no registro.'
+          title='Error in Registration'
+          message='Registration failed.'
         />
         <AlertDialog
           open={open}
-          title='Usuario Cadastrado!'
-          message='Usuario cadastrado com sucesso!'
+          title='Registered User!'
+          message='User registered successfully!'
           link='/login'
         />
       </Container>

@@ -117,11 +117,11 @@ export default function EditCardTemplate(props) {
                     }}
                 >
                     <Grid item xs={12} md={9} lg={9} >
-                        <ButtonTemplate link={props.link} id={props.id} text={'Editar'} />
+                        <ButtonTemplate link={props.link} id={props.id} text={'Edit'} />
                     </Grid>
 
                     <Grid item xs={12} md={3} lg={3} >
-                        <Button onClick={handleClick}>Deletar</Button>
+                        <Button onClick={handleClick}>Delete</Button>
                     </Grid>
                 </Grid>
             </CardContent>
@@ -131,19 +131,19 @@ export default function EditCardTemplate(props) {
                 aria-describedby="alert-dialog-description"
             >
                 <DialogTitle id="alert-dialog-title">
-                    DELETAR
+                    DELETE
                 </DialogTitle>
                 <DialogContent>
                     <DialogContentText id="alert-dialog-description">
-                        Quer realmente deletar?
+                        Do you really want to delete it?
                     </DialogContentText>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={() => handleClose(true, props.id)} autoFocus>
-                        Deletar
+                        Delete
                     </Button>
                     <Button onClick={() => handleClose()} autoFocus>
-                        Cancelar
+                        Cancel
                     </Button>
                 </DialogActions>
             </Dialog>

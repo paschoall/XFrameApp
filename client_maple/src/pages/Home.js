@@ -90,7 +90,7 @@ const Home = () => {
           sx={{ margin: '2rem', fontSize: '2rem', mt:'6rem'}}
         >
           
-          Relações causais entre variáveis independentes e dependentes
+          Causal relationships between independent and dependent variables
         </Typography>
         <Grid container spacing={0.5}>
           <Grid item xs={0.75} md={0.75} lg={0.75} />
@@ -114,7 +114,7 @@ const Home = () => {
                   textAlign: 'center',
                 }}
               >
-                Variáveis independentes
+                Independent Variables
               </Typography>
               <Paper square
                 variant='outlined'
@@ -194,7 +194,7 @@ const Home = () => {
                   textAlign: 'center',
                 }}
               >
-                Variáveis dependentes
+                Dependent Variables
               </Typography>
               <Paper square
                 variant='outlined'

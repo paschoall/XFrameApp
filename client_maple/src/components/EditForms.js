@@ -74,7 +74,7 @@ export default function Formulario(props) {
               <FormInputText
                 name="name"
                 control={control}
-                label="Nome"
+                label="Name"
                 defaultV={props.nome}
               />
             </Grid>
@@ -83,7 +83,7 @@ export default function Formulario(props) {
                 multiline
                 name="description"
                 control={control}
-                label="Descrição"
+                label="Description"
                 defaultV={props.descricao}
               />
             </Grid>
@@ -112,18 +112,18 @@ export default function Formulario(props) {
               onClick={handleSubmit(onSubmit)}
               sx={{ mt: 3, ml: 1 }}
             >
-              Editar
+              Edit
             </Button>
           </Box>
           <AlertDialog
             open={openError}
-            title='Erro na Edição'
-            message="Erro ao editar a variável"
+            title='Error in Editing'
+            message="Error editing variable"
           />
           <AlertDialog
             open={open}
-            title='Atualização Bem Sucedida'
-            message='A variável foi editada com sucesso!'
+            title='Successful update'
+            message='The variable was edited successfully!'
           />
         </React.Fragment>
       </Paper>

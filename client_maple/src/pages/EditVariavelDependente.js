@@ -354,7 +354,7 @@ const EditVariavelDependente = () => {
                   }}
                 >
                   <Typography variant="h5" gutterBottom>
-                    Descrição
+                    Description
                   </Typography>
                   <Typography
                     sx={{
@@ -375,7 +375,7 @@ const EditVariavelDependente = () => {
                       margin: '0',
                     }}
                   >
-                    <Button onClick={handleClickOpenDesc}>Alterar nome ou descrição</Button>
+                    <Button onClick={handleClickOpenDesc}>Change name or Description</Button>
                   </Grid>
                 </Paper>
               </Grid>
@@ -389,47 +389,51 @@ const EditVariavelDependente = () => {
                   }}
                 >
                   <Typography variant="h5" gutterBottom>
-                    Métrica e Instrumentos
+                    Metrics and Instruments
                   </Typography>
                   <Grid container spacing={6}>
                   {
-  metricInstrument.data.filter(({ id_vd }) => id_vd.toString() === variable_id).map((data, i) => {
-    const metricName = metrics.data.find(metric => metric.id === data['id_metric'])?.name;
-    const instrumentName = instruments.data.find(instrument => instrument.id === data['id_instrument'])?.name;
-    console.log(instrumentName)
+                    (typeof metricInstrument.data === 'undefined' || Object.keys(metricInstrument.data).length === 0) ? (
+                      <p></p>
+                    ) : (
+                      (metricInstrument.data ?? []).filter(({ id_vd }) => id_vd.toString() === variable_id).map((data, i) => {
+                        const metricName = metrics.data.find(metric => metric.id === data['id_metric'])?.name;
+                        const instrumentName = instruments.data.find(instrument => instrument.id === data['id_instrument'])?.name;
+                        console.log(instrumentName)
 
-    return (
-      <Grid key={i} item xs={12} md={6} lg={6}>
-        <Paper
-          sx={{
-            p: 2,
-            display: 'flex',
-            flexDirection: 'column',
-            height: '100%',
-            width: '100%',
-            textTransform: 'none',
-            alignItems: 'flex-start',
-          }}
-        >
-          <Typography variant="body1" gutterBottom>
-            {data['id_metric'] !== 0 && <span>{metricName}</span>}
-            {data['id_instrument'] !== 0 && <span>{instrumentName}</span>}
-          </Typography>
-          <Grid
-            container spacing={2}
-            rowSpacing={1}
-            sx={{
-              margin: '0.5rem 0 0 -0.5rem'
-            }}
-          >
-            <Button onClick={(event) => handleClickMore(event, data.id)}>Mais Detalhes</Button>
-            <Button onClick={(event) => handleClickMI(event, data.id)}>Deletar</Button>
-          </Grid>
-        </Paper>
-      </Grid>
-    )
-  })
-}
+                        return (
+                          <Grid key={i} item xs={12} md={6} lg={6}>
+                            <Paper
+                              sx={{
+                                p: 2,
+                                display: 'flex',
+                                flexDirection: 'column',
+                                height: '100%',
+                                width: '100%',
+                                textTransform: 'none',
+                                alignItems: 'flex-start',
+                              }}
+                            >
+                              <Typography variant="body1" gutterBottom>
+                                {data['id_metric'] !== 0 && <span>{metricName}</span>}
+                                {data['id_instrument'] !== 0 && <span>{instrumentName}</span>}
+                              </Typography>
+                              <Grid
+                                container spacing={2}
+                                rowSpacing={1}
+                                sx={{
+                                  margin: '0.5rem 0 0 -0.5rem'
+                                }}
+                              >
+                                <Button onClick={(event) => handleClickMore(event, data.id)}>More Details</Button>
+                                <Button onClick={(event) => handleClickMI(event, data.id)}>Delete</Button>
+                              </Grid>
+                            </Paper>
+                          </Grid>
+                        )
+                      })
+                    )
+                  }
                   </Grid>
                   <Grid
                     container spacing={2}
@@ -438,7 +442,7 @@ const EditVariavelDependente = () => {
                       margin: '3rem 0 0 0'
                     }}
                   >
-                    <Button onClick={handleClickOpenMi}>Adicionar Métricas ou Instrumentos</Button>
+                    <Button onClick={handleClickOpenMi}>Add Metrics or Instruments</Button>
                   </Grid>
                 </Paper>
               </Grid>
@@ -451,7 +455,7 @@ const EditVariavelDependente = () => {
                   }}
                 >
                   <Typography variant="h6" gutterBottom>
-                    Referências
+                    References
                   </Typography>
                   <List>
                     <Grid container spacing={2}>
@@ -465,7 +469,7 @@ const EditVariavelDependente = () => {
                               {references.data.find(o => o.id === data.id_ref).referencia_bib}
                             </Grid>
                             <Grid item xs={5.5} md={5.5} lg={5.5} alignItems="flex-start" zeroMinWidth>
-                              {"Disponível em: "}
+                              {"Available in: "}
                               <a
                                 target="_blank"
                                 rel='noreferrer'
@@ -484,7 +488,7 @@ const EditVariavelDependente = () => {
                                 )
                               }
                             >
-                              DELETAR
+                              DELETE
                             </Button>
                           </Grid>
                         )
@@ -501,7 +505,7 @@ const EditVariavelDependente = () => {
                       margin: '0.5rem 0 0 0'
                     }}
                   >
-                    <Button onClick={handleClickOpenRef}>Adicionar Referência</Button>
+                    <Button onClick={handleClickOpenRef}>Add Reference</Button>
                   </Grid>
                 </Paper>
               </Grid>
@@ -515,7 +519,7 @@ const EditVariavelDependente = () => {
           aria-labelledby="responsive-dialog-title"
         >
           <DialogContent>
-            <EditForms formTitle={'Editar Nome ou Descrição'} fetchlink='/dependent_variable/' />
+            <EditForms formTitle={'Edit Name or Description'} fetchlink='/dependent_variable/' />
           </DialogContent>
         </Dialog>
         {/* -------------------------------------------------------- */}
@@ -530,14 +534,14 @@ const EditVariavelDependente = () => {
         >
           <DialogTitle id="responsive-dialog-title"
           >
-            {"Adicionar Métrica ou Instrumentos"}
+            {"Add Metric or Instruments"}
           </DialogTitle>
           <DialogContent>
             <Grid container spacing={3}>
 
               <Grid item xs={12} md={12} lg={12}>
                 <DialogContentText>
-                  Escolha a Métrica
+                  Choose the Metric
                 </DialogContentText>
                 <Paper square
                   variant='outlined'
@@ -585,7 +589,7 @@ const EditVariavelDependente = () => {
               </Grid>
               <Grid item xs={12} md={12} lg={12}>
                 <DialogContentText>
-                  Escolha o Instrumento
+                  Choose the Instrument
                 </DialogContentText>
                 <Paper square
                   variant='outlined'
@@ -635,10 +639,10 @@ const EditVariavelDependente = () => {
           </DialogContent>
           <DialogActions>
             <Button autoFocus onClick={handleClose}>
-              Cancelar
+              Cancel
             </Button>
             <Button variant="contained" onClick={handleAddMI} autoFocus>
-              Adicionar
+              Add
             </Button>
           </DialogActions>
         </Dialog>
@@ -652,7 +656,7 @@ const EditVariavelDependente = () => {
           aria-labelledby="responsive-dialog-title"
         >
           <DialogContent>
-            <EditForms formTitle={'Editar Nome ou Descrição'} fetchlink='/dependent_variable/' nome={data.data['name']} descricao={data.data['description']} />
+            <EditForms formTitle={'Edit Name or Description'} fetchlink='/dependent_variable/' nome={data.data['name']} descricao={data.data['description']} />
           </DialogContent>
         </Dialog>
 
@@ -666,11 +670,11 @@ const EditVariavelDependente = () => {
         >
           <Container component="form" onSubmit={handleAddRef}>
             <DialogTitle id="responsive-dialog-title">
-              {"Adicionar Referência"}
+              {"Add Reference"}
             </DialogTitle>
             <DialogContent>
               <DialogContentText>
-                Adicione a referência e o link de referência abaixo
+                Add reference and reference link below
               </DialogContentText>
               <TextField
                 autoFocus
@@ -694,10 +698,10 @@ const EditVariavelDependente = () => {
             </DialogContent>
             <DialogActions>
               <Button autoFocus onClick={handleClose}>
-                Cancelar
+                Cancel
               </Button>
               <Button variant="contained" type="submit" autoFocus>
-                Adicionar
+                Add
               </Button>
             </DialogActions>
           </Container>
@@ -707,13 +711,13 @@ const EditVariavelDependente = () => {
 
         <AlertDialog
           open={openError}
-          title='Erro no Cadastro'
-          message='Falha no registro.'
+          title='Error in Registration'
+          message='Registration failed.'
         />
         <AlertDialog
           open={open}
-          title='Adicionado com Sucesso'
-          message='Registro bem sucedido!'
+          title='Added Successfully'
+          message='Registration successful!'
         />
 
         {/* -------------------------------------------------------- */}
@@ -725,19 +729,19 @@ const EditVariavelDependente = () => {
           aria-describedby="alert-dialog-description"
         >
           <DialogTitle id="alert-dialog-title">
-            DELETAR
+            DELETE
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              Quer realmente deletar?
+              Do you really want to delete it?
             </DialogContentText>
           </DialogContent>
           <DialogActions>
             <Button onClick={() => handleCloseDelete(true, selectedIndex)} autoFocus>
-              Deletar
+              DELETE
             </Button>
             <Button onClick={() => handleCloseDelete()} autoFocus>
-              Cancelar
+              Cancel
             </Button>
           </DialogActions>
         </Dialog>
@@ -751,19 +755,19 @@ const EditVariavelDependente = () => {
           aria-describedby="alert-dialog-description"
         >
           <DialogTitle id="alert-dialog-title">
-            DELETAR
+            DELETE
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              Quer realmente deletar?
+              Do you really want to delete it?
             </DialogContentText>
           </DialogContent>
           <DialogActions>
             <Button onClick={() => handleCloseDeleteRef(true, selectedIndex)} autoFocus>
-              Deletar
+              Delete
             </Button>
             <Button onClick={() => handleCloseDeleteRef()} autoFocus>
-              Cancelar
+              Cancel
             </Button>
           </DialogActions>
         </Dialog>
@@ -809,7 +813,7 @@ const EditVariavelDependente = () => {
           </DialogContent>
           <DialogActions>
             <Button onClick={() => handleClose()} autoFocus>
-              Fechar
+              Close
             </Button>
           </DialogActions>
         </Dialog>

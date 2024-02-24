@@ -35,7 +35,7 @@ const CatalogoVd = () => {
           <CardBox fetchlink='/dependent_variables' />
         ) : (
           <Typography variant="h6" gutterBottom>
-            Não há variáveis dependentes cadastradas...
+            There are no dependent variables registered...
           </Typography>
         )}
       </Box>

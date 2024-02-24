@@ -73,7 +73,7 @@ const FactorsTreatments = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Gerenciar Variáveis Independentes
+                        Manage Independent Variables
                       </Typography>}
                   />
                 </ListItemButton>
@@ -121,7 +121,7 @@ const FactorsTreatments = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Gerenciar Variáveis Dependentes
+                        Manage Dependent Variables
                       </Typography>}
                   />
                 </ListItemButton>

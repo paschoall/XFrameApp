@@ -32,7 +32,7 @@ const EditInstrument = () => {
           <EditCardBox fetchlink='/instrument' />
         ) : (
           <Typography variant="h6" gutterBottom>
-            Não há instrumentos cadastrados...
+            There are no instruments registered...
           </Typography>
         )}
       </Box>

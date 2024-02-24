@@ -18,18 +18,18 @@ import { Link, useLocation } from 'react-router-dom';
 import { asyncLogout } from '../store/reducers/userSlice';
 import ThemeToggler from './ThemeToggler';
 
-const pages = ['Variáveis independentes', 'Variáveis dependentes'];
-const settings = ['Pagina de admin', 'Sair'];
+const pages = ['Independent Variables', 'Dependent Variables'];
+const settings = ['Administrator page', 'Logout'];
 
 function getPageLink(page) {
   switch (page) {
-    case 'Variáveis independentes':
+    case 'Independent Variables':
       return '/catalogo-variaveis-independentes';
-    case 'Variáveis dependentes':
+    case 'Dependent Variables':
       return '/catalogo-variaveis-dependentes';
-    case 'Pagina de admin':
+    case 'Administrator page':
       return '/admin-page/gerenciar-variaveis';
-    case 'Sair':
+    case 'Logout':
       return '/';
     default:
       return '';
@@ -44,6 +44,7 @@ const ResponsiveAppBar = () => {
   const isVariaveisIndependentesPage = pathnameSegments.includes('catalogo-variaveis-independentes');
   const isVariaveisDependentesPage = pathnameSegments.includes('catalogo-variaveis-dependentes');
   const isLoginPage = pathnameSegments.includes('login');
+  const isSignUpPage = pathnameSegments.includes('signup');
   const isAdminPage = pathnameSegments.includes('admin-page', 'gerenciar-variaveis');
 
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -64,7 +65,7 @@ const ResponsiveAppBar = () => {
     setAnchorElNav(null);
   };
   const handleCloseUserMenu = (setting) => {
-    if (setting === 'Sair') {
+    if (setting === 'Logout') {
       logOut()
     }
     setAnchorElUser(null);
@@ -166,8 +167,8 @@ const ResponsiveAppBar = () => {
                   margin:0,
                   padding: '20px',
                   backgroundColor:
-                    (isVariaveisIndependentesPage && page === 'Variáveis independentes') ||
-                    (isVariaveisDependentesPage && page === 'Variáveis dependentes')
+                    (isVariaveisIndependentesPage && page === 'Independent Variables') ||
+                    (isVariaveisDependentesPage && page === 'Dependent Variables')
                       ? '#104A85'
                       : 'inerit',
                       '&:hover': {
@@ -196,7 +197,7 @@ const ResponsiveAppBar = () => {
                       '&:hover': {
                         backgroundColor: '#104A85',
                       },
-                      }}>Pagina de administrador</Button>
+                      }}>Administrator Page</Button>
                   </IconButton>
                 </Tooltip>
                 <Menu
@@ -227,7 +228,7 @@ const ResponsiveAppBar = () => {
                           <Typography textAlign='center'>{setting}</Typography>
                         </MenuItem>
                       ) : (
-                        setting !== 'Pagina de admin' &&
+                        setting !== 'Administrator page' &&
                         <MenuItem
                           component={Link}
                           to={getPageLink(setting)}
@@ -244,8 +245,8 @@ const ResponsiveAppBar = () => {
               <>
                 <Button component={Link} to='/login' color="inherit"
                 sx={{
-                  backgroundColor: isLoginPage ? '#104A85' : 'inherit',
-                  color: isLoginPage ? '#fff' : 'inherit',
+                  backgroundColor: isLoginPage | isSignUpPage ? '#104A85' : 'inherit',
+                  color: isLoginPage | isSignUpPage ? '#fff' : 'inherit',
                   margin:0,
                   padding: '20px',
                   pl: '25px',

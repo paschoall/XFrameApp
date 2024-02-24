@@ -166,7 +166,7 @@ const VariavelIndependente = () => {
                   }}
                 >
                   <Typography variant="h5" gutterBottom>
-                    Descrição
+                    Description
                   </Typography>
                   <Typography
                     sx={{
@@ -192,7 +192,7 @@ const VariavelIndependente = () => {
                   }}
                 >
                   <Typography variant="h5" gutterBottom>
-                    Tratamentos
+                    Treatments
                   </Typography>
                   <Grid container spacing={6}>
                     {(typeof factorTreatment.data === 'undefined' || Object.keys(factorTreatment.data).length === 0) ? (
@@ -222,7 +222,10 @@ const VariavelIndependente = () => {
                                 }}
                             >
                               <Typography variant="body1" gutterBottom>
-                                {treatments.data && treatments.data.find(({ id }) => id.toString() === treatmentData.id_treatments.toString())['name']}
+                                {(
+                                  data['id_treatment'] === 0 ? '' :
+                                  (treatments.data && treatments.data.find(({ id }) => id.toString() === treatmentData.id_treatments.toString())['name'])
+                                )}
                               </Typography>
                               <Grid
                                 container spacing={2}
@@ -231,7 +234,7 @@ const VariavelIndependente = () => {
                                   margin: '0.5rem 1rem 0 0',
                                 }}
                               >
-                                <Button onClick={(event) => handleClickMore(event, data.id, treatmentData.id_treatments)}>Mais detalhes
+                                <Button onClick={(event) => handleClickMore(event, data.id, treatmentData.id_treatments)}>More Details
                                   <AddCircleRoundedIcon
                                     sx={{
                                       mt: '-5px',
@@ -259,7 +262,7 @@ const VariavelIndependente = () => {
                   }}
                 >
                   <Typography variant="h6" gutterBottom>
-                    Referências
+                    References
                   </Typography>
                   <List>
                     <Grid container spacing={2}>
@@ -273,7 +276,7 @@ const VariavelIndependente = () => {
                                 {references.data.find(o => o.id === data.id_ref).referencia_bib}
                               </Grid>
                               <Grid item xs={6} md={6} lg={6} zeroMinWidth>
-                                {"Disponível em: "}
+                                {"Available in: "}
                                 <a
                                   target="_blank"
                                   rel='noreferrer'
@@ -342,7 +345,7 @@ const VariavelIndependente = () => {
           </DialogContent>
           <DialogActions>
             <Button onClick={() => handleClose()} autoFocus>
-              Fechar
+              Close
             </Button>
           </DialogActions>
         </Dialog>

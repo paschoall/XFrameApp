@@ -57,7 +57,7 @@ export default function Forms(props) {
             required
             name="name"
             control={control}
-            label="Nome"
+            label="Name"
             maxLength={100}
           />
         </Grid>
@@ -66,7 +66,7 @@ export default function Forms(props) {
             multiline
             name="description"
             control={control}
-            label="Descrição"
+            label="Description"
             defaultV=""
             maxLength={1000}
           />
@@ -86,19 +86,19 @@ export default function Forms(props) {
           onClick={handleSubmit(onSubmit)}
           sx={{ mt: 3, ml: 1 }}
         >
-          Cadastrar
+          Register
         </Button>
       </Box>
       {showAlert && (
         <AlertDialog
           open={open}
-          title='Adicionado com Sucesso'
-          message='Registro bem sucedido!'
+          title='Added Successfully'
+          message='Registration successful!'
         />
       )}
       <AlertDialog
         open={openError}
-        title='Erro no Cadastro'
+        title='Error in Registration'
         message={errorText}
       />
     </React.Fragment>

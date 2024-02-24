@@ -8,7 +8,7 @@ const EditViForms = () => {
   return (
     <>
       <CssBaseline />
-      <EditForms formTitle={'Editar Variável Independente'} fetchlink='/independent_variable/' />
+      <EditForms formTitle={'Edit Independent Variable'} fetchlink='/independent_variable/' />
       <Footer />
     </>
   );

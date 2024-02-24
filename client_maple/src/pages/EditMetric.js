@@ -32,7 +32,7 @@ const EditMetric = () => {
           <EditCardBox fetchlink='/metric' />
         ) : (
           <Typography variant="h6" gutterBottom>
-            Não há métricas cadastradas...
+            There are no metrics registered...
           </Typography>
         )}
       </Box>

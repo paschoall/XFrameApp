@@ -179,7 +179,7 @@ const VariavelDependente = () => {
                   }}
                 >
                   <Typography variant="h5" gutterBottom>
-                    Descrição
+                    Description
                   </Typography>
                   <Typography
                     sx={{
@@ -205,7 +205,7 @@ const VariavelDependente = () => {
                   }}
                 >
                   <Typography variant="h5" gutterBottom>
-                    Métricas e Instrumentos
+                    Metrics and Instruments
                   </Typography>
                   <Grid container spacing={6}>
                     {
@@ -228,8 +228,14 @@ const VariavelDependente = () => {
                                 }}
                               >
                                 <Typography variant="body1" gutterBottom>
-                                  {(data['id_metric'] === 0 ? '' : metrics.data.find(({ id }) => id.toString() === data['id_metric'].toString())['name'])}
-                                  {(data['id_instrument'] === 0 ? '' : instruments.data.find(({ id }) => id.toString() === data['id_instrument'].toString())['name'])}
+                                {(
+                                  data['id_metric'] === 0 ? '' :
+                                  (metrics.data && metrics.data.find(({ id }) => id.toString() === data['id_metric'].toString())['name'])
+                                )}
+                                {(
+                                  data['id_instrument'] === 0 ? '' :
+                                  (instruments.data && instruments.data.find(({ id }) => id.toString() === data['id_instrument'].toString())['name'])
+                                )}  
                                 </Typography>
                                 <Grid
                                   container spacing={2}
@@ -238,7 +244,7 @@ const VariavelDependente = () => {
                                     margin: '0.5rem 0 0 -0.5rem'
                                   }}
                                 >
-                                  <Button onClick={(event) => handleClickMore(event, data.id)}>Mais detalhes
+                                  <Button onClick={(event) => handleClickMore(event, data.id)}>More Details
                                     <AddCircleRoundedIcon
                                       sx={{
                                         mt: '-5px',
@@ -268,7 +274,7 @@ const VariavelDependente = () => {
                   }}
                 >
                   <Typography variant="h6" gutterBottom>
-                    Referências
+                    References
                   </Typography>
                   <List>
                     <ListItem>
@@ -283,7 +289,7 @@ const VariavelDependente = () => {
                                   {references.data.find(o => o.id === data.id_ref).referencia_bib}
                                 </Grid>
                                 <Grid item xs={6} md={6} lg={6} zeroMinWidth>
-                                  {"Disponível em: "}
+                                  {"Available in: "}
                                   <a
                                     target="_blank"
                                     rel='noreferrer'
@@ -353,7 +359,7 @@ const VariavelDependente = () => {
           </DialogContent>
           <DialogActions>
             <Button onClick={() => handleClose()} autoFocus>
-            Fechar
+              Close
             </Button>
           </DialogActions>
         </Dialog>

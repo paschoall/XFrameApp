@@ -51,7 +51,7 @@ export default function CardTemplate(props) {
                 >
                     {props.descricao}
                 </Typography>
-                <ButtonTemplate link={props.link} id={props.id} text={'Leia Mais'} />
+                <ButtonTemplate link={props.link} id={props.id} text={'Read more'} />
             </CardContent>
         </Card>
     )

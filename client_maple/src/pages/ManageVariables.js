@@ -44,7 +44,7 @@ const ManageVariables = () => {
                   fontSize: '2.5rem',
                 }}
               >
-                Gerenciar variáveis
+                Manage Variables
               </Typography>
             </Grid>
             <Grid item xs={12} md={4} lg={4}>
@@ -89,7 +89,7 @@ const ManageVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Variáveis independentes
+                        Independent Variable
                       </Typography>}
                   />
                 </ListItemButton>
@@ -137,7 +137,7 @@ const ManageVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Variáveis dependentes
+                        Dependent Variable
                       </Typography>}
                   />
                 </ListItemButton>
@@ -185,7 +185,7 @@ const ManageVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Gerenciar relacionamentos
+                        Manage relationships
                       </Typography>}
                   />
                 </ListItemButton>

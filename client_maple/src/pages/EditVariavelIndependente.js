@@ -348,7 +348,7 @@ const EditVariavelIndependente = () => {
                   }}
                 >
                   <Typography variant="h5" gutterBottom>
-                    Descrição
+                    Description
                   </Typography>
                   <Typography
                     sx={{
@@ -369,7 +369,7 @@ const EditVariavelIndependente = () => {
                       margin: '0',
                     }}
                   >
-                    <Button onClick={handleClickOpenDesc}>Alterar nome ou descrição</Button>
+                    <Button onClick={handleClickOpenDesc}>Change name or description</Button>
                   </Grid>
                 </Paper>
               </Grid>
@@ -383,14 +383,14 @@ const EditVariavelIndependente = () => {
                   }}
                 >
                   <Typography variant="h5" gutterBottom>
-                    Tratamentos
+                    Treatment
                   </Typography>
                   <Grid container spacing={6}>
                     {
                       (typeof factorTreatment.data === 'undefined' || Object.keys(factorTreatment.data).length === 0) ? (
                         <p></p>
                       ) : (
-                        factorTreatment.data.filter(({ id_vi }) => id_vi.toString() === variable_id).map((data, i) => {
+                        (factorTreatment.data ?? []).filter(({ id_vi }) => id_vi.toString() === variable_id).map((data, i) => {
                           return (
                             <Grid key={i} item xs={12} md={6} lg={6}>
                               <Paper
@@ -420,9 +420,9 @@ const EditVariavelIndependente = () => {
                                     margin: '0.5rem 1rem 0 0'
                                   }}
                                 >
-                                  <Button onClick={(event) => handleClickMore(event, data.id)}>Mais Detalhes</Button>
+                                  <Button onClick={(event) => handleClickMore(event, data.id)}>More Details</Button>
 
-                                  <Button onClick={(event) => handleClickFT(event, data.id)}>Deletar</Button>
+                                  <Button onClick={(event) => handleClickFT(event, data.id)}>Delete</Button>
                                 </Grid>
                               </Paper>
                             </Grid>
@@ -439,7 +439,7 @@ const EditVariavelIndependente = () => {
                       margin: '3rem 0 0 0'
                     }}
                   >
-                    <Button onClick={handleClickOpenFt}>Atribuir Tratamentos</Button>
+                    <Button onClick={handleClickOpenFt}>Assign Treatments</Button>
                   </Grid>
                 </Paper>
               </Grid>
@@ -452,7 +452,7 @@ const EditVariavelIndependente = () => {
                   }}
                 >
                   <Typography variant="h6" gutterBottom>
-                    Referências
+                    References
                   </Typography>
                   <List>
                     <Grid container spacing={2}>
@@ -485,7 +485,7 @@ const EditVariavelIndependente = () => {
                                   )
                                 }
                               >
-                                EXCLUIR
+                                DELETE
                               </Button>
                             </Grid>
                           )
@@ -502,7 +502,7 @@ const EditVariavelIndependente = () => {
                       margin: '0.5rem 0 0 0'
                     }}
                   >
-                    <Button onClick={handleClickOpenRef}>Adicionar Referência</Button>
+                    <Button onClick={handleClickOpenRef}>Add Reference</Button>
                   </Grid>
                 </Paper>
               </Grid>
@@ -520,7 +520,7 @@ const EditVariavelIndependente = () => {
           aria-labelledby="responsive-dialog-title"
         >
           <DialogContent>
-            <EditForms formTitle={'Alterar nome ou descrição'} fetchlink='/independent_variable/' nome={data.data['name']} descricao={data.data['description']} />
+            <EditForms formTitle={'Change name or description'} fetchlink='/independent_variable/' nome={data.data['name']} descricao={data.data['description']} />
           </DialogContent>
         </Dialog>
 
@@ -536,14 +536,14 @@ const EditVariavelIndependente = () => {
         >
           <DialogTitle id="responsive-dialog-title"
           >
-            {"Adicionar Tratamentos"}
+            {"Add Treatments"}
           </DialogTitle>
           <DialogContent>
             <Grid container spacing={3}>
 
               <Grid item xs={12} md={12} lg={12}>
                 <DialogContentText>
-                  Escolha os Tratamentos
+                  Choose Treatments
                 </DialogContentText>
                 <Paper square
                   variant='outlined'
@@ -592,10 +592,10 @@ const EditVariavelIndependente = () => {
           </DialogContent>
           <DialogActions>
             <Button autoFocus onClick={handleClose}>
-              Cancelar
+              Cancel
             </Button>
             <Button variant="contained" onClick={handleAddFT} autoFocus>
-              Editar
+              Edit
             </Button>
           </DialogActions>
         </Dialog>
@@ -610,11 +610,11 @@ const EditVariavelIndependente = () => {
         >
           <Container component="form" onSubmit={handleAddRef}>
             <DialogTitle id="responsive-dialog-title">
-              {"Adicionar Referência"}
+              {"Add Reference"}
             </DialogTitle>
             <DialogContent>
               <DialogContentText>
-                Adicione a referência e o link de referência abaixo
+                Add reference and reference link below
               </DialogContentText>
               <TextField
                 autoFocus
@@ -638,10 +638,10 @@ const EditVariavelIndependente = () => {
             </DialogContent>
             <DialogActions>
               <Button autoFocus onClick={handleClose}>
-                Cancelar
+                Cancel
               </Button>
               <Button variant="contained" type="submit" autoFocus>
-                Adicionar
+                Add
               </Button>
             </DialogActions>
           </Container>
@@ -651,13 +651,13 @@ const EditVariavelIndependente = () => {
 
         <AlertDialog
           open={openError}
-          title='Erro no Cadastro'
-          message='Falha no registro.'
+          title='Error in Registration'
+          message='Registration failed.'
         />
         <AlertDialog
           open={open}
-          title='Adicionado com Sucesso'
-          message='Registro bem sucedido!'
+          title='Added Successfully'
+          message='Registration successful!'
         />
 
         {/* -------------------------------------------------------- */}
@@ -669,19 +669,19 @@ const EditVariavelIndependente = () => {
           aria-describedby="alert-dialog-description"
         >
           <DialogTitle id="alert-dialog-title">
-            DELETAR
+            DELETE
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              Quer realmente deletar?
+              Do you really want to delete it?
             </DialogContentText>
           </DialogContent>
           <DialogActions>
             <Button onClick={() => handleCloseDelete(true, selectedIndex)} autoFocus>
-              Deletar
+              Delete
             </Button>
             <Button onClick={() => handleCloseDelete()} autoFocus>
-              Cancelar
+              Cancel
             </Button>
           </DialogActions>
         </Dialog>
@@ -695,19 +695,19 @@ const EditVariavelIndependente = () => {
           aria-describedby="alert-dialog-description"
         >
           <DialogTitle id="alert-dialog-title">
-            DELETAR
+            DELETE
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              Quer realmente deletar?
+              Do you really want to delete it?
             </DialogContentText>
           </DialogContent>
           <DialogActions>
             <Button onClick={() => handleCloseDeleteRef(true, selectedIndex)} autoFocus>
-              Deletar
+              Delete
             </Button>
             <Button onClick={() => handleCloseDeleteRef()} autoFocus>
-              Cancelar
+              Cancel
             </Button>
           </DialogActions>
         </Dialog>
@@ -745,7 +745,7 @@ const EditVariavelIndependente = () => {
           </DialogContent>
           <DialogActions>
             <Button onClick={() => handleClose()} autoFocus>
-            Fechar
+              Close
             </Button>
           </DialogActions>
         </Dialog>

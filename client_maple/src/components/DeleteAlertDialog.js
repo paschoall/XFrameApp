@@ -41,10 +41,10 @@ export default function DeleteAlertDialog(props) {
         </DialogContent>
         <DialogActions>
         <Button onClick={() => handleClose()} autoFocus>
-            Deletar
+            Delete
           </Button>
           <Button onClick={() => handleClose()} autoFocus>
-            Cancelar
+            Cancel
           </Button>
         </DialogActions>
       </Dialog>

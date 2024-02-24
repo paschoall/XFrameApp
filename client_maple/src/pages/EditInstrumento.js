@@ -230,7 +230,7 @@ const EditInstrumento = () => {
                   }}
                 >
                   <Typography variant="h5" gutterBottom>
-                    Descrição
+                    Description
                   </Typography>
                   <Typography
                     sx={{
@@ -251,7 +251,7 @@ const EditInstrumento = () => {
                       margin: '0',
                     }}
                   >
-                    <Button onClick={handleClickOpenDesc}>Editar Nome ou Descrição</Button>
+                    <Button onClick={handleClickOpenDesc}>Edit Name or Description</Button>
                   </Grid>
                 </Paper>
               </Grid>
@@ -264,7 +264,7 @@ const EditInstrumento = () => {
                   }}
                 >
                   <Typography variant="h6" gutterBottom>
-                    Referências
+                    References
                   </Typography>
                   <List>
                     <Grid container spacing={2}>
@@ -278,7 +278,7 @@ const EditInstrumento = () => {
                                 {references.data.find(o => o.id === data.id_ref).referencia_bib}
                               </Grid>
                               <Grid item xs={5.5} md={5.5} lg={5.5} alignItems="flex-start" zeroMinWidth>
-                                {"Disponível em: "}
+                                {"Available in: "}
                                   <a
                                     target="_blank"
                                     rel='noreferrer'
@@ -297,7 +297,7 @@ const EditInstrumento = () => {
                                   )
                                 }
                               >
-                                DELETAR
+                                DELETE
                               </Button>
                             </Grid>
                           )
@@ -314,7 +314,7 @@ const EditInstrumento = () => {
                       margin: '0.5rem 0 0 0'
                     }}
                   >
-                    <Button onClick={handleClickOpenRef}>Adicionar Referência</Button>
+                    <Button onClick={handleClickOpenRef}>Add Reference</Button>
                   </Grid>
                 </Paper>
               </Grid>
@@ -328,7 +328,7 @@ const EditInstrumento = () => {
           aria-labelledby="responsive-dialog-title"
         >
           <DialogContent>
-            <EditForms formTitle={'Editar Nome ou Descrição'} fetchlink='/instrument/' nome={data.data['name']} descricao={data.data['description']}/>
+            <EditForms formTitle={'Edit Name or Description'} fetchlink='/instrument/' nome={data.data['name']} descricao={data.data['description']}/>
           </DialogContent>
         </Dialog>
         <Footer />
@@ -343,18 +343,18 @@ const EditInstrumento = () => {
         >
           <Container component="form" onSubmit={handleAddRef}>
             <DialogTitle id="responsive-dialog-title">
-              {"Adicionar Referência"}
+              {"Add Reference"}
             </DialogTitle>
             <DialogContent>
               <DialogContentText>
-                Adicione a referência e o link de referência abaixo
+                Add reference and reference link below
               </DialogContentText>
               <TextField
                 autoFocus
                 multiline
                 margin="dense"
                 id="bib_reference"
-                label="Referência Bibliografica"
+                label="Bibliographic reference"
                 name="bib_reference"
                 fullWidth
                 variant="standard"
@@ -362,7 +362,7 @@ const EditInstrumento = () => {
               <TextField
                 margin="dense"
                 id="reference"
-                label="Link da Referência"
+                label="Reference Link"
                 name="reference"
                 type="link"
                 fullWidth
@@ -371,10 +371,10 @@ const EditInstrumento = () => {
             </DialogContent>
             <DialogActions>
               <Button autoFocus onClick={handleClose}>
-                Cancelar
+                Cancel
               </Button>
               <Button variant="contained" type="submit" autoFocus>
-                Adicionar
+                Add
               </Button>
             </DialogActions>
           </Container>
@@ -384,13 +384,13 @@ const EditInstrumento = () => {
 
         <AlertDialog
           open={openError}
-          title='Erro no Cadastro'
-          message='Falha no registro.'
+          title='Error in Registration'
+          message='Registration failed.'
         />
         <AlertDialog
           open={open}
-          title='Adicionado com Sucesso'
-          message='Registro bem sucedido!'
+          title='Added Successfully'
+          message='Registration successful!'
         />
 
         {/* -------------------------------------------------------- */}
@@ -402,19 +402,19 @@ const EditInstrumento = () => {
           aria-describedby="alert-dialog-description"
         >
           <DialogTitle id="alert-dialog-title">
-            DELETAR
+            DELETE
           </DialogTitle>
           <DialogContent>
             <DialogContentText id="alert-dialog-description">
-              Quer realmente deletar?
+              Do you really want to delete it?
             </DialogContentText>
           </DialogContent>
           <DialogActions>
             <Button onClick={() => handleCloseDeleteRef(true, selectedIndex)} autoFocus>
-              Deletar
+              Delete
             </Button>
             <Button onClick={() => handleCloseDeleteRef()} autoFocus>
-              Cancelar
+              Cancel
             </Button>
           </DialogActions>
         </Dialog>

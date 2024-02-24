@@ -37,7 +37,7 @@ const ManageDependentVariables = () => {
                   fontSize: '2.5rem',
                 }}
               >
-                Gerenciar variáveis depentendes
+                Manage dependent variables
               </Typography>
             </Grid>
             <Grid item xs={12} md={4} lg={4}>
@@ -82,7 +82,7 @@ const ManageDependentVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Cadastrar variável
+                        Register variable
                       </Typography>}
                   />
                 </ListItemButton>
@@ -131,7 +131,7 @@ const ManageDependentVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Editar variável
+                        Edit variable
                       </Typography>}
                   />
                 </ListItemButton>
@@ -180,7 +180,7 @@ const ManageDependentVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Cadastrar Métrica
+                        Register Metric
                       </Typography>}
                   />
                 </ListItemButton>
@@ -229,7 +229,7 @@ const ManageDependentVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Editar Métricas
+                        Edit Metrics
                       </Typography>}
                   />
                 </ListItemButton>
@@ -278,7 +278,7 @@ const ManageDependentVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Cadastrar Instrumento
+                       Register Instrument
                       </Typography>}
                   />
                 </ListItemButton>
@@ -327,7 +327,7 @@ const ManageDependentVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Editar Instrumentos
+                        Edit Instruments
                       </Typography>}
                   />
                 </ListItemButton>

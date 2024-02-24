@@ -32,7 +32,7 @@ const EditVd = () => {
           <EditCardBox fetchlink='/dependent_variable' />
         ) : (
           <Typography variant="h6" gutterBottom>
-            Não há variáveis dependentes cadastradas...
+            There are no dependent variables registered...
           </Typography>
         )}
       </Box>

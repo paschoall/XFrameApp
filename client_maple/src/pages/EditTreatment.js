@@ -33,7 +33,7 @@ const EditTreatment = () => {
           <EditCardBox fetchlink='/treatment' />
         ) : (
           <Typography variant="h6" gutterBottom>
-            Não há tratamentos cadastrados...
+            There are no registered treatments...
           </Typography>
         )}
       </Box>

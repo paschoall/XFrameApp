@@ -132,7 +132,7 @@ const RegisterRelationship = () => {
                   textAlign: 'center',
                 }}
               >
-                Variáveis Independentes
+                Independent variables
               </Typography>
               <Paper square
                 variant='outlined'
@@ -208,7 +208,7 @@ const RegisterRelationship = () => {
                   textAlign: 'center',
                 }}
               >
-                Variáveis Dependentes
+                Dependent variables
               </Typography>
               <Paper square
                 variant='outlined'
@@ -270,7 +270,7 @@ const RegisterRelationship = () => {
                 marginTop: '2rem'
               }}
             >
-              Adicionar
+              Add
             </Button>
           </Grid>
         </Grid>
@@ -282,8 +282,8 @@ const RegisterRelationship = () => {
       />
       <AlertDialog
         open={open}
-        title='Adicionado com Sucesso'
-        message='Registro bem sucedido!'
+        title='Added Successfully'
+        message='Registration successful!'
       />
       <Footer />
     </>

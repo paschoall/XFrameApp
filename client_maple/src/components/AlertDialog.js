@@ -45,7 +45,7 @@ export default function AlertDialog(props) {
         </DialogContent>
         <DialogActions>
           <Button onClick={() => handleClose(props.link)} autoFocus>
-            Fechar
+            Close
           </Button>
         </DialogActions>
       </Dialog>

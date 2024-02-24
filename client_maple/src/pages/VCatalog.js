@@ -48,7 +48,7 @@ const CatalogoVd = () => {
                   textAlign: 'center',
                 }}
               >
-                Variáveis Independentes
+                Independent variables
               </Typography>
               <Paper square
                 variant='outlined'
@@ -72,7 +72,7 @@ const CatalogoVd = () => {
                     padding: '1vh',
                   }}
                 >
-                  Variável A
+                  Variable A
                 </ListItemButton>
                 <ListItemButton
                   selected={selectedIndex === 1}
@@ -83,7 +83,7 @@ const CatalogoVd = () => {
                     padding: '1vh',
                   }}
                 >
-                  Variável B
+                  Variable B
                 </ListItemButton>
                 <ListItemButton
                   selected={selectedIndex === 2}
@@ -94,7 +94,7 @@ const CatalogoVd = () => {
                     padding: '1vh',
                   }}
                 >
-                  Variável C
+                  Variable C
                 </ListItemButton>
                 <ListItemButton
                   selected={selectedIndex === 3}
@@ -105,7 +105,7 @@ const CatalogoVd = () => {
                     padding: '1vh',
                   }}
                 >
-                  Variável D
+                  Variable D
                 </ListItemButton>
               </Paper>
             </Paper>
@@ -130,7 +130,7 @@ const CatalogoVd = () => {
                   textAlign: 'center',
                 }}
               >
-                Variáveis Dependentes
+                Dependent Variables
               </Typography>
               <Paper square
                 variant='outlined'
