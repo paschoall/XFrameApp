@@ -176,7 +176,7 @@ const ManageIndependentVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Register Treatments
+                        Register treatments
                       </Typography>}
                   />
                 </ListItemButton>
@@ -224,7 +224,7 @@ const ManageIndependentVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Edit Treatments
+                        Edit treatments
                       </Typography>}
                   />
                 </ListItemButton>

@@ -53,7 +53,6 @@ const EditMetrica = () => {
     ).then(
       data => {
         setData(data)
-        console.log(data)
       }
     )
   }, [id])
@@ -95,11 +94,9 @@ const EditMetrica = () => {
           if (!response.ok) {
             throw new Error('Network response was not OK');
           }
-          // console.log(response)
           setOpen(true)
           return response.json()
         })
-        // .then(data => console.log(data))
         .catch((error) => {
           console.error('There has been a problem with your operation:', error);
           setOpenError(true)
@@ -251,7 +248,7 @@ const EditMetrica = () => {
                       margin: '0',
                     }}
                   >
-                    <Button onClick={handleClickOpenDesc}>Edit Name or Description</Button>
+                    <Button onClick={handleClickOpenDesc}>Edit name or description</Button>
                   </Grid>
                 </Paper>
               </Grid>
@@ -330,7 +327,7 @@ const EditMetrica = () => {
           aria-labelledby="responsive-dialog-title"
         >
           <DialogContent>
-            <EditForms formTitle={'Edit Name or Description'} fetchlink='/metric/' nome={data.data['name']} descricao={data.data['description']}/>
+            <EditForms formTitle={'Edit name or description'} fetchlink='/metric/' nome={data.data['name']} descricao={data.data['description']}/>
           </DialogContent>
         </Dialog>
         <Footer />

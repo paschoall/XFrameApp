@@ -44,11 +44,9 @@ export default function EditCardTemplate(props) {
                     if (!response.ok) {
                         throw new Error('Network response was not OK');
                     }
-                    console.log(response)
                     return response.json()
                 }).then(
                     data => {
-                        console.log(data)
                         navigate(0)
                     }
                 ).catch(

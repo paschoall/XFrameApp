@@ -14,7 +14,6 @@ const CatalogoVd = () => {
     fetch('/dependent_variables')
       .then((response) => response.json())
       .then((data) => {
-        console.log('Resposta da requisição /dependent_variables:', data);
 
         if (data && data.data && data.data.length > 0) {
           setHaVariaveisDependentes(true);

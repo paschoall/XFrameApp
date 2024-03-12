@@ -29,7 +29,6 @@ const Home = () => {
     var vd_array;
     const selected_vi_vd = vi_vd.data.find((o) => o.id_vi === index);
   
-    console.log(selected_vi_vd);
     if (selected_vi_vd !== undefined) {
       vd_array = selected_vi_vd['id_vd_array']
         .split(',')
@@ -114,7 +113,7 @@ const Home = () => {
                   textAlign: 'center',
                 }}
               >
-                Independent Variables
+                Independent variables
               </Typography>
               <Paper square
                 variant='outlined'
@@ -194,7 +193,7 @@ const Home = () => {
                   textAlign: 'center',
                 }}
               >
-                Dependent Variables
+                Dependent variables
               </Typography>
               <Paper square
                 variant='outlined'

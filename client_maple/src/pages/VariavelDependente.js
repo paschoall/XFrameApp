@@ -54,20 +54,24 @@ const VariavelDependente = () => {
     ).then(
       data => {
         setMetrics(data)
-        console.log(data.data.find(({ id }) => id.toString() === "8")['name'])
       }
     )
   }, [id])
 
   useEffect(() => {
-    fetch('/instruments').then(
-      res => res.json()
-    ).then(
-      data => {
-        setInstruments(data)
-      }
-    )
+    try {
+      fetch('/instruments').then(
+        res => res.json()
+      ).then(
+        data => {
+          setInstruments(data);
+        }
+      )
+    } catch (error) {
+      console.error("Erro na chamada assíncrona de /instruments:", error);
+    }
   }, [id])
+  
 
 
   useEffect(() => {

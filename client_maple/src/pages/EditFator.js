@@ -42,7 +42,6 @@ const EditFator = () => {
     ).then(
       data => {
         setData(data)
-        console.log(data)
       }
     )
   }, [id])
@@ -126,7 +125,7 @@ const EditFator = () => {
                       margin: '0',
                     }}
                   >
-                    <Button onClick={handleClickOpenDesc}>Edit Name or Description</Button>
+                    <Button onClick={handleClickOpenDesc}>Edit name or description</Button>
                   </Grid>
                 </Paper>
               </Grid>
@@ -176,7 +175,7 @@ const EditFator = () => {
           aria-labelledby="responsive-dialog-title"
         >
           <DialogContent>
-            <EditForms formTitle={'Edit Name or Description'} fetchlink='/metric/' />
+            <EditForms formTitle={'Edit name or description'} fetchlink='/metric/' />
           </DialogContent>
         </Dialog>
         <Dialog

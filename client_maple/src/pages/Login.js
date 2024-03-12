@@ -63,7 +63,6 @@ export default function Login({ setToken }) {
         return response.json()
       })
       .then(data => {
-        console.log('Success!')
         setToken(data.token)
         const decodedtoken = jwt(data.token)
         const user = {

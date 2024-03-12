@@ -43,7 +43,6 @@ const Treatment = (props) => {
     ).then(
       data => {
         setTreatmentReferences(data);
-        console.log(data)
       }
     )
   }, [])

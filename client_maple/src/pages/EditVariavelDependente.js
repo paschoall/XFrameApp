@@ -142,11 +142,9 @@ const EditVariavelDependente = () => {
           if (!response.ok) {
             throw new Error('Network response was not OK');
           }
-          // console.log(response)
           setOpen(true)
           return response.json()
         })
-        // .then(data => console.log(data))
         .catch((error) => {
           console.error('There has been a problem with your operation:', error);
           setOpenError(true)
@@ -208,11 +206,9 @@ const EditVariavelDependente = () => {
         if (!response.ok) {
           throw new Error('Network response was not OK');
         }
-        //console.log(response)
         setOpen(true)
         return response.json()
       })
-      // .then(data => console.log(data))
       .catch((error) => {
         console.error('There has been a problem with your operation:', error);
         setOpenError(true)
@@ -399,7 +395,6 @@ const EditVariavelDependente = () => {
                       (metricInstrument.data ?? []).filter(({ id_vd }) => id_vd.toString() === variable_id).map((data, i) => {
                         const metricName = metrics.data.find(metric => metric.id === data['id_metric'])?.name;
                         const instrumentName = instruments.data.find(instrument => instrument.id === data['id_instrument'])?.name;
-                        console.log(instrumentName)
 
                         return (
                           <Grid key={i} item xs={12} md={6} lg={6}>
@@ -519,7 +514,7 @@ const EditVariavelDependente = () => {
           aria-labelledby="responsive-dialog-title"
         >
           <DialogContent>
-            <EditForms formTitle={'Edit Name or Description'} fetchlink='/dependent_variable/' />
+            <EditForms formTitle={'Edit name or description'} fetchlink='/dependent_variable/' />
           </DialogContent>
         </Dialog>
         {/* -------------------------------------------------------- */}
@@ -656,7 +651,7 @@ const EditVariavelDependente = () => {
           aria-labelledby="responsive-dialog-title"
         >
           <DialogContent>
-            <EditForms formTitle={'Edit Name or Description'} fetchlink='/dependent_variable/' nome={data.data['name']} descricao={data.data['description']} />
+            <EditForms formTitle={'Edit name or description'} fetchlink='/dependent_variable/' nome={data.data['name']} descricao={data.data['description']} />
           </DialogContent>
         </Dialog>
 
@@ -681,7 +676,7 @@ const EditVariavelDependente = () => {
                 multiline
                 margin="dense"
                 id="bib_reference"
-                label="Referência Bibliografica"
+                label="Bibliographic reference"
                 name="bib_reference"
                 fullWidth
                 variant="standard"
@@ -689,7 +684,7 @@ const EditVariavelDependente = () => {
               <TextField
                 margin="dense"
                 id="reference"
-                label="Link da Referência"
+                label="Reference Link"
                 name="reference"
                 type="link"
                 fullWidth

@@ -53,8 +53,6 @@ export default function Formulario(props) {
       console.error('There has been a problem with your fetch operation:', error);
       setOpenError(true);
     });
-
-    // console.log(JSON.stringify(data));
   }
 
   const handleClose = () => {
@@ -105,7 +103,7 @@ export default function Formulario(props) {
               onClick={() => handleClose()}
               sx={{ mt: 3, ml: 1 }}
             >
-              Cancelar
+              Cancel
             </Button>
             <Button
               variant='contained'

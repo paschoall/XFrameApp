@@ -180,7 +180,7 @@ const ManageDependentVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Register Metric
+                        Register metric
                       </Typography>}
                   />
                 </ListItemButton>
@@ -229,7 +229,7 @@ const ManageDependentVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Edit Metrics
+                        Edit metrics
                       </Typography>}
                   />
                 </ListItemButton>
@@ -278,7 +278,7 @@ const ManageDependentVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                       Register Instrument
+                       Register instrument
                       </Typography>}
                   />
                 </ListItemButton>
@@ -327,7 +327,7 @@ const ManageDependentVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Edit Instruments
+                        Edit instruments
                       </Typography>}
                   />
                 </ListItemButton>

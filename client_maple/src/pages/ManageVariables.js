@@ -18,6 +18,9 @@ import DisplaySettingsRoundedIcon from '@mui/icons-material/DisplaySettingsRound
 import FactCheckRoundedIcon from '@mui/icons-material/FactCheckRounded';
 import ListRoundedIcon from '@mui/icons-material/ListRounded';
 import MiscellaneousServicesRoundedIcon from '@mui/icons-material/MiscellaneousServicesRounded';
+import variavelIndependenteImage from '../assets/images/variavelIndependente.png';
+import variavelDependenteImage from '../assets/images/variavelDependent.png';
+import relacaoImage from '../assets/images/relation.png';
 
 import Footer from '../components/Footer';
 
@@ -71,9 +74,11 @@ const ManageVariables = () => {
                   }}
                 >
                   <ListItemIcon>
-                    <MiscellaneousServicesRoundedIcon
-                      sx={{
-                        fontSize: '24vh',
+                    <img
+                      src={variavelIndependenteImage}
+                      alt="Variável Independente"
+                      style={{
+                        width: '24vh',
                         textAlign: 'center',
                       }}
                     />
@@ -89,8 +94,9 @@ const ManageVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Independent Variable
-                      </Typography>}
+                        Independent variable
+                      </Typography>
+                    }
                   />
                 </ListItemButton>
               </Paper>
@@ -119,10 +125,13 @@ const ManageVariables = () => {
                   }}
                 >
                   <ListItemIcon>
-                    <SettingsApplicationsIcon
-                      sx={{
-                        fontSize: '24vh',
+                    <img
+                      src={variavelDependenteImage}
+                      alt="Variável dependente"
+                      style={{
+                        width: '24vh',
                         textAlign: 'center',
+                        
                       }}
                     />
                   </ListItemIcon>
@@ -137,8 +146,9 @@ const ManageVariables = () => {
                           textAlign: 'center',
                         }}
                       >
-                        Dependent Variable
-                      </Typography>}
+                        Dependent variable
+                      </Typography>
+                    }
                   />
                 </ListItemButton>
               </Paper>
@@ -167,9 +177,11 @@ const ManageVariables = () => {
                   }}
                 >
                   <ListItemIcon>
-                    <ListAltRoundedIcon
-                      sx={{
-                        fontSize: '24vh',
+                    <img
+                      src={relacaoImage}
+                      alt="Relacoes"
+                      style={{
+                        width: '24vh',
                         textAlign: 'center',
                       }}
                     />
@@ -186,7 +198,8 @@ const ManageVariables = () => {
                         }}
                       >
                         Manage relationships
-                      </Typography>}
+                      </Typography>
+                    }
                   />
                 </ListItemButton>
               </Paper>

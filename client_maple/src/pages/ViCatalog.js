@@ -14,7 +14,6 @@ const CatalogoVi = () => {
     fetch('/independent_variables')
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.data)
         if (data && data.data && data.data.length > 0) {
           sethaVariaveis(true);
         } else {

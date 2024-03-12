@@ -23,7 +23,6 @@ const Metric = (props) => {
     ).then(
       data => {
         setData(data)
-        console.log(data)
       }
     )
   }, [props.id])
