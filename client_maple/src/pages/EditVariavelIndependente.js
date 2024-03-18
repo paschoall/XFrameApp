@@ -591,7 +591,7 @@ const EditVariavelIndependente = () => {
               Cancel
             </Button>
             <Button variant="contained" onClick={handleAddFT} autoFocus>
-              Edit
+              Add
             </Button>
           </DialogActions>
         </Dialog>

@@ -149,7 +149,7 @@ const RegisterRelationship = () => {
 
                 {
                   (typeof vi_vd.data === 'undefined' || typeof vi.data === 'undefined' || Object.keys(vi.data).length === 0) ? (
-                    <p>Loading...</p>
+                    <p>There are no independent variables registered...</p>
                   ) : (
                     vi.data.map((data, i) => {
                       return (
@@ -224,7 +224,7 @@ const RegisterRelationship = () => {
 
                 {
                   (typeof vi_vd.data === 'undefined' || typeof vd.data === 'undefined' || Object.keys(vd.data).length === 0) ? (
-                    <p>Loading...</p>
+                    <p>There are no dependent variables registered...</p>
                   ) : (
                     vd.data.map((data, i) => {
                       return (
@@ -275,8 +275,8 @@ const RegisterRelationship = () => {
       </Box>
       <AlertDialog
         open={openError}
-        title='Erro no Cadastro'
-        message='Falha no registro.'
+        title='Error in Registration'
+        message='Registration failed.'
       />
       <AlertDialog
         open={open}

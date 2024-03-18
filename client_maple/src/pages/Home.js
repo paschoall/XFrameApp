@@ -130,7 +130,7 @@ const Home = () => {
               >
                 {
                   (typeof vi_vd.data === 'undefined' || Object.keys(vi_vd.data).length === 0 || typeof vi.data === 'undefined' || Object.keys(vi.data).length === 0) ? (
-                    <p>Loading...</p>
+                    <p>There are no independent variables registered...</p>
                   ) : (
                     vi.data.map((data, i) => {
                       return (
@@ -211,7 +211,7 @@ const Home = () => {
 
                 {
                   (typeof vi_vd.data === 'undefined' || Object.keys(vi_vd.data).length === 0 || typeof vd.data === 'undefined' || Object.keys(vd.data).length === 0) ? (
-                    <p>Loading...</p>
+                    <p>There are no dependent variables registered...</p>
                   ) : (
                     vd.data.map((data, i) => {
                       return (

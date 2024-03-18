@@ -178,9 +178,7 @@ const EditRelationship = () => {
 
 
                 {
-                  (typeof vi_vd.data === 'undefined' || Object.keys(vi_vd.data).length === 0 || typeof vi.data === 'undefined') ? (
-                    <p>Loading...</p>
-                  ) : (
+                  (Array.isArray(vi.data) && vi.data.length > 0) ? (
                     vi.data.map((data, i) => {
                       return (
                         <Box
@@ -210,7 +208,7 @@ const EditRelationship = () => {
                           </ListItemButton>
                           <Collapse in={selectedDesign === data['id']} timeout="auto" unmountOnExit>
                             <List component="div" disablePadding>
-                              {vi_vd.data.filter(({ id_vi }) => id_vi === data['id']).map((data, i) => {
+                              {Array.isArray(vi_vd.data) && vi_vd.data.length > 0 && vi_vd.data.map((data, i) => {
                                 return (
                                   <ListItemButton
                                     key={i}
@@ -237,9 +235,10 @@ const EditRelationship = () => {
                           </Collapse>
                         </Box>
                       )
-                    }
+                    })
+                    ) : (
+                      <Typography variant="body1" sx={{ padding: '1rem' }}>There are no independent variables registered...</Typography>
                     )
-                  )
                 }
               </Paper>
             </Paper>
@@ -281,9 +280,7 @@ const EditRelationship = () => {
               >
 
                 {
-                  (typeof vi_vd.data === 'undefined' || Object.keys(vi_vd.data).length === 0 || typeof vd.data === 'undefined') ? (
-                    <p>Loading...</p>
-                  ) : (
+                  (Array.isArray(vd.data) && vd.data.length > 0) ? (
                     vd.data.map((data, i) => {
                       return (
                         <ListItemButton
@@ -298,9 +295,10 @@ const EditRelationship = () => {
                           <ListItemText primary={data['name']} />
                         </ListItemButton>
                       )
-                    }
+                    })
+                    ) : (
+                      <Typography variant="body1" sx={{ padding: '1rem' }}>There are no dependent variables registered...</Typography>
                     )
-                  )
                 }
               </Paper>
             </Paper>
