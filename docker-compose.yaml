@@ -1,0 +1,53 @@
+version: '3.9'
+
+services:
+
+  db:
+    image: mysql/mysql-server:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: VarMap*123
+      MYSQL_ROOT_HOST: '%' 
+    ports:
+      - 3307:3306
+    volumes:
+      - ./migrations:/docker-entrypoint-initdb.d
+    networks:
+      - flask_server
+
+  web:
+    build: ./client_maple
+    ports:
+      - 3000:3000
+    volumes:
+      - ./client_maple:/user/src/app
+    environment:
+    # - NODE_ENV=production
+      - NODE_ENV=development
+      - REACT_APP_API_URL=http://localhost:5000
+    depends_on:
+      - flask_server 
+    networks:
+      - web
+
+  flask_server:
+    build: ./flask_server
+    ports:
+      - 80:5000
+    environment:
+      - DB_URL=mysql+pymysql://root:VarMap*123@db/variable_selection_tool
+      - DB_HOST=db
+      - DB_USER=root
+      - DB_PASSWORD=VarMap*123
+      - DB_NAME=variable_selection_tool
+      - CLIENT_ORIGIN=http://127.0.0.1:5000
+    depends_on:
+      - db
+    volumes:
+      - ./flask_server:/app
+    networks:
+      - flask_server
+      - web
+    
+networks:
+  web:
+  flask_server:

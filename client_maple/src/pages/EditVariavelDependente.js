@@ -603,7 +603,7 @@ const EditVariavelDependente = () => {
                     (typeof instruments.data === 'undefined' || Object.keys(instruments.data).length === 0) ? (
                       <p></p>
                     ) : (
-                      instruments.data.map((data, i) => {
+                      (instruments.data ?? []).map((data, i) => {
                         return (
                           <ListItemButton
                             key={i}

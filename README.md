@@ -44,6 +44,7 @@ $ python run.py
 16. Agora os servidores front-end e back-end estarão rodando em modo de desenvolvimento
 na maquina local e qualquer modificação nas páginas web e na API poderão ser testadas
 em um navegador.
+17. Para utilizar os containers, será necessário utilizar comandos docker, e alterar as credenciais do proxy no package.json, o config.py e o .env
 
 Para realização de um deploy e instalação em um servidor próprio do back-end, o Flask oferece as instruções no seguinte endereço:
 <https://flask.palletsprojects.com/en/2.2.x/deploying/>.
