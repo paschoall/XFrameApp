@@ -457,12 +457,12 @@ const EditVariavelIndependente = () => {
                       ) : (
                         viReferences.data.filter(({ id_vi }) => id_vi.toString() === variable_id).map((data, i) => {
                           return (
-                            <Grid container item key={i} xs={12} md={12} lg={12} alignItems="flex-start">
+                            <Grid container item key={i} xs={12} md={12} lg={12} alignItems="flex-start" sx={{ fontFamily: 'Poppins, sans-serif' }}>
                               <Grid item xs={5} md={5} lg={5} zeroMinWidth>
                                 {references.data.find(o => o.id === data.id_ref).referencia_bib}
                               </Grid>
                               <Grid item xs={5.5} md={5.5} lg={5.5} alignItems="flex-start" zeroMinWidth>
-                                {"Disponível em: "}
+                                {"Available in: "}
                                 <a
                                   target="_blank"
                                   rel='noreferrer'

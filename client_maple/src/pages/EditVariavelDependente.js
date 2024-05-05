@@ -393,8 +393,8 @@ const EditVariavelDependente = () => {
                       <p></p>
                     ) : (
                       (metricInstrument.data ?? []).filter(({ id_vd }) => id_vd.toString() === variable_id).map((data, i) => {
-                        const metricName = metrics.data.find(metric => metric.id === data['id_metric'])?.name;
-                        const instrumentName = instruments.data.find(instrument => instrument.id === data['id_instrument'])?.name;
+                        const metricName = Array.isArray(metrics.data) && metrics.data.length > 0 ? metrics.data.find(metric => metric.id === data['id_metric'])?.name : null;
+                        const instrumentName = Array.isArray(instruments.data) && instruments.data.length > 0 ? instruments.data.find(instrument => instrument.id === data['id_instrument'])?.name : null;
 
                         return (
                           <Grid key={i} item xs={12} md={6} lg={6}>
@@ -459,7 +459,7 @@ const EditVariavelDependente = () => {
                     ) : (
                       vdReferences.data.filter(({ id_vd }) => id_vd.toString() === variable_id).map((data, i) => {
                         return (
-                          <Grid container item key={i} xs={12} md={12} lg={12} alignItems="flex-start">
+                          <Grid container item key={i} xs={12} md={12} lg={12} alignItems="flex-start" sx={{ fontFamily: 'Poppins, sans-serif' }}>
                             <Grid item xs={5} md={5} lg={5} zeroMinWidth>
                               {references.data.find(o => o.id === data.id_ref).referencia_bib}
                             </Grid>
